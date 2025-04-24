@@ -4,3 +4,8 @@
 /.idea
 /desktop.ini
 /pyvenv.cfg
+/test.py
+/01/test_01.py
+/02/test_02.py
+/05/test_05.py
+/06/task_06.py
