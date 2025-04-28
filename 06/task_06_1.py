@@ -4,6 +4,7 @@ Task 06
 ЕГЭ Питоныч
 https://stepik.org/course/100138
 """
+
 # https://stepik.org/lesson/798013/step/4?unit=800901
 from turtle import  *
 # стартовые установки

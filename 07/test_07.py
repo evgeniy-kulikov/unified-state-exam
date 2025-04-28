@@ -1,11 +1,15 @@
 """"""
 """
-I = h * l * i
+Графика
+I = h * w * i
 
+Звук
 I = ch * Hz * i * t / 8
-I = L * H * i / 8
+
+Передача данных по сети
+V = I / t
 """
 # from math import log2, ceil
 
-# https://stepik.org/lesson/648369/step/2?auth=login&unit=645014
+
 
