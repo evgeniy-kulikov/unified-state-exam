@@ -1,6 +1,9 @@
-# Информатика Подготовка к ЕГЭ 2025
-# https://stepik.org/course/182932/
 """"""
+"""
+Task 08
+Информатика Подготовка к ЕГЭ 2025
+https://stepik.org/course/182932
+"""
 
 # https://stepik.org/lesson/255058/step/1?unit=235266
 from itertools import product
