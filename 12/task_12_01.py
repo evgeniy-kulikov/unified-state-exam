@@ -1,4 +1,6 @@
+""""""
 """
+Task 12
 Информатика Подготовка к ЕГЭ 2025
 https://stepik.org/course/182932/syllabus
 """

@@ -1,10 +1,9 @@
-# Задание 13
+""""""
 """
 Task 13
 Подготовка к ЕГЭ по информатике. Базовый курс
 https://stepik.org/course/123759
 """
-
 
 
 from ipaddress import *
