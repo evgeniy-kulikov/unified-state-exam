@@ -195,7 +195,7 @@ print(len(res))  # 4
 
 
 # https://stepik.org/lesson/454772/step/14?unit=445199
-# 15/pic/pic_001
+# 15/course_57248/pic/pic_001
 a = []
 p = [i for i in range(10, 41)]
 q = [i for i in range(20, 36)]
@@ -210,7 +210,7 @@ print(len(a) - 1)  # 15
 
 
 # https://stepik.org/lesson/454772/step/14?unit=445199
-# 15/pic/pic_002
+# 15/course_57248/pic/pic_002
 a = []
 p = [i for i in range(80, 104)]
 q = [i for i in range(5, 16)]
@@ -227,7 +227,7 @@ print(len(a) - 1)  # 23
 
 
 # https://stepik.org/lesson/454772/step/16?unit=445199
-# 15/pic/pic_003
+# 15/course_57248/pic/pic_003
 # a = [i for i in range(80, 91)]
 b = [i for i in range(30, 51)]
 for n in range(11, 500):
@@ -250,7 +250,7 @@ for n in range(11, 500):
 
 
 #  https://stepik.org/lesson/623846/step/1?unit=619531
-#  15/pic/pic_004
+# 15/course_57248/pic/pic_004
 # p = set([i * 2 for i in range(1, 11)])
 # q = set([i * 3 for i in range(1, 11)])
 p = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
@@ -283,7 +283,7 @@ for r in range(10, 51):
 
 
 #  https://stepik.org/lesson/623846/step/3?unit=619531
-#  15/pic/pic_005
+# 15/course_57248/pic/pic_005
 d = [*range(155, 178)]
 b = [*range(111, 161)]
 a_min = [*range(100, 200)]
@@ -306,7 +306,7 @@ print(len(a_min))  # 17
 
 
 #  https://stepik.org/lesson/623846/step/4?unit=619531
-#  15/pic/pic_006
+# 15/course_57248/pic/pic_006
 a = [*range(60, 91)]
 b = [*range(30, 51)]
 cnt = 30  # 30 чисел дает отрезок A
@@ -327,13 +327,13 @@ for n in range(100):
 
 
 #  https://stepik.org/lesson/623846/step/5?unit=619531
-#  15/pic/pic_007
+# 15/course_57248/pic/pic_007
 
 #  https://stepik.org/lesson/623846/step/6?unit=619531
-#  15/pic/pic_008
+# 15/course_57248/pic/pic_008
 
 #  https://stepik.org/lesson/623846/step/7?unit=619531
-#  15/pic/pic_009
+# 15/course_57248/pic/pic_009
 
 
 # https://stepik.org/lesson/623846/step/8?unit=619531
@@ -418,52 +418,52 @@ for a in range(1, 1000):
 
 
 #  https://stepik.org/lesson/667646/step/1?unit=668403
-#  15/pic/pic_010.jpg
+# 15/course_57248/pic/pic_010.jpg
 
 #  https://stepik.org/lesson/667646/step/2?unit=668403
-#  15/pic/pic_011.jpg
+# 15/course_57248/pic/pic_011.jpg
 
 #  https://stepik.org/lesson/667646/step/3?unit=668403
-#  15/pic/pic_012.jpg
+# 15/course_57248/pic/pic_012.jpg
 
 #  https://stepik.org/lesson/667646/step/4?unit=668403
-#  15/pic/pic_013.jpg
+# 15/course_57248/pic/pic_013.jpg
 
 #  https://stepik.org/lesson/667646/step/5?unit=668403
-#  15/pic/pic_014.jpg
+# 15/course_57248/pic/pic_014.jpg
 
 #  https://stepik.org/lesson/667646/step/6?unit=668403
-#  15/pic/pic_015.jpg
+# 15/course_57248/pic/pic_015.jpg
 
 #  https://stepik.org/lesson/667646/step/7?unit=668403
-#  15/pic/pic_016.jpg
+# 15/course_57248/pic/pic_016.jpg
 
 #  https://stepik.org/lesson/667646/step/8?unit=668403
-#  15/pic/pic_017.jpg
+# 15/course_57248/pic/pic_017.jpg
 
 #  https://stepik.org/lesson/667646/step/9?unit=668403
-#  15/pic/pic_018.jpg
+# 15/course_57248/pic/pic_018.jpg
 
 #  https://stepik.org/lesson/667646/step/10?unit=668403
-#  15/pic/pic_019.jpg
+# 15/course_57248/pic/pic_019.jpg
 
 #  https://stepik.org/lesson/667646/step/11?unit=668403
-#  15/pic/pic_020.jpg
+# 15/course_57248/pic/pic_020.jpg
 
 #  https://stepik.org/lesson/667646/step/12?unit=668403
-#  15/pic/pic_021.jpg
+# 15/course_57248/pic/pic_021.jpg
 
 #  https://stepik.org/lesson/667646/step/13?unit=668403
-#  15/pic/pic_022.jpg
+# 15/course_57248/pic/pic_022.jpg
 
 #  https://stepik.org/lesson/667646/step/14?unit=668403
-#  15/pic/pic_023.jpg
+# 15/course_57248/pic/pic_023.jpg
 
 #  https://stepik.org/lesson/667646/step/15?unit=668403
-#  15/pic/pic_024.jpg
+# 15/course_57248/pic/pic_024.jpg
 
 #  https://stepik.org/lesson/667646/step/16?unit=668403
-#  15/pic/pic_025.jpg
+# 15/course_57248/pic/pic_025.jpg
 
 
 
