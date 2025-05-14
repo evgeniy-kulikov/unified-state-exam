@@ -1,15 +1,22 @@
 
-# https://stepik.org/lesson/499908/step/11?unit=491458
-with open('18-k3.txt') as fl:
-    ls = list(map(int, fl))
-res = 100_000
-for i in range(len(ls) - 5):
-    for k in range(i + 1, i + 6):
-        sm = sum([ls[i], ls[k]])
-        if not sm % 2:
-            res = min(res, sm)
-print(res) # 30
+# https://stepik.org/lesson/313439/step/12?unit=295959
+# shift, st = int(input()), input()
+# for s in st:
+#     new = 97 + (ord(s) - 97 - shift) % 26  # ord('a') = 97
+#     print(chr(new), end='')
 
+# shift, st = int(input()), input()  # 0 <= shift <= 25
+# for s in st:
+#     new = ord(s) - shift  # 72 <= new <= 122
+#     if new < 97:  # 72 <= new <= 96    # ord('a') = 97
+#         new = 26 + new
+#     print(chr(new), end='')
 
-
+# def conv(n, b):
+#     r = ''
+#     while n:
+#         r = str(n % b) + r
+#         n //= b
+#     return r
+""""""
 
