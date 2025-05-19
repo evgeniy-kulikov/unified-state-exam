@@ -1,5 +1,5 @@
 """
-Task 19
+Task 19-21
 ЕГЭ Питоныч
 https://stepik.org/course/100138
 """
