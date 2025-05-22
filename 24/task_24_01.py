@@ -2,7 +2,12 @@
 Task 24
 ЕГЭ Питоныч
 https://stepik.org/course/100138
+Задание 24 КЕГЭ. Часть 1
+Задание 24 КЕГЭ. Часть 2  --> task24_02
 """
+
+
+""" 21.2 Поиск C-подцепочек """
 
 # https://stepik.org/lesson/570933/step/4?unit=565502
 st = input()
@@ -16,6 +21,8 @@ for s in st:
         cur_len = 0
 print(max_len)  # 6
 
+
+""" 21.3 Поиск произвольных подцепочек """
 
 # https://stepik.org/lesson/570934/step/3?unit=565503
 st = input()
@@ -82,6 +89,8 @@ for i in range(3, len(st)):
 print(max_len)  # 53
 
 
+
+""" 21.4 Определение количества подцепочек """
 # https://stepik.org/lesson/570935/step/3?unit=565504
 st = input()
 cnt = 0
@@ -166,6 +175,9 @@ for el in res:
     mx = max(mx, len(el))
 print(mx, len(res), len(st))  # 5 4 67
 
+
+
+""" 21.5 Решение задач """
 
 # https://stepik.org/lesson/570936/step/5?unit=565505
 st = input()
