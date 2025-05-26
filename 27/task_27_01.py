@@ -5,8 +5,11 @@ Task 27
 https://stepik.org/course/100138
 """
 
+
+""" 44.1 Кластеры. Теория """
+
 # https://stepik.org/lesson/1670113/step/2?unit=1693135
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 
 cluster = [s for s in data if all([-2 <= s[0] <= 1, 0 <= s[1] <= 3])]
@@ -17,7 +20,7 @@ print(cnt, srX, srY)
 
 
 # https://stepik.org/lesson/1670113/step/3?unit=1693135
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 
 cluster = [s for s in data if all([1 <= s[0] <= 5, 3 <= s[1] <= 7])]
@@ -28,7 +31,7 @@ print(cnt, srX, srY)
 
 
 # https://stepik.org/lesson/1670113/step/4?unit=1693135
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 cluster = [s for s in data if all([1 <= s[0] <= 5, 3 <= s[1] <= 7])]
 x = min(s[0] for s in cluster)
@@ -37,7 +40,7 @@ print(x, y)
 
 
 # https://stepik.org/lesson/1670113/step/5?unit=1693135
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 cluster = [s for s in data if all([1 <= s[0] <= 5, 3 <= s[1] <= 7])]
 ls_x = sorted(s[0] for s in cluster)
@@ -48,7 +51,7 @@ print(x, y)
 
 
 # https://stepik.org/lesson/1670113/step/6?unit=1693135
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 cluster = [s for s in data if all([-2 <= s[0] <= 1, 0 <= s[1] <= 3])]
 res = [(k[0]**2 + k[1]**2)**0.5 for k in cluster]
@@ -58,7 +61,7 @@ print(max(res))
 # https://stepik.org/lesson/1670113/step/7?unit=1693135
 # пример 2: Найдите сумму расстояний от звезд кластера до центра координатной плоскости
 from math import dist
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 cluster = [s for s in data if all([-2 <= s[0] <= 1, 0 <= s[1] <= 3])]
 res = 0
@@ -68,11 +71,12 @@ print(res)
 
 
 # https://stepik.org/lesson/1670113/step/7?unit=1693135
-# пример 3: Найдите центроид кластера - ту звезду, сумма расстояний от которой до всех звезд кластера минимальна
+# пример 3: Найдите центроид кластера - ту звезду,
+# сумма расстояний от которой до всех звезд кластера минимальна
 from math import dist
 import sys
 
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = list(tuple(map(float, el.replace(',', '.').split())) for el in fl)
 cluster = [s for s in data if all([-2 <= s[0] <= 1, 0 <= s[1] <= 3])]
 min_n = sys.maxsize
@@ -90,7 +94,7 @@ print(center[0], center[1])
 from math import dist
 from sys import maxsize
 
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
 claster = [el for el in data if 1 <= el[0] <= 5 and 3 <= el[1] <= 7]
 min_n = maxsize
@@ -109,7 +113,7 @@ print(center[0], center[1])
 from math import dist
 from sys import maxsize
 
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
 
 claster = [el for el in data if -2 <= el[0] <= 1 and 0 <= el[1] <= 3]
@@ -129,7 +133,7 @@ print(int(center[0] * 1000), int(center[1] * 1000))
 from math import dist
 from sys import maxsize
 
-with open('demo_2025_27_A1.txt') as fl:
+with open('add/course_100138/demo_2025_27_A1.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
 
 claster_1 = [el for el in data if -2 <= el[0] <= 1 and 0 <= el[1] <= 3]
@@ -156,11 +160,14 @@ for z1 in claster_2:
 print(int((center_1[0] + center_2[0]) / 2 * 10000), int((center_1[1] + center_2[1]) / 2 * 10000))
 
 
+
+""" 44.2 Кластеры. Решение задач. Часть 1 """
+
 # https://stepik.org/lesson/1670114/step/2?unit=1693136
 from math import dist
 from sys import maxsize
 
-with open('27-1a.txt') as fl:
+with open('add/course_100138/27-1a.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
 
 # смещение x +1.5, смещение y +1.0
@@ -197,7 +204,7 @@ def centroid(claster):
         res.append((sum(dist(i, j) for j in claster), i))
     return min(res)[1]
 
-with open('27-1b.txt') as fl:
+with open('add/course_100138/27-1b.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
     clasters = [[] for _ in range(3)]
     for i in data:
@@ -223,7 +230,7 @@ def centroid(claster):
         res.append((sum(dist(i, j) for j in claster), i))
     return min(res)[1]
 
-with open('27-2a.txt') as fl:
+with open('add/course_100138/27-2a.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
     clasters = [[] for _ in range(2)]
     for i in data:
@@ -247,7 +254,7 @@ def centroid(cl):
         res.append((sum(dist(i, j) for j in cl), i))
     return min(res)[1]
 
-with open('27-2b.txt') as fl:
+with open('add/course_100138/27-2b.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
     clasters = [[] for _ in range(3)]
     for i in data:
@@ -274,7 +281,7 @@ def centroid(cl):
         res.append((sum(dist(i, j) for j in cl), i))
     return min(res)[1]
 
-with open('27-10a.txt') as fl:
+with open('add/course_100138/27-10a.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
     clasters = [[] for _ in range(2)]
     for i in data:
@@ -299,7 +306,7 @@ def centroid(cl):
         res.append((sum(dist(i, j) for j in cl), i))
     return min(res)[1]
 
-with open('27-10b.txt') as fl:
+with open('add/course_100138/27-10b.txt') as fl:
     data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
     clasters = [[] for _ in range(3)]
     for i in data:
@@ -313,6 +320,52 @@ with open('27-10b.txt') as fl:
 res = [centroid(i) for i in clasters]
 cx = int(sum(i[0] for i in res) / 3 * 10_000)
 cy = int(sum(i[1] for i in res) / 3 * 10_000)
-print(cx, cy)
-# 7881 -5340
+print(cx, cy)  # 7881 -5340
 
+
+# https://stepik.org/lesson/1670114/step/13?unit=1693136
+from math import dist
+def centroid(cl):
+    res = []
+    for i in cl:
+        res.append((sum(dist(i, k) for k in cl), i))
+    return min(res)[-1]
+
+with open('add/course_100138/27-20a.txt') as fl:
+    data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
+    clasters = [[] for _ in range(2)]
+    for i in data:
+        if i[1] > i[0] + 5:
+            clasters[0].append(i)
+        else:
+            clasters[1].append(i)
+
+res = [centroid(i) for i in clasters]
+cx = int(sum(i[0] for i in res) / 2 * 10_000)
+cy = int(sum(i[1] for i in res) / 2 * 10_000)
+print(cx, cy)  # 10410 66711
+
+
+# https://stepik.org/lesson/1670114/step/14?unit=1693136
+from math import dist
+def centroid(cl):
+    res = []
+    for i in cl:
+        res.append((sum(dist(i, k) for k in cl), i))
+    return min(res)[-1]
+
+# Три кластера разделены прямыми x = 8 и y = 0.5 и y = 9.5 - x
+with open('add/course_100138/27-20b.txt') as fl:
+    data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
+    clasters = [[] for _ in range(3)]
+    for i in data:
+        if i[1] > 0.5 and i[0] < 8:
+            clasters[0].append(i)
+        elif i[1] > 9.5 - i[0]:
+            clasters[1].append(i)
+        else:
+            clasters[2].append(i)
+res = [centroid(i) for i in clasters]
+cx = int(sum(i[0] for i in res) / 3 * 10_000)
+cy = int(sum(i[1] for i in res) / 3 * 10_000)
+print(cx, cy)  # 81775 7384
