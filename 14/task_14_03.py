@@ -119,3 +119,15 @@ for x in range(1, 100):
         print(x)  # 24
         break
 
+
+# https://stepik.org/lesson/894887/step/14?unit=899812
+# автор ошибся с вводом и выводом )))
+for x in range(2030, 0, -1):
+    n = 7**91 + 7**160 - x
+    s = ''
+    while n:
+        s += str(n % 7)
+        n //= 7
+    if s.count('0') == 70:
+        print(x)  # 2029
+        break

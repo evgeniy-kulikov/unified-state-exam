@@ -5,6 +5,8 @@ Task 13
 https://stepik.org/course/182932/syllabus
 """
 
+
+""" 22.1 Задачи на IP-адреса """
 # https://stepik.org/lesson/1247108/step/1?unit=1260931
 from ipaddress import *
 net = ip_network('10.8.248.131/255.255.224.0', 0)
@@ -71,4 +73,16 @@ for m in range(32, 15, -1):
     if f'{net.network_address}' == '191.173.144.0':
         print(len(list(net.hosts())) + 2)  # 512
         break
+
+
+# https://stepik.org/lesson/1247108/step/8?unit=1260931
+from ipaddress import *
+net = ip_network('1.1.1.1/255.255.240.0', 0).hosts()
+print(sum(1 for _ in net))  # 4094
+# cnt = 0
+# for i in net:
+#     cnt += 1
+# print(cnt)  # 4094
+
+
 
