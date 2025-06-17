@@ -14,7 +14,7 @@ print(log2(65))  # 6.022367813028454
 print(ceil(log2(65)))  # 7  (ближайшее верхнее значение)
 """
 
-
+""" 4.1 Посимвольное кодирование """
 # https://stepik.org/lesson/749257/step/4?unit=768530
 from math import ceil, log2
 k = 21
@@ -79,6 +79,7 @@ car = ceil((i * k) / 8)  # 4 byte
 res = ceil(car * 40)  # 160 byte
 
 
+""" 4.2 Равномерное кодирование объектов """
 # https://stepik.org/lesson/749258/step/2?unit=768531
 from math import log2, ceil
 k = 252
@@ -120,6 +121,7 @@ code = ceil((i1 * k1 + i2 * k2) / 8)  # 9 byte
 add = 1800 / 40 - code  # 36  byte
 
 
+""" 4.3 Задачи с ЕГЭ 2024 """
 # https://stepik.org/lesson/1397870/step/1?unit=1461022
 from math import log2, ceil, floor
 N = 10 + 52 + 458
@@ -225,7 +227,7 @@ for k in range(1, 1000):
         break
 
 
-# https://stepik.org/lesson/1397870/step/9?unit=1461022
+# https://stepik.org/lesson/1397870/step/11?unit=1461022
 from math import ceil, log2
 N = 10 + 26 + 450
 i = ceil(log2(N))
@@ -237,6 +239,7 @@ for k in range(1, 1000):
         break
 
 
+""" 4.3 Задачи с ЕГЭ 2024 """
 # https://stepik.org/lesson/1397870/step/3?unit=1461022
 from math import ceil, log2
 N = 10 + 52 + 68
@@ -306,7 +309,6 @@ total = 56  # byte
 I_add = total - I_c - I_n  # 51 byte
 
 
-
 # https://stepik.org/lesson/749266/step/6?&unit=769628
 from math import log2 , ceil, trunc
 # indif
@@ -326,6 +328,7 @@ I_t = trunc((I_c + I_b) * total / 1024)  # 6
 
 
 
+""" 4.5 Тренировка """
 # https://stepik.org/lesson/619733/step/1?unit=1065192
 from math import log2 , ceil
 k = 30
@@ -420,3 +423,9 @@ I = i * k   # 7 bit
 res = I * 80  # 560 bit
 
 
+""" 15.1 Решаем вариантик """
+# https://stepik.org/lesson/766574/step/9?unit=768992
+from math import ceil
+I_id = ceil(15 * 3 / 8)
+I_add = 24
+print((I_id + I_add) * 20)  # 600

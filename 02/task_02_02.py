@@ -4,6 +4,7 @@ https://stepik.org/course/57248
 Подготовка к ЕГЭ информатика
 """
 
+""" 2.2 ЕГЭ алгебра-логики (числовая плоскость) """
 # https://stepik.org/lesson/257025/step/1?unit=237402
 def fn(a):
     for t in range(1, 1000):  # целых положительных t
@@ -70,6 +71,8 @@ for a in range(6570, 7000):  # внимание на f1 и f3
         # break
 
 
+
+""" 2.3 ЕГЭ №2 ВАРИАНТ 1 """
 # https://stepik.org/lesson/257639/step/1?unit=238073
 # 02/pic/pic_02_001.jpg
 from  itertools import product
@@ -136,6 +139,8 @@ for i in range(2 ** 4):  #  4 - кол-во переменных
 # 1 1 0 0
 
 
+
+""" 2.4 ЕГЭ №2 ВАРИАНТ 2 """
 # https://stepik.org/lesson/257645/step/2?unit=238081
 print(*'yxwz')
 for i in range(16):
@@ -162,6 +167,8 @@ for i in range(16):
 # 1 1 1 0
 
 
+
+""" 7.3 ЕГЭ Тренировка 2 """
 # https://stepik.org/lesson/421642/step/1?unit=411296
 print(*'wyzx')
 for i in range(2 ** 4):
@@ -212,6 +219,7 @@ for y,z,x,w in product((0,1), repeat=4):
 # 0 1 0 1
 # 1 1 0 1
 
+
 # https://stepik.org/lesson/421642/step/5?unit=411296
 print(*'yzwx')
 for i in range(2 ** 4):
@@ -224,7 +232,8 @@ for i in range(2 ** 4):
 # 0 1 0 1
 # 0 0 0 1
 
-# https://stepik.org/lesson/421642/step/5?unit=411296
+
+# https://stepik.org/lesson/421642/step/6?unit=411296
 print(*'cab')
 for i in range(2 ** 3):
     c,a,b = map(int, bin(i)[2:].zfill(3))
@@ -242,5 +251,42 @@ for i in range(2 ** 3):
 # 1 0 0
 # 1 1 0
 # 1 1 1
+
+
+# https://stepik.org/lesson/421642/step/7?unit=411296
+print(*'yxz')
+for i in range(2**3):
+    y, x, z = map(int, f'{i:b}'.zfill(3))
+    f = not x and any([y and z, y and not z, not y and not z])
+    if f: print(y, x, z)
+# y x z
+# 0 0 0
+# 1 0 0
+# 1 0 1
+
+
+# https://stepik.org/lesson/421642/step/8?unit=411296
+print(*'wxzy')
+for i in range(2**4):
+    w,x,z,y = map(int, f'{i:b}'.zfill(4))
+    f = x and (not y and z and not w or y and not z)
+    if f: print(w,x,z,y)
+# w x z y
+# 0 1 0 1
+# 0 1 1 0
+# 1 1 0 1
+
+
+# https://stepik.org/lesson/421642/step/9?unit=411296
+print(*'bacd')
+for i in range(2**4):
+    b,a,c,d = map(int, f'{i:b}'.zfill(4))
+    f = (a or b) and (b == (not c)) and not d
+    if f: print(b,a,c,d)
+# b a c d
+# 1 0 0 0
+# 1 1 0 0
+# 0 1 1 0
+
 
 

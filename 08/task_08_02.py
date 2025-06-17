@@ -6,6 +6,7 @@ https://stepik.org/course/57248
 """
 
 
+""" 6.1 Тренировка 5,8,12 """
 
 # https://stepik.org/lesson/552237/step/6?unit=545965
 from itertools import product
@@ -114,6 +115,10 @@ print(cnt)  # 104
 # ba9876543210
 
 
+
+
+""" 7.13 ЕГЭ Тренировка 8 """
+
 # https://stepik.org/lesson/424708/step/1?auth=login&unit=414440
 from itertools import product
 cnt = 0
@@ -185,3 +190,36 @@ for p in product('абвгде', repeat=4):
     if re.findall(reg, f):
         cnt += 1
 print(cnt) # 250
+
+
+# https://stepik.org/lesson/424708/step/7?auth=login&unit=414440
+alf = 'еикнуч'  # --> kee == int('200', 6)
+print(int('200', 6) + 1)  # 73
+
+
+# https://stepik.org/lesson/424708/step/8?auth=login&unit=414440
+alf = 'агилморт'  # --> ттал == int('7703', 8)
+print(int('7703', 8) + 1)  # 4036
+
+# https://stepik.org/lesson/424708/step/9?auth=login&unit=414440
+# 2 * 3**5 = 486  --> 1 согласная
+
+
+# https://stepik.org/lesson/424708/step/10?auth=login&unit=414440
+from itertools import permutations
+cnt = 0
+for p in permutations('комбайн'):
+    p = ''.join(p)
+    cnt += all([p[0] != 'й', not 'ай' in p])
+print(cnt)  # 3600
+
+
+# https://stepik.org/lesson/424708/step/11?auth=login&unit=414440
+from itertools import product
+cnt = 0
+for p in product('зеркало', repeat=6):
+    p = ''.join(p)
+    if 0 < p.count('к') < 5:
+        p = p.replace('к', '')
+        cnt += len(p) == len(set(p))
+print(cnt)  # 12570

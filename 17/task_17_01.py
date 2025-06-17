@@ -4,6 +4,8 @@ Task 17
 https://stepik.org/course/57248
 """
 
+
+""" 6.2 Тренировка 17,18,23 """
 # https://stepik.org/lesson/552239/step/1?unit=545967
 mx = 0
 mn = 19991
@@ -76,6 +78,8 @@ res = ls[0] + ls[-1] + sum(ls) / len(ls)
 print(int(res))  # 20510
 
 
+
+""" 7.28 ЕГЭ Тренировка 17 """
 # https://stepik.org/lesson/421032/step/1?unit=410642
 with open('17-1.txt') as fl:
     d = list(map(int, fl))
@@ -171,4 +175,79 @@ for i in range(len(d) - 1):
         cnt += 1
         nm = min(nm, sum(el))
 print(cnt, nm)  # 225 2639
+
+
+# https://stepik.org/lesson/421032/step/6?auth=login&unit=410642
+cnt = 0
+mn = 10**10
+with open('add/course_57248/17-4.txt') as fl:
+    ls = list(map(int, fl.readlines()))
+    avr = sum(ls) / len(ls)  # 5442.9905
+    for i in range(len(ls) - 1):
+        l = ls[i: i + 2]
+        if sum(n < avr for n in l) and sum('7' in str(n) for n in l):
+            cnt += 1
+            mn = min(mn, sum(l))
+print(cnt, mn)  # 827 2378
+
+
+# https://stepik.org/lesson/421032/step/7?auth=login&unit=410642
+cnt = 0
+mn = 10**10
+with open('add/course_57248/17-4.txt') as fl:
+    ls = list(map(int, fl.readlines()))
+    avr = sum(ls) / len(ls)  # 5442.9905
+    for i in range(len(ls) - 1):
+        l = ls[i: i + 2]
+        if sum(n < avr for n in l) and sum('5' not in str(n) for n in l):
+            cnt += 1
+            mn = min(mn, sum(l))
+print(cnt, mn)  # 1304 2378
+
+
+# https://stepik.org/lesson/421032/step/8?auth=login&unit=410642
+cnt = 0
+mn = 10**10
+with open('add/course_57248/17-4.txt') as fl:
+    ls = list(map(int, fl.readlines()))
+    avr = sum(ls) / len(ls)  # 5442.9905
+    for i in range(len(ls) - 1):
+        l = ls[i: i + 2]
+        if sum(n < avr for n in l) and sum('1' in str(n) for n in l) == 2:
+            cnt += 1
+            mn = min(mn, sum(l))
+print(cnt, mn)  # 231 2378
+
+
+# https://stepik.org/lesson/421032/step/9?auth=login&unit=410642
+cnt = mx = 0
+with open('add/course_57248/17-1.txt') as fl:
+    ls = list(map(int, fl.readlines()))
+    avr = sum(ls) / len(ls)  # -105.6732
+    for i in range(len(ls) - 2):
+        l = ls[i: i + 3]
+        if sum(n < avr for n in l) and sum(not n % 3 for n in l):
+            cnt += 1
+            mx = max(mx, sum(l))
+print(cnt, mx)  # 6151 18891
+
+
+
+""" 7.29 ЕГЭ Тренировка 17 """
+
+# https://stepik.org/lesson/789914/step/1?auth=login&unit=792575
+cnt = 0
+mn = 10**10
+with open('add/course_57248/17-342.txt') as fl:
+    ls = list(map(int, fl.readlines()))
+    min37 = min(i for i in ls if not i % 37)  # 518
+    max73 = max(i for i in ls if not i % 73)  # 438
+    for i in range(len(ls) - 1):
+        if sum(max73 < n < min37 for n in ls[i: i + 2]) == 1:
+            cnt += 1
+            mn = min(mn, sum(ls[i: i + 2]))
+print(cnt, mn)  # 136 574
+
+
+
 

@@ -4,6 +4,9 @@ Task 19
 https://stepik.org/course/57248
 """
 
+
+""" 24.1 Теория игр. Часть 1 """
+
 # https://stepik.org/lesson/909258/step/3?unit=914860
 def fn(stn, mv):
     if stn >= 15 or mv > 1:
@@ -171,6 +174,9 @@ print(*res)  # 10  - Позиция на которую должен прийт�
 # Петя должен стартовать с позиции  8
 
 
+
+""" 24.2 Задачи с одной кучей камней. Часть 1 """
+
 # https://stepik.org/lesson/909256/step/2?unit=914858
 def kp(n):
     if n >= 17:
@@ -201,8 +207,46 @@ print(len([i for i in range(17, 0, -1) if fn(i) == 'p1']))  # 8
 def fn(stn, mv):
     if stn >= 17:
         return mv == 1
+    if mv == 0: return 0
     if not mv % 2:
         return any([fn(stn + 1, mv + 1), fn(stn * 2, mv + 1)])
 print(*[i for i in range(17, 0, -1) if fn(i, 0)])  # 16 15 14 13 12 11 10 9
 print(len([i for i in range(17, 0, -1) if fn(i, 0)]))  # 8
+
+
+""" 7.33 ЕГЭ Тренировка 19-21 (по три номера подряд) """
+
+# https://stepik.org/lesson/622571/step/1?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/2?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/3?auth=login&unit=619541
+def fn(a, b, mv, w=eval('all')):
+    if a + b <= 20: return not mv % 2
+    if mv == 0: return 0
+    game = [fn(a - 1, b, mv - 1), fn(a // 2, b, mv - 1),
+            fn(a, b - 1, mv - 1), fn(a, b // 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(game)
+    return w(game)
+
+print(max(s for s in range(11, 100) if fn(10, s, 2, w=eval('any'))))  # 43  any-any
+print(''.join([str(s) for s in range(11, 100) if fn(10, s, 3) and not fn(10, s, 1)]))  # 2324324445
+print(max(s for s in range(11, 100) if fn(10, s, 4) and not fn(10, s, 2)))  # 25
+
+
+# https://stepik.org/lesson/622571/step/4?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/5?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/6?auth=login&unit=619541
+def fn(a, b, mv, w=eval('all')):
+    if a + b >= 13: return not mv % 2
+    if mv == 0: return 0
+    game = [fn(a + 1, b, mv - 1), fn(a + 2, b, mv - 1),
+            fn(a, b + 1, mv - 1), fn(a, b + 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(game)
+    return w(game)
+
+print(min(s for s in range(1, 10) if fn(3, s, 2, w=eval('any')) and fn(3, s, 1, w=eval('any'))))  # 8
+print(''.join([str(s) for s in range(1, 10) if fn(3, s, 3) and not fn(3, s, 1)]))  # 56
+print(*[s for s in range(1, 10) if fn(3, s, 4) and not fn(3, s, 2)])  # 4
+
 

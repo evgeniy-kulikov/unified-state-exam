@@ -5,6 +5,8 @@ Task 12
 https://stepik.org/course/57248
 """
 
+""" 6.1 Тренировка 5,8,12 """
+
 # https://stepik.org/lesson/552237/step/12?unit=545965
 for n in range(50, 1, -1):
     s = '6' * n
@@ -79,16 +81,8 @@ while '900' in s or '8000' in s or '70' in s:
 print(s) #  1008
 
 
-# https://stepik.org/lesson/449926/step/1?auth=login&unit=440312
-s = '8' * 65
-while '222' in s or '888' in s:
-    if '222' in s:
-        s = s.replace('222', '8', 1)
-    else:
-        s = s.replace('888', '2', 1)
-print(s)
 
-
+""" 7.18 ЕГЭ Тренировка 12 """
 # https://stepik.org/lesson/449926/step/1?auth=login&unit=440312
 cnt = set()
 for n in range(1, 1000):  # s = '8' тоже нужна )))
@@ -101,3 +95,9 @@ print(len(cnt))  # 8
 print(cnt)  # {'88', '55', '5588', '558', '8', '85', '8588', '858'}
 
 
+# https://stepik.org/lesson/449926/step/3?auth=login&unit=440312
+s = '5' * 62
+while any(['333' in s, '555' in s]):
+    if '555' in s: s = s.replace('555', '3', 1)
+    else: s = s.replace('333', '5', 1)
+print(s)  # 5355

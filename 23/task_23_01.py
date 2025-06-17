@@ -4,6 +4,7 @@ Task 23
 https://stepik.org/course/57248
 """
 
+""" 6.2 Тренировка 17,18,23 """
 # https://stepik.org/lesson/552239/step/11?unit=545967
 """
 1. Прибавь 1
@@ -82,7 +83,7 @@ def fn(st, end):
 print(fn(int('100', 2), int('11101', 2)))  # 79
 
 
-# https://stepik.org/lesson/552239/step/14?unit=545967
+# https://stepik.org/lesson/552239/step/15?unit=545967
 """
 1. Прибавить 1
 2. Прибавить 5
@@ -101,4 +102,39 @@ for i in range(2, 1000):
     if fn(1, i) == 175:
         print(i)  # 19
         break
+
+
+
+""" 7.35 ЕГЭ Тренировка 23 """
+# https://stepik.org/lesson/460368/step/1?auth=login&unit=450951
+def f(st, en):
+    if st > en: return 0
+    if st == en: return 1
+    return f(st + 1,en) + f(st * 2,en)
+print(f(1, 16))  # 36
+
+
+# https://stepik.org/lesson/460368/step/2?auth=login&unit=450951
+def f(st, en):
+    if st > en: return 0
+    if st == en: return 1
+    return f(st + 1,en) + f(st * 2,en)
+print(f(1, 8) * f(8, 16))  # 20
+
+
+""" хитрое преобразование числа """
+# https://stepik.org/lesson/460368/step/8?auth=login&unit=450951
+def rep(n: int):
+    # хитрое преобразование числа !!!
+    s = ''
+    for i in str(n):
+        if i != '9':  s += str(int(i) + 1)
+        else: s += i
+    return int(s)
+
+def f(st, en):
+    if st > en: return 0
+    if st == en: return 1
+    return f(st + 1, en) + f(rep(st), en)
+print(f(25, 51))  # 33
 

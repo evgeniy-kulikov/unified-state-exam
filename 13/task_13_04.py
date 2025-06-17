@@ -9,16 +9,7 @@ https://stepik.org/course/100056
 № 13 IP-адреса и маски
 """
 
-# # связь между '1' в двоичном числе и четностью  (не совпадает)
-# cnt = 0
-# for i in range(256):
-#     # if bin(i).count('1') % 2 == 0:
-#     if bin(i).count('1') % 2 == 0 and bin(i)[-1] == '0':
-#         cnt += 1
-# # print(cnt)  # 128
-# print(cnt)  # 64
-
-
+""" 12.3 Устное решение Ⅰ """
 # https://stepik.org/lesson/1074876/step/6?unit=1095106
 from ipaddress import ip_network
 net = ip_network('192.168.32.128/255.255.255.192')
@@ -108,6 +99,7 @@ for p1 in '01':
 print(cnt)
 
 
+""" 12.4 Устное решение Ⅱ """
 # https://stepik.org/lesson/1074877/step/2?thread=solutions&unit=1095107
 # Для узла с IP-адресом 111.81.27.224 адрес сети равен 111.81.27.192.
 # Чему равен последний (самый правый) байт маски ?
@@ -196,8 +188,21 @@ for i in ip_network('112.160.0.0/12'):
 print(cnt)  # 699050
 
 
+# https://stepik.org/lesson/1074877/step/8?unit=1095107
+from ipaddress import *
+net = ip_network('143.168.72.213/255.255.255.240', 0)
+print(''.join(str(net[-2]).split('.'))) # net[-1] - broadcast_address
+# 14316872222
 
 
 
+""" 15.1 Решаем вариантик """
+# https://stepik.org/lesson/766574/step/10?unit=768992
+from ipaddress import *
+cnt = 0
+net = ip_network('192.168.32.160/255.255.255.240', 0)
+for i in net:
+    cnt += f'{int(i):b}'.count('0') > 21
+print(cnt)
 
 

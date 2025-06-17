@@ -5,6 +5,7 @@ Task 05
 https://stepik.org/course/57248
 """
 
+""" 6.1 Тренировка 5,8,12 """
 #  https://stepik.org/lesson/552237/step/1?unit=545965
 # Короче
 def g(n, d):
@@ -91,6 +92,9 @@ for i in range(1, 1000):
         print(i)  # 32
         break
 
+
+
+""" 7.8 ЕГЭ Тренировка 5 """
 # https://stepik.org/lesson/421051/step/1?auth=login&unit=410661
 for n in range(131, 256):
     b = bin(n)[2:].zfill(8)
@@ -153,6 +157,41 @@ for n in range(1, 1000):
     if r > 31:
         print(r)  # 33
         break
+
+# https://stepik.org/lesson/421051/step/7?auth=login&unit=410661
+for n in range(1000):
+    b = f'{n:b}'
+    if b.count('1') > b.count('0'):
+        b += '1'
+    else:
+        b += '0'
+    r = int(b, 2)
+    if r < 43:
+        print(r) # 40
+
+
+# https://stepik.org/lesson/421051/step/8?auth=login&unit=410661
+cnt = 0
+for n in range(1, 10_000):
+    r = n
+    if not n % 3: n //= 3
+    else: n -= 1
+    if not n % 7: n //= 7
+    else: n -= 1
+    if not n % 11: n //= 11
+    else: n -= 1
+    if n == 6: cnt += 1
+print(cnt)  # 7
+
+
+# https://stepik.org/lesson/421051/step/9?auth=login&unit=410661
+for n in range(100_000):
+    b = f'{n:b}'
+    b += str(sum(map(int, b)) % 2)
+    b += str(sum(map(int, b)) % 2)
+    r = int(b, 2)
+    if r < 70: print(r)  # 68
+
 
 
 

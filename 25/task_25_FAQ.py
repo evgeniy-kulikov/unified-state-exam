@@ -1,3 +1,20 @@
+# Работать с масками можно с помощью библиотеки fnmatch, встроенной в python.
+# https://stepik.org/lesson/870004/step/11?unit=874178
+# https://sky.pro/media/kak-rabotat-s-modulem-fnmatch-v-python/
+# https://docs-python.ru/standart-library/modul-fnmatch-python/
+from fnmatch import fnmatch
+
+mask = '123*45?'
+mask = '1[02468]3*4[13579]?'
+for i in range(0, 10**10, step):
+    if fnmatch(str(i), mask):
+        print(i, i // step)
+# step - на что должно делиться число,
+# mask - какой маске удовлетворять.
+
+
+
+
 # У нечетного числа не может быть четных делителей.
 # Все делители нечетного числа также будут нечетными. 15 --> 1, 3, 5, 15
 
@@ -49,20 +66,6 @@ print(fn(17)) # True
 print(fn(18)) # False
 
 
-
-# Работать с масками можно с помощью библиотеки fnmatch, встроенной в python.
-# https://stepik.org/lesson/870004/step/11?unit=874178
-# https://sky.pro/media/kak-rabotat-s-modulem-fnmatch-v-python/
-# https://docs-python.ru/standart-library/modul-fnmatch-python/
-from fnmatch import fnmatch
-
-mask = '123*45?'
-mask = '1[02468]3*4[13579]?'
-for i in range(0, 10**10, step):
-    if fnmatch(str(i), mask):
-        print(i, i // step)
-# step - на что должно делиться число,
-# mask - какой маске удовлетворять.
 
 
 """ Наименьшее общее кратное """

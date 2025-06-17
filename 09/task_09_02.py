@@ -16,6 +16,29 @@ with open('add/course_100138/task_03.txt') as fl:
         ls += list(map(float, i.replace(',', '.').split()))
 print(int(max(ls) - mean(ls)))  # 14
 
+
+# https://stepik.org/lesson/752235/step/8?unit=754082
+mx = cnt = avr = 0
+with open('add/course_100138/task_05.txt') as fl:
+    for f in fl:
+        f = [*map(float, f.replace(',', '.').split())]
+        cnt += 1
+        mx = max(mx, max(f))
+        avr += sum(f) / len(f)
+print(int(mx - avr/cnt))  # 11
+
+
+# https://stepik.org/lesson/752235/step/9?unit=754082
+mx = -100
+mn = 100
+with open('01_Demo/add/task_06.txt') as fl:
+    for f in fl:
+        f = [*map(float, f.replace(',', '.').split())]
+        mx = max(mx, max(f))
+        mn = min(mn, min(f))
+print(int(mx - mn))  # 17
+
+
 # https://stepik.org/lesson/752235/step/11?unit=754082
 # Копируем фрагмент таблицы с данными в текстовый файл.
 from statistics import mean
@@ -35,6 +58,15 @@ with open('add/course_100138/task_08.txt') as fl:
         d = list(map(float, i.replace(',', '.').split()))
         cnt += sum(j <= 10 for j in d)
 print(cnt)  # 14
+
+
+# https://stepik.org/lesson/752235/step/13?unit=754082
+cnt = 0
+with open('add/course_100138/task_11.txt') as fl:
+    for f in fl:
+        f = [*map(float, f.replace(',', '.').split())]
+        cnt += len([i for i in f if i > 10])
+print(cnt)  # 2170
 
 
 """ 28.2 Задание 9 КЕГЭ. Часть 2 """
@@ -67,7 +99,35 @@ with open('add/course_100138/task_num_06.txt') as fl:
 print(cnt)  # 3
 
 
-# https://stepik.org/lesson/752236/step/12?unit=754083
+# https://stepik.org/lesson/752236/step/4?unit=754083
+cnt = 0
+with open('add/course_100138/task_num_03.txt') as fl:
+    for f in fl:
+        f = [*map(int, f.split())]
+        cnt += sum(f)**2 > f[0] * f[1] * f[2]
+print(cnt)  # 725
+
+
+# https://stepik.org/lesson/752236/step/5?unit=754083
+cnt = 0
+with open('add/course_100138/task_num_04.txt') as fl:
+    for f in fl:
+        f = sorted(map(int, f.split()))
+        cnt += f[1] == (f[0] + f[2]) / 2
+print(cnt)  # 88
+
+
+# https://stepik.org/lesson/752236/step/6?unit=754083
+cnt = 0
+with open('add/course_100138/task_num_05.txt') as fl:
+    for f in fl:
+        f = sorted(map(int, f.split()))
+        cnt += f[2]**2 == f[0]**2 + f[1]**2
+print(cnt)  # 2
+
+
+# https://stepik.o
+# rg/lesson/752236/step/12?unit=754083
 # Копируем фрагмент таблицы с данными в текстовый файл.
 from math import dist
 md = 0
@@ -100,7 +160,7 @@ with open('add/course_100138/9_z4.txt') as fl:
 print(cnt)  # 2859
 
 
-# https://stepik.org/lesson/1039432/step/2?unit=1047905
+# https://stepik.org/lesson/1039432/step/3?unit=1047905
 # Копируем фрагмент таблицы с данными в текстовый файл.
 cnt = 0
 with open('add/course_100138/9_z7.txt') as fl:
@@ -110,6 +170,17 @@ with open('add/course_100138/9_z7.txt') as fl:
         d3 = [i for i in d if d.count(i) == 3]
         cnt += len(d1) == 4 and len(d3) == 3
 print(cnt) # 69
+
+
+# https://stepik.org/lesson/1039432/step/4?unit=1047905
+cnt = 0
+with open('add/course_100138/9_z9.txt') as fl:
+    for f in fl:
+        f = list(map(int, f.split()))
+        twins = [i for i in f if f.count(i) == 2]
+        single = [i for i in f if i not in twins]
+        cnt += len(twins) == 4 and len(single) == 3
+print(cnt)  # 183
 
 
 # https://stepik.org/lesson/1039432/step/6?unit=1047905
@@ -161,4 +232,10 @@ with open('add/course_100138/9_z1.txt') as fl:
 print(cnt)  # 133
 
 
-
+# https://stepik.org/lesson/1406852/step/3?unit=1424301
+cnt = 0
+with open('add/course_100138/9_z2.txt') as fl:
+    for f in fl:
+        f = sorted(map(int, f.split()))
+        cnt += (f[0] + f[-1]) < sum(f[1:-1])
+print(cnt)  # 1285

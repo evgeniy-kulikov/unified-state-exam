@@ -1,8 +1,12 @@
+""""""
 """
 Task 14
 Подготовка к ЕГЭ информатика
 https://stepik.org/course/57248?auth=login
 """
+
+
+""" 7.21 ЕГЭ Тренировка 14 """
 
 # https://stepik.org/lesson/421052/step/1?auth=login&unit=410662
 from string import digits, ascii_uppercase
@@ -89,4 +93,19 @@ for n in range(1, 1000):
     if sum(map(int, fn(m))) == 71:
         print(n)  # 16
         break
+
+
+""" 7.22 ЕГЭ Тренировка 14 """
+
+# https://stepik.org/lesson/615398/step/1?auth=login&unit=610935
+print(f'{(4**2016 + 2**2018 - 6):b}'.count('1'))  # 2017
+
+
+# https://stepik.org/lesson/615398/step/3?auth=login&unit=610935
+alf = '0123456789abcdef'
+for h in range(16):
+    for k in range(8):
+        if int(f'1{alf[h]}0', 16) == int(f'56{alf[k]}', 8):
+            print(int(f'56{alf[k]}', 8))  # 368
+
 

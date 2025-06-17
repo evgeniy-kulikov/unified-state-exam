@@ -23,12 +23,14 @@ for n in net:
     c = f'{n}:b'     # 1001010110100101010101
 
 
+ip_network(address) - включет адрес сети и широковешательный
+
 ip_network(address).network_address
-формирование IP адреса (маски в записи нет) в виде обЪекта (со строкой не сравнить)
+формирование IP адреса (маски в записи нет) в виде объекта (со строкой не сравнить)
 str(ip_network(address).network_address)  формирование IP адреса в виде строки
 
 ip_network(address).netmask
-формирование адреса маски в виде обЪекта (со строкой не сравнить)
+формирование адреса маски в виде объекта (со строкой не сравнить)
 
 ip_network(address).hosts()
 Generate Iterator over usable hosts in a network. 

@@ -2,6 +2,8 @@
 # https://stepik.org/course/57248
 """"""
 
+""" 3.1 ЕГЭ №3 и №15 ВАРИАНТ №1 """
+
 # https://stepik.org/lesson/262332/step/1?unit=243224
 from itertools import permutations
 print(*'1234567')
@@ -36,6 +38,9 @@ for p in permutations(g):
 # К Г Б Е А В Д
 # 8
 
+
+
+""" 3.2 ЕГЭ №3 и №15 ВАРИАНТ №2 """
 
 # https://stepik.org/lesson/262340/step/1?unit=243232
 #  Решение через dict()
@@ -90,6 +95,10 @@ for p in permutations('АБВГДЕК'):
 # К Г Б Е А В Д
 # 11
 
+
+
+""" 7.1 ЕГЭ Тренировка 1 """
+
 # https://stepik.org/lesson/419936/step/1?unit=409514
 from itertools import permutations
 print(*'1234567')
@@ -106,6 +115,7 @@ for p in permutations(g):
 # Д Г Е А В К Б
 # Д Г К А В Е Б
 # 18
+
 
 ## frozenset()
 # https://stepik.org/lesson/419936/step/1?unit=409514
@@ -201,3 +211,20 @@ for p in permutations('АБВГДЕЖ'):
 # Б Д Ж Г Е А В
 # БАВДГЕЖ  (59)
 
+
+# https://stepik.org/lesson/419936/step/6?unit=409514
+from itertools import permutations
+g = 'бвге агдж де веж багд ва вае'
+t = '35 4567 1567 26 1237 234 235'
+g = {frozenset(i) for i in g.split()}
+print(*'1234567')
+for p in permutations('абвгдеж'):
+    tg = t
+    for i in p:
+        tg = tg.replace(str(p.index(i) + 1), i)
+    tg = {frozenset(i) for i in tg.split()}
+    if tg == g:
+        print(*p)
+# 1 2 3 4 5 6 7
+# б е в ж а д г
+# аг = 11  --> Г
