@@ -1,22 +1,47 @@
-# https://stepik.org/lesson/1696173/step/1?unit=1719529
-from math import dist
+# https://stepik.org/lesson/504398/step/1?unit=496246
+from itertools import product
+def fn(ls:list, n):
+    mx = 0
+    for p in product(ls, repeat=n):
+        v = set(p)
+        n = sum(v)
+        if not n % 25:
+            mx = max(mx, n)
+    return mx
 
-def centr(d:list):
-    res = []
-    for i in d:
-        res.append((sum(dist(i, k) for k in d), i))
-    return min(res)[-1]
 
-with open('add/course_57248/file A.txt') as fl:
-    data = list(tuple(map(float, i.replace(',', '.').split())) for i in fl)
-    claster = [[], []]
-    for i in data:
-        if i[1] > 3:
-            claster[0].append(i)
-        else:
-            claster[1].append(i)
+# def fn(ls:list):
+#     sm = 0
+#     for i in range(1, n):
+#         for j in range(i, n):
+#             t = ls[:i] + [ls[j]]
+#             r = sum(t)
+#             if not r % 25:
+#                 sm = max(sm, r)
+#     return sm
 
-    res = [centr(i) for i in claster]
-    x = sum(i[0] for i in res) / 2 * 10_000
-    y = sum(i[1] for i in res) / 2 * 10_000
-print(int(x), int(y))  # 10738 30730
+
+
+# with open('add/test.txt') as fl:
+#     n = int(fl.readline())
+#     ls = list(map(int, fl))
+#     print(fn(ls, n))
+
+
+with open('add/course_57248/27-60a.txt') as fl:
+    n = int(fl.readline())
+    ls = list(map(int, fl))
+    print(fn(ls, n), end=' ')
+#
+# with open('add/course_57248/27-60b.txt') as fl:
+#     n = int(fl.readline())
+#     ls = list(map(int, fl))
+#     print(fn(ls))
+# 650 4999775
+# 925 5036375
+
+
+
+
+
+
