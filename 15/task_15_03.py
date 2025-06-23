@@ -33,3 +33,18 @@ for a in range(100, 0, -1):
     if fn(a):
         print(a)  # 11
         break
+
+
+# https://stepik.org/lesson/1609596/step/2?unit=1631352
+def fn(n):
+    for x in range(1000):
+        for y in range(1000):
+            f = (x*y<a) or (x<y) or (9<x)
+            if not f: return 0
+    return 1
+
+for a in range(100):
+    if fn(a):
+        print(a)  # 82
+        break
+

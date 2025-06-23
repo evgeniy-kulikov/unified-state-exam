@@ -23,3 +23,18 @@ net = ip_network('115.192.0.0/255.192.0.0', 0)
 for n in net:
     cnt += bool(f'{n:b}'.count('1') % 3)
 print(cnt) # 2796202
+
+
+""" 2.7 тест № 3 (егэ 2023) """
+# https://stepik.org/lesson/1609595/step/14?unit=1631351
+from ipaddress import *
+for n in range(32, 0, -1):
+    net1 = ip_network(f'157.220.185.237/{n}', 0)
+    net2 = ip_network(f'157.220.184.230/{n}', 0)
+    if net1 == net2:
+        # print(n) # 23 единицы в маске
+        cnt = 0
+        for i in net1:
+            cnt += f'{i:b}'.count('1') == 15
+        print(cnt)
+        break

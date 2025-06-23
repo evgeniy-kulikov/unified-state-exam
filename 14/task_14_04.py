@@ -21,3 +21,14 @@ for n in range(2030, 0, -1):
         print(n)  # 1944
         break
 
+# https://stepik.org/lesson/1609596/step/1?unit=1631352
+from string import printable
+alf = printable[:22]
+for x in alf:
+    res = int(f'18{x}89957', 22) + int(f'80{x}33', 22)  + int(f'521{x}6', 22)
+    if not res % 21:
+        print(res // 21)  # 162947670
+        break
+
+
+

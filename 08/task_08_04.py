@@ -6,7 +6,7 @@ https://stepik.org/course/228948
 """
 
 
-""" 2.1 тест № 1 (егэ-2024, день 1) """
+""" егэ-2024, день 1 """
 # https://stepik.org/lesson/1594698/step/9?unit=1616271
 from re import fullmatch
 
@@ -44,4 +44,14 @@ for p in product('ailm', repeat=5):
     if all([not 'l' in s, not 'm' in s, not 'ii' in s]):
         mx = max(cnt, mx)
 print(mx)  # 274
+
+
+""" тест № 3 (егэ 2023) """
+# https://stepik.org/lesson/1609595/step/9?unit=1631351
+from itertools import product
+cnt = 0
+for p in product('ЕКМОПРТЬЮ', repeat=5):
+    cnt += 1
+    if all([not cnt % 2, p[0] != 'Ь', p.count('К') == 2]):
+        print(cnt, p)
 

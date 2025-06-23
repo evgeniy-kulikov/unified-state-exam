@@ -21,3 +21,16 @@ print(*[s for s in range(1, 67) if fn(s, 2)])  # 33
 print(*[s for s in range(1, 67) if fn(s, 3) and not fn(s, 1)])  # 30 32
 print(min(s for s in range(1, 67) if fn(s, 4)))  # 29
 
+
+#  https://stepik.org/lesson/1609596/step/6?unit=1631352
+#  https://stepik.org/lesson/1609596/step/7?unit=1631352
+#  https://stepik.org/lesson/1609596/step/8?unit=1631352
+def f(s, mv):
+    if s >= 59: return not mv % 2
+    if mv < 0: return 0
+    game = [f(s + 1, mv - 1), f(s + 3, mv - 1), f(s * 4, mv - 1)]
+    if not (mv - 1) % 2: return any(game)
+    return all(game)
+print(*[s for s in range(1, 59) if not f(s, 1) and f(s, 2)])  # 14
+print(*[s for s in range(1, 59) if not f(s, 1) and f(s, 3)])  # 11 13
+print(min(s for s in range(1, 59) if not f(s, 2) and f(s, 4)))  # 10

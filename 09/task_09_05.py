@@ -25,3 +25,17 @@ with open('9_alles.txt') as fl:
         n = sorted(map(int, s.split()))
         cnt += n[0] + n[-1] < sum(n[1:-1])
 print(cnt)  # 9997
+
+
+""" егэ 2023 """
+# https://stepik.org/lesson/1609595/step/10?unit=1631351
+with open('9_alles.txt') as fl:
+    cnt = 0
+    for f in fl:
+        cnt += 1
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        two = [i for i in d if d.count(i) == 2]
+        if len(one) == 4 and len(two) == 2 and two[0] >= sum(one) / 4:
+            print(cnt, d)  # 34 [62, 21, 70, 82, 47, 82]
+            break

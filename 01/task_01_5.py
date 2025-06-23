@@ -5,6 +5,21 @@ Task 01
 https://stepik.org/course/228948
 """
 
+""" Новый вариант """
+""" 2.7 тест № 3 (егэ 2023) """
+# https://stepik.org/lesson/1609595/step/2?unit=1631351
+from itertools import permutations
+g = 'CF FD DH HG GA AC AB BE ED BC'.split()
+t = '56 378 26 68 17 134 258 247'.split()
+print(*'12345678')
+for p in permutations('ABCDEFGH'):
+    # этапы записи:
+    # if all(p.index(x) in p.index(y) for x, y in g):
+    # if all((p.index(x) + 1) in [p.index(y)] for x, y in g):
+    if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
+        print(*p)
+# 1 2 3 4 5 6 7 8
+# H B E F G D A C  18+43=61
 
 """ 2.1 тест № 1 (егэ-2024, день 1) """
 # https://stepik.org/lesson/1594698/step/2?unit=1616271
