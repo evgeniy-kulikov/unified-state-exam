@@ -369,3 +369,50 @@ res = [centroid(i) for i in clasters]
 cx = int(sum(i[0] for i in res) / 3 * 10_000)
 cy = int(sum(i[1] for i in res) / 3 * 10_000)
 print(cx, cy)  # 81775 7384
+
+
+""" 44.4 Решение задания 27 А через электронные таблицы """
+# https://stepik.org/lesson/1677382/step/3?unit=1700497
+from math import dist
+def centr(ls:list):
+    res = []
+    for i in ls:
+        r = sum(dist(i, k) for k in ls)
+        res.append((r, i))
+    return min(res)[1]
+
+with open('add/course_100138/27-1a.txt') as fl:
+    data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
+    clast = [[], []]
+    for i in data:
+        if i[0] < 1.5:
+            clast[0].append(i)
+        else:
+            clast[1].append(i)
+    c = [centr(i) for i in clast]
+    x = sum(_[0] for _ in c) / 2
+    y = sum(_[1] for _ in c) / 2
+    print(int(x * 10_000), int(y * 10_000))  # 12999 8442
+
+
+# https://stepik.org/lesson/1677382/step/4?unit=1700497
+from math import dist
+def centr(ls:list):
+    res = []
+    for i in ls:
+        r = sum(dist(i, k) for k in ls)
+        res.append((r, i))
+    return min(res)[1]
+
+with open('add/course_100138/27-2a.txt') as fl:
+    data = [tuple(map(float, i.replace(',', '.').split())) for i in fl]
+    cl = [[], []]
+    for i in data:
+        if i[1] < -1.5:
+            cl[0].append(i)
+        else:
+            cl[1].append(i)
+    res = [centr(i) for i in cl]
+    x = sum(i[0] for i in res) / 2 * 10_000
+    y = sum(i[1] for i in res) / 2 * 10_000
+    print(int(x), int(y))  # 751 -9101
