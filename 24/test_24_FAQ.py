@@ -1,4 +1,19 @@
 """"""
+
+
+# Двойной цикл
+s = '1_22_333_4444_55555_6_7'
+m = 0
+for l in range(len(s)):
+    for r in range(l + m, len(s) + 1):
+        st = s[l:r]
+        if st.count('_') > 3:
+            break
+        if st.count('_') == 3:
+            m = max(m, len(st))
+            pass
+print(m) # 17  '22_333_4444_55555'
+
 """
 "Тонкости" математики )
 

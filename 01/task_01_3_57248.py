@@ -228,3 +228,32 @@ for p in permutations('абвгдеж'):
 # 1 2 3 4 5 6 7
 # б е в ж а д г
 # аг = 11  --> Г
+
+
+# https://stepik.org/lesson/419936/step/7?unit=409514
+from itertools import permutations
+g = 'аб бд де ек кг гв ва вб вд ве'.split()
+t = '24 146 567 1267 36 23457 346'.split()
+print(*'1234567')
+a = 'абвгдек'
+for p in permutations(a):
+    if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
+        print(*p)
+# 1 2 3 4 5 6 7
+# к г б е а в д
+# б-->д  = 8
+
+
+# https://stepik.org/lesson/419936/step/8?unit=409514
+from itertools import permutations
+g = 'аб бг гд де дв ва вб вг'.split()
+t = '256 145 4 235 1246 15'.split()
+print(*'123456')
+a = 'абвгде'
+for p in permutations(a):
+    if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
+        print(*p)
+# 1 2 3 4 5 6
+# б г е д в а
+# б-->в  = 8
+

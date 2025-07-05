@@ -289,4 +289,58 @@ for i in range(2**4):
 # 0 1 1 0
 
 
+# https://stepik.org/lesson/421642/step/10?unit=411296
+print(*'c,a,d,b'.replace(',', ''))
+for i in range(2**4):
+    c,a,d,b = map(int, f'{i:b}'.zfill(4))
+    f = ((a and b) == (not c)) and (b <= d)
+    if f:
+        print(c,a,d,b)  # cadb
+"""
+c a d b
+1 0 0 0
+1 0 1 0
+1 0 1 1
+1 1 0 0
+1 1 1 0
+0 1 1 1
+"""
+# Вариант сразу дающий результат
+from itertools import permutations
+def f(a,b,c,d):
+    return ((a and b) == (not c)) and (b <= d)
+
+t = [(1,0,0,0), (1,0,1,0), (1,0,1,1), (1,1,0,0)]
+for p in permutations('abcd'):
+    if all(f(**dict(zip(p, v))) for v in t):
+        print(''.join(p))  # cadb
+
+
+# https://stepik.org/lesson/421642/step/11?unit=411296
+from itertools import *
+def f(a,b,c,d):
+    return a and (not b) or (a or b) and c or d
+
+for x1,x2,x3,x4,x5,x6,x7,x8 in product((0,1), repeat=8):
+    t = [(x1, x2, x3, 1), (x4, 1, x5, 1), (1, x6, x7, x8)]
+    if len(set(t)) == 3:
+        for p in permutations('abcd'):
+            if all(not f(**dict(zip(p, v))) for v in t):
+                print(''.join(p))  # cadb
+
+
+# https://stepik.org/lesson/421642/step/12?unit=411296
+from itertools import *
+def f(x,y,w,z):
+    return (x <= y) and (y <= z) and (z <= w)
+
+for a1,a2,a3,a4,a5,a6 in product((0,1), repeat=6):
+    t = [(a1,0,1,a2),(a3,1,a4,0),(a5,0,1,a6)]
+    if len(set(t)) == 3:
+        for p in permutations('xywz'):
+            if all(f(**dict(zip(p, val))) for val in t):
+                pass
+                print(''.join(p)) # двойной вариант (одинаковый)
+# zywx
+# zywx
 

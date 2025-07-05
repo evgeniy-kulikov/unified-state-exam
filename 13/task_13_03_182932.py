@@ -7,7 +7,6 @@ https://stepik.org/course/182932/syllabus
 
 
 """ 22.1 Задачи на IP-адреса """
-
 # https://stepik.org/lesson/1247108/step/1?unit=1260931
 from ipaddress import *
 net = ip_network('10.8.248.131/255.255.224.0', 0)
@@ -96,7 +95,33 @@ for m in range(32, 0, -1):
         break
 
 
+# https://stepik.org/lesson/1247108/step/10?unit=1260931
+from ipaddress import *
+for n in range(1, 33):
+    net1 = ip_network(f'10.96.180.231/{n}', 0)
+    net2 = ip_network(f'10.96.140.118/{n}', 0)
+    if net1 != net2:
+        print(32 - n)
+        break
 
 
+# https://stepik.org/lesson/1247108/step/11?unit=1260931
+from ipaddress import *
+c = 0
+net = ip_network('192.168.240.0/255.255.255.0', 0)
+for n in net:
+    b = f'{n:b}'
+    c += b.count('1') == b.count('0')
+print(c)  # 8
+
+
+# https://stepik.org/lesson/1247108/step/12?unit=1260931
+from ipaddress import *
+c = 0
+net = ip_network('10.48.96.0/255.255.240.0', 0)
+for n in net:
+    b = f'{n:b}'
+    c += b.count('1') > b.count('0')
+print(c)  # 13
 
 

@@ -101,3 +101,32 @@ while any(['333' in s, '555' in s]):
     if '555' in s: s = s.replace('555', '3', 1)
     else: s = s.replace('333', '5', 1)
 print(s)  # 5355
+
+
+# https://stepik.org/lesson/449926/step/4?auth=login&unit=440312
+s = '7' + '8' * 55
+while '7' in s or '78' in s:
+    if '788' in s:
+        s = s.replace('78', '8887', 1)
+    else:
+        s = s.replace('7', '8888', 1)
+print(s.count('8'))  # 167
+
+
+# https://stepik.org/lesson/449926/step/5?auth=login&unit=440312
+s = '1' * 130
+while '111' in s:
+    s = s.replace('111', '2', 1)
+    s = s.replace('222', '3', 1)
+    s = s.replace('333', '1', 1)
+print(s)  # 332211
+
+
+# https://stepik.org/lesson/449926/step/7?auth=login&unit=440312
+s = '123' * 50
+while '12' in s or '32' in s or '31' in s:
+    s = s.replace('12', '21', 1)
+    s = s.replace('32', '23', 1)
+    s = s.replace('31', '13', 1)
+print(s[21] + s[81] + s[121])  # 213
+

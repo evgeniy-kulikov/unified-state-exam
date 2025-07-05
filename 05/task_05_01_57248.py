@@ -192,7 +192,27 @@ for n in range(100_000):
     r = int(b, 2)
     if r < 70: print(r)  # 68
 
+# https://stepik.org/lesson/421051/step/10?auth=login&unit=410661
+res = 100*100
+for n in range(1, 1000):
+    b = f'{n:b}'
+    b += str(sum(map(int, b)) % 2)
+    b += str(sum(map(int, b)) % 2)
+    r = int(b, 2)
+    if r > 115:
+        res = min(res, r)
+print(res)  # 116
 
 
-
+# https://stepik.org/lesson/421051/step/11?auth=login&unit=410661
+for n in range(100, 1000):
+    s = ''.join(sorted(str(n)))  # 123
+    if s.count('0') < 2:
+        if '0' in s:
+            a, b = int(s[-2:][::-1]), int(s[:2][::-1])
+        else:
+            a, b = int(s[-2:][::-1]), int(s[:2])
+        if a - b == 60:
+            print(n)  # 117
+            break
 

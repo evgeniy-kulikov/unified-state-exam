@@ -7,7 +7,6 @@ https://stepik.org/course/57248
 
 
 """ 7.16 ЕГЭ Тренировка 11 """
-
 # https://stepik.org/lesson/444909/step/1?auth=login&unit=435076
 from math import log2, ceil
 I = ceil(15 * ceil(log2(9)) / 8 ) * 25
@@ -60,9 +59,41 @@ I_psw = ceil(15 * ceil(log2(10 + 52)) / 8)  # 12 byte
 print(700/20 - I_psw)  # 23 byte
 
 
+# https://stepik.org/lesson/444909/step/11?unit=435076
+from math import ceil, log2
+I1 = ceil(log2(26)) * 10
+I2 = ceil(log2(10)) * 8
+cod = ceil((I1 + I2) / 8)  # 11
+one = 1980 / 60  # 33
+print(one - cod)   # 22
+
+
+# https://stepik.org/lesson/444909/step/12?unit=435076
+from math import ceil, log2
+psw = ceil(log2(9)) * 15  # 60 bit   i=4
+one = (480 / 40) * 8  # 96 bit
+print(one - psw)  # 36 bit
+
+
+# https://stepik.org/lesson/444909/step/13?unit=435076
+from math import ceil, log2
+psw = ceil(log2(11)) * 9
+one = (713 / 23) * 8
+add = (one - psw)  # 212 bit
+print(int(add / 8))  # 26 byte
+
+
+# https://stepik.org/lesson/444909/step/14?unit=435076
+from math import ceil, log2
+psw = ceil(ceil(log2(52 + 10 + 4)) * 11 / 8)  # 10 byte
+email = ceil(ceil(log2(26 + 2)) * 20 / 8)  # 13 byte
+add = 600/20 - psw - email
+print(add)  #  7 byte
+
+
+
 
 """ 7.17 ЕГЭ Тренировка 11 """
-
 # https://stepik.org/lesson/648384/step/1?auth=login&unit=645015
 from math import log2, ceil
 I_1 = ceil(log2(26)) * 15  # 75 bit
@@ -79,5 +110,3 @@ I_two = log2(99999)  # 16.6092 bit
 # I_two2 = (5 * log2(10))  # 16.6094 bit
 I_1 = ceil((I_one + I_two) / 8)  # 9 byte
 print((1800 // (I_1 + 13)))  #  81 user
-
-

@@ -6,7 +6,6 @@ https://stepik.org/course/100138
 """
 
 """ 28.1 Задание 9 КЕГЭ. Часть 1 """
-
 # https://stepik.org/lesson/752235/step/6?unit=754082
 from statistics import mean
 ls = []
@@ -69,6 +68,26 @@ with open('add/course_100138/task_11.txt') as fl:
 print(cnt)  # 2170
 
 
+# https://stepik.org/lesson/752235/step/14?unit=754082
+c = 0
+with open('add/course_100138/task_10.txt') as fl:
+    for f in fl:
+        d = map(float, f.replace(',', '.').split())
+        c += sum(1 for i in d if i > 20)
+print(c)  # 515
+
+
+# https://stepik.org/lesson/752235/step/15?unit=754082
+c = 0
+with open('add/course_100138/task_11_2.txt') as fl:
+    for f in fl:
+        d = map(float, f.replace(',', '.').split())
+        c += sum(1 for i in d if i > 20)
+print(c)  # 204
+
+
+
+
 """ 28.2 Задание 9 КЕГЭ. Часть 2 """
 # https://stepik.org/lesson/752236/step/2?unit=754083
 # Копируем фрагмент таблицы с данными в текстовый файл.
@@ -126,9 +145,37 @@ with open('add/course_100138/task_num_05.txt') as fl:
 print(cnt)  # 2
 
 
-# https://stepik.o
-# rg/lesson/752236/step/12?unit=754083
-# Копируем фрагмент таблицы с данными в текстовый файл.
+
+# https://stepik.org/lesson/752236/step/9?unit=754083
+c = 0
+with open('add/course_100138/task_num_07.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        if d.count(90) == 1:
+            c += sum(i for i in d if i != 90) == 90
+print(c)  # 1
+
+
+# https://stepik.org/lesson/752236/step/10?unit=754083
+c = 0
+with open('add/course_100138/task_num_08.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        c += d.count(60) == 3
+        # c += len(set(d)) == 1 and sum(d) == 180
+print(c)  # 2
+
+
+# https://stepik.org/lesson/752236/step/11?unit=754083
+c = 0
+with open('add/course_100138/task_num_09.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        c += sum(1 for i in d if i > 0)==2
+print(c)  # 1180
+
+
+# https://stepik.org/lesson/752236/step/12?unit=754083
 from math import dist
 md = 0
 with open('add/course_100138/task_num_11.txt') as fl:
@@ -136,6 +183,26 @@ with open('add/course_100138/task_num_11.txt') as fl:
         d = tuple(map(int, i.split()))
         md = max((md, dist(d, (0, 0))))
 print(int(md))  # 70
+
+
+# https://stepik.org/lesson/752236/step/13?unit=754083
+c = 0
+with open('add/course_100138/task_num_12.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        if len(set(d)) == 1 or len([i for i in d if d.count(i) == 2]) == 4:
+            c += 1
+print(c)  # 5
+
+
+# https://stepik.org/lesson/752236/step/15?unit=754083
+c = 0
+with open('add/course_100138/9_z2.txt') as fl:
+    for f in fl:
+        d = sorted(map(int, f.split()))
+        if d[0] + d[3] < d[1] + d[2]:
+            c += 1
+print(c)  # 1285
 
 
 # https://stepik.org/lesson/752236/step/16?unit=754083

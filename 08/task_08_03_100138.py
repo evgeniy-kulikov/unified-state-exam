@@ -91,8 +91,67 @@ for n in range(4, 6):
 print(cnt)  # 3920
 
 
-""" 20.3 Осортированная последовательность чисел """
+""" 38.2 Решение задач """
+# https://stepik.org/lesson/768210/step/2?unit=770565
+print(1 * 3**3 * 4)  # 108
 
+# https://stepik.org/lesson/768210/step/3?unit=770565
+print(1 * 4**3 * 4)  # 256
+
+# https://stepik.org/lesson/768210/step/4?unit=770565
+print(1 * 4**5 * 6)  # 6144
+
+# № https://stepik.org/lesson/768210/step/6?unit=770565
+from itertools import product
+cnt = 0
+for p in product('kega', repeat=4):
+    cnt += p.count('k') == 2
+print(cnt)  # 54
+print(1*1*3*3 * 6)  # 54
+
+# https://stepik.org/lesson/768210/step/7?unit=770565
+from itertools import product
+cnt = 0
+for p in product('kega', repeat=4):
+    cnt += p.count('k') == 3
+print(cnt)  # 12
+print(1*1*1*3 * 4)  # 12
+
+# https://stepik.org/lesson/768210/step/8?unit=770565
+from itertools import product
+cnt = 0
+for p in product('lodka', repeat=4):
+    cnt += p.count('k') == 3
+print(cnt)  # 16
+print(1*1*1*4 * 4)  # 16
+
+# https://stepik.org/lesson/768210/step/9?unit=770565
+from itertools import product
+cnt = 0
+for p in product('lodka', repeat=4):
+    cnt += p.count('k') == 2
+print(cnt)  # 96
+print(1*1*4*4 * 6)  # 96
+
+# https://stepik.org/lesson/768210/step/10?unit=770565
+from itertools import product
+cnt = 0
+for p in product('lodka', repeat=5):
+    cnt += p.count('k') == 2
+print(cnt)  # 640
+print(1*1*4*4*4 * 10)  # 640
+
+# https://stepik.org/lesson/768210/step/11?unit=770565
+from itertools import product
+cnt = 0
+for p in product('svet', repeat=4):
+    cnt += p.count('s') >= 2
+print(cnt)  # 67
+
+
+
+
+""" 20.3 Осортированная последовательность чисел """
 # https://stepik.org/lesson/1401020/step/3?unit=1417982
 from itertools import product
 
@@ -126,7 +185,6 @@ for p in product('ЕЛМРУ', repeat=4):
         break
 
 """ 20.4 Комбинации с числами """
-
 # https://stepik.org/lesson/861771/step/2?unit=865794
 from itertools import product
 cnt = 0
@@ -172,7 +230,6 @@ for p in product('01234567', repeat=5):
 print(cnt)  # 4676
 
 """ 20.5 Функция permutations """
-
 
 # https://stepik.org/lesson/861303/step/4?unit=865334
 from itertools import permutations

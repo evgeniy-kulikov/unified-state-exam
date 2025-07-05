@@ -223,3 +223,35 @@ for p in product('зеркало', repeat=6):
         p = p.replace('к', '')
         cnt += len(p) == len(set(p))
 print(cnt)  # 12570
+
+
+# https://stepik.org/lesson/424708/step/12?auth=login&unit=414440
+from itertools import permutations
+cnt = 0
+for p in permutations('01345789', r=4):
+     p = ''.join(p) + '26'
+     if p[0] != '0':
+         if sum(1 for i in p if i in '02468') == 3 or sum(1 for i in p if i in '13579') == 2:
+             cnt += 1
+print(cnt)  # 1260
+
+
+# https://stepik.org/lesson/424708/step/13?auth=login&unit=414440
+from itertools import permutations
+cnt = 0
+for p in permutations('дейкстра', r=6):
+    s = ''.join(p)
+    if s.count('й') == 1 and s[-1] != 'й' and s[s.index('й') + 1] in 'дкстрй':
+        cnt += 1
+print(cnt)  # 9000
+
+
+# https://stepik.org/lesson/424708/step/14?auth=login&unit=414440
+from itertools import permutations
+cnt = set()  # избежать перестановки для вариантов "ооо", "тт"
+for p in permutations('спортлото'):
+    s = ''.join(p)
+    if 'о' not in s[0] + s[-1]:
+        cnt |= {s}
+print(len(cnt))  # 12600
+
