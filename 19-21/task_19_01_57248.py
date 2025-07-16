@@ -6,7 +6,6 @@ https://stepik.org/course/57248
 
 
 """ 24.1 Теория игр. Часть 1 """
-
 # https://stepik.org/lesson/909258/step/3?unit=914860
 def fn(stn, mv):
     if stn >= 15 or mv > 1:
@@ -176,7 +175,6 @@ print(*res)  # 10  - Позиция на которую должен прийт�
 
 
 """ 24.2 Задачи с одной кучей камней. Часть 1 """
-
 # https://stepik.org/lesson/909256/step/2?unit=914858
 def kp(n):
     if n >= 17:
@@ -214,8 +212,49 @@ print(*[i for i in range(17, 0, -1) if fn(i, 0)])  # 16 15 14 13 12 11 10 9
 print(len([i for i in range(17, 0, -1) if fn(i, 0)]))  # 8
 
 
-""" 7.33 ЕГЭ Тренировка 19-21 (по три номера подряд) """
 
+""" 7.32 ЕГЭ Тренировка 19 """
+# https://stepik.org/lesson/484592/step/1?auth=login&unit=475907
+def f(a, b, mv):
+    if a + b >= 77: return not mv % 2
+    if mv == 0: return 0
+    g = [f(a + 1, b, mv - 1), f(a * 2, b, mv - 1), f(a, b + 1, mv - 1), f(a, b * 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return any(g)
+print(min(s for s in range(1, 70) if f(7, s, 2)))  # 18
+
+
+
+# https://stepik.org/lesson/484592/step/2?auth=login&unit=475907
+# a - a // 2     - уменьшить количество камней в куче в два раза
+# (если количество камней в куче нечётно, остаётся на 1 камень БОЛЬШЕ, чем убирается)
+def f(a, b, mv):
+    if a + b <= 20: return not mv % 2
+    if mv == 0: return 0
+    g = [f(a - 1, b, mv - 1), f(a - a // 2, b, mv - 1), f(a, b - 1, mv - 1), f(a, b - b // 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return any(g)
+print(max(s for s in range(11, 100) if f(10, s, 2)))  # 40
+
+
+# https://stepik.org/lesson/484592/step/5?auth=login&unit=475907
+# a // 2     - уменьшить количество камней в куче в два раза
+# (если количество камней в куче нечётно, остаётся на 1 камень МЕНЬШЕ, чем убирается)
+def f(a, b, mv):
+    if a + b <= 20: return not mv % 2
+    if mv == 0: return 0
+    g = [f(a - 1, b, mv - 1), f(a // 2, b, mv - 1), f(a, b - 1, mv - 1), f(a, b // 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return any(g)
+
+print(max(s for s in range(11, 100) if f(10, s, 2)))  # 43
+
+
+
+""" 7.33 ЕГЭ Тренировка 19-21 (по три номера подряд) """
 # https://stepik.org/lesson/622571/step/1?auth=login&unit=619541
 # https://stepik.org/lesson/622571/step/2?auth=login&unit=619541
 # https://stepik.org/lesson/622571/step/3?auth=login&unit=619541
@@ -249,4 +288,54 @@ print(min(s for s in range(1, 10) if fn(3, s, 2, w=eval('any')) and fn(3, s, 1, 
 print(''.join([str(s) for s in range(1, 10) if fn(3, s, 3) and not fn(3, s, 1)]))  # 56
 print(*[s for s in range(1, 10) if fn(3, s, 4) and not fn(3, s, 2)])  # 4
 
+
+# https://stepik.org/lesson/622571/step/7?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/8?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/9?auth=login&unit=619541
+""" нестандартное условие """
+def fn(a, b, mv, w=eval('all')):
+    if a + b >= 47: return not mv % 2
+    if not mv: return 0
+    g = [fn(a + 3, b, mv - 1), fn(a * 2, b, mv - 1), fn(a, b + 3, mv - 1), fn(a, b * 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return w(g)
+print(min(s for s in range(1, 37) if fn(10, s, 2, w=eval('any'))))  # 7
+print(max(s for s in range(1, 37) if fn(10, s, 3) and not fn(10, s, 1)))  # 16
+print(min(s for s in range(1, 37) if fn(10, s, 4)))  # 12
+
+
+# https://stepik.org/lesson/622571/step/10?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/11?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/12?auth=login&unit=619541
+""" нестандартное условие """
+def fn(a, mv):
+    if a < 10: return not mv % 2
+    if not mv: return 0
+    if a % 2:
+        g = [fn(a-1, mv-1), fn(a-2, mv-1), fn(a-3, mv-1), fn(a-4, mv-1),fn(a-5, mv-1)]
+    else:
+        g = [fn(a-1, mv-1), fn(a-2, mv-1), fn(a-3, mv-1), fn(a-4, mv-1),fn(a-5, mv-1), fn(a//2, mv-1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return all(g)
+print(*[s for s in range(50, 10, -1) if fn(s, 2)])  # 15
+print(*[s for s in range(50, 10, -1) if fn(s, 3) and not fn(s, 1)][::-1])  # 1730
+print(*[s for s in range(50, 10, -1) if fn(s, 4) and not fn(s, 2)])  # 21
+
+
+# https://stepik.org/lesson/622571/step/13?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/14?auth=login&unit=619541
+# https://stepik.org/lesson/622571/step/15?auth=login&unit=619541
+""" нестандартное условие """
+def fn(a,b, mv):
+    if a + b <= 18: return not mv % 2
+    if not mv: return 0
+    g = [fn(a - 1, b, mv - 1), fn(a // 2, b, mv - 1), fn(a, b - 1, mv - 1), fn(a, b // 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return all(g)
+print(*[s for s in range(10, 100) if fn(s, s, 2)])  # 13
+print(*[s for s in range(6, 100) if fn(13, s, 3) and not fn(13, s, 1)])  # 1427
+print(min(s for s in range(10, 100) if fn(s, s, 4) and not fn(s,s,2)))  # 14
 

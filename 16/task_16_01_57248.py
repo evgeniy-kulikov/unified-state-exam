@@ -5,6 +5,8 @@
 # https://stepik.org/course/57248
 """
 
+
+""" 5.1 ЕГЭ №11 (ВАРИАНТ №1) """
 # https://stepik.org/lesson/297866/step/1?unit=279630
 def f(n):
     if n > 1:
@@ -68,6 +70,9 @@ def f(n):
         f(n // 4)
 print(f(5))  # 1234151
 
+
+
+""" 5.2 ЕГЭ №11 (ВАРИАНТ №2) """
 # https://stepik.org/lesson/297869/step/1?unit=279634
 def f(n):
     if n > 3:
@@ -80,6 +85,8 @@ def f(n):
 print(f(9))  # 9372513
 
 
+
+""" 7.27 ЕГЭ Тренировка 16 """
 # https://stepik.org/lesson/454791/step/1?unit=445218
 def f(n):
     if n > 25:
@@ -279,3 +286,51 @@ for n in range(1, 201):
 print(cnt)  # 44
 
 
+# https://stepik.org/lesson/454791/step/13?auth=login&unit=445218
+def f(n):
+    if not n: return 0
+    if not n % 2: return f(n // 2) - 1
+    return 3 + f(n - 1)
+
+res = set()
+for i in range(1000):
+    res |= {f(i)}
+print(len(res))  # 26
+
+
+# https://stepik.org/lesson/454791/step/14?auth=login&unit=445218
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n <= 3: return n + 3
+    if not f(n - 1) % 2:
+        return f(n - 2) + n
+    return f(n - 2) + 2 * n
+
+print(sum(f(i) for i in range(40, 51)))  # 8508
+
+
+# https://stepik.org/lesson/454791/step/15?auth=login&unit=445218
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 4: return 1
+    if n > 3 and n % 2:
+        return n
+    return f(n - 1) + f(n - 2) + f(n - 3)
+
+# избегаем  RecursionError: maximum recursion depth exceeded
+[f(i) for i in range(1, 2255)]
+print(f(2254) - f(2252))  # 4504
+
+
+# https://stepik.org/lesson/454791/step/16?auth=login&unit=445218
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 3: return 1
+    return f(n - 1) + f(n - 2)
+
+# избегаем  RecursionError: maximum recursion depth exceeded
+[f(i) for i in range(1, 1010)]
+print((f(1006) - f(1004)) // f(1005))  # 1

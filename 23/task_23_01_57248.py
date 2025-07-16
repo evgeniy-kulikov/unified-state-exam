@@ -6,6 +6,7 @@ https://stepik.org/course/57248
 
 """ 6.2 Тренировка 17,18,23 """
 # https://stepik.org/lesson/552239/step/11?unit=545967
+""" хорошее условие """
 """
 1. Прибавь 1
 2. Умножь на 2 и вычти 3
@@ -138,3 +139,59 @@ def f(st, en):
     return f(st + 1, en) + f(rep(st), en)
 print(f(25, 51))  # 33
 
+
+# https://stepik.org/lesson/460368/step/9?auth=login&unit=450951
+def f(st, en):
+    if st == en: return 1
+    if st > en: return 0
+    return f(st+1, en) + f(st*2, en) + f(st*2+1, en) + f(st*10, en)
+print(f(1,15))  # 84
+
+
+# https://stepik.org/lesson/460368/step/10?auth=login&unit=450951
+def f(st, en):
+    if st == en: return 1
+    if st > en or st == 12: return 0
+    return f(st+1, en) + f(st*2, en)
+print(f(3,20) * f(20, 30)) # 12
+
+
+# https://stepik.org/lesson/460368/step/11?auth=login&unit=450951
+def f(st, en, cnt):
+    if st == en and not cnt: return 1
+    if st > en: return 0
+    return f(st+1, en, cnt-1) + f(st+2, en, cnt-1) + f(st+3, en, cnt-1)
+print(f(3,22,7)) # 28
+
+
+
+""" 7.36 ЕГЭ Тренировка 23 """
+""" интересное условие """
+# https://stepik.org/lesson/699094/step/1?auth=login&unit=699013
+def f(st, en, flag):
+    if st == en: return 1
+    if st > en: return 0
+    if flag:
+        return f(st+1, en, False) + f(st+2, en, False)
+    return f(st + 1, en, False) + f(st + 2, en, False) + f(st * 2, en, True)
+print(f(1, 15, False))  # 1545
+
+# https://stepik.org/lesson/699094/step/2?auth=login&unit=699013
+# Вариант
+def f(st, en, flag=0):
+    if st == en: return 1
+    if st > en: return 0
+    if flag:
+        return f(st+1, en, 0) + f(st*2, en, 0)
+    return f(st+1, en, 0) + f(st*2, en, 0) + f(st+2, en, 1)
+print(f(1, 12))  # 229
+
+
+# https://stepik.org/lesson/699094/step/3?auth=login&unit=699013
+def f(st, en, fl=0):
+    if st == en: return 1
+    if st > en: return 0
+    if fl:
+        return f(st+2, en, 0) + f(st*2, en, 0)
+    return f(st+1, en, 1) + f(st+2, en, 0) + f(st*2, en, 0)
+print(f(1,18))  # 478

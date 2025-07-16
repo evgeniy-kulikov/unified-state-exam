@@ -96,7 +96,6 @@ for n in range(1, 1000):
 
 
 """ 7.22 ЕГЭ Тренировка 14 """
-
 # https://stepik.org/lesson/615398/step/1?auth=login&unit=610935
 print(f'{(4**2016 + 2**2018 - 6):b}'.count('1'))  # 2017
 
@@ -108,4 +107,58 @@ for h in range(16):
         if int(f'1{alf[h]}0', 16) == int(f'56{alf[k]}', 8):
             print(int(f'56{alf[k]}', 8))  # 368
 
+
+# https://stepik.org/lesson/615398/step/4?auth=login&unit=610935
+def f(n):
+    s = ''
+    while n:
+        s = str(n % 5) + s
+        n //= 5
+    return s
+res = 4 * 125**4 - 25**4 +9
+print(f(res).count('4'))
+
+
+# https://stepik.org/lesson/615398/step/6?auth=login&unit=610935
+for n in range(6, 20):
+    if int('214', n) == int('165', n+1):
+        print(n)  # 8
+        break
+
+
+
+""" 7.23 ЕГЭ Тренировка 14 """
+# https://stepik.org/lesson/797045/step/1?auth=login&unit=799874
+# Хорошая задачка по условию!
+a = '0123456789abcdefg'
+res = []
+for y in range(17):
+    for x in range(15):
+        r = int(f'123{a[x]}5', 15) + int(f'67{a[y]}9', 17)
+        if not r % 131:
+            res.append([a[y], r // 131])
+res.sort()
+if res: print(res[0][-1])  # 686
+
+
+# https://stepik.org/lesson/797045/step/2?auth=login&unit=799874
+from string import printable as p
+res = []
+for x in p[:22]:
+    for y in p[:13]:
+        r = int(f'{x}23{x}5', 22) - int(f'67{y}9{y}', 13)
+        if not r % 57:
+            res.append([int(f'{x}', 22) + int(f'{y}', 13), r // 57])
+res.sort()
+if res: print(res[0][-1])  # -2897  ...но принимается 25871
+# res = [[6, -2897], [14, 25871], [15, 58773], [22, 54639], [30, 83407]]
+
+
+# https://stepik.org/lesson/797045/step/3?auth=login&unit=799874
+from string import printable as p
+for x in p[:11]:
+    for y in p[:11]:
+        r = int(f'7{y}23{x}5', 25) + int(f'67{x}9{y}', 11)
+        if not r % 131:
+            print(r // 131)  # 552647
 

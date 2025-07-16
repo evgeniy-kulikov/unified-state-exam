@@ -232,9 +232,68 @@ with open('add/course_57248/17-1.txt') as fl:
 print(cnt, mx)  # 6151 18891
 
 
+"""***"""
+# https://stepik.org/lesson/421032/step/10?unit=410642
+c = 0
+c_min = 20_001
+with open('add/course_57248/17-243.txt') as fl:
+    ls = list(map(int, fl))
+    num = sum(sum(map(int, str(i))) for i in ls if not i % 37)  # 5121
+    for i in range(len(ls) - 1):
+        a, b = ls[i:i+2]
+        if all([a > num, b > num]):
+            c += 1
+            c_min = min(c_min, a+b)
+print(c, c_min)  # 3025 10383
+
+"""**"""
+# https://stepik.org/lesson/421032/step/11?unit=410642
+cnt = 0
+c_max = -30_001
+def f(n):
+    return n > 0 and str(n)[-1] == '9'
+
+with open('add/course_57248/17-204.txt') as fl:
+    ls = list(map(int, fl))
+    for i in range(len(ls) - 2):
+        a, b, c = ls[i:i+3]
+        if all([not f(a), f(b), not f(c)]):
+            cnt += 1
+            c_max = max(c_max, a+b+c)
+print(cnt, c_max)  # 206 23427
+
+
+"""***"""
+# https://stepik.org/lesson/421032/step/12?unit=410642
+with open('add/course_57248/17-1.txt') as fl:
+    st = flag = 0
+    i_min = 100_000
+    d = list(map(int, fl))
+    mir = [int(d[i-1] < d[i] > d[i+1]) for i in range(1, len(d) - 1)]
+    for i, k in enumerate(mir):
+        if k:
+            if flag:
+                i_min = min(i_min, i - st)
+            flag = 1
+            st = i
+print(sum(mir), i_min)
+
+
+# https://stepik.org/lesson/421032/step/12?unit=410642
+with open('add/course_57248/17-339.txt') as fl:
+    sm_max = cnt = 0
+    data = list(map(int, fl))
+    n_min = min(i for i in data if i > 0 and not i % 19)  # 703
+    for i in range(len(data) - 1):
+        d = sum(data[i:i+2])
+        if d < n_min:
+            cnt += 1
+            sm_max = max(sm_max, d)
+print(cnt, sm_max)  # 4984 696
+
+
 
 """ 7.29 ЕГЭ Тренировка 17 """
-
 # https://stepik.org/lesson/789914/step/1?auth=login&unit=792575
 cnt = 0
 mn = 10**10
@@ -249,5 +308,56 @@ with open('add/course_57248/17-342.txt') as fl:
 print(cnt, mn)  # 136 574
 
 
+# https://stepik.org/lesson/789914/step/2?auth=login&unit=792575
+cnt = 0
+sm = 0
+with open('add/course_57248/17-338.txt') as fl:
+    data = list(map(int, fl))
+    min_n = min(data)
+    for i in range(len(data) - 1):
+        d = data[i: i+2]
+        if any(k % 117 == min_n for k in d):
+            cnt += 1
+            sm = max(sm, sum(d))
+print(cnt, sm)  # 15067 199479
 
 
+# https://stepik.org/lesson/789914/step/3?auth=login&unit=792575
+cnt = 0
+sm_max = 0
+with open('add/course_57248/17-339.txt') as fl:
+    data = list(map(int, fl))
+    min_n = min(i for i in data if i > 0 and not i % 19)
+    for i in range(len(data) - 1):
+        d = data[i: i+2]
+        if sum(d) < min_n:
+            cnt += 1
+            sm_max = max(sm_max, sum(d))
+print(cnt, abs(sm_max))  # 4984 696
+
+
+
+
+
+# https://stepik.org/lesson/789914/step/6?auth=login&unit=792575
+""" Хитрая задачка """
+from itertools import permutations
+def f(ls):
+    ls = map(str, ls)
+    for p in permutations(ls, r=2):
+        cnt = 0
+        for i in range(4):
+            cnt += p[0][i] != p[1][i]
+        if cnt == 2:
+            return 1
+
+cnt = mx = 0
+with open('add/course_57248/17-316.txt') as fl:
+    data = list(map(int, fl))
+    min_n = sum(sorted(set(data))[:3])  # 3006
+    for i in range(len(data) - 2):
+        d = data[i: i+3]
+        if f(d) and sum(d) > min_n:
+            cnt += 1
+            mx = max(mx, sum(d))
+print(cnt, mx)  # 3098 29764

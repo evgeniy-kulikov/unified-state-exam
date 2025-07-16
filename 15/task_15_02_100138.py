@@ -5,8 +5,8 @@ Task 15
 https://stepik.org/course/100138
 """
 
-""" 18.1 Задачи на делимость """
 
+""" 18.1 Задачи на делимость """
 # https://stepik.org/lesson/559882/step/3?unit=553927
 for a in range(1, 1000):
     for x in range(1, 1000):
@@ -39,7 +39,15 @@ for a in range(1, 100):
         break
 
 
-""" 18.1 Задачи на делимость """
+# https://stepik.org/lesson/559882/step/10?unit=553927
+def f(x):
+    return x % a or x % 20 or not x % 45
+
+for a in range(1, 100):
+    if all(f(x) for x in range(1, 10000)):
+        print(a)  # 9
+        break
+
 
 # https://stepik.org/lesson/559882/step/12?unit=553927
 def fn(x):
@@ -51,16 +59,47 @@ for a in range(1, 100):
 print(max_a)  # 7
 
 
-""" 18.2 Задачи на неравенства """
+# https://stepik.org/lesson/559882/step/13?unit=553927
+def f(x):
+    # return (not x % a and x % 12) <= (not x % 29)
+    return x % a or not x % 12 or not x % 29
 
+for a in range(1, 100):
+    if all(f(x) for x in range(1, 10000)):
+        print(a)  # 12
+        break
+
+
+
+""" 18.2 Задачи на неравенства """
 # https://stepik.org/lesson/559881/step/2?unit=553926
 def fn(x, y):
     return (x * y > a) or (x > y) or (8 > x)
 
-for a in range(1, 1000):
-    if all(fn(x, y) for x in range(1, 100) for y in range(1, 1000)):
-        max_a = a
-print(max_a)  # 63
+for a in range(1000, 0, -1):
+    if all(fn(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 63
+        break
+
+
+# https://stepik.org/lesson/559881/step/3?unit=553926
+def fn(x, y):
+    return 99 != (y + 2 * x) or a < x or a < y
+
+for a in range(1000, 0, -1):
+    if all(fn(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 32
+        break
+
+
+# https://stepik.org/lesson/559881/step/6?unit=553926
+def fn(x, y):
+    return ((x <= 9) <= (x**2 <= a)) and ((y**2 < a) <= (y <= 12))
+
+for a in range(10000, -1000, -1):
+    if all(fn(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 169
+        break
 
 
 # https://stepik.org/lesson/559881/step/7?unit=553926

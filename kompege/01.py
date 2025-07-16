@@ -1,3 +1,5 @@
+""" https://kompege.ru/task """
+
 # 21696 ЕГКР 19.04.25 (Уровень: Базовый)
 from itertools import *
 g = 'hg gc cf fa ae eh fd ed db bh bg'.split()
