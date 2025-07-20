@@ -194,9 +194,25 @@ res = max(st.split(), key=len)
 print(len(res))
 
 
+# https://stepik.org/lesson/784660/step/10?unit=787257
+from re import *
+s = input()
+reg = r'(1[02])+'
+d = finditer(reg, s)
+if d:
+    res = max(len(i.group()) for i in finditer(reg, s))
+    print(res // 2)
+else: print(0)
+
+
 
 """ 22.3 Исключение подцепочек """
 # FAQ  https://stepik.org/lesson/784661/step/1?unit=787258
+s = input()
+s = s.replace('12', '1 2')
+res = max(s.split(), key=len)
+print(len(res))
+
 
 # https://stepik.org/lesson/784661/step/2?unit=787258
 s = input()
@@ -212,11 +228,25 @@ res = max(s.split(), key=len)
 print(len(res))  # 16
 
 
+# https://stepik.org/lesson/784661/step/5?unit=787258
+s = input()
+s = s.replace('12', '1 2').replace('AB', 'A B')
+res = max(s.split(), key=len)
+print(len(res))
+
+
 # https://stepik.org/lesson/784661/step/6?unit=787258
 s = input()
 s = s.replace('123', '12 23')
 res = max(s.split(), key=len)
 print(len(res))  # 35
+
+
+# https://stepik.org/lesson/784661/step/7?unit=787258
+s = input()
+s = s.replace('123', '12 23').replace('AB', 'AB BC')
+res = max(s.split(), key=len)
+print(len(res))
 
 
 # https://stepik.org/lesson/784661/step/8?unit=787258
@@ -233,6 +263,13 @@ res = max(s.split(), key=len)
 print(len(res))  # 29
 
 
+# https://stepik.org/lesson/784661/step/10?unit=787258
+s = input()
+s = s.replace('123', '12 23').replace('A', ' ')
+res = max(s.split(), key=len)
+print(len(res))
+
+
 # https://stepik.org/lesson/784661/step/13?unit=787258
 """
 FAQ:  https://stepik.org/lesson/784661/step/13?unit=787258
@@ -245,6 +282,14 @@ while '111' in s:
     s = s.replace('111', '11 11', 1)
 res = max(s.split(), key=len)
 print(len(res))  # 36
+
+
+# https://stepik.org/lesson/784661/step/15?unit=787258
+s = input()
+while '232' in s:
+    s = s.replace('232', '23 32', 1)
+res = max(s.split(), key=len)
+print(len(res))
 
 
 # https://stepik.org/lesson/784661/step/16?unit=787258
@@ -276,9 +321,22 @@ res = max(len(i.group(0)) for i in finditer(reg, s))
 print(res // 3)  # 8
 
 
+# https://stepik.org/lesson/867224/step/4?unit=871325
+s = input()
+s = s.replace('2', '1').replace('3', '1').replace('4', '1')
+s = s.replace('B', 'A').replace('C', 'A').replace('D', 'A')
+s = s.replace('1AA', '*').replace('1', ' ').replace('A', ' ')
+print(max(len(i) for i in s.split()))
+
+
 
 """ 22.4 Тройки символов """
 # FAQ:  https://stepik.org/lesson/867224/step/5?unit=871325
+
+
+
+
+
 
 # https://stepik.org/lesson/867224/step/6?unit=871325
 s = input().split('.')  # список
@@ -287,6 +345,9 @@ for i in range(len(s) - 3):
     cur = len(s[i] + s[i + 1] + s[i + 2] + s[i + 3]) + 3
     res = max(res, cur)
 print(res)
+
+
+
 
 
 # https://stepik.org/lesson/867224/step/8?unit=871325

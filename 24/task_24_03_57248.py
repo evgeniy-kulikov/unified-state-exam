@@ -282,3 +282,111 @@ for a in sorted(set(st)):
         c = st.count(a)
 print(w, txt.count(w), sep='')  # K36582
 
+
+
+""" 7.38 ЕГЭ Тренировка 24 """
+#  https://stepik.org/lesson/699106/step/2?auth=login&unit=699025
+cnt = mx = 0
+with open('add/course_57248/24-196.txt') as file:
+# with open('add/course_57248/test.txt') as file:
+    data = file.readlines()
+    data = [i for i in data if i.count('R') < 30]
+    for st in data:
+        alf = set(st)
+        for a in alf:
+            if st.count(a) > 1:
+                row = st[st.index(a) + 1:st.rindex(a)].split(a)
+                row = [i for i in row if len(i) > 0]
+                if row:
+                    cnt += len(row)
+                    mx = max(mx, len(max(row, key=len)) + 1)
+print(mx, cnt)  # 355 119624
+
+
+#  https://stepik.org/lesson/699106/step/2?auth=login&unit=699025
+from re import *
+reg = r'(Z[XY])+'
+with open('add/course_57248/24-196.txt') as file:
+    rez = [i.group() for i in finditer(reg, file.read())]
+    rez = [len(i) for i in rez]
+print(max(rez) // 2)  # 177
+
+
+#  https://stepik.org/lesson/699106/step/3?auth=login&unit=699025
+from re import *
+reg = r'(ZXY|ZYX)+'
+with open('add/course_57248/24-197.txt') as file:
+    rez = [i.group() for i in finditer(reg, file.read())]
+    rez = [len(i) for i in rez]
+print(max(rez) // 3)  # 28
+
+
+#  https://stepik.org/lesson/699106/step/4?auth=login&unit=699025
+from re import *
+reg = r'A[C-Z]{18,}B'
+with open('add/course_57248/24-191.txt') as file:
+    res = [i.group() for i in finditer(reg, file.read())]
+    res = [i for i in res if i.count('F') == 2]
+print(len(res))  # 94
+
+
+#  https://stepik.org/lesson/699106/step/5?auth=login&unit=699025
+from re import *
+from fnmatch import fnmatch
+# reg = r'RR[0-9]{7,12}RR'
+reg = r'RR\d{7,12}RR'
+num = 0
+with open('add/course_57248/24-225.txt') as file:
+    res = [i.group() for i in finditer(reg, file.read())]
+    for d in res:
+        if fnmatch(d[2:-2], '322??55???89'):
+            num = max(num, int(d[2:-2]))
+mul = 1
+sm = 0
+while num:
+    n = num % 10
+    if not n % 2:
+        sm += n
+    else:
+        mul *= n
+    num //= 10
+print(mul + sm)  # 14211
+
+
+#  https://stepik.org/lesson/699106/step/6?auth=login&unit=699025
+from re import *
+reg = r'(SQ|Q)?(RSQ)+(RS|R)?'
+with open('add/course_57248/P0zjBljKv.txt') as file:
+    res = max(len(i.group()) for i in finditer(reg, file.read()))
+    print(res)  # 54
+
+
+#  https://stepik.org/lesson/699106/step/7?auth=login&unit=699025
+# медленно
+res = 0
+with open('add/course_57248/kQTF43F8B.txt') as file:
+    data = file.read()
+    data = data.replace('CD', '*')
+    for l in range(len(data)):
+        for r in range(l + res, len(data) + 1):
+            st = data[l:r]
+            if st.count('*') == 160:
+                res = max(res, r - l)
+            if st.count('*') > 160:
+                break
+print(res + 160)  # 9710
+
+# Быстро (решение взято из сети)
+# Есть большие вопросы к решению.....
+# Собираем индексы начала 'CD'
+with open('add/course_57248/kQTF43F8B.txt') as file:
+    s = file.read().strip()
+a = [0, ]
+for i in range(len(s) - 1):
+    if s[i:i + 2] == 'CD':
+        a.append(i)
+# a.append(len(s)-1)  # ??? не понял зачем
+b = []
+for x, y in zip(a, a[161:]):
+    b.append(y - x - 2)
+print(max(b))  # 9710

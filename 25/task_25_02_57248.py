@@ -128,37 +128,52 @@ for num in range(525_784_203, 728_943_762, 2):
 #     if r: print(num, r)
 
 
-# https://stepik.org/lesson/598432/step/9?auth=login&unit=610936
-def fn(n):
-    d = set()
+# https://stepik.org/lesson/459358/step/9?unit=449865
+""" Задача о шести спичках """
+from math import log, ceil
+a = ceil(log(3e8, 2))  # 29
+b = ceil(log(3e8, 3))  # 18
+ls = []
+for m in range(0, a + 1, 2):
+    for n in range(1, b + 1, 2):
+        d = 2 ** m * 3 ** n
+        if 15e7 <= d <= 3e8:
+            ls.append((d, n+m))
+ls.sort()
+[print(i, k, end = ' ') for i, k in ls]
+# 181398528 21 201326592 27 229582512 19 254803968 25
+
+
+# https://stepik.org/lesson/459358/step/10?unit=449865
+from math import log, ceil
+a = ceil(log(3e8, 2))  # 29
+b = ceil(log(3e8, 3))  # 18
+ls = []
+for m in range(1, a + 1, 2):
+    for n in range(0, b + 1, 2):
+        d = 2 ** m * 3 ** n
+        if 15e7 <= d <= 3e8:
+            ls.append((d, n+m))
+ls.sort()
+[print(i, k, end = ' ') for i, k in ls]
+# 153055008 19 169869312 25 214990848 23 272097792 21
+
+
+# https://stepik.org/lesson/459358/step/11?unit=449865
+def f(n):
+    res = set()
     for i in range(2, int(n**0.5 + 1)):
         if not n % i:
-            d.add(i)
-            d.add(n // i)
-        if len(d) > 3: return 0  # оптимизация
-    return d
+            res |= {i, n // i}
+    if len(res) == 3:
+        return max(res)
 
-# for n in range(106732567, 152673836 + 1):
-for n in range(112550881, 141158161 + 1, 2):  # оптимизация на основе результата
+for n in range(12034679, 23175822):
     if n**0.5 == int(n**0.5):
-        r = fn(n)
-        if r and len(r) == 3:
-            print(n, max(r))
-# 112550881 1092727
-# 131079601 1225043
-# 141158161 1295029
-
-
-
-
-
-
-
-
-
-
-
-
+        m = f(n)
+        if m:
+            print(n, m, end=' ')
+# 12117361 205379 13845841 226981 20151121 300763
 
 
 
@@ -304,6 +319,28 @@ for n in range(125697, 190235):
 print(cnt, mx)  # 14047 190231
 
 
+
+# https://stepik.org/lesson/598432/step/9?auth=login&unit=610936
+def fn(n):
+    d = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            d.add(i)
+            d.add(n // i)
+        if len(d) > 3: return 0  # оптимизация
+    return d
+
+# for n in range(106732567, 152673836 + 1):
+for n in range(112550881, 141158161 + 1, 2):  # оптимизация на основе результата
+    if n**0.5 == int(n**0.5):
+        r = fn(n)
+        if r and len(r) == 3:
+            print(n, max(r))
+# 112550881 1092727
+# 131079601 1225043
+# 141158161 1295029
+
+
 # https://stepik.org/lesson/598432/step/10?auth=login&unit=610936
 def fn(n):
     d = set()
@@ -399,31 +436,26 @@ for a in range(10):
 
 
 # https://stepik.org/lesson/698690/step/7?auth=login&unit=698986
-# !!! НЕ РЕШЕНО. ВСЕ ЧИСЛА ДАЮТ ПАЛИНДРОМ
+""" Интересный вариант сокращения диапазона чисел """
 from fnmatch import *
 def b7(n):
     s = ''
     while n:
         s += str(n % 7)
         n //= 7
+    d = s
     return s
 
-# вариант '*' - пустая строка
 mask = '1*586?6'
-for n in range(158606, 158696 + 1):
-    if fnmatch(str(n), mask):
-        r = b7(n)
-        if r == r[::-1]:
-            print(n, sum(map(int, r)))
-
-
-# # ОЧЕНЬ МНОГО !!!!!!!
-for a in range(0, 9999 + 1):
-    for b in range(10):
-        n = int(f'1{a}586{b}6')
-        r = b7(n)
-        if r != r[::-1]:
-            print(n, sum(map(int, r)))
+for d in range(10):
+    a = int(f'586{d}6')
+    for n in range(a, 2*10**9, 100000):  # 16e8
+        if fnmatch(str(n), mask):
+            r = b7(n)
+            if r == r[::-1]:
+                print(n, sum(map(int, r)))
+# 18958656 12
+# 1939958656 40
 
 
 # https://stepik.org/lesson/698690/step/8?auth=login&unit=698986
