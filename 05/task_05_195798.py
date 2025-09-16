@@ -462,3 +462,13 @@ for n in range(1000):
         print(n)  # 19
         break
 
+""" 16.4 Закрепление """
+# https://stepik.org/lesson/1223083/step/5?unit=1236572
+for n in range(999, 10_000):
+    b = f'{n:b}'
+    b = b.replace('0', '*').replace('1', '0').replace('*', '1')
+    if n - int(b, 2) == 999:
+        print(n)  # 1011
+        break
+
+

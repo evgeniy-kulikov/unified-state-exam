@@ -369,7 +369,10 @@ with open('test.txt') as fl:
 print(cnt)  # 51
 
 
+
 """ 15.3 Закрепление """
+""" 16.4 Закрепление """
+# https://stepik.org/lesson/1223041/step/9?auth=login&unit=1236528
 # https://stepik.org/lesson/1223041/step/9?unit=1236528
 c = 0
 with open('test.txt') as fl:
@@ -380,6 +383,23 @@ with open('test.txt') as fl:
             odd = [i for i in d if i % 2]
             c += len(even) >= 3 and sum(even) < sum(odd)
     print(c)  # 241
+
+
+""" 17.4 Закрепление """
+# https://stepik.org/lesson/1223105/step/9?unit=1236594
+from statistics import mean
+c = 0
+with open('test.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        two = [i for i in d if d.count(i) == 2]
+        one = [i for i in d if d.count(i) == 1]
+        if len(two) == 4 and len(one) == 3:
+            c += mean(one) < mean(two)
+    print(c)  # 24
+
+
+
 
 
 

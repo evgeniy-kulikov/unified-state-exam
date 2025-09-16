@@ -379,3 +379,12 @@ c = 0
 for p in product('god', repeat=6):
     c += p[0] in 'gd' and p[-1] in 'gd'
 print(c)
+
+""" 16.4 Закрепление """
+# https://stepik.org/lesson/1223083/step/8?auth=login&unit=1236572
+from itertools import product
+c = 0
+for p in product('abcx', repeat=5):
+    c += (p[0] == 'x' and 'x' not in p[1:]) or 'x' not in p
+print(c)  # 324
+

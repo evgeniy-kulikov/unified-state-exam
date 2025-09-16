@@ -134,3 +134,32 @@ for p in permutations('xywz'):
                 print(''.join(p))  # wzyx
 
 
+""" 16.4 Закрепление """
+# https://stepik.org/lesson/1223083/step/2?unit=1236572
+from itertools import permutations, product
+def f(x,y,w,z):
+    return (x and not y) or y==z or not w
+
+for p in permutations('xywz'):
+    for a1,a2,a3,a4 in product((0,1), repeat=4):
+        t = [(0,a1,a2,0), (0,1,0,1), (a3,1,0,a4)]
+        if len(set(t)) == 3:
+            if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
+                print(''.join(p))  # xwzy
+
+# https://stepik.org/lesson/1223105/step/2?unit=1236594
+from itertools import permutations, product
+def f(x,y,w,z):
+    return (x and y and not z) == (y or z or not w)
+
+for p in permutations('xywz'):
+     for a1,a2,a3,a4,a5 in product((0,1), repeat=5):
+         t = [(1,1,a1,1), (a2,0,a3,0), (1,a4,a5,1)]
+         if len(set(t)) == 3:
+             if [f(**dict(zip(p, d))) for d in t] == [1,1,1]:
+                 print(''.join(p))  # wyzx
+
+
+
+
+
