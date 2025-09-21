@@ -115,7 +115,10 @@ print(ru - en)  # 2500
 from math import log2, ceil
 # code + num + add
 code = ceil(17 * ceil(log2(26*2 + 10 + 9)) / 8)
-num = ceil(ceil(log2(1200)) / 8)
+num = ceil(ceil(log2(1199)) / 8)
 print(48 - (code + num))  # 31
+
+
+
 
 

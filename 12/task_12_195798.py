@@ -292,3 +292,27 @@ for n in range(1, 101):
         print(200 + n)  # 206
         break
 
+
+""" 19.4 Закрепление """
+# https://stepik.org/lesson/1225428/step/12?unit=1238919
+s = '1' + '8'*99 + '1'
+while any(['81' in s, '882' in s, '8883' in s]):
+    if '81' in s:
+        s = s.replace('81', '2', 1)
+    else:
+        if '882' in s:
+            s = s.replace('882', '3', 1)
+        else:
+            s = s.replace('8883', '1', 1)
+print(s)  # 13
+
+
+""" 21.4 Закрепление """
+# https://stepik.org/lesson/1227125/step/12?unit=1240643
+s = '>' + '1' * 26 + '2' * 10 + '3' * 14
+while any(['>1' in s, '>2' in s, '>3' in s]):
+    s = s.replace('>1', '22>', 1)
+    s = s.replace('>2', '2>', 1)
+    s = s.replace('>3', '1>', 1)
+print(sum(map(int, s.replace(">", ''))))  # 138
+

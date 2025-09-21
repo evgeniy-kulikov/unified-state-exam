@@ -58,6 +58,29 @@ def prime(n):  # нахождение простого числа
             return False
     return True
 
+
+# натуральное число n и натуральное число m имеют хотя бы один общий делитель, отличный от 1
+def OD(n, m):
+    for d in range(2, min(n, m) + 1):
+        if not n % d and not m % d:
+            return True
+    return False
+
+# Нахождение НОД (наибольший общий делитель)
+# Можно использовать для вышестоящего случая
+from math import gcd
+print(gcd(2, 7))  # 1
+print(gcd(18, 12))  # 6
+
+# НОД двух заданных чисел
+def calculate_hcf(x, y):
+    min_n = min(x, y)
+    for i in range(1, min_n + 1):
+        if (x % i == 0) and (y % i == 0):
+            nod = i
+    return nod
+
+
 """
 Мемоизация
 from functools import lru_cache

@@ -399,8 +399,37 @@ with open('test.txt') as fl:
     print(c)  # 24
 
 
+""" 19.4 Закрепление """
+# https://stepik.org/lesson/1225428/step/9?unit=1238919
+c = 0
+with open('test.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        if len(set(d)) == 5:
+            even = [i for i in d if not i % 2]
+            odd = [i for i in d if i % 2]
+            if len(even) > len(odd):
+                c += sum(even) < sum(odd)
+    print(c)  # 241
 
 
+""" 20.4 Закрепление """
+# https://stepik.org/lesson/1226263/step/9?unit=1239750
+from statistics import  mean
+c = 0
+with open('test.txt') as fl:
+    for f in fl:
+        d = list(map(float, f.split()))
+        c += max(d) >= mean(d) + 7
+    print(c)  # 241
 
 
-
+""" 21.4 Закрепление """
+# https://stepik.org/lesson/1227125/step/9?unit=1240643
+c = 0
+with open('test.txt') as fl:
+    for f in fl:
+        x,y,z = (map(int, f.split()))
+        d = sorted([x*y, z*y, z*x])
+        c += sum(d[:-1]) < d[-1]
+    print(c)  # 3119

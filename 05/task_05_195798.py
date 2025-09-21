@@ -472,3 +472,55 @@ for n in range(999, 10_000):
         break
 
 
+""" 17.4 Закрепление """
+# https://stepik.org/lesson/1223105/step/5?unit=1236594
+for n in range(1, 10_000):
+    b = f'{n:b}'
+    b += str(b.count('1') % 2)
+    b += str(b.count('1') % 2)
+    r = int(b, 2)
+    if r > 83:
+        print(r)  # 86
+        break
+
+
+""" 18.4 Закрепление """
+# https://stepik.org/lesson/1224003/step/5?unit=1237500
+for n in range(100, 1000):
+    a,b,c = list(map(int, str(n)))
+    ls = sorted([a*b, b*c])
+    if int(str(ls[0]) + str(ls[1])) == 621:
+        print(n)  # 237
+        break
+
+
+""" 19.4 Закрепление """
+# https://stepik.org/lesson/1225428/step/5?unit=1238919
+for n in range(13, 256):
+    b = f'{n:b}'.zfill(8)
+    b = b.replace('0', '*').replace('1', '0').replace('*', '1')
+    if  int(b, 2) - n == 111:
+        print(n)  # 72
+
+
+""" 20.4 Закрепление """
+# https://stepik.org/lesson/1226263/step/5?unit=1239750
+for n in range(999, 99, -1):
+    a,b,c = map(int, str(n))
+    d = sorted([a*b, b*c])
+    r = int(''.join(map(str, d)))
+    if r == 621:
+        print(n) # 732
+        break
+
+
+""" 21.4 Закрепление """
+# https://stepik.org/lesson/1227125/step/5?unit=1240643
+cnt = 0
+for n in range(1111, 10000, 2):
+    a,b,c,d = map(int, str(n))
+    if all(i%2 for i in (a,b,c,d)):
+        d = sorted([a+b, c+d])
+        cnt += ''.join(map(str, d)) == '414'
+print(cnt)  # 12
+
