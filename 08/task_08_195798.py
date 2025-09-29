@@ -388,3 +388,26 @@ for p in product('abcx', repeat=5):
     c += (p[0] == 'x' and 'x' not in p[1:]) or 'x' not in p
 print(c)  # 324
 
+
+""" 22.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1227168/step/8?unit=1240687
+from itertools import product
+c = 0
+for p in product('012345678', repeat=5):
+    if p[0] != '0' and p.count('5') == 1:
+        s = '0' + ''.join(p) + '0'
+        s = s.split('5')
+        if s[0][-1] not in '137' and s[1][0] not in '137':
+            c += 1
+print(c)  # 8880
+
+
+""" 23.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1227731/step/8?unit=1241246
+from itertools import permutations, product
+c = 0
+for p in permutations('0234567', 5):  # все цифры различны !
+    d = list(map(int, p))
+    c += d[0] and all(d[i] % 2 != d[i + 1] % 2 for i in range(4))
+print(c)  # 180
+

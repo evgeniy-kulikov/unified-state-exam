@@ -216,3 +216,25 @@ for a in range(100):
         print(a)  # 50
         break
 
+
+""" 23.5 Закрепление (ч. 2) """
+# ОТРЕЗКИ
+# https://stepik.org/lesson/1227732/step/5?unit=1241247
+# pic/course_195798/001.gif
+for x in [_ * 0.5 for _ in range(0, 250)]:
+    p = 69 <= x <= 91
+    q = 77 <= x <= 114
+    f = not p or not q or p != q
+    if not f:
+        print(x)  # 91 - 77 = 14
+
+
+""" 24.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1227747/step/5?unit=1241268
+def f(x):
+    return (x&a != 0) <= ((x&36 == 0) <= (x&6 != 0))
+
+for a in range(1000, 0, -1):
+    if all(f(x) for x in range(10000)):
+        print(a)  # 38
+        break

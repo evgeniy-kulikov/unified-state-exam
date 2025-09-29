@@ -5,7 +5,8 @@
 from fnmatch import fnmatch
 
 mask = '123*45?'
-mask = '1[02468]3*4[13579]?'
+mask = '1[02468]3*4[13579]?'  # учесть четность / нечётность разряда
+step = 1  # или больше
 for i in range(0, 10**10, step):
     if fnmatch(str(i), mask):
         print(i, i // step)
@@ -37,11 +38,12 @@ def fn(n):
         if not n % i:
             res.add(i)
             res.add(n // i)
+            # res |= {i, n // i}  # короче
     return res
 
 # Поиск натуральных минимальных и максимальных делителей числа (кроме 1 и самого числа)
 def fn(num):
-    for i in range(1, int(n ** 0.5) + 1):
+    for i in range(1, int(num ** 0.5) + 1):
         if not num % i:
             return i, num // i
 
@@ -54,10 +56,10 @@ for i in range(3, 26):
 
 
 # Простое число.
-# Число > 1 и не имеет болше других делителей (кроме самого себя)
+# Число > 1 и не имеет больше других делителей (кроме самого себя)
 def fn(n):
     if n == 1: return False
-    for i in range (2, int(n**0.5) + 1):
+    for i in range(2, int(n**0.5) + 1):
         if not n % i:
             return False
     return True
@@ -72,8 +74,8 @@ print(fn(18)) # False
 # Least Common Multiple (LCM)
 # наименьшее натуральное число, которое делится и на «а», и на «b»
 a, b = 3, 5
-
 product = a * b
+
 while b:
     a, b = b, a % b
 print(product // a)  # 15
@@ -82,7 +84,7 @@ def nok(a, b):
     mult = a * b
     while b:
         a, b = b, a % b
-    return nult // a
+    return mult // a
 print(nok(a, b))  # 15
 
 

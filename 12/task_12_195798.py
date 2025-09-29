@@ -316,3 +316,36 @@ while any(['>1' in s, '>2' in s, '>3' in s]):
     s = s.replace('>3', '1>', 1)
 print(sum(map(int, s.replace(">", ''))))  # 138
 
+
+""" 22.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1227169/step/2?unit=1240688
+for i in range(1, 50):
+    for j in range(1, 50):
+        for k in range(1, 50):
+            res = '0' + '1' * i + '2' * j + '3' * k + '0'
+            s = res
+            while '00' not in s:
+                s = s.replace('01', '210', 1)
+                s = s.replace('02', '3101', 1)
+                s = s.replace('03', '2012', 1)
+            if all([s.count('1') == 61, s.count('2') == 50, s.count('3') == 18]):
+                print(len(res))  # 38
+                break
+
+
+""" 23.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1227732/step/2?unit=1241247
+for i in range(1, 50):
+    for j in range(1, 50):
+        for k in range(1, 50):
+            res = '0' + '1' * i + '2' * j + '3' * k
+            s = res
+            while any(['01' in s, '02' in s, '04' in s]):
+                s = s.replace('01', '30', 1)
+                s = s.replace('02', '101', 1)
+                s = s.replace('03', '202', 1)
+            if all([s.count('1') == 15, s.count('2') == 10, s.count('3') == 60]):
+                print(res.count('1'))  # 45
+                break
+
+

@@ -133,3 +133,29 @@ for n in range(32,0,-1):
     if str(net.network_address) == '111.81.192.0':
         print(net.netmask)  # 240
         break
+
+
+""" 23.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1227732/step/3?unit=1241247
+from ipaddress import *
+c = 0
+net = ip_network(f'112.154.133.208/255.255.248.0', 0)
+for n in net.hosts():
+    c += 1
+    if str(n) == '112.154.133.208':
+        print(c)  # 1488
+        break
+
+# variant 1
+from ipaddress import *
+net = ip_network(f'112.154.133.208/255.255.248.0', 0)
+print(list(net.hosts()).index(ip_address('112.154.133.208')) + 1)  # 1488
+
+# variant 2
+from ipaddress import *
+net = ip_network(f'112.154.133.208/255.255.248.0', 0)
+print(list(net).index(ip_address('112.154.133.208')))  # 1488
+
+
+
+

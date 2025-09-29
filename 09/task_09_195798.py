@@ -433,3 +433,36 @@ with open('test.txt') as fl:
         d = sorted([x*y, z*y, z*x])
         c += sum(d[:-1]) < d[-1]
     print(c)  # 3119
+
+
+""" 23.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1227731/step/9?unit=1241246
+c = 0
+with open('test.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        if len(set(d)) == 5:
+            odd = [i for i in d if i % 2]
+            even = [i for i in d if not i % 2]
+            c += len(even) > 2 and sum(even) < sum(odd)
+print(c)  # 241
+
+
+""" 24.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1227745/step/9?unit=1241266
+def good(ls: list):
+    for n in ls:
+        if ls.count(n) == 1 and d.count(n) == 46:
+            return 1
+    return 0
+
+cnt = 0
+with open('test.txt') as fl:
+    d = list(map(int, fl.read().split()))
+    for i in range(0, len(d), 6):
+        row = d[i:i+6]
+        cnt += good(row)
+print(cnt)  # 445
+
+
+

@@ -260,3 +260,13 @@ for x in '0123456789ab':
         print(r // 58)  # 2931
         break
 
+
+""" 23.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1227732/step/4?unit=1241247
+num = 36**8 + 6**20 -12
+c = 0
+while num:
+    c += not num % 6
+    num //= 6
+print(c)  # 5
+

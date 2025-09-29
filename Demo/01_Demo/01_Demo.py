@@ -209,8 +209,8 @@ with open('01_Demo/add/demo_2025_17.txt') as fl:
     ls = list(map(int, fl.read().split()))
     n_min = min(ls)  # 8
     for i in range(len(ls) - 1):
-        if any(i % 16 == n_min for i in ls[i: i + 2]):
-            mx_sm = max(mx_sm, sum( ls[i: i + 2]))
+        if any(i % 16 == n_min for i in ls[i:i+2]):
+            mx_sm = max(mx_sm, sum(ls[i:i+2]))
             cnt += 1
 print(cnt, mx_sm)  # 1214 176024
 

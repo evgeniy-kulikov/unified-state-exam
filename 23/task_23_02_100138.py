@@ -42,9 +42,9 @@ print(fn(3, 24)) # 11
 
 # https://stepik.org/lesson/559867/step/10?unit=553912
 def fn(st, end):
-    if st > end:  return 0
+    if st > end: return 0
     if st == end: return 1
-    return fn(st + 1, end) + fn(st * 2, end)  + fn(st ** 2, end)
+    return fn(st + 1, end) + fn(st * 2, end) + fn(st ** 2, end)
 print(fn(2, 27))  # 92
 
 
@@ -306,7 +306,8 @@ print(ls.count(min(ls)))  # 6
 
 # https://stepik.org/lesson/902769/step/13?unit=907940
 def fn(st, cnt):
-    if not cnt: ls.add(st)
+    if not cnt:
+        ls.add(st)
     else:
         fn(st + 1, cnt - 1)
         fn(st + 5, cnt - 1)
@@ -346,6 +347,20 @@ ls = set()
 fn(1, 8)
 print(len(ls))  # 1
 
+
+
+# https://stepik.org/lesson/1229244/step/2?unit=1242785
+from functools import *
+@lru_cache()
+def f(st, cnt):
+    if not cnt:
+        d.add(st)
+        return 0
+    return f(st - 2, cnt - 1) + f(st + 3, cnt - 1)
+
+d = set()
+f(1, 68)
+print(len(d))  # 69
 
 
 
