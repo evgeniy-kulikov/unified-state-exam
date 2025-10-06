@@ -524,3 +524,17 @@ for n in range(1111, 10000, 2):
         cnt += ''.join(map(str, d)) == '414'
 print(cnt)  # 12
 
+
+""" 26.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1229245/step/5?unit=1242786
+res = set()
+for n in range(10, 1001):
+    b = f'{n:b}'[1:]
+    if b.count('1'):
+        b = b[b.index('1'):]
+    else:
+        b = '0'
+    res.add(n - int(b, 2))
+print(len(res))  # 7
+
+

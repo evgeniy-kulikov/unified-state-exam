@@ -54,6 +54,91 @@ def f(st,end, fl):
         else:
             return f(st * 2, end, 1) + f(st * 3, end, 1)
 
-print(f(3,15, 1))  # 56
+print(f(3,15, 1))  # 6
 
 
+
+# https://stepik.org/lesson/1229244/step/2?unit=1242785
+from functools import lru_cache
+res = set()
+
+@lru_cache()
+def f(st, cnt):
+    if not cnt:
+        res.add(st)
+        return 0
+    return f(st + 3, cnt - 1) + f(st - 2, cnt - 1)
+f(1, 68)
+print(len(res))  # 69
+
+
+# https://stepik.org/lesson/1229244/step/3?unit=1242785)
+def f(st, en, cnt):
+    if st > en:
+        return 0
+    if st == en and cnt == 1:
+        return 1
+    return f(st + 1, en, cnt) + f(st + 2, en, cnt) + f(st * 2, en, cnt + 1) + f(st * 3, en, cnt + 1)
+
+print(f(1, 11, 0))  # 152
+
+
+# https://stepik.org/lesson/1229244/step/4?unit=1242785
+res = set()
+
+def f(st, cnt):
+    if cnt == 0:
+        res.add(st)
+        return 0
+    return f(st + 10, cnt - 1) + f(st - 5, cnt - 1)
+
+f(1, 15)
+print(len(res))  # 16
+
+
+# https://stepik.org/lesson/1229244/step/5?unit=1242785
+def f(st, en, fl):
+    if st == en:
+        return 1
+    if st > en:
+        return 0
+    if not fl:
+        return f(st + 2, en, 1) + f(st * 3, en, 1)
+    return f(st**2, en, 0) + f(st + 2, en, 1) + f(st * 3, en, 1)
+
+print(f(2, 64, 1))  # 55
+
+
+# https://stepik.org/lesson/1229244/step/6?unit=1242785
+def f(st, en, cnt):
+    cnt += sum([st == 15, st == 21])
+    if st == en:
+        if cnt == 1:
+            return 1
+        return 0
+    if st > en or cnt > 1:
+        return 0
+    return f(st + 1, en, cnt) + f(st + 2, en, cnt) + f(st * 3, en, cnt)
+print(f(6, 25, 0))  # 2700
+
+# variant
+def f(st, en, c=0):
+    if st == en:
+        return 1
+    elif st > en or st == c:
+        return 0
+    return f(st + 1, en, c) + f(st + 2, en, c) + f(st * 3, en, c)
+print(f(6, 15) * f(15, 25, 21) + f(6, 21, 15) * f(21, 25))  # 2700
+
+
+# https://stepik.org/lesson/1229244/step/7?unit=1242785
+res = set()
+def f(st, cnt=0):
+    if cnt == 4:
+        res.add(st)
+        return None
+    f(st + 2, cnt + 1)
+    f(st * 3, cnt + 1)
+
+f(1)
+print(len(res))  # 8

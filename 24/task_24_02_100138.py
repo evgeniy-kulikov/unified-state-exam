@@ -40,7 +40,7 @@ print(len(ls))
 # https://stepik.org/lesson/784665/step/6?unit=787262
 from re import findall
 ls = findall(r'[BC]+', input())  # в цепочке есть или только 'В' или только 'С' или оба символа вместе
-ls = findall(r'B+C+|C+B+', input())  # в цепочке есть обязятельно оба символа 'В' и 'С'
+ls = findall(r'B+C+|C+B+', input())  # в цепочке есть обязательно оба символа 'В' и 'С'
 print(len(max(ls, key=len)))
 
 # Вариант

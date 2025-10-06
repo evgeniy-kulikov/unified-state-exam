@@ -191,3 +191,32 @@ with open('add/course_195798/repeat/24.5_Задание_17.txt') as file:
                     cnt += 1
                     ms = max(ms, a*a + b*b)
 print(cnt, ms)  # 102 97666192
+
+
+""" 26.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229246/step/7?unit=1242787
+from statistics import  mean
+cnt, mx = 0, 0
+with open('test.txt') as fl:
+    d = list(map(int, fl.readlines()))
+    even = mean([k for k in d if not k % 2])
+    for i in range(len(d) - 1):
+        a, b = d[i], d[i + 1]
+        if any([not a % 3, not b % 3]) and any([a < even, b < even]):
+            cnt += 1
+            mx = max(mx, a+b)
+print(cnt, mx)  # 2288 14875
+
+
+""" 27.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229629/step/7?unit=1243181
+with open('add/course_195798/repeat/27.5_Задание_17.txt') as file:
+    d = list(map(int, file))
+    res = []
+    for i in range(len(d) - 1):
+        for k in range(i + 1, len(d)):
+            if (d[i] + d[k]) % 2 and not (d[i] * d[k] % 3):
+                res.append(d[i] + d[k])
+    print(len(res), max(res))  # 13931722 19993
+
+

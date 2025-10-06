@@ -50,6 +50,7 @@ for p in permutations('xywz'):
     if [f(**dict(zip(p, t[0])))[0], f(**dict(zip(p, t[1])))[1], f(**dict(zip(p, t[2])))[2]] == [1,0,1]:
         print(''.join(p))  # wyxz
 
+
 # https://stepik.org/lesson/1219618/step/10?unit=1232947
 from itertools import *
 def f(x,y,w,z):

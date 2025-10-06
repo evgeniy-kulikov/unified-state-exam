@@ -238,3 +238,25 @@ for a in range(1000, 0, -1):
     if all(f(x) for x in range(10000)):
         print(a)  # 38
         break
+
+
+
+""" 26.5 Закрепление (ч. 2) """
+# Из интернета. НЕ ПОНЯЛ (((
+# https://stepik.org/lesson/1229246/step/5?unit=1242787
+from math import ceil
+def f(x, a1, a2):
+    A = a1 <= x <= a2
+    # return (A <= (x**2 <= 100)) and ((x**2 <= 64) <= A)
+    return (not A or x**2 <= 100) and (x**2 > 64 or A)
+
+M = [i * 0.3 for i in range(-100, 100)]
+R = []
+for a1 in M:
+    for a2 in M:
+        if all(f(x, a1, a2) for x in M):
+            R.append((a2 - a1, (a1, a2)))
+print(max(R))  # (19.8, (-9.9, 9.9))
+print(ceil(max(R)[0]))  # 20
+
+

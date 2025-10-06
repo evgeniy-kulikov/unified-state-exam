@@ -157,5 +157,26 @@ net = ip_network(f'112.154.133.208/255.255.248.0', 0)
 print(list(net).index(ip_address('112.154.133.208')))  # 1488
 
 
+""" 26.5 Закрепление (ч. 2) """
+# Задачка для моего курса
+# https://stepik.org/lesson/1229246/step/3?unit=1242787
+from ipaddress import *
+for n in range(32, 0, -1):
+    net1 = ip_network(f'140.37.235.224/{n}', 0)
+    net2 = ip_network(f'140.37.235.192/{n}', 0)
+    if net1 == net2:
+        if ip_address('140.37.235.224') in net1.hosts() and ip_address('140.37.235.192') in net2.hosts():
+            print(net1.netmask)  # 255.255.255.128
+            # print(str(net1.netmask).split('.')[-1])  # 128
+            break
 
 
+""" 27.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229629/step/3?unit=1243181
+# var 1
+print(2**11 - 2)  # 2046
+
+# var 2
+from ipaddress import *
+net = ip_network('1.2.3.4/255.255.248.0', 0)
+print(len(list(net.hosts())))  # 2046

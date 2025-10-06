@@ -109,6 +109,39 @@ en = ceil((ceil(log2(10 + 26*2))) * 20_000 / 8)
 print(ru - en)  # 2500
 
 
+# https://stepik.org/lesson/1223082/step/4?unit=1236571
+from math import ceil
+psw = ceil(11 * ceil(log2(26 * 2 + 10 + 4)) / 8)
+email = ceil(20 * ceil(log2(26 + 2)) / 8)
+print((600 / 20) - (psw + email))  # 7
+
+
+# https://stepik.org/lesson/1223082/step/5?unit=1236571
+from math import log2, ceil
+user = ceil(11 * ceil(log2(15 + 10)) / 8)
+code = ceil((5 * ceil(log2(26)) + 3 * ceil(log2(10))) / 8)
+print(30 - (user + code))  # 18
+
+
+# https://stepik.org/lesson/1223082/step/7?unit=1236571
+from math import log2, ceil
+user = ceil(11 * ceil(log2(26*2 + 10)) / 8)
+num = ceil(1 * ceil(log2(120)) / 8)
+print(28 - (user + num))  # 18
+
+
+# https://stepik.org/lesson/1223082/step/9?unit=1236571
+from math import log2, ceil
+psw = 26 * ceil(log2(26))  # bit !!!
+id_num = 3 * ceil(log2(10))  # bit !!!
+print(ceil((psw + id_num) * 38_776 / 2**13))  # 673
+
+
+
+
+
+
+
 
 """ 16.4 Закрепление """
 # https://stepik.org/lesson/1223083/step/11?unit=1236572

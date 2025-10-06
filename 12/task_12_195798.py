@@ -280,6 +280,69 @@ for n in range(1, 101):
 print(cnt)  # 15
 
 
+# https://stepik.org/lesson/1223104/step/7?unit=1236593
+res = set()
+for n in range(1, 1000):
+    s = '1' * n
+    while '1111' in s or '222' in s or '33' in s:
+        if '1111' in s:
+            s = s.replace('1111', '333', 1)
+        elif '222' in s:
+            s = s.replace('222', '11', 1)
+        elif '33' in s:
+            s = s.replace('33', '2', 1)
+    res.add(s)
+print(len(res))  # 11
+
+
+# https://stepik.org/lesson/1223104/step/8?unit=1236593
+for a in range(50):
+    for b in range(50):
+        for c in range(50):
+            s = '0' + a * '1' + b * '2' + c * '3'
+            while '01' in s or '02' in s or '03' in s:
+                s = s.replace('01', '30', 1)
+                s = s.replace('02', '3103', 1)
+                s = s.replace('03', '1201', 1)
+            if s.count('1') == 31 and s.count('2') == 24 and s.count('3') == 46:
+                print(c)  # 17
+                break
+
+
+# https://stepik.org/lesson/1223104/step/9?unit=1236593
+res = 1000
+for n in range(4, 2000):
+    s = '3' * n + '5'
+    while '23' in s or '5333' in s or '33333' in s:
+        s = s.replace('23', '3', 1)
+        s = s.replace('5333', '32', 1)
+        s = s.replace('33333', '55', 1)
+    res = min(res, sum(map(int, s)))
+print(res)  # 10
+
+
+# https://stepik.org/lesson/1223104/step/10?unit=1236593
+res, cnt = 0, 0
+for n in range(51, 1000):
+    s = '5' * n
+    while '55555' in s:
+        s = s.replace('55555', '88', 1)
+        s = s.replace('888', '55', 1)
+    if s.count('5') > cnt:
+        cnt = s.count('5')
+        res = n
+print(res)  # 58
+
+
+
+
+
+
+
+
+
+
+
 
 """ 17.4 Закрепление """
 # https://stepik.org/lesson/1223105/step/12?unit=1236594
@@ -291,7 +354,6 @@ for n in range(1, 101):
     if not s.count('1'):
         print(200 + n)  # 206
         break
-
 
 """ 19.4 Закрепление """
 # https://stepik.org/lesson/1225428/step/12?unit=1238919
