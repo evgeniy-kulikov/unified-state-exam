@@ -275,6 +275,9 @@ with open('Demo/03_Demo/Доп_файлы/DEMO_24.txt') as fl:
 print(res)  # 2981
 
 
+
+
+
 # 25.1
 def f(n):
     d = set()

@@ -260,3 +260,14 @@ print(max(R))  # (19.8, (-9.9, 9.9))
 print(ceil(max(R)[0]))  # 20
 
 
+""" 28.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229674/step/5?unit=1243226
+a = []
+for x in [i * 0.5 for i in range(300)]:
+    p = 17 <= x <= 46
+    q = 22 <= x <= 57
+    f = not (p and q)
+    if not f:
+        a.append(x)
+print(a[:2], a[-2:])  # 22 ...  46  >>>  24
+

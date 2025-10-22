@@ -220,3 +220,17 @@ with open('add/course_195798/repeat/27.5_Задание_17.txt') as file:
     print(len(res), max(res))  # 13931722 19993
 
 
+""" 28.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229674/step/7?unit=1243226
+with open('add/course_195798/repeat/28.5_Задание_17.txt') as file:
+    d = list(map(int, file))
+    cnt, mx_r = 0, 0
+    mx = max(i for i in d if str(i)[-2:] == '29')
+    for i in range(len(d) - 2):
+        row = d[i: i + 3]
+        if sum(1 for i in row if len(str(i).strip('-')) == 5) == 2:
+            if sum(row) <= mx:
+                cnt += 1
+                mx_r = max(mx_r, sum(row))
+    print(cnt, mx_r)  # 157 973622
+

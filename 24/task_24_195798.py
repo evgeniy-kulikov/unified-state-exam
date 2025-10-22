@@ -242,7 +242,6 @@ with open('add/course_195798/27.2_Задание_12.txt') as fl:
 
 """ 27.3 Практика (ур. усложненный) """
 
-
 # https://stepik.org/lesson/1229627/step/1?unit=1243179
 with open('add/course_195798/27.3_Задание_1.txt') as fl:
     s = fl.read()
@@ -442,6 +441,26 @@ with open('add/course_195798/repeat/27.5_Задание_24.txt') as fl:
 res = Counter(s).items()
 res = sorted(res, key=lambda x: (-x[1], -ord(x[0])))
 print(res[0][0])  # Y
+
+
+
+
+""" 28.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229674/step/14?unit=1243226
+with open('add/course_195798/repeat/28.4_Задание_24.txt') as fl:
+    s = fl.read()
+    # s = '123' + 'T' * 100 + '2T' + 'T' * 99 + '123'
+    m = 100
+    Mx = 0
+    for l in range(len(s)):
+        for r in range(l + m, len(s) + 1):
+            row = s[l:r]
+            if row.count('T') > 100:
+                break
+            if row.count('T') == 100:
+                Mx = max(Mx, len(row))
+                m = Mx
+    print(Mx)
 
 
 

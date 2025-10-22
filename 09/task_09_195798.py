@@ -465,4 +465,18 @@ with open('test.txt') as fl:
 print(cnt)  # 445
 
 
+""" 28.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1229673/step/9?unit=1243225
+from statistics import mean
+cnt = 0
+with open('test.txt') as fl:
+    for f in fl:
+        d = [*map(int, f.split())]
+        rep = [i for i in d if d.count(i) > 1]
+        one = [i for i in d if d.count(i) == 1]
+        if rep and one:
+            cnt += mean(one) < mean(rep)
+print(cnt)  # 1770
+
+
 

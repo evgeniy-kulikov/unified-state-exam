@@ -14,17 +14,13 @@ I = (128 * 256 * ceil(log2(256))) / 8
 print(I * 24 * 60 * 10 / 2 ** 20)
 
 
-# https://stepik.org/lesson/421031/step/2?auth=login&unit=410641
-# !!!  ИНТЕРЕСНАЯ ЗАДАЧА !!!
-from math import log2, ceil, floor
-for i in range(1, 10000):
-    I = 800 * 600 * ceil(log2(i)) / 8 / 1024
-    if I > 700:
-        # print(i - 1)  # 2048
-        print(ceil(log2(i - 1)), 'bit')  # 11
-        # Для кодирования цвета каждого пикселя используется одинаковое целое количество байт
-        print(floor(log2(i - 1) / 8), 'byte')  # 1
-        print(2 ** (floor(log2(i - 1) / 8) * 8), 'color')  # 256
+""" Взято на мой курс """
+# https://stepik.org/lesson/421031/step/3?auth=login&unit=410641
+from math import ceil
+for i in range(2, 100):
+    I = 800 * 600 * ceil(i / 8)  # Для кодирования цвета каждого пикселя используется одинаковое целое количество байт
+    if I > 700 * 2**10:
+        print(2**(i-1))  # 256
         break
 
 
@@ -49,13 +45,14 @@ for i in range(1, 100):
         break
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/421031/step/8?auth=login&unit=410641
 """
-I_300 = (300 * 300 * i) / 8 / 2**10 = 5 * 1024
-I_150 = (150 * 150 * 4) / 8 / 2**10 = 512
-300 * 300 * i == 150 * 150 * 4 * 10
+300**2 * i == 5 * 1024
+150**2 * 4 == 512
 """
-print((150**2 * 4 * 10) / 300**2) #  i = 10  --> N = 2**10 = 1024
+i = 150**2 * 4 * 5 * 1024 / (300**2 * 512)  # 10
+print(2**i)  # 1024
 
 
 # https://stepik.org/lesson/421031/step/9?auth=login&unit=410641
@@ -86,6 +83,7 @@ print(sec // 60)  # min
 
 """ 7.12 ЕГЭ Тренировка 7 """
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/648369/step/1?auth=login&unit=645014
 res = (55 * 2**10) / (12 * 300**2 * 16 / 8 / 2**10 + 4)
 print(res) # 26.649316851008457

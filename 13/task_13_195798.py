@@ -114,6 +114,60 @@ for i in net:
 print(res)  # 6
 
 
+# https://stepik.org/lesson/1224061/step/4?unit=1237558
+from ipaddress import *
+cnt = 0
+net = ip_network('151.192.0.0/255.224.0.0', 0)
+for i in net:
+    b = f'{i:b}'
+    cnt += b.count('0') == b.count('1')
+print(cnt)  # 293930
+
+
+# https://stepik.org/lesson/1224061/step/5?unit=1237558
+from ipaddress import *
+cnt = 0
+net = ip_network('123.222.111.192/255.255.255.248', 0)
+for i in net:
+    b = f'{i:b}'
+    cnt += b[-8:].count('1') % 3 != 0
+print(cnt)  # 5
+
+
+# https://stepik.org/lesson/1224061/step/6?unit=1237558
+from ipaddress import *
+def f(n):
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            return 0
+    return 1
+
+cnt = 0
+net = ip_network('172.118.1.255/255.255.252.0', 0)
+for i in net.hosts():
+    b = f'{i:b}'.count('1')
+    cnt += f(b)
+print(cnt)  # 300
+
+
+# https://stepik.org/lesson/1224061/step/7?unit=1237558
+from ipaddress import *
+cnt = 0
+net = ip_network('49.26.38.163/255.255.255.224', 0)
+for i in net.hosts():
+    cnt += f'{i:b}'[-1] == '1'
+print(cnt)  # 15
+
+
+# https://stepik.org/lesson/1224061/step/8?unit=1237558
+from ipaddress import *
+cnt = 0
+net = ip_network('235.86.56.0/255.255.248.0', 0)
+for i in net:
+    cnt += f'{i:b}'[-2:] == '11'
+print(cnt)  # 512
+
+
 
 
 """ 18.4 Закрепление """
@@ -180,3 +234,16 @@ print(2**11 - 2)  # 2046
 from ipaddress import *
 net = ip_network('1.2.3.4/255.255.248.0', 0)
 print(len(list(net.hosts())))  # 2046
+
+
+""" 28.5 Закрепление (ч. 2) """
+# Задачка для моего курса
+# https://stepik.org/lesson/1229674/step/3?unit=1243226
+from ipaddress import *
+for n in range(25, 33):
+    net1 = ip_network(f'98.162.78.139/{n}', 0)
+    net2 = ip_network(f'98.162.78.154/{n}', 0)
+    if net1 != net2:
+        print(n)  # 28
+        break
+

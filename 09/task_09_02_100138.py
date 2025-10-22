@@ -236,7 +236,7 @@ with open('add/course_100138/9_z7.txt') as fl:
         d1 = [i for i in d if d.count(i) == 1]
         d3 = [i for i in d if d.count(i) == 3]
         cnt += len(d1) == 4 and len(d3) == 3
-print(cnt) # 69
+print(cnt)    # 69
 
 
 # https://stepik.org/lesson/1039432/step/4?unit=1047905
@@ -260,16 +260,59 @@ with open('add/course_100138/9_z1.txt') as fl:
 print(cnt)  # 40
 
 
+# https://stepik.org/lesson/1039432/step/7?unit=1047905
+cnt = 0
+with open('add/course_100138/9_z4.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        if len(set(d)) == 5 and (d[0] + d[-1]) * 3 <= sum(d[1:-1]) * 2:
+            cnt += 1
+    print(cnt)  # 853
+
+
+# https://stepik.org/lesson/1039432/step/8?unit=1047905
+cnt = 0
+with open('add/course_100138/9_z5.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        if len(set(d)) == 5 and 2 * (d[0] + d[-1]) >= sum(d[1:-1]):
+            cnt += 1
+    print(cnt)  # 15058
+
+
+# https://stepik.org/lesson/1039432/step/9?unit=1047905
+cnt = 0
+with open('add/course_100138/9_z10.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        rep = [i for i in d if d.count(i) == 2]
+        if len(rep) == 2 and d[-1] < sum(d[:-1]):
+            cnt += 1
+    print(cnt)  # 147
+
+
+
+""" Взято на мой курс """
 # https://stepik.org/lesson/1039432/step/10?unit=1047905
 # ответ не принимается !!!
 with open('add/course_100138/9_z9.txt') as fl:
     for i in fl:
         d = list(map(int, i.split()))
-        d1 = [i for i in d if d.count(i) == 1]
-        dn = [i for i in d if d.count(i) == 2]
-        if len(d1) == 3 and len(set(dn)) == 2 and max(d) in d1:
-            print(sum(d))  # 261
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 2]
+        if len(one) == 3 and len(rep) == 4 and max(d) in one:
+            print(sum(d))  # 261  ВЕРНО!!!
             break
+
+
+# https://stepik.org/lesson/1039432/step/11?unit=1047905
+cnt = 0
+with open('add/course_100138/9_z6.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        if len(set(d)) == 5 and (d[0] + d[-1]) * 3 >= sum(d[1:-1]) * 2:
+            cnt += 1
+    print(cnt)  # 7695
 
 
 # https://stepik.org/lesson/1039432/step/10?unit=1047905
@@ -284,6 +327,47 @@ with open('add/course_100138/9_z8.txt') as fl:
         if len (d1) == 4 and d2[0] >= mean(d1):
             print(cnt)  # 34
             break
+
+
+# https://stepik.org/lesson/1039432/step/13?unit=1047905
+from statistics import mean
+cnt = 0
+with open('add/course_100138/9_z3.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 2]
+        if len(rep) == 2 and len(one) == 4 and mean(one) <= sum(rep):
+            cnt += 1
+    print(cnt)  # 2241
+
+
+# https://stepik.org/lesson/1039432/step/14?unit=1047905
+from statistics import mean
+cnt = 0
+with open('add/course_100138/9_z7.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(rep) == 3 and len(one) == 4 and mean(one) <= rep[0]:
+            cnt += 1
+    print(cnt)  # 36
+
+
+# https://stepik.org/lesson/1039432/step/16?unit=1047905
+cnt = 0
+with open('add/course_100138/09_z11.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(rep) == 3 and len(one) == 3 and sum(rep)**2 > sum(one)**2:
+            cnt += 1
+    print(cnt)  # 19
+
+
+
 
 
 """ 28.4 9 КЕГЭ через Python """
@@ -306,3 +390,32 @@ with open('add/course_100138/9_z2.txt') as fl:
         f = sorted(map(int, f.split()))
         cnt += (f[0] + f[-1]) < sum(f[1:-1])
 print(cnt)  # 1285
+
+
+# https://stepik.org/lesson/1406852/step/4?unit=1424301
+from statistics import mean
+cnt = 0
+with open('add/course_100138/9_z3.txt') as file:
+    for fl in file:
+        d = sorted(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 2]
+        if len(rep) == 2 and len(one) == 4 and mean(one) <= sum(rep):
+            cnt += 1
+    print(cnt)  # 2241
+
+
+
+
+# https://stepik.org/lesson/1406852/step/9?unit=1424301
+from statistics import mean
+cnt = 0
+with open('add/course_100138/9_z8.txt') as file:
+    for fl in file:
+        cnt += 1
+        d = sorted(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 2]
+        if len(rep) == 2 and len(one) == 4 and rep[0] >= mean(one):
+            print(cnt)  # 34
+            break

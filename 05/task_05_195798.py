@@ -37,6 +37,7 @@ res.sort()
 print(res[0][1])  # 16
 
 
+""" Taken on my course 1989434 """
 # https://stepik.org/lesson/1220674/step/3?unit=1234060
 for n in range(1, 1000):
     nb = f'{n:b}'
@@ -61,18 +62,20 @@ for n in range(100, 201):
 print(cnt)  # 87
 
 
+""" Taken on my course 1989434 """
 # https://stepik.org/lesson/1220674/step/5?unit=1234060
 # число плавает
 res = set()
 for n in range(1, 1000):
     n -= f'{n:b}'.count('0')
-    nb = f'{n:b}'
-    nb = nb[-3:] + nb
-    if int(nb, 2) > 224:
-        res.add(int(nb, 2))
+    b = f'{n:b}'
+    b = b[-3:] + b
+    if int(b, 2) > 224:
+        res.add(int(b, 2))
 print(min(res))  # 227
 
 
+""" Taken on my course 1989434 """
 # https://stepik.org/lesson/1220674/step/6?unit=1234060
 for n in range(1, 10000):
     nb = f'{n:b}'
@@ -116,6 +119,7 @@ for n in range(4, 1000):
         break
 
 
+""" Taken on my course 1989434 """
 # https://stepik.org/lesson/1220674/step/10?unit=1234060
 def fn(b):
     z, s = b.count('0'), b.count('1')
@@ -536,5 +540,15 @@ for n in range(10, 1001):
         b = '0'
     res.add(n - int(b, 2))
 print(len(res))  # 7
+
+
+""" 28.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1229673/step/5?unit=1243225
+for n in range(1000, 10000):
+    a, b, c, d = map(int, str(n))
+    r = sorted([a * b, c * d], reverse=True)
+    if int(''.join(map(str, r))) == 124:
+        print(n)  # 1426
+        break
 
 

@@ -40,24 +40,20 @@ print(cnt)  # 2097
 
 # https://stepik.org/lesson/797932/step/3?auth=login&unit=819598
 from math import prod  # перемножить элементы списка
+from statistics import geometric_mean
+
 cnt = 0
-with open('9-170.txt') as fl:
-    for el in fl:
-        unic, rep = [], []
-        d = sorted(map(int, el.split()))
-        for i in range(5):
-            if d[i] == d[i + 1] or d[i] in rep:
-                rep.append(d[i])
-            else:
-                unic.append(d[i])
-        if d[-1] in rep:
-            rep.append(d[-1])
-        else:
-            unic.append(d[-1])
-        if len(unic) == 2:
-            cnt += prod(rep)**(1/len(rep)) >= prod(unic)
-            # prod(rep)**(1/len(rep)) - среднее ГЕОМЕТРИЧЕСКОЕ
-print(cnt)  # 12
+with open('09/09-01.txt') as file:
+    for f in file:
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) > 1]
+        if len(one) == 2 and geometric_mean(rep) >= prod(one):
+            cnt += 1
+    print(cnt)  # 12
+# prod(rep)**(1/len(rep)) - среднее ГЕОМЕТРИЧЕСКОЕ
+
+
 
 
 # Мой другой подход!!!
@@ -175,4 +171,80 @@ with open('9_2024.txt') as fl:
             if sum(rep) / 2 < sum(ls) / 7:
                 cnt += 1
 print(cnt)  # 83
+
+
+# https://stepik.org/lesson/797932/step/10?auth=login&unit=819598
+cnt = 0
+Mx = None
+with open('add/course_57248/9_23193.txt') as fl:
+    for f in fl:
+        cnt += 1
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(one) == 3 and len(rep) == 3 and rep[0] > sum(one) / 3:
+            Mx = cnt
+    print(Mx)  # 10493
+
+
+# https://stepik.org/lesson/797932/step/10?auth=login&unit=819598
+from statistics import mean
+cnt = 0
+res = None
+with open('add/course_57248/9_23193.txt') as fl:
+    for f in fl:
+        cnt += 1
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(one) == 3 and len(rep) == 3 and rep[0] > mean(one):
+            res = cnt
+    print(res)  # 10493
+
+
+
+# https://stepik.org/lesson/797932/step/13?auth=login&unit=819598
+from statistics import mean
+m = []
+with open('add/course_57248/9vitt_23154.txt') as file:
+    for fl in file:
+        d = list(map(int, fl.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(one) == 3 and len(rep) == 3 and rep[0] < 2 * min(one):
+            m.append(mean(d))
+    print(int(mean(m)))  # 53
+
+
+# https://stepik.org/lesson/797932/step/14?auth=login&unit=819598
+from statistics import mean
+Mx = 0
+with open('add/course_57248/9_z_23248.txt') as fl:
+    for f in fl:
+        cnt += 1
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 2]
+        if len(one) == 4 and len(rep) == 2 and rep[0] > mean(one):
+            Mx = sum(d)
+    print(Mx)  # 367
+
+
+# https://stepik.org/lesson/797932/step/15?auth=login&unit=819598
+# повтор
+# https://stepik.org/lesson/797932/step/10?auth=login&unit=819598
+from statistics import mean
+cnt = 0
+res = None
+with open('add/course_57248/9_основа.txt') as fl:
+    for f in fl:
+        cnt += 1
+        d = list(map(int, f.split()))
+        one = [i for i in d if d.count(i) == 1]
+        rep = [i for i in d if d.count(i) == 3]
+        if len(one) == 3 and len(rep) == 3 and rep[0] > mean(one):
+            res = cnt
+    print(res)  # 10493
+
+
 

@@ -13,7 +13,8 @@ with open('add/course_100138/1.txt') as fl:
 
 # https://stepik.org/lesson/666350/step/6?unit=664353
 from math import prod
-from statistics import mean
+from statistics import mean, median
+
 with open('add/course_100138/2.txt') as fl:
     f = list(map(int, fl))
     print(sum(f), prod(f), mean(f))
@@ -46,21 +47,27 @@ for i in range(2, len(f)):
 
 # https://stepik.org/lesson/666350/step/10?unit=664353
 with open('26.txt') as fl:
-    size = int(next(fl).split()[0])  # 8200
+    size, user = map(int, fl.readline().split())  # 8200
     ls = sorted(map(int, fl))
-cnt, sm = 0, 0
-for i in range(len(ls)):
-    if sm + ls[i] < size:
-        cnt += 1
-        sm += ls[i]
-    else:
-        sm -= ls[i - 1]  # убираем переполнение
-        break
-tail = size - sm  # 53  свободное место после сохранения первых (n-1) файлов
-add = [i for i in ls[cnt - 1:] if i <= tail]
-max_fl = max(add)
-pass
-print(cnt, max_fl)  # 568 50
+    cnt, sm = 0, 0
+    flag = True
+    for i in range(user):
+        if sm + ls[i] <= size:
+            cnt += 1
+            sm += ls[i]
+        elif sm == size:  # диск заполнен полностью
+            print(cnt, ls[i])
+            flag = False
+            break
+        else:
+            sm -= ls[i - 1]  # убираем переполнение  (8147)
+            break
+if flag:
+    tail = size - sm  # 53  свободное место после сохранения первых (n-1) файлов
+    add = [i for i in ls[cnt - 1:] if i <= tail]
+    max_fl = max(add)
+    print(cnt, max_fl)  # 568 50
+
 
 
 # https://stepik.org/lesson/666350/step/11?unit=664353
@@ -183,7 +190,7 @@ for i in range(n):
     if f[i] > med:
         i_2 = i
         break
-print(f[i_1  - 1: i_2 + 1])  # [602, 603, 605] # между 604 и 603 (включительно) находится 1 элемент
+print(f[i_1 - 1: i_2 + 1])  # [602, 603, 605] # между 604 и 603 (включительно) находится 1 элемент
 print(med, avr)  # 604 603 1
 
 
@@ -211,3 +218,42 @@ print(len(res), res[-1])
 
 
 """ 26.3 Решение задач 3 """
+# https://stepik.org/lesson/1053299/step/1?unit=1062429
+with open('add/course_100138/26_3_p1.txt') as fl:
+    K = int(fl.readline())  # кол-во ячеек в камере хранения
+    N = int(fl.readline())  # кол-во багажа (пассажиров)
+    data = sorted([*map(int, i.split())] for i in fl)  # время сдачи багажа и время выдачи багажа
+    kamera = [0] * K  # транзакция работы камеры
+    cnt = 0
+    last = 0
+    for i in range(N):
+        for j in range(K):
+            if kamera[j] < data[i][0]:  # находим свободную ячейку
+                kamera[j] = data[i][1]  # кладем багаж (записываем время выдачи)
+                cnt += 1
+                last = j
+                break  # переходим к следующему багажу
+    print(cnt, last + 1)  # 586 3
+
+
+# https://stepik.org/lesson/1053299/step/2?unit=1062429
+# !!!  НЕ РЕШЕНО !!!
+with open('add/course_100138/26_3_p1.txt') as fl:
+    K = int(fl.readline())  # кол-во ячеек в камере хранения  210
+    N = int(fl.readline())  # кол-во багажа (пассажиров)  600
+    data = sorted([*map(int, i.split())] for i in fl)  # время сдачи багажа и время выдачи багажа
+    kamera = [0] * K  # транзакция работы камеры
+    cnt = 0
+    last = 0
+    flag = 1
+    for i in range(N):
+        for j in range(K):
+            if kamera[j] < data[i][0]:  # находим свободную ячейку
+                kamera[j] = data[i][1]  # кладем багаж (записываем время выдачи)
+                flag = 0
+                break  # переходим к следующему багажу
+        if flag:
+            cnt += 1
+            last = data[i][0]
+        flag = 1
+    print(cnt, last)  # 14 950

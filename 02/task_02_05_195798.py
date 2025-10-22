@@ -175,5 +175,21 @@ for p in permutations('xywz'):
                  print(''.join(p))  # yxwz
 
 
+""" 28.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1229673/step/2?unit=1243225
+from itertools import *
+def f(x,y,w,z):
+    # return not (not (x or y) or (z and w)) and (not x or w)
+    return not ((x or y) <= (z and w)) and x <= w
+
+for a1, a2, a3, a4, a5 in product((0,1), repeat=5):
+    t = [(a1,1,1,1), (1,a2,1,a3), (a4,a5,1,1)]
+    if len(set(t)) == 3:
+        for p in permutations('xywz'):
+            if [f(**dict(zip(p,d))) for d in t] == [1,1,1]:
+                print(''.join(p))  # zxyw
+
+
+
 
 

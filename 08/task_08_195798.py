@@ -411,3 +411,14 @@ for p in permutations('0234567', 5):  # все цифры различны !
     c += d[0] and all(d[i] % 2 != d[i + 1] % 2 for i in range(4))
 print(c)  # 180
 
+
+""" 28.4 Закрепление (ч. 1) """
+# https://stepik.org/lesson/1229673/step/8?unit=1243225
+from itertools import permutations, product
+c = 0
+for p in product('ABCDXYZ', repeat=4):
+    if all([p[0] in 'XYZ', p[1] in 'XYZ', p[2] in 'ABCD', p[3] in 'ABCD']):
+        c += 1
+print(c)  # 144
+
+

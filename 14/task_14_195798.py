@@ -250,6 +250,56 @@ for x in alf[:20]:
 print(res)  # 56
 
 
+# https://stepik.org/lesson/1225427/step/6?unit=1238918
+for x in '0123456789abcdef'[::-1]:
+    h = int(f'8569{x}', 16) + int(f'12{x}48', 16)
+    r = oct(h)[2:]
+    if sum(1 for i in r if i in '0246') <= 2:
+        print(r)  # 2275735
+        break
+
+
+# https://stepik.org/lesson/1225427/step/7?unit=1238918
+def f(n):
+    if n < 2: return 0
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            return 0
+    return 1
+
+cnt = 0
+for x in '0123456789abcdefgh':
+    n = int(f'56{x}3', 18) + int(f'4{x}9', 18) - int(f'57{x}1', 18)
+    cnt += f(n)
+print(cnt)  # 8
+
+
+# https://stepik.org/lesson/1225427/step/8?unit=1238918
+for n in range(2, 1000):
+    if n**2 + n == 39800:
+        print(n)  # 199
+        break
+
+
+# https://stepik.org/lesson/1225427/step/9?unit=1238918
+alf = '0123456789abcdefg'
+sm = 0
+for i in alf:
+    r = int(f'149{i}3', 17) + int(f'{i}612', 17) - int(f'{i}54{i}', 17)
+    if not r % 7:
+        sm += alf.index(i)
+print(sm)  # 19
+
+
+# https://stepik.org/lesson/1225427/step/10?unit=1238918
+for i in '3456789ab':
+    t = int(f'4a9', 12) + int(f'{i}1b23', 12)
+    if not t % 6:
+        print(2 * (9 + int(i, 12)))  # 24
+        break
+
+
+
 
 
 """ 20.4 Закрепление """
@@ -269,4 +319,13 @@ while num:
     c += not num % 6
     num //= 6
 print(c)  # 5
+
+
+""" 28.5 Закрепление (ч. 2) """
+# https://stepik.org/lesson/1229674/step/4?unit=1243226
+for x in range(10):
+    r = int(f'28{x}2', 18) + int(f'93{x}5', 12)
+    if not r % 133:
+        print(r // 133)  # 229
+        break
 

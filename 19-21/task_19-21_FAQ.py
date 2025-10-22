@@ -1,14 +1,16 @@
 # https://stepik.org/lesson/765361/step/4?unit=767587
 def fn(st, mv):
     if st >= 22:
-        return mv % 2 == 0  # Окончание игры
+        # return mv % 2 == 0  # Окончание игры
+        return not mv % 2  # Окончание игры
     if mv == 0:
-        return 0  # Ходы исчерпаны, но игра незакончилась
+        return 0  # Ходы исчерпаны, но игра не закончилась
     gm = [fn(st + 1, mv - 1), fn(st * 2, mv - 1)]  # Идет игра
-    # Выиграшная стратегия должна существовать в одном из ходов завершающего игрока,
+    # Выигрышная стратегия должна существовать в одном из ходов завершающего игрока,
     # и во всех ходах другого игрока
-    if (mv - 1) % 2 == 0:
-        return any(gm) # во всех ходах предыдущего игрока есть хотя бы один ход ведущий к победе
+    # if (mv - 1) % 2 == 0:
+    if not (mv - 1) % 2:
+        return any(gm)  # во всех ходах предыдущего игрока есть хотя бы один ход ведущий к победе
     return all(gm)  # все ходы ведут к победе
 
 # минимальное значение S, когда Петя выигрывает своим первым ходом.
@@ -22,3 +24,27 @@ print(max(n for n in range(1, 22) if fn(n, 3) and not fn(n, 1)), end=' ')
 # S, при котором Ваня выигрывает своим вторым (гарантированно) или первым ходом при любой игре Пети.
 print(*[n for n in range(1, 22) if not fn(n, 2) and fn(n, 4)], end=' ')
 #  11 10 5 9 8
+
+
+
+# https://stepik.org/lesson/1135852/step/4?unit=1147482
+# https://stepik.org/lesson/1135852/step/5?unit=1147482
+# https://stepik.org/lesson/1135852/step/6?unit=1147482
+def f(s, mv):
+    if 36 <= s <= 60:
+        return not mv % 2
+    """
+    Игра с перелетом. Перелетевший игрок дает победу противнику
+    """
+    if s > 60:
+        return not (mv - 1) % 2
+    if not mv:
+        return 0
+    g = [f(s+1, mv-1), f(s*2, mv-1), f(s*3, mv-1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[s for s in range(1, 36) if f(s, 2)])  # 34
+print([s for s in range(1, 36) if f(s, 3) and not f(s, 1)])  # 33  >>> 1 значение
+print(*[s for s in range(1, 36) if f(s, 4) and not f(s, 2)])  # 11 32
