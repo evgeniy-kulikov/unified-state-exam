@@ -136,3 +136,21 @@ for n in range(1000, 1, -1):
         print(n)  # 63
         break
 
+
+#  https://stepik.org/lesson/1228668/step/5?unit=1242201
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+for n in range(10000, 0, -1):
+    r = f(n, 7)
+    if not r.count('2') % 2:
+        r += '555'
+    else:
+        r = '1' + r
+    if int(r, 7) < 3799:
+        print(n)  # 1395
+        break

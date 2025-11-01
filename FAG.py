@@ -113,3 +113,4 @@ def f(n):
 Вы можете изменить размер кэша, передав параметр maxsize:
 """
 
+from statistics import median

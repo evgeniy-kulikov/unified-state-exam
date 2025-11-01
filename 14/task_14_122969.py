@@ -75,5 +75,31 @@ for x in '0123456789abcde':
         break
 
 
+# https://stepik.org/lesson/1038703/step/9?unit=1062210
+a = '0123456789abcdefg'
+for y in a:
+    for x in a[:15]:
+        r = int(f'123{x}5', 15) + int(f'67{y}9', 17)
+        if not r % 131:
+            print(r // 131)
+            exit()  # сразу обрывает все циклы, да и вообще весь скрипт
+
+
+# https://stepik.org/lesson/1038703/step/10?unit=1062210
+def conv(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+for x in range(2030, 0, -1):
+    n = 7**91 + 7**160 - x
+    if conv(n, 7).count('0') == 70:
+        print(x)  # 2029
+        break
+
+
+
 
 

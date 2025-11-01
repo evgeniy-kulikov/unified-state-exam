@@ -520,3 +520,53 @@ with open('add/course_122969/24_4_6_15.txt') as file:
     print(cnt)  # 597
 
 
+""" 4.7 Проверочная: Работа с файлами, номера: 9, 17, 24 """
+# https://stepik.org/lesson/1231755/step/8?unit=1245338
+from re import *
+reg = r'(?:\d{2}[DR])+'
+with open('add/course_122969/24_4_7_01.txt') as file:
+    s = file.read()
+    res = max(len(i) for i in findall(reg, s))
+    print(res // 3)  # 67
+
+with open('add/course_122969/24_4_7_01.txt') as file:
+    s = file.read()
+    s = s.replace('8', '1').replace('R', 'D').replace('11D', '*')
+    s = s.replace('1', ' ').replace('D', ' ').split()
+    res = max(len(i) for i in s)
+    print(res)  # 67
+
+
+# https://stepik.org/lesson/1231755/step/9?unit=1245338
+with open('add/course_122969/24_4_7_02.txt') as file:
+    MX = 0
+    s = file.read().strip()
+    for i in 'AEIOUY':
+        s = s.replace(i, f'{i} {i}')
+    s = s.split()
+    for i in range(len(s) - 1):
+        r = s[i][1:-1] + s[i+1][:-1]
+        cnt = 1
+        for i in range(len(r) - 1):
+            if r[i] < r[i+1]:
+                cnt += 1
+                MX = max(MX, cnt)
+            else:
+                cnt = 1
+    print(MX)
+
+
+# https://stepik.org/lesson/1231755/step10?unit=1245338
+with open('add/course_122969/24_4_7_03.txt') as file:
+    MX = 0
+    s = file.read().strip()
+    for l in range(len(s) - 1):
+        for r in range(l + 1, len(s)):
+            if s[r] == s[l]:
+                MX = max(MX, r - l + 1)
+                break
+    print(MX)  # 9747
+
+
+
+
