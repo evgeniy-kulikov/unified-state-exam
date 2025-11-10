@@ -11,7 +11,7 @@ for a in range(1, 300):
     for x in range(1, 1001):
         # if not (not (x % a == 0) or (x % 14 == 0 and x % 21 == 0)):
         # if not (x % a or not (x % 14 or x % 21)):
-        if  not(x % a) and (x % 14 or x % 21):
+        if not(x % a) and (x % 14 or x % 21):
             flag = False
             break
     if flag:

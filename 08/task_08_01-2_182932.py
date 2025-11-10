@@ -1,123 +1,106 @@
 """"""
 """
 Task 08
-Информатика Подготовка к ЕГЭ 2025
+Информатика Подготовка к ЕГЭ 2026
 https://stepik.org/course/182932
 """
 
-# https://stepik.org/lesson/255058/step/1?unit=235266
+
+""" 1.3 Повторение 3 часть """
+# https://stepik.org/lesson/1342070/step/3?unit=1357751
+from itertools import product
+cnt = res = 0
+for p in product('бгдноуш', repeat=6):
+    cnt += 1
+    if all([cnt % 2, p[0] != 'б', p.count('н') > 1, not p.count('у')]):
+        res = cnt
+print(res)  # 117625
+
+
+# https://stepik.org/lesson/1342070/step/4?unit=1357751
+from itertools import product
+alf = '0123456789abcdef'
+cnt = 0
+for p in product(alf, repeat=4):
+    if p[0] != '0' and p.count('9') == 1:
+        p = [alf.index(i) for i in p]
+        if all(p[i] % 2 != p[i+1] % 2 for i in range(3)):
+            cnt += 1
+print(cnt)  # 1680
+
+# без алфавита
+from itertools import product
+alf = [*range(16)]
+cnt = 0
+for p in product(alf, repeat=4):
+    if p[0] != 0 and p.count(9) == 1:
+        if all(p[i] % 2 != p[i+1] % 2 for i in range(3)):
+            cnt += 1
+print(cnt)  # 1680
+
+
+# https://stepik.org/lesson/1342070/step/5?unit=1357751
 from itertools import product
 cnt = 0
-for p in product('ЕГЭ', repeat=5):
-    if p[0] in 'ЕЭ':
-        cnt += 1
-print(cnt)  # 162
+for p in product([*range(6)], repeat=6):
+    if p[0] != 0 and p.count(2) == 1:
+        p = (0,) + p + (0,)
+        i = p.index(2)
+        if not p[i-1] % 2 and not p[i+1] % 2:
+            cnt += 1
+print(cnt)  # 3700
 
-# https://stepik.org/lesson/255058/step/2?unit=235266
-from itertools import product
-cnt5 = 0
-cnt6 = 0
-for p in product('АТГЦ', repeat=5):
-    cnt5 += 1
-for p in product('АТГЦ', repeat=6):
-    cnt6 += 1
-print(cnt5 + cnt6)
 
-# https://stepik.org/lesson/255058/step/3?unit=235266
-from itertools import product
+
+""" 9.4 Задания на исключающие комбинации """
+# https://stepik.org/lesson/1107347/step/1?unit=1118585
+from re import findall
+r = r'[1357]{2}|[02468]{2}'
 cnt = 0
-for p in product('СЛОН', repeat=5):
-    if p.count('С') == 1:
-        cnt += 1
-print(cnt)  # 405
+# for n in range(int('10000', 8), int('77777', 8) + 1):
+for n in range(int('23054', 8), int('76544', 8)): # логически обрезаем интервал
+    s = ''
+    while n:
+        s = str(n % 8) + s
+        n //= 8
+    d = s
+    cnt += all([not s.count('1'), not findall(r, s), len(set(s)) == 5])
+print(cnt)
 
-# https://stepik.org/lesson/255058/step/4?unit=235266
-from itertools import product
+
+# https://stepik.org/lesson/1107347/step/2?unit=1118585
+from re import findall
+reg = r'[02468ace]{2}|[13579bdf]{2}'
 cnt = 0
-for p in product('ABCX', repeat=5):
-    if not p.count('X') or (p.count('X') == 1 and p[-1] == 'X'):
-        cnt += 1
-print(cnt)  # 324
+for n in range(200, 4500):
+    i = hex(n)[2:]
+    cnt += all([len(i) == 3, len(set(i)) == 3, not findall(reg, i)])
+print(cnt)
 
-# https://stepik.org/lesson/255058/step/5?unit=235266
-from itertools import product
+
+# https://stepik.org/lesson/1107347/step/3?unit=1118585
+# ... в кодах не должно быть 3-х стоящих рядом гласных ИЛИ  3-х стоящих рядом согласных...
+from itertools import permutations
+w = {''.join(p) for p in permutations('АААИЯ', 3)}
+s = {''.join(p) for p in permutations('НССТ', 3)}
+res = set()
+for p in permutations('АНАСТАСИЯ'):
+    p = ''.join(p)
+    if all([not (i in p) for i in w]) or all([not (i in p) for i in s]):
+        res |= {p}
+print(len(res))  # 23040
+
+
+# https://stepik.org/lesson/1107347/step/4?unit=1118585
 cnt = 0
-for p in product('АБВГ', repeat=5):
-    if p.count('А') == 1:
-        cnt += 1
-print(cnt)  # 405
-
-
-# https://stepik.org/lesson/255058/step/6?unit=235266
-from itertools import product
-for n in range(10):
-    cnt = 0
-    for p in product('1234', repeat=n):
-        cnt += 1
-    if cnt >= 300:
-        print(cnt)  # 1024
-        print(n)  # 5
-        break
-"""
-Для письменного решения задания воспользуемся формулой
-4 ** n = x
-где n — количество лампочек, а x — количество сигналов, которые можно закодировать таким количеством лампочек. 
-4 — это количество состояний одной лампочки (красный, желтый, белый, черный).
-Нам нужно наименьшее количество лампочек, то есть мы можем составить неравенство:
-4 ** n >= 300, где наименьший n будет наименьшим количеством лампочек.
-Наименьший n для этого неравенства — 5, так как 4 ** 4=256, а 4 ** 5=1024
-"""
-# Лучший подход
-for n in range(20):
-    if 4 ** n > 300:
-        print(n, 4 ** n)  # 5 1024
-        break
-
-
-# https://stepik.org/lesson/255058/step/7?unit=235266
-from itertools import product
-cnt = 0
-for p in product('123', repeat=5):
-        cnt += 1
-print(cnt)  # 243
-"""
-Имеются 5 ячеек (позиции запуска, 1, 2, 3, 4 и 5). В каждой позиции, независимо друг от друга может быть 3 ваианта (цвета) ракет. 
-Итого 3*3*3*3*3 = 3 ** 5  =  243
-"""
-print(3**5)  # 243
-
-
-# https://stepik.org/lesson/255058/step/8?unit=235266
-# 24
-# https://otvet.mail.ru/question/65726388
-# https://www.cyberforum.ru/informatics/thread687205.html
-
-
-from itertools import product
-cnt3 = 0
-cnt4 = 0
-for p in product('12', repeat=3):
-        cnt3 += 1
-for p in product('12', repeat=4):
-        cnt4 += 1
-print(cnt3 + cnt4)  # 24
-
-# Вариант
-print(2 ** 3 + 2 ** 4)  # 24
-
-
-# https://stepik.org/lesson/255058/step/10?unit=235266
-# 10/pic/pic_10_001.jpg
-n = 215 - 1
-s = ''
-while n:
-        s = str(n % 4) + s
-        n //= 4
-print(s)  # 3112
-alfa= 'НРТУ'
-s_new = ''
-for i in s:
-        s_new += alfa[int(i)]
-print(s_new)  # НРРТ
-
-
+even = '135'
+for n in range(int('10000', 7), int('66666', 7) + 1):
+    s = ''
+    while n:
+        s = str(n % 7) + s
+        n //= 7
+    if len(s) == 5 and s.count('5') == 1:
+        i = s.index('5')
+        s = '1' + s + '1'
+        cnt += s[i] in even and s[i + 2] in even
+print(cnt)

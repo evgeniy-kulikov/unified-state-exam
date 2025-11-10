@@ -139,5 +139,93 @@ with open('add/course_182932/24_9552.txt') as file:
 
 
 
+""" 1.4 Повторение 4 часть """
+# https://stepik.org/lesson/1343760/step/4?unit=1359470
+res = 0
+with open('add/course_182932/24_22.txt') as file:
+    s = file.read().strip().split('F')
+    for i in range(len(s) - 1):
+        # r = len(s[i] + s[i+1]) + 1
+        r = len(s[i:i+2]) + 1
+        res = max(res, r)
+    print(res)  # 45
 
 
+# https://stepik.org/lesson/1343760/step/5?unit=1359470
+# через split('Y')
+res = 0
+with open('add/course_182932/24_33.txt') as file:
+    s = file.read().strip().split('Y')
+    for i in range(len(s) - 150):
+        r = len(''.join(s[i:i+152])) + 150
+        res = max(res, r)
+    print(res)  # 244
+
+# через цикл
+res = 0
+cnt = 0
+l = 0
+with open('add/course_182932/24_33.txt') as file:
+    s = file.read().strip()
+    for r in range(len(s)):
+        if s[r] == 'Y':
+            cnt += 1
+        while cnt > 150:
+            if s[l] == 'Y':
+                cnt -= 1
+            l += 1
+        if cnt <= 150:
+            res = max(res, r - l + 1)
+    print(res)  # 244
+
+
+# https://stepik.org/lesson/1343760/step/6?unit=1359470
+# цикл
+res = 0
+cnt = 0
+l = 0
+with open('add/course_182932/24_44.txt') as file:
+    s = file.read().strip()
+    for r in range(1, len(s)):
+        if s[r-1:r+1] == 'AB':
+            cnt += 1
+        while cnt > 50:
+            if s[l:l+2] == 'AB':
+                cnt -= 1
+            l += 1
+        if cnt == 50:
+            res = max(res, r - l + 1)
+    print(res)  # 10128
+
+# через replace('AB', 'A B').split()
+res = 0
+with open('add/course_182932/24_44.txt') as file:
+    s = file.read().strip().replace('AB', 'A B')
+    s = s.split()
+    for i in range(len(s) - 50):
+        row = s[i: i + 50 + 1]
+        res = max(res, len(''.join(row)))
+    print(res)  # 10128
+
+
+# https://stepik.org/lesson/1343760/step/7?unit=1359470
+with open('add/course_182932/24_55.txt') as file:
+    s = file.read().strip().replace('AXMM', 'AXM XMM')
+    s = s.split()
+    res = max(s, key=len)
+    print(len(res))  # 689
+
+
+# https://stepik.org/lesson/1343760/step/8?unit=1359470
+# https://kompege.ru/task  № 16388 ЕГКР 27.04.24
+MX = 0
+cnt = 3
+with open('add/course_182932/24_66.txt') as file:
+    s = file.read().strip()
+    for i in range(len(s) - 3):
+        if s[i:i + 4] in 'KLMNKLM':
+            cnt += 1
+            MX = max(MX, cnt)
+        else:
+            cnt = 3
+    print(MX)

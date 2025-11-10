@@ -5,6 +5,7 @@ Task 05
 https://stepik.org/course/182932/syllabus
 """
 
+""" 14.1 Задания на двоичную кодировку """
 # https://stepik.org/lesson/1135848/step/1?unit=1147478
 def convert(num):
     sm = sum(map(int, num))
@@ -33,15 +34,6 @@ for n in range(2, 10_000):
         break
 
 
-# https://stepik.org/lesson/1135848/step/6?unit=1147478
-for n in range(100, 0, -1):
-    b = f'{n:b}'
-    b = b[::-1].lstrip('0')
-    if int(b, 2) == 13:
-        print(n)  # 88
-        break
-
-
 # https://stepik.org/lesson/1135848/step/4?unit=1147478
 def conv(n):
     res = ''
@@ -57,6 +49,16 @@ for n in range(3, 100):
         print(int(num, 3))  # 103
         break
 
+
+# https://stepik.org/lesson/1135848/step/5?unit=1147478
+for n in range(100, 0, -1):
+    b = f'{n:b}'
+    b = b[::-1].lstrip('0')
+    if int(b, 2) == 13:
+        print(n)  # 88
+        break
+
+
 # https://stepik.org/lesson/1135848/step/6?unit=1147478
 cnt = 0
 for n in range(1, 1000):
@@ -65,7 +67,7 @@ for n in range(1, 1000):
     b += str(b.count('1') % 2)
     if int(b, 2) < 80:
         cnt += 1
-print(cnt)
+print(cnt)  # 19
 
 
 # https://stepik.org/lesson/1135848/step/7?unit=1147478
@@ -120,25 +122,6 @@ for n in range(1, 1000):
         break
 
 
-# https://stepik.org/lesson/1135848/step/9?unit=1147478
-def conv(n):
-    s = ''
-    while n:
-        s = str(n % 6) + s
-        n //= 6
-    return s
-
-for n in range(1, 1000):
-    sx = conv(n)
-    if not n % 3:
-        sx += sx[:2]
-    else:
-        sx += conv((n % 3) * 10)
-    if int(sx, 6) > 680:
-        print(int(sx, 6))  # 694
-        break
-
-
 # https://stepik.org/lesson/1135848/step/10?unit=1147478
 def conv(n):
     s = ''
@@ -168,4 +151,27 @@ for n in range(1, 1000):
     if int(b, 2) > 151:
         print(int(b, 2))  # 166
         break
+
+
+
+""" 1.3 Повторение 3 часть """
+# https://stepik.org/lesson/1342070/step/2?unit=1357751
+def conv(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res = 10**6
+for n in range(1, 1000):
+    r = conv(n, 3)
+    if not n % 7:
+        r += r[-2:]
+    else:
+        r += conv(n % 7 * 3, 3)
+    r = int(r, 3)
+    if r > 369:
+        res = min(res, r)
+print(res)  # 384
 

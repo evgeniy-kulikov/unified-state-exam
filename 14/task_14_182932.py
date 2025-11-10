@@ -1,10 +1,13 @@
+""""""
 """
 Task 14
-Информатика Подготовка к ЕГЭ 2025
+Информатика Подготовка к ЕГЭ 2026
 https://stepik.org/course/182932
 Задачи с поиском числа в другой СС
 """
 
+
+""" 7.2 Задачи с поиском числа в другой СС """
 # https://stepik.org/lesson/1084606/step/1?unit=1094968
 n_10 = 64 ** 30 + 2 ** 300 - 4
 n_8 = oct(n_10)
@@ -63,7 +66,7 @@ print(sum(map(int, res)))  # 70
 """
 Преобразование числа в десятичную СС
 """
-
+""" 7.1 Преобразование числа в десятичную СС """
 # https://stepik.org/lesson/1084607/step/1?thread=solutions&unit=1094969
 for n in '0123456789ABCDE':
     res = int(f'123{n}5', 15) + int(f'1{n}233', 15)
@@ -140,3 +143,33 @@ for x in range(68):
     res = a + b
     if (res) % 12 == 0:
         print(res // 12, x)  # 5321454 65
+
+
+
+""" 1.3 Повторение 3 часть """
+# https://stepik.org/lesson/1342070/step/13?unit=1357751
+from fnmatch import fnmatch
+for n in range(0, 129_999_999_999, 98591):
+    if fnmatch(str(n), '12?3*456??9'):
+        print(n, n // 98591)
+"""
+120313456439 1220329
+120383456049 1221039
+125351456539 1271429
+"""
+
+
+# https://stepik.org/lesson/1342070/step/14?unit=1357751
+from fnmatch import fnmatch
+res = []
+for n in range(0, 3*10**8, 780*1323):
+    if fnmatch(str(n), '*[02468]32??'):
+        res += [(n, n // 780)]
+[print(*i) for i in sorted(res, reverse=True)]
+"""
+288943200 370440
+219803220 281799
+150663240 193158
+81523260 104517
+12383280 15876
+"""

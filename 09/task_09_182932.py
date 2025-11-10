@@ -5,7 +5,9 @@ Task 09
 https://stepik.org/course/182932
 """
 
-# https://stepik.org/lesson/1210202/step/9?unit=1223456
+
+""" 19.1 Электронные таблицы Excel """
+# https://stepik.org/lesson/1210202/step/7?unit=1223456
 cnt = 0
 with open('9_4637.txt') as fl:
     for f in fl:
@@ -106,4 +108,30 @@ with open('add/course_182932/09_10910.txt') as fl:
         if rep and d[0] not in rep:
             cnt += d[0] + d[-1] < sum(rep)
     print(cnt)  # 447
+
+
+""" 1.3 Повторение 3 часть """
+# https://stepik.org/lesson/1342070/step/15?unit=1357751
+with open('add/course_182932/9_11.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        mx = max(d)
+        n1 = [i for i in d if d.count(i) == 1]
+        n2 = sum(1 for i in d if d.count(i) == 2)
+        if all([len(n1) == 3, n2 == 4, mx in n1]):
+            print(sum(d))  # 261
+            break
+
+
+# https://stepik.org/lesson/1342070/step/16?unit=1357751
+from statistics import mean
+cnt = 0
+with open('add/course_182932/9_22.txt') as fl:
+    for f in fl:
+        d = list(map(int, f.split()))
+        n1 = [i for i in d if d.count(i) == 1]
+        n3 = [i for i in d if d.count(i) == 3]
+        if n1 and n3:
+            cnt += all([len(n1) == 4, len(n3) == 3, mean(n1) <= n3[0]])
+    print(cnt)  # 36
 

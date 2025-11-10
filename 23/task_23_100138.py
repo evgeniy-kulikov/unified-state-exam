@@ -18,32 +18,40 @@ print(fn(2, 20) * fn(20, 40))  # содержит число 20
 
 # https://stepik.org/lesson/559867/step/4?unit=553912
 def fn(st, end):
-    if st > end:  return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 1, end) + fn(st * 2, end)
 print(fn(1, 15))  # 26
 
 
 # https://stepik.org/lesson/559867/step/5?unit=553912
 def fn(st, end):
-    if st > end:  return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 1, end) + fn(st * 3, end)
 print(fn(2, 18))  # 7
 
 
 # https://stepik.org/lesson/559867/step/6?unit=553912
 def fn(st, end):
-    if st > end:  return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 1, end) + fn(st * 3, end) + fn(st * 4, end)
 print(fn(3, 24)) # 11
 
 
 # https://stepik.org/lesson/559867/step/10?unit=553912
 def fn(st, end):
-    if st > end: return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 1, end) + fn(st * 2, end) + fn(st ** 2, end)
 print(fn(2, 27))  # 92
 
@@ -53,24 +61,30 @@ print(fn(2, 27))  # 92
 
 # https://stepik.org/lesson/569846/step/5?unit=564380
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 1, end) + fn(cur * 2, end)
 print(fn(1, 10) * fn(10, 15)) # 14
 
 
 # https://stepik.org/lesson/569846/step/8?unit=564380
 def fn(cur, end):
-    if cur > end or cur == 14: return 0
-    if cur == end: return 1
+    if cur > end or cur == 14:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 1, end) + fn(cur + 3, end) + fn(cur * 2, end)
 print(fn(4, 28))
 
 
 # https://stepik.org/lesson/569846/step/10?unit=564380
 def fn(cur, end):
-    if cur > end or cur == 40: return 0
-    if cur == end: return 1
+    if cur > end or cur == 40:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 2, end) + fn(cur * 2, end)
 print(fn(2, 10) * fn(10, 48)) # 20
 
@@ -78,7 +92,8 @@ print(fn(2, 10) * fn(10, 48)) # 20
 # https://stepik.org/lesson/569846/step/15?unit=564380
 def fn(cur, end):
     if cur < end or cur in (9, 16): return 0
-    if cur == end: return 1
+    if cur == end:
+        return 1
     return fn(cur - 1, end) + fn(cur - 2, end) + fn(cur // 3, end)
 print(fn(19, 3))  # 180
 
@@ -88,16 +103,20 @@ print(fn(19, 3))  # 180
 
 # https://stepik.org/lesson/900196/step/3?unit=905265
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 1, end) + fn(cur * 2, end)
 print(fn(5, 10) + fn(5, 22))  # 12
 
 
 # https://stepik.org/lesson/900196/step/4?unit=905265
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 1, end) + fn(cur * 3, end)
 print(fn(5, 15) + fn(5, 46))  # 15
 
@@ -113,16 +132,20 @@ print(fn(1, 29))  # 1326
 
 # https://stepik.org/lesson/900196/step/8?unit=905265
 def fn(cur, end):
-    if cur < end: return 0
-    if cur == end: return 1
+    if cur < end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur - 1, end) + fn(cur - 3, end) + fn(cur % 4, end)
 print(fn(22, 3))  # 1113
 
 
 # https://stepik.org/lesson/900196/step/9?unit=905265
 def fn(cur, end):
-    if cur < end: return 0
-    if cur == end: return 1
+    if cur < end:
+        return 0
+    if cur == end:
+        return 1
     res = fn(cur - 1, end) + fn(cur - 3, end)
     if cur > 4:
         res += fn(cur % 4, end)
@@ -132,8 +155,10 @@ print(fn(22, 2))  # 1873
 
 # https://stepik.org/lesson/900196/step/10?unit=905265
 def fn(cur, end):
-    if cur < end: return 0
-    if cur == end: return 1
+    if cur < end:
+        return 0
+    if cur == end:
+        return 1
     res = fn(cur - 1, end) + fn(cur - 2, end)
     if not cur % 4:
         res += fn(cur // 4, end)
@@ -142,8 +167,10 @@ print(fn(22, 2))  # 11677
 
 # Идем с обратной стороны (исключаем проверку на делимость)
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     res = fn(cur + 1, end) + fn(cur + 2, end) + fn(cur * 4, end)
     return res
 print(fn(2, 22))  # 11677
@@ -151,32 +178,40 @@ print(fn(2, 22))  # 11677
 
 # https://stepik.org/lesson/900196/step/11?unit=905265
 def fn(cur, end):
-    if cur < end: return 0
-    if cur == end: return 1
+    if cur < end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur - 1, end) + fn(cur // 2, end)
 print(fn(30, 8) * fn(8, 1))  # 288
 
 
 # https://stepik.org/lesson/900196/step/13?unit=905265
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 1, end) + fn(cur * 2, end) + fn(cur * 2 + 1, end)
 print(fn(int('10', 2), int('1110110', 2)))  # 91560
 
 
 # https://stepik.org/lesson/900196/step/15?unit=905265
 def fn(cur, end):
-    if cur < end: return 0
-    if cur == end: return 1
+    if cur < end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur - 1, end) + fn(cur // 2, end)
 print(fn(int('100001', 2), int('100', 2)))  # 119
 
 
 # https://stepik.org/lesson/900196/step/16?unit=905265
 def fn(cur, end):
-    if cur > end: return 0
-    if cur == end: return 1
+    if cur > end:
+        return 0
+    if cur == end:
+        return 1
     return fn(cur + 2, end) + fn(cur + 3, end) + fn(cur * 4, end)
 print(fn(int('1', 4), int('100', 4)))  # 43
 
@@ -185,8 +220,10 @@ print(fn(int('1', 4), int('100', 4)))  # 43
 
 # https://stepik.org/lesson/902769/step/2?unit=907940
 def fn(st, end):
-    if st > end: return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 2, end) + fn(st + 5, end)
 
 for i in range(5 + 1, 100):
@@ -204,8 +241,10 @@ print(a.index(34))
 
 # https://stepik.org/lesson/902769/step/3?unit=907940
 def fn(st, end):
-    if st > end: return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 2, end) + fn(st + 4, end) + fn(st + 5, end)
 
 for i in range(32, 100):
@@ -219,8 +258,10 @@ from functools import lru_cache
 
 @lru_cache(None)
 def fn(st, end):
-    if st > end: return 0
-    if st == end: return 1
+    if st > end:
+        return 0
+    if st == end:
+        return 1
     return fn(st + 2, end) + fn(st * 2, end) + fn(st + 5, end)
 
 ls = []
@@ -235,9 +276,12 @@ print(min(ls))  # 36
 
 # https://stepik.org/lesson/902769/step/6?unit=907940
 def fn(st, end, cnt):
-    if st > end: return 0
-    if st == end and cnt: return 0
-    if st == end and not cnt: return 1
+    if st > end:
+        return 0
+    if st == end and cnt:
+        return 0
+    if st == end and not cnt:
+        return 1
     return fn(st + 1, end, cnt - 1) + fn(st + 2, end, cnt - 1) + fn(st + 3, end, cnt - 1)
 
 print(fn(3, 22, 7))  # 28
@@ -245,9 +289,12 @@ print(fn(3, 22, 7))  # 28
 
 # https://stepik.org/lesson/902769/step/7?unit=907940
 def fn(st, end, cnt):
-    if st > end: return 0
-    if st == end and cnt: return 0
-    if st == end and not cnt: return 1
+    if st > end:
+        return 0
+    if st == end and cnt:
+        return 0
+    if st == end and not cnt:
+        return 1
     return fn(st + 1, end, cnt - 1) + fn(st * 2, end, cnt - 1) + fn(st * 3, end, cnt - 1)
 
 print(fn(1, 34, 8))  # 21
@@ -255,9 +302,12 @@ print(fn(1, 34, 8))  # 21
 
 # https://stepik.org/lesson/902769/step/8?unit=907940
 def fn(st, end, cnt):
-    if st > end: return 0
-    if st == end and cnt: return 0
-    if st == end and not cnt: return 1
+    if st > end:
+        return 0
+    if st == end and cnt:
+        return 0
+    if st == end and not cnt:
+        return 1
     return fn(st + 1, end, cnt - 1) + fn(st + 2, end, cnt - 1) + fn(st * 2, end, cnt - 1)
 
 print(fn(1, 20, 6))  # 36
@@ -271,8 +321,10 @@ print(fn(1, 20, 6))  # 36
 """
 def fn(st, end, cnt):
     # 10 - ручное ограничение верхней границы значений списка (уменьшаем расчеты)
-    if st > end or cnt > 10: return 0
-    if st == end: ls.append(cnt)
+    if st > end or cnt > 10:
+        return 0
+    if st == end:
+        ls.append(cnt)
     return fn(st + 1, end, cnt + 1) + fn(st + 5, end, cnt + 1) + fn(st * 3, end, cnt + 1)
 
 ls = []
@@ -283,8 +335,10 @@ print(min(ls))  # 7
 # https://stepik.org/lesson/902769/step/11?unit=907940
 def fn(st, end, cnt):
     # 10 - ручное ограничение верхней границы значений списка (уменьшаем расчеты)
-    if st > end or cnt > 10: return 0
-    if st == end: ls.append(cnt)
+    if st > end or cnt > 10:
+        return 0
+    if st == end:
+        ls.append(cnt)
     return fn(st + 1, end, cnt + 1) + fn(st + 3, end, cnt + 1) + fn(st * 2, end, cnt + 1)
 
 ls = []
@@ -295,8 +349,10 @@ print(min(ls))  # 8
 # https://stepik.org/lesson/902769/step/12?unit=907940
 def fn(st, end, cnt):
     # 10 - ручное ограничение верхней границы значений списка (уменьшаем расчеты)
-    if st > end or cnt > 10: return 0
-    if st == end: ls.append(cnt)
+    if st > end or cnt > 10:
+        return 0
+    if st == end:
+        ls.append(cnt)
     return fn(st + 1, end, cnt + 1) + fn(st + 2, end, cnt + 1) + fn(st * 2, end, cnt + 1)
 
 ls = []
