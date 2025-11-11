@@ -229,3 +229,5 @@ with open('add/course_182932/24_66.txt') as file:
         else:
             cnt = 3
     print(MX)
+
+

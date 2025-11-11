@@ -191,5 +191,22 @@ print(*[s for s in range(1, 13) if f(s, 2, 3)][:2])  # 6 7
 print([s for s in range(1, 13) if f(s, 2, 4)][0])  # 3
 
 
+# https://stepik.org/lesson/1135853/step/10?unit=1147483
+# https://stepik.org/lesson/1135853/step/11?unit=1147483
+# https://stepik.org/lesson/1135853/step/12?unit=1147483
+def f(a, b, mv, w=eval('all')):
+    if a * b >= 455:
+        return not mv % 2
+    if not mv:
+        return 0
+    g = [f(a+1, b, mv-1), f(a*2, b, mv-1),
+         f(a, b+1, mv-1), f(a, b*2, mv-1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return w(g)
+
+print([s for s in range(1, 90) if f(s, 5, 2, eval('any'))][0])  # 23
+print(*[s for s in range(1, 90) if f(s, 5, 3) and not f(s, 5, 1)][-2:])  # 37 44
+print([s for s in range(1, 90) if f(s, 5, 4) and not f(s, 5, 2)][0])  # 36
 
 

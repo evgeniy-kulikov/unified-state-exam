@@ -87,11 +87,24 @@ with open('add/course_182932/26_4629.txt') as fl:
     user_sale = sum(goods[N - idx:]) / 2  # ожидание скидки для покупателя
     store_sale = sum(goods[:idx]) / 2  # реальная скидка от магазина
 
-    user = sum(goods[:- idx]) + user_sale
-    store = sum(goods[idx:]) + store_sale
+    user = sum(goods[:- idx]) + user_sale  # float
+    store = sum(goods[idx:]) + store_sale  # float
     print(int(user), int(store))  # 39434611 48825239
 
     # лучшая стратегия для покупателя будет просто отсортировать товары по цене (по убыванию)
     # strategy = sum(k for i, k in enumerate(goods) if not i % 4) / 2 + sum(k for i, k in enumerate(goods) if i % 4)
     # print(strategy)  # 44101521
     # print(int(sum(goods)))  # 50399596
+
+
+""" 1.4 Повторение 4 часть """
+# https://stepik.org/lesson/1343760/step/9?unit=1359470
+with open('add/course_182932/26_11.txt') as file:
+    n = int(next(file))
+    dt = sorted(map(int, file.readlines()), reverse=True)
+    res = [dt[0]]
+    for i in range(1, n):
+        if res[-1] - dt[i] >= 8:
+            res.append(dt[i])
+print(len(res), res[-1])  # 1198 54
+
