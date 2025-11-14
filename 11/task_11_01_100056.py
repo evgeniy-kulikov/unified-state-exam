@@ -55,7 +55,7 @@ res = (400 / 20) - psw  # 12 byte
 from math import log2, ceil
 k = 15
 N = 12
-i = ceil(log2(N) ) # 4
+i = ceil(log2(N)) # 4
 psw = ceil((i * k) / 8)  # 8
 res = (300/ 20) - psw  # 7
 

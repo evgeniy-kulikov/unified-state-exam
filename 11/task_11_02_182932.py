@@ -1,12 +1,13 @@
 """"""
 """
 Task 11
-Информатика Подготовка к ЕГЭ 2025
+Информатика Подготовка к ЕГЭ 2026
 https://stepik.org/course/182932/syllabus
 """
 
 
 # https://stepik.org/lesson/1084596/step/7?unit=1094956
+""" Взято на мой курс """
 from math import log2, ceil
 code_1 = ceil(ceil(log2(25)) * 11 / 8)  # 7 byte
 code_2 = ceil(ceil(log2(26)) * 5 / 8 + ceil(log2(10)) * 3 / 8)  # 5 byte
@@ -21,6 +22,7 @@ res = (ident + 24) * 20
 print(res)  # 600
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/1084596/step/3?unit=1094956
 from math import log2, ceil
 user = ceil(ceil(log2(12)) * 7 / 8)  # 4 byte
@@ -48,6 +50,7 @@ print(user_add)  # 18
 
 
 # https://stepik.org/lesson/1084596/step/11?unit=1094956
+""" Взято на мой курс """
 from math import log2, ceil
 idf = ceil(101 * ceil(log2(4090 + 10)) / 8) #  165 byte - one indif
 print(2048 * idf / 1024)  # 330 byte
