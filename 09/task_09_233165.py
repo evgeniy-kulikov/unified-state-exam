@@ -160,3 +160,30 @@ for f in open('add/course_233165/AerfLn3ms.txt'):
     cnt += len(set(d)) == 3 and d[-1] < sum(d[:-1])
 print(cnt)  # 147
 
+
+# https://stepik.org/lesson/1679589/step/8?unit=1702704
+# https://kompege.ru/task № 23193 Основная волна 10.06.25 (Уровень: Базовый)
+cnt = res = 0
+for f in open('add/course_233165/-kXoRpmha6.txt'):
+    cnt += 1
+    d = [*map(int, f.split())]
+    d1 = [i for i in d if d.count(i) == 1]
+    d3 = [i for i in d if d.count(i) == 3]
+    # if (len(d1), len(d3)) == (3, 3) and d3[0] > sum(d1) / 3:
+    if len(d1) == len(d3) and d3[0] > sum(d1) / 3:
+        res = cnt
+print(res)  # 10493
+
+
+# https://stepik.org/lesson/1679589/step/9?unit=1702704
+# https://kompege.ru/task  № 23268 Основная волна 11.06.25 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/hB4WZuaqC0.txt'):
+    cnt += 1
+    d = [*map(int, f.split())]
+    d1 = [i for i in d if d.count(i) == 1]
+    d2 = [i for i in d if d.count(i) == 2]
+    if (len(d1), len(d2)) == (3, 4) and sum(d2) / 4 < max(d1):
+        print(cnt)  # 17
+        break
+
