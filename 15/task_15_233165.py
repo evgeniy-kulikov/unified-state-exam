@@ -6,4 +6,203 @@ https://stepik.org/course/233165
 """
 
 
-"""  """
+""" 15.1 Задание 15 | Урок 1 """
+# https://stepik.org/lesson/1697214/step/3?unit=1720589
+# https://kompege.ru/task   № 762 (Уровень: Базовый)
+def f(x):
+    return (not (x % a) and not (x % 24) and x % 16) <= x % a
+
+for a in range(1, 100):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 16
+        break
+
+
+# https://stepik.org/lesson/1697214/step/8?unit=1720589
+# https://kompege.ru/task   № 216 Джобс 14.09.2020 (Уровень: Базовый)
+def f(x):
+    return (x & 26 != 0 or x & 13 != 0) <= ((x & 29 == 0) <= (x & a != 0))
+
+for a in range(1, 100):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 2
+        break
+
+
+# https://stepik.org/lesson/1697214/step/9?unit=1720589
+# https://kompege.ru/task   № 2078 (Уровень: Базовый)
+def f(x):
+    return ((x & 13 != 0 or x & a != 0) <= (x & 13 != 0)) or (x & a != 0 and x & 39 == 0)
+
+for a in range(1000, 0, -1):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 13
+        break
+
+
+""" 15.2 Задание 15 | Урок 2 """
+# https://stepik.org/lesson/1697215/step/1?unit=1720590
+# https://kompege.ru/task   № 1015 100 базовых задач Е. Джобс (Уровень: Базовый)
+def f(x, y):
+    return x > 39 or y > 26 or 2*x + 4*y < a
+
+for a in range(-50,200):
+    if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 183
+        break
+
+
+# https://stepik.org/lesson/1697215/step/4?unit=1720590
+# https://kompege.ru/task   № 743 (Уровень: Средний)
+# not (x in b) or not (x in c) or x in a
+# not (x in b and x in c) or x in a
+b = {1, 3, 5, 7, 9, 11}
+c = {3, 6, 9, 12}
+a = b & c
+print(sum(a))  # 12
+
+
+# https://stepik.org/lesson/1697215/step/6?unit=1720590
+# https://kompege.ru/task   № 754 (Уровень: Средний)
+# (not a or p) and (not a or not q)
+# not a or (p and not q)
+p = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+q = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50}
+# p and not q   -->   p - (p & q)   -->   {2, 4, 6, 8, 12, 14, 16, 18}
+a = p - (p & q)
+print(len(a))  # 8
+
+
+# https://stepik.org/lesson/1697215/step/7?unit=1720590
+# https://kompege.ru/task   № 1409 (Уровень: Средний)
+from math import prod
+p = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+r = {12, 24, 36, 48, 60}
+q = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30}
+
+# a or r or (not p) or (not q)
+a = ((p & q) - r)  # {18, 6}
+print(prod(a))  # 108
+
+
+# https://stepik.org/lesson/1697215/step/8?unit=1720590
+# /pic/course_233165/001.gif
+# https://kompege.ru/task   № 1968 Демоверсия 2022 (Уровень: Средний)
+def f(x, l, r):
+    d = 17 <= x <= 58
+    c = 29 <= x <= 80
+    a = l <= x < r
+    return not d or c or a
+
+res = 1000
+for l in range(100):
+    for r in range(l, 100):
+        a = [*range(l, r)]
+        if all(f(x, l, r) for x in range(1000)):
+            res = min(res, len(a))
+print(res)
+
+
+# https://stepik.org/lesson/1697215/step/9?unit=1720590
+# /pic/course_233165/002.gif
+# https://kompege.ru/task   № 1295 Открытый вариант КЕГЭ (Уровень: Средний)
+def f(x, a: list):
+    # return (x not in p) or (not ((x in q) and (x not in a)) or (x not in p))
+    return x not in p or not (x in q) or x in a
+
+res = 1000
+p = [*range(17, 55)]
+q = [*range(37, 84)]
+for l in range(100):
+    for r in range(l, 300):
+        a = [*range(l, r)]
+        if all(f(x, a) for x in range(300)):
+            res = min(len(a) - 1, res)
+print(res)
+
+
+# https://stepik.org/lesson/1697215/step/10?unit=1720590
+# /pic/course_233165/003.gif
+# https://kompege.ru/task   № 1198 Апробация 27.04 (Уровень: Средний)
+def f(x, a: list):
+    # return (((x not in b) or (x in a)) and ((x not in c) or (x in a)))
+    # return (x in a) or ((x not in b) and (x not in c))
+    return (x in a) or (x not in b + c)
+
+res = 1000
+b = [*range(18, 53)]
+c = [*range(16, 42)]
+for l in range(100):
+    for r in range(l, 100):
+        a = [*range(l, r)]
+        if all(f(x, a) for x in range(100)):
+            res = min(len(a) - 1, res)
+print(res)  # 36
+
+
+
+""" 15.3 Задание 15 | Задачи прошлых лет """
+# https://stepik.org/lesson/1697216/step/1?unit=1720591
+# https://kompege.ru/task   № 9746 Основная волна 19.06.23 (Уровень: Базовый)
+def f(x,y):
+    return x < a or y < a or (x + 2*y > 50)
+
+for a in range(1000):
+    if all(f(x, y) for x in range(1000) for y in range(1000)):
+        print(a)  # 17
+        break
+
+
+# https://stepik.org/lesson/1697216/step/4?unit=1720591
+# /pic/course_233165/004.gif
+# https://kompege.ru/task   № 17871 Демоверсия 2025 (Уровень: Базовый)
+def f(x, l, r):
+    p = 15 <= x <= 40
+    q = 21 <= x <= 63
+    a = l <= x < r
+    # return not p or (not (q and not a) or not p)
+    return not p or not q or a
+
+res = 1000
+for l in range(80):
+    for r in range(l, 100):
+        a = [*range(l, r)]
+        if all(f(x, l, r) for x in range(300)):
+            res = min(res, len(a) - 1)
+print(res)  # 19
+
+# variant
+# for l in range(80):
+#     for r in range(l, 100):
+#         a = [i*0.25 for i in range(l*4, r*4)]
+#         if all(f(x, l, r) for x in range(300)):
+#             res = min(res, int(a[-1] - a[0]))
+# print(res)  # 19
+
+
+# https://stepik.org/lesson/1697216/step/7?unit=1720591
+def f(x, y):
+    return x*y > a or x > y or 11 > x
+
+for a in range(300, 0, -1):
+    if all(f(x, y) for x in range(500) for y in range(500)):
+        print(a)  # 120
+        break
+
+
+# https://stepik.org/lesson/1697216/step/10?unit=1720591
+# /pic/course_233165/005.gif
+# https://kompege.ru/task   № 23755 Демоверсия 2026 (Уровень: Базовый)
+def f(x, l, r):
+    p = 25 <= x <= 64
+    q = 40 <= x <= 115
+    a = l <= x < r
+    # return not p or (not (q and not a) or not p)
+    return a or not q or not p
+
+res = 1000
+for l in range(120):
+    for r in range(l, 150):
+        if all(f(x, l, r) for x in range(200)):
+            res = min(res, r - l - 1)
+print(res)  # 24
