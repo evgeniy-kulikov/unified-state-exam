@@ -29,3 +29,131 @@ for n2 in range(1, 1001):
     sum2 = 2 * n0 + n2
     if sum1 == sum2 - 1640:
         print(n0)
+
+
+# https://stepik.org/lesson/1695399/step/4?unit=1718750
+#  https://kompege.ru/task  № 24173 (Уровень: Базовый)
+for n0 in range(1, 1000):
+    for n1 in range(1, 501):
+        s = '0' * n0 + '1' * n1 + '2' * n1
+        if len(s) == 1000:
+            sm1 = sum(map(int, s))
+            s = s.replace('0', 'z').replace('1', '*')
+            s = s.replace('2', '1').replace('z', '2').replace('*', '0')
+            sm2 = sum(map(int, s))
+            if sm1 - sm2 == 178:
+                print(s.count('1'))  # 363
+
+# variant
+for n2 in range(1, 501):
+    sm1 = 3 * n2
+    sm2 = (1000 - 2 * n2) * 2 + n2
+    a = sm1 - sm2
+    if sm1 - sm2 == 178:
+        print(n2)  # 363
+
+
+# https://stepik.org/lesson/1695399/step/5?unit=1718750
+#  https://kompege.ru/task  № 23847 (Уровень: Базовый)
+s = '1' * 400 + '2' * 250 + '3' * 360
+# '1'-->'3' + '2'-->'3'
+print(400 + 250)  # 650
+
+
+# https://stepik.org/lesson/1695399/step/6?unit=1718750
+#  https://kompege.ru/task  № 23846 (Уровень: Базовый)
+# s = 'x' * 512 + 'y' * 200 + 'z' * 288
+print(200 + 1)
+
+
+# https://stepik.org/lesson/1695399/step/7?unit=1718750
+#  https://kompege.ru/task  № 23727 (Уровень: Базовый)
+# s1 = '0' * 250 + '1' * 750
+# s2 = '1' * 750 + '0' * 250
+print(250)
+
+
+# https://stepik.org/lesson/1695399/step/8?unit=1718750
+#  https://kompege.ru/task  № 24176 (Уровень: Средний)
+"""
+X, R, q1  - эта команда означает, что при считывании единицы в ячейку записывается цифра «X» из набора [0, 1, 2], 
+но записывается она постоянно при всем проходе по ленте головки влево.  
+Т.е. нужно рассмотреть все три случая записи цифры «X»
+"""
+for n in range(1, 501):  # n - кол-во нулей и единиц
+    sum1 = n + 2 * (1000 - 2 * n)
+    for x in range(3):  # перебор числа Х
+        s1 = '2' * n + str(x) * n + '1' * (1000 - 2 * n)  # программа q1
+        # программа q2
+        s2 = s1.replace('0', '*').replace('1', '+')  # защита от наложения замен
+        s2 = s2.replace('2', '0').replace('*', '1').replace('+', '2')
+        sum2 = sum(map(int, s2))
+        if sum1 == sum2 + 363:
+            print(s2.count(str(x)))  # 274
+
+# Решение без работы со строкой, но сложное для понимания. Уж лучше строки
+for n in range(1, 501):  # n - кол. 0 и 1
+    n2 = (1000 - 2 * n)  # n2 - кол. 2
+    sum1 = n + 2*n2
+    for x in range(3):  # перебор числа Х
+        sum2 = (n + 2*n2, 2*n + 2*n2, 2*n2)[x]
+        if sum1 == sum2 + 363:
+            print((n, n, n2)[x])  # 274
+
+
+# https://stepik.org/lesson/1695399/step/9?unit=1718750
+#  https://kompege.ru/task  № 23750 Демоверсия 2026 (Уровень: Средний)
+print(999)  # 999
+
+
+# https://stepik.org/lesson/1695399/step/10?unit=1718750
+#  https://kompege.ru/task  № 23859 (Уровень: Базовый)
+for n in range(1, 501):
+    sm1 = n + 2 * (1000 - 2 * n)
+    sm2 = n + 2 * n
+    if sm1 == sm2 + 200:
+        print(1000 - 2 * n)  # 400
+
+
+# https://stepik.org/lesson/1695399/step/11?unit=1718750
+#  https://kompege.ru/task  № 23858 (Уровень: Базовый)
+for n in range(1, 501):
+    sm = 3*n
+    if sm == 432:
+        print(n)  # 144
+
+
+# https://stepik.org/lesson/1695399/step/12?unit=1718750
+#  https://kompege.ru/task  № 23851 (Уровень: Базовый)
+s = [*'1' * 750 + '0' * 650 + '2']
+q = 0
+for i in range(len(s)):
+    if not q:
+        if s[i] == '0':
+            s[i] = '1'
+            q = 1
+        elif s[i] == '1':
+            s[i] = '0'
+            q = 1
+        else:
+            s[i] = '1'
+            break
+    else:
+        if s[i] == '0':
+            s[i] = '1'
+            q = 0
+        elif s[i] == '1':
+            s[i] = '0'
+            q = 0
+        else:
+            s[i] = '0'
+            break
+print(s.count('1'))
+
+
+
+""" 12.2 Задание 12 | Задачи прошлых лет """
+# https://stepik.org/lesson/1695402/step/1?unit=1718753
+#  https://kompege.ru/task  № 23750 Демоверсия 2026 (Уровень: Средний)
+print(999)  # 999
+
