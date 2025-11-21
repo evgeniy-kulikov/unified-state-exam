@@ -3,6 +3,8 @@
 Task 15
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 
@@ -15,6 +17,17 @@ def f(x):
 for a in range(1, 100):
     if all(f(x) for x in range(1, 1000)):
         print(a)  # 16
+        break
+
+
+# https://stepik.org/lesson/1697214/step/4?unit=1720589
+# https://kompege.ru/task   № 432 Джобс 05.10.2020 (Уровень: Средний)
+def f(x):
+    return (x % 84 or x % 90) <= (x % a)
+
+for a in range(1, 10000):
+    if all(f(x) for x in range(10000)):
+        print(a)  # 1260
         break
 
 
@@ -150,6 +163,16 @@ def f(x,y):
 for a in range(1000):
     if all(f(x, y) for x in range(1000) for y in range(1000)):
         print(a)  # 17
+        break
+
+
+# https://stepik.org/lesson/1697216/step/2?unit=1720591
+def f(x, y):
+    return (x*y < a) or x < y or 9 < x
+
+for a in range(1000):
+    if all(f(x,y) for x in range(1000) for y in range(1000)):
+        print(a)  # 82
         break
 
 

@@ -3,10 +3,20 @@
 Task 13
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 
 """ 13.1 Задание 13 | Урок 1 """
+# https://stepik.org/lesson/1695808/step/3?unit=1719160
+# https://kompege.ru/task   № 10569 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('10.8.248.131/255.255.224.0', 0)
+print(net.network_address)  # 10.8.224.0
+# FADE
+
+
 # https://stepik.org/lesson/1695808/step/4?unit=1719160
 #  https://kompege.ru/task  № 10575 (Уровень: Базовый)
 from ipaddress import *
@@ -14,6 +24,17 @@ for n in range(1,33):
     net = ip_network(f'118.193.30.139/{n}', False)
     if str(net.network_address) == '118.193.24.0':
         print(net.netmask)  # 255.255.248.0
+
+
+# https://stepik.org/lesson/1695808/step/5?unit=1719160
+# https://kompege.ru/task   № 10570 (Уровень: Базовый)
+from ipaddress import *
+for n in range(32, 0, -1):
+    net = ip_network(f'154.201.208.17/{n}', 0)
+    if str(net.network_address) == '154.201.192.0':
+        msk = str(net.netmask).split('.')
+        print(msk[2])  # 224
+        break
 
 
 # https://stepik.org/lesson/1695808/step/6?unit=1719160

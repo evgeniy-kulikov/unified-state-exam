@@ -3,6 +3,8 @@
 Task 14
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 """ 14.1 Задание 14 | Урок 1 """
@@ -18,6 +20,16 @@ print(cnt)  # 59
 # variant
 n = 64**30 + 2**300 - 4
 print(oct(n).count('7'))  # 59
+
+
+# https://stepik.org/lesson/1695816/step/4?unit=1719169
+# https://kompege.ru/task   № 233 (Уровень: Базовый)
+n = 3 * 16**8 - 4**5 + 3
+cnt = 0
+while n:
+    cnt += n % 4 == 3
+    n //= 4
+print(cnt)  # 12
 
 
 # https://stepik.org/lesson/1695816/step/5?unit=1719169
@@ -66,6 +78,19 @@ for x in range(100):
 
 
 """ 14.2 Задание 14 | Урок 2 """
+# https://stepik.org/lesson/1695817/step/1?unit=1719170
+# https://kompege.ru/task   № 241 (Уровень: Базовый)
+for x in range(2, 33):
+    if int('33', x + 4) - int('33', 4) == 10:
+        print(x)  # 11
+
+# https://stepik.org/lesson/1695817/step/2?unit=1719170
+# https://kompege.ru/task   № 242 (Уровень: Средний)
+for n in range(8, 35):
+    if int('103', n) == int('97', n + 2):
+        print(n)  # 11
+
+
 # https://stepik.org/lesson/1695817/step/3?unit=1719170
 # https://kompege.ru/task  	№ 243 (Уровень: Средний)
 for n in range(4, 36):

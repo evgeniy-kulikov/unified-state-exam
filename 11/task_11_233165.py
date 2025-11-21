@@ -3,6 +3,8 @@
 Task 11
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 
@@ -12,6 +14,13 @@ https://stepik.org/course/233165
 from math import log2, ceil
 psw = ceil(7 * ceil(log2(12)) / 8)
 print((15 + psw) * 150)  # 2850
+
+
+# https://stepik.org/lesson/1688217/step/4?unit=1711506
+# https://kompege.ru/task   № 134 (Уровень: Средний)
+from math import log2, ceil
+psw = ceil(11 * ceil(log2(26 + 26 + 10)) / 8)
+print(1024 // (psw + 13))  # 46
 
 
 # https://stepik.org/lesson/1688217/step/5?unit=1711506
@@ -40,6 +49,15 @@ for n in range(1, 1000):
     if ceil(n * ceil(log2(52 + 10 + 458)) / 8) * 862 > 276 * 2**10:
         print(n - 1)  # 261
         break
+
+
+# https://stepik.org/lesson/1688218/step/5?unit=1711507
+# https://kompege.ru/task   № 17552 Основная волна 08.06.24 (Уровень: Сложный)
+from math import log2, ceil
+for i in range(2, 1000):
+ if ceil(261 * i / 8) / 2**20 * 252_500 > 31:
+     print(2**(i-1) + 1)
+     break
 
 
 # https://stepik.org/lesson/1688218/step/6?unit=1711507

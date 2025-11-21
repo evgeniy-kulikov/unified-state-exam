@@ -3,6 +3,8 @@
 Task 07
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 

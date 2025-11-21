@@ -3,6 +3,8 @@
 Task 16
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 
@@ -31,6 +33,17 @@ def f(n):
 print(f(100))  # 121757
 
 
+# https://stepik.org/lesson/1697472/step/5?unit=1720848
+# https://kompege.ru/task   № 597 (Уровень: Базовый)
+def f(n):
+    if n <= 10:
+        return n
+    if 10 < n <= 36:
+        return n // 4 + f(n-10)
+    return 2 * f(n-5)
+print(f(100)) # 180224
+
+
 # https://stepik.org/lesson/1697472/step/10?unit=1720848
 # https://kompege.ru/task   № 1408 (Уровень: Базовый)
 def f(n):
@@ -42,7 +55,17 @@ def f(n):
 print(f(50))  # 12
 
 
-# https://stepik.org/lesson/1697472/step/10?unit=1720848
+# https://stepik.org/lesson/1697472/step/11?unit=1720848
+# https://kompege.ru/task   № 1860 Основная волна 2021 (Уровень: Базовый)
+def f(n):
+    if n <= 1:
+        return 0
+    if n > 1 and n % 2:
+        return f(n-1) + 3*n**2
+    return n//2 + f(n-1) + 2
+print(f(49))  # 62820
+
+# https://stepik.org/lesson/1697472/step/12?unit=1720848
 # https://kompege.ru/task   № 592 (Уровень: Средний)
 def g(n):
     if n == 1:
@@ -78,6 +101,19 @@ def f(n):
 
 # [g(i) for i in range(1, 37)]
 print(sum(map(int, str(g(36)))))  # 40
+
+
+# https://stepik.org/lesson/1697473/step/2?unit=1720849
+# https://kompege.ru/task   № 1058 Джобс 15.03.2021 (Уровень: Средний)
+from functools import lru_cache
+@lru_cache(None)
+def f(n):
+    if not n:
+        return 1
+    if n == 1:
+        return 3
+    return f(n-1) - f(n-2) + 3*n
+print(f(40))  # 126
 
 
 # https://stepik.org/lesson/1697473/step/3?unit=1720849

@@ -3,6 +3,8 @@
 Task 09
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
+
+all from https://kompege.ru/task
 """
 
 
@@ -13,10 +15,10 @@ with open('add/course_233165/WAH-un7SO.txt') as fl:
     for f in fl:
         a, b, c = sorted(map(int, f.split()))
         cnt += (a + c) / 2 == b
-    print(cnt)
+    print(cnt)  # 67
 
 
-# https://stepik.org/lesson/1679586/step/7?unit=1702700
+# https://stepik.org/lesson/1679586/step/9?unit=1702700
 # ПОСЛЕДОВАТЕЛЬНОСТЬ ломаных, то есть стороны идут по порядку
 cnt = 0
 with open('add/course_233165/N5aH51mMN.txt') as fl:
@@ -31,6 +33,17 @@ for f in open('add/course_233165/N5aH51mMN.txt'):
     a, b, c, d = map(int, f.split())
     cnt += all([a == c, b == d, a != b])
 print(cnt)  # 353
+
+
+# https://stepik.org/lesson/1679586/step/12?unit=1702700
+# https://kompege.ru/task   № 2099 (Уровень: Базовый)
+cnt = res = 0
+for f in open('add/course_233165/1_01.txt'):
+    d = sorted(map(int, f.split()))
+    if sum(d) == 180:
+        cnt += 1
+        res += len(set(d)) < 3
+print(res * 100 // cnt)  # 3
 
 
 
@@ -69,21 +82,40 @@ with open('add/course_233165/vUKQEs8H3.txt') as fl:
     print(cnt)  # 4757
 
 
+# https://stepik.org/lesson/1679588/step/4?unit=1702702
+# https://kompege.ru/task   № 2043 (Уровень: Средний)
+cnt = 0
+for f in open('add/course_233165/2_01.txt'):
+    a,b,c,d = list(map(int, f.split()))
+    cnt += a == c and b == d
+print(cnt)  # 754
+
+
+
 
 """ 9.3 Задание 9 | Урок 3 """
 # https://stepik.org/lesson/1679593/step/1?unit=1702707
 cnt = 0
-with open('add/course_233165/G8IOHkCEp.txt') as fl:
+with open('add/course_233165/3_01.txt') as fl:
     for f in fl:
         a, b, c = sorted(map(int, f.split()))
         cnt += (a+c) / 2 <= b
     print(cnt)  # 2559
 
 
+# https://stepik.org/lesson/1679593/step/2?unit=1702707
+# https://kompege.ru/task   № 4669 Резервный день 2022 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/3_02.txt'):
+    a,b,c,d = sorted(map(int, f.split()))
+    cnt += a+d < b+c
+print(cnt)  # 1285
+
+
 # https://stepik.org/lesson/1679593/step/10?unit=1702707
 # https://kompege.ru/task  № 4614
 cnt = 0
-with open('add/course_233165/nHHTtAPZE.txt') as fl:
+with open('add/course_233165/3_10.txt') as fl:
     for f in fl:
         d = sorted(map(int, f.split()))
         cnt += sum(d[:-1]) > d[-1] and len(set(d)) == 3
