@@ -34,6 +34,33 @@ for n in range(1, 1000):
         break
 
 
+# https://stepik.org/lesson/1650989/step/5?unit=1673691
+# https://kompege.ru/task   № 1513 (Уровень: Средний)
+for n in range(1, 1000):
+    r = f'{n:b}'
+    r += r[-1]
+    r += '01'[r.count('1') % 2]
+    r += str(r.count('1') % 2)
+    if int(r, 2) > 90:
+        print(n)  # 11
+        break
+
+
+# https://stepik.org/lesson/1650989/step/6?unit=1673691
+# https://kompege.ru/task   № ***
+res = set()
+for n in range(1, 1000):
+    r = f'{n:b}'
+    r += str(r.count('1') % 2)
+    r += str(r.count('1') % 2)  # r += '0'  всегда будет '0'
+    r = (int(r, 2))
+    if 210 <= r <= 260:
+        res.add(r)
+print(len(res))  # 14
+
+
+
+
 """ 5.2 Задание 5 | Урок 2 """
 # https://stepik.org/lesson/1659948/step/1?unit=1682802
 # https://kompege.ru/task   № 49 Джобс 31.08.2020 (Уровень: Базовый)

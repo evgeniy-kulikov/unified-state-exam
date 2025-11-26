@@ -31,6 +31,18 @@ for a in range(1, 10000):
         break
 
 
+# https://stepik.org/lesson/1697214/step/5?unit=1720589
+# https://kompege.ru/task   № 764 (Уровень: Базовый)
+def f(x):
+    # return (not (not x % 15 and x % 21)) or (x % a or x % 15)
+    return x % 15 or not x % 21 or x % a
+
+for a in range(1, 1000):
+    if all(f(x) for x in range(1000)):
+        print(a)  # 7
+        break
+
+
 # https://stepik.org/lesson/1697214/step/8?unit=1720589
 # https://kompege.ru/task   № 216 Джобс 14.09.2020 (Уровень: Базовый)
 def f(x):
@@ -53,6 +65,7 @@ for a in range(1000, 0, -1):
         break
 
 
+
 """ 15.2 Задание 15 | Урок 2 """
 # https://stepik.org/lesson/1697215/step/1?unit=1720590
 # https://kompege.ru/task   № 1015 100 базовых задач Е. Джобс (Уровень: Базовый)
@@ -62,6 +75,17 @@ def f(x, y):
 for a in range(-50,200):
     if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
         print(a)  # 183
+        break
+
+
+# https://stepik.org/lesson/1697215/step/2?unit=1720590
+# https://kompege.ru/task   № 2123 Danov2201 (Уровень: Базовый)
+def f(x, y):
+    return (2 * x + y) != 70 or x < y or a < x
+
+for a in range(100, 0, -1):
+    if all(f(x, y) for x in range(1000) for y in range(1000)):
+        print(a)  # 23
         break
 
 
@@ -173,6 +197,17 @@ def f(x, y):
 for a in range(1000):
     if all(f(x,y) for x in range(1000) for y in range(1000)):
         print(a)  # 82
+        break
+
+
+# https://stepik.org/lesson/1697216/step/3?unit=1720591
+# https://kompege.ru/task   № 9838 Основная волна 27.06.23 (Уровень: Базовый)
+def f(x, y):
+    return (x + 2 * y > a) or y < x or x < 30
+
+for a in range(100, 0, -1):
+    if all(f(x, y) for x in range(1000) for y in range(1000)):
+        print(a)  # 89
         break
 
 

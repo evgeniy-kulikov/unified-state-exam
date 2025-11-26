@@ -132,6 +132,20 @@ for n in range(1, 1001):
 print(cnt)  # 16
 
 
+# https://stepik.org/lesson/1697473/step/4?unit=1720849
+# https://kompege.ru/task   № 673 Джобс 09.11.2020 (Уровень: Средний)
+def f(n):
+    if n > 30:
+        return n**2 + 5*n + 4
+    if n <= 30:
+        if n % 2:
+            return 2*f(n + 2) + f(n + 5)
+        return f(n + 1) + 3*f(n + 4)
+
+d = [f(n) for n in range(1, 1001)]
+print(sum(sum(map(int, str(i))) == 27 for i in d))  # 137
+
+
 # https://stepik.org/lesson/1697473/step/7?unit=1720849
 # https://kompege.ru/task   № 601 (Уровень: Средний)
 def f(n):

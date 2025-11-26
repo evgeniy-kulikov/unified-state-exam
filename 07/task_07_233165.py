@@ -109,6 +109,14 @@ for i in range(1, 100):
         print(2**(i-1))  # 256
         break
 
+# https://stepik.org/lesson/1661195/step/4?unit=1684068
+# https://kompege.ru/task   № 158 (Уровень: Базовый)
+sec = 48*2**23 / (2 * 64_000 * 16)
+print(sec // 60)  # 3
+
+
+
+
 
 """ 7.3 Задание 7 | Задачи прошлых лет """
 # https://stepik.org/lesson/1650994/step/1?unit=1673696
