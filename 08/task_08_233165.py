@@ -61,6 +61,43 @@ for p in product('salo', repeat=6):
 print(cnt)  # 3213
 
 
+# https://stepik.org/lesson/1650995/step/8?unit=1673697
+# https://kompege.ru/task   № 1984 (Уровень: Базовый)
+from itertools import permutations
+cnt = 0
+for p in permutations('igrok'):
+    s = ''.join(p)
+    if s[0] != 'k' and 'rok' not in s:
+        cnt += 1
+print(cnt)  # 90
+
+
+# https://stepik.org/lesson/1650995/step/9?unit=1673697
+# https://kompege.ru/task   № 1985 (Уровень: Средний)
+from itertools import permutations
+cnt = 0
+for p in permutations('----****'):
+    s = ''.join(p)
+    cnt += all(['**' not in s, '--' not in s])
+print(cnt) # 1152
+
+
+# https://stepik.org/lesson/1650995/step/10?unit=1673697
+# https://kompege.ru/task   № 1415 (Уровень: Базовый)
+from itertools import permutations, product
+cnt = 0
+for p in product('00123', repeat=8):
+    cnt += p.count('0') == 2
+print(cnt)  # 81648
+
+
+# https://stepik.org/lesson/1650995/step/11?unit=1673697
+# https://kompege.ru/task   № 1216 Апробация 27.04 (Уровень: Базовый)
+from itertools import product, permutations
+cnt = 0
+for p in product('01234', repeat=6):
+    cnt += p[-1] not in '34' and p[0] not in '10'
+print(cnt)  # 5625
 
 
 # https://stepik.org/lesson/1650995/step/12?unit=1673697
@@ -85,6 +122,26 @@ print(cnt)  # 180
 
 
 """ 8.2 Задание 8 | Урок 2 """
+# https://stepik.org/lesson/1650996/step/1?unit=1673698
+# https://kompege.ru/task   № 1288 Открытый вариант КЕГЭ (Уровень: Базовый)
+from itertools import product
+cnt = 0
+for p in product('visna', repeat=6):
+    cnt += all([p.count('v') <= 1, p[0] != 's', p[-1] not in 'ia'])
+print(cnt)  # 4352
+
+
+# https://stepik.org/lesson/1650996/step/2?unit=16736988
+# https://kompege.ru/task   № 947 (Уровень: Базовый)
+from itertools import product
+cnt = 0
+for p in product('abcd', repeat=4):
+    cnt += p[0] <= p[1] <= p[2] <= p[3]
+print(cnt)  # 35
+
+
+
+
 # https://stepik.org/lesson/1650996/step/8?unit=1673698
 # ЛЕЕЕ  --> 1000
 print(int('1000', 5) + 1)  # 126

@@ -9,19 +9,58 @@ all from https://kompege.ru/task
 
 
 """ 9.1 Задание 9 | Урок 1 """
+# https://stepik.org/lesson/1679586/step/4?unit=1702700
+# https://kompege.ru/task   № 2092 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/9-1_04.txt'):
+    a, b, c = map(int, f.split())
+    cnt += all([a in (1, 3, 5), b <= 36, c <= 43])
+print(cnt)  # 1
+
+
+# https://stepik.org/lesson/1679586/step/5?unit=1702700
+# https://kompege.ru/task   № 2093 (Уровень: Средний)
+cnt, ln = 0, 0
+for f in open('add/course_233165/9-1_05.txt'):
+    ln += 1
+    g, i = map(int, f.split())
+    cnt += g >= 37 and i < 44
+print(int(cnt * 100 / ln))  # 13
+
+# https://stepik.org/lesson/1679586/step/6?unit=1702700
+# https://kompege.ru/task   № 2094 (Уровень: Средний)
+cnt, ln = 0, 0
+for f in open('add/course_233165/9-1_06.txt'):
+    ln += 1
+    g, i = map(int, f.split())
+    cnt += g > i and i >= 44
+
+print(int(cnt * 100 / ln))  # 25
+
+
 # https://stepik.org/lesson/1679586/step/7?unit=1702700
 cnt = 0
-with open('add/course_233165/WAH-un7SO.txt') as fl:
+with open('add/course_233165/9-1_07.txt') as fl:
     for f in fl:
         a, b, c = sorted(map(int, f.split()))
         cnt += (a + c) / 2 == b
     print(cnt)  # 67
 
 
+# https://stepik.org/lesson/1679586/step/8?unit=1702700
+# https://kompege.ru/task   № 2049 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/9-1_08.txt'):
+    a, b, c = sorted(map(int, f.split()))
+    # cnt += b - a == c - b and a < b < c
+    cnt += b - a == c - b and a != b
+print(cnt)  # 174
+
+
 # https://stepik.org/lesson/1679586/step/9?unit=1702700
 # ПОСЛЕДОВАТЕЛЬНОСТЬ ломаных, то есть стороны идут по порядку
 cnt = 0
-with open('add/course_233165/N5aH51mMN.txt') as fl:
+with open('add/course_233165/9-1_09.txt') as fl:
     for f in fl:
         a, b, c, d = map(int, f.split())
         cnt += a == c and b == d and a != b
@@ -29,7 +68,7 @@ with open('add/course_233165/N5aH51mMN.txt') as fl:
 
 # variant
 cnt = 0
-for f in open('add/course_233165/N5aH51mMN.txt'):
+for f in open('add/course_233165/9-1_09.txt'):
     a, b, c, d = map(int, f.split())
     cnt += all([a == c, b == d, a != b])
 print(cnt)  # 353
@@ -38,7 +77,7 @@ print(cnt)  # 353
 # https://stepik.org/lesson/1679586/step/12?unit=1702700
 # https://kompege.ru/task   № 2099 (Уровень: Базовый)
 cnt = res = 0
-for f in open('add/course_233165/1_01.txt'):
+for f in open('add/course_233165/9-1_12.txt'):
     d = sorted(map(int, f.split()))
     if sum(d) == 180:
         cnt += 1
@@ -47,10 +86,11 @@ print(res * 100 // cnt)  # 3
 
 
 
+
 """ 9.2 Задание 9 | Урок 2 """
 # https://stepik.org/lesson/1679588/step/1?unit=1702702
 cnt = 0
-with open('add/course_233165/aPOjXPNBT.txt') as fl:
+with open('add/course_233165/9-2_02.txt') as fl:
     for f in fl:
         a, b, c = sorted(map(int, f.split()))
         cnt += c > 90 and a + b + c == 180
@@ -59,7 +99,7 @@ with open('add/course_233165/aPOjXPNBT.txt') as fl:
 
 # https://stepik.org/lesson/1679588/step/2?unit=1702702
 cnt = 0
-with open('add/course_233165/OZIpBBHnP.txt') as fl:
+with open('add/course_233165/9-2_02.txt') as fl:
     for f in fl:
         a, b, c, d = map(int, f.split())
         cnt += a == c and b == d and a + b + c + d == 360
@@ -67,7 +107,7 @@ with open('add/course_233165/OZIpBBHnP.txt') as fl:
 
 # variant
 cnt = 0
-for f in open('add/course_233165/OZIpBBHnP.txt'):
+for f in open('add/course_233165/9-2_02.txt'):
     a, b, c, d = map(int, f.split())
     cnt += a == c and b == d and a+b+c+d == 360
 print(cnt)  # 984
@@ -75,7 +115,7 @@ print(cnt)  # 984
 
 # https://stepik.org/lesson/1679588/step/3?unit=1702702
 cnt = 0
-with open('add/course_233165/vUKQEs8H3.txt') as fl:
+with open('add/course_233165/9-2_03.txt') as fl:
     for f in fl:
         a, b, c, d = sorted(map(int, f.split()))
         cnt += a+b+c > d
@@ -85,10 +125,20 @@ with open('add/course_233165/vUKQEs8H3.txt') as fl:
 # https://stepik.org/lesson/1679588/step/4?unit=1702702
 # https://kompege.ru/task   № 2043 (Уровень: Средний)
 cnt = 0
-for f in open('add/course_233165/2_01.txt'):
+for f in open('add/course_233165/9-2_04.txt'):
     a,b,c,d = list(map(int, f.split()))
     cnt += a == c and b == d
 print(cnt)  # 754
+
+
+# https://stepik.org/lesson/1679588/step/5?unit=1702702
+# https://kompege.ru/task   № 2100 (Уровень: Базовый)
+MX = 0
+for f in open('add/course_233165/9-2_05.txt'):
+    a, b, c = sorted(map(int, f.split()))
+    if a**2 + b**2 == c**2:
+        MX = max(MX, a+b)
+print(MX)  # 803
 
 
 
@@ -96,7 +146,7 @@ print(cnt)  # 754
 """ 9.3 Задание 9 | Урок 3 """
 # https://stepik.org/lesson/1679593/step/1?unit=1702707
 cnt = 0
-with open('add/course_233165/3_01.txt') as fl:
+with open('add/course_233165/9-3_01.txt') as fl:
     for f in fl:
         a, b, c = sorted(map(int, f.split()))
         cnt += (a+c) / 2 <= b
@@ -106,16 +156,25 @@ with open('add/course_233165/3_01.txt') as fl:
 # https://stepik.org/lesson/1679593/step/2?unit=1702707
 # https://kompege.ru/task   № 4669 Резервный день 2022 (Уровень: Базовый)
 cnt = 0
-for f in open('add/course_233165/3_02.txt'):
+for f in open('add/course_233165/9-3_02.txt'):
     a,b,c,d = sorted(map(int, f.split()))
     cnt += a+d < b+c
 print(cnt)  # 1285
 
 
+# https://stepik.org/lesson/1679593/step/3?unit=1702707
+# https://kompege.ru/task   № 3150 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/9-3_03.txt'):
+    a, b, c = sorted(map(int, f.split()))
+    cnt += c**2 > 2 * a * b
+print(cnt)  # 2707
+
+
 # https://stepik.org/lesson/1679593/step/10?unit=1702707
 # https://kompege.ru/task  № 4614
 cnt = 0
-with open('add/course_233165/3_10.txt') as fl:
+with open('add/course_233165/9-3_10.txt') as fl:
     for f in fl:
         d = sorted(map(int, f.split()))
         cnt += sum(d[:-1]) > d[-1] and len(set(d)) == 3
@@ -124,11 +183,13 @@ with open('add/course_233165/3_10.txt') as fl:
 
 
 
+
+
 """ 9.4 Задание 9 | Урок 4 """
 # https://stepik.org/lesson/1679595/step/1?unit=1702709
 # https://kompege.ru/task  № 5126 /dev/inf 11.22 (Уровень: Средний)
 cnt = 0
-with open('add/course_233165/9yLNISRDc.txt') as fl:
+with open('add/course_233165/9-4_01.txt') as fl:
     for f in fl:
         d = [*map(int, f.split())]
         d1 = [i for i in d if d.count(i) == 1]
@@ -138,7 +199,7 @@ with open('add/course_233165/9yLNISRDc.txt') as fl:
 
 # variant
 cnt = 0
-for f in open('add/course_233165/9yLNISRDc.txt'):
+for f in open('add/course_233165/9-4_01.txt'):
     d = [*map(int, f.split())]
     d1 = [i for i in d if d.count(i) == 1]
     d3 = [i for i in d if d.count(i) == 3]
@@ -146,11 +207,33 @@ for f in open('add/course_233165/9yLNISRDc.txt'):
 print(cnt)
 
 
+# https://stepik.org/lesson/1679595/step/2?unit=1702709
+# https://kompege.ru/task   № 5284 /dev/inf 12.2022 (Уровень: Средний)
+cnt = 0
+for f in open('add/course_233165/9-4_02.txt'):
+    d = sorted(map(int, f.split()))
+    n1 = sum(1 for n in d if d.count(n) == 1) == 3
+    n3 = sum(1 for n in d if d.count(n) == 3) == 3
+    cnt += (d[0] + d[-1])**2 > sum(i**2 for i in d[1:-1]) or (n1 and n3)
+print(cnt)  # 4209
+
+
+# https://stepik.org/lesson/1679595/step/3?unit=1702709
+# https://kompege.ru/task   № 9740 Основная волна 19.06.23 (Уровень: Средний)
+cnt = 0
+for f in open('add/course_233165/9-4_03.txt'):
+    d = sorted(map(int, f.split()))
+    n1 = [n for n in d if d.count(n) == 1]
+    n3 = [n for n in d if d.count(n) == 3]
+    if len(n1) == 4 and len(n3) == 3:
+        cnt += sum(n1) / 4 <= n3[0]
+print(cnt)  # 36
+
 
 # https://stepik.org/lesson/1679595/step/4?unit=1702709
 # https://kompege.ru/task  № 9778 Основная волна 20.06.23 (Уровень: Средний)
 cnt = 0
-with open('add/course_233165/eX154PNow.txt') as fl:
+with open('add/course_233165/9-4_04.txt') as fl:
     for f in fl:
         cnt += 1
         d = [*map(int, f.split())]
@@ -163,7 +246,7 @@ with open('add/course_233165/eX154PNow.txt') as fl:
 
 # https://stepik.org/lesson/1679595/step/5?unit=1702709
 # https://kompege.ru/task  № 9832 Основная волна 27.06.23 (Уровень: Средний)
-with open('add/course_233165/LbhxBxvcF.txt') as fl:
+with open('add/course_233165/9-4_05.txt') as fl:
     for f in fl:
         d = [*map(int, f.split())]
         d1 = [i for i in d if d.count(i) == 1]
@@ -179,7 +262,7 @@ with open('add/course_233165/LbhxBxvcF.txt') as fl:
 # https://stepik.org/lesson/1679589/step/5?unit=1702704
 # https://kompege.ru/task № 17522 Основная волна 07.06.24 (Уровень: Базовый)
 cnt = 0
-with open('add/course_233165/AerfLn3ms.txt') as fl:
+with open('add/course_233165/9-5_05.txt') as fl:
     for f in fl:
         d = sorted(map(int, f.split()))
         cnt += len(set(d)) == 3 and d[-1] < sum(d[:-1])
@@ -187,7 +270,7 @@ with open('add/course_233165/AerfLn3ms.txt') as fl:
 
 # variant
 cnt = 0
-for f in open('add/course_233165/AerfLn3ms.txt'):
+for f in open('add/course_233165/9-5_05.txt'):
     d = sorted(map(int, f.split()))
     cnt += len(set(d)) == 3 and d[-1] < sum(d[:-1])
 print(cnt)  # 147
@@ -196,7 +279,7 @@ print(cnt)  # 147
 # https://stepik.org/lesson/1679589/step/8?unit=1702704
 # https://kompege.ru/task № 23193 Основная волна 10.06.25 (Уровень: Базовый)
 cnt = res = 0
-for f in open('add/course_233165/-kXoRpmha6.txt'):
+for f in open('add/course_233165/9-5_08.txt'):
     cnt += 1
     d = [*map(int, f.split())]
     d1 = [i for i in d if d.count(i) == 1]
@@ -210,7 +293,7 @@ print(res)  # 10493
 # https://stepik.org/lesson/1679589/step/9?unit=1702704
 # https://kompege.ru/task  № 23268 Основная волна 11.06.25 (Уровень: Базовый)
 cnt = 0
-for f in open('add/course_233165/hB4WZuaqC0.txt'):
+for f in open('add/course_233165/9-5_09.txt'):
     cnt += 1
     d = [*map(int, f.split())]
     d1 = [i for i in d if d.count(i) == 1]

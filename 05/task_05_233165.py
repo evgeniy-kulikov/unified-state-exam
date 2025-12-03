@@ -59,6 +59,91 @@ for n in range(1, 1000):
 print(len(res))  # 14
 
 
+# https://stepik.org/lesson/1650989/step/7?unit=1673691
+# https://kompege.ru/task   № 2230 (Уровень: Базовый)
+res = 0
+for n in range(1, 100):
+    b = f'{n:b}'
+    if n % 2:
+        b = '1' + b + '11'
+    else:
+        b = '11' + b + '00'
+    r = int(b, 2)
+    if r < 127:
+        res = max(res, r)
+print(res)  # 120
+
+
+# https://stepik.org/lesson/1650989/step/8?unit=1673691
+# https://kompege.ru/task   № 5358 Новогодний вариант 2022/23 (Уровень: Средний)
+for n in range(6, 1000):
+    b = f'{n:b}'
+    if b[:3].count('1') % 2:
+        b = '10' + b[2:] + '1'
+    else:
+        b = '1' + b[:-2] + '01'
+    if int(b, 2) > 50:
+        print(n)  # 20
+        break
+
+
+# https://stepik.org/lesson/1650989/step/8?unit=1673691
+# https://kompege.ru/task   № 5358 Новогодний вариант 2022/23 (Уровень: Средний)
+for n in range(6, 1000):
+    b = f'{n:b}'
+    if b[:3].count('1') % 2:
+        b = '10' + b[2:] + '1'
+    else:
+        b = '1' + b[:-2] + '01'
+    if int(b, 2) > 50:
+        print(n)  # 20
+        break
+
+
+# https://stepik.org/lesson/1650989/step/9?unit=1673691
+# https://kompege.ru/task   № 6884 OpenFIPI (Уровень: Базовый)
+MN = 10**6
+for n in range(1,1000):
+    b = f'{n:b}'
+    if n % 2:
+        b = '11' + b + '11'
+    else:
+        b = '1' + b + '0'
+    r = int(b, 2)
+    if r > 225:
+        MN = min(MN, r)
+print(MN)  # 228
+
+
+# https://stepik.org/lesson/1650989/step/10?unit=1673691
+# https://kompege.ru/task   № 6885 OpenFIPI (Уровень: Базовый)
+MN = 10**6
+res = []
+for n in range(4,1000):
+    b = f'{n:b}'
+    if n % 2:
+        b += f'{b.count("1"):b}'
+    else:
+        b = '1' + b + '00'
+    r = int(b, 2)
+    if r > 190:
+        MN = min(MN, r)
+        res.append((MN, n))
+print(min(res)[1])  # 16
+
+# risk
+for n in range(4,1000):
+    b = f'{n:b}'
+    if n % 2:
+        b += f'{b.count("1"):b}'
+    else:
+        b = '1' + b + '00'
+    r = int(b, 2)
+    if r > 190:
+        print(n)  # 16
+        break
+
+
 
 
 """ 5.2 Задание 5 | Урок 2 """

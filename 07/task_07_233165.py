@@ -109,10 +109,35 @@ for i in range(1, 100):
         print(2**(i-1))  # 256
         break
 
+
 # https://stepik.org/lesson/1661195/step/4?unit=1684068
 # https://kompege.ru/task   № 158 (Уровень: Базовый)
 sec = 48*2**23 / (2 * 64_000 * 16)
 print(sec // 60)  # 3
+
+
+# https://stepik.org/lesson/1661195/step/5?unit=1684068
+# https://kompege.ru/task   № 159 (Уровень: Базовый)
+t = (5625 * 2**20) / (2 * 48_000 * 24 / 8) / 60
+print(int(t) - int(t) % 5)  # 340
+
+
+# https://stepik.org/lesson/1661195/step/6?unit=1684068
+# https://kompege.ru/task   № 162 (Уровень: Средний)
+"""
+I2 = I1 * 3 / 4  =  I1 * 0.75
+A I1 = 100 sec
+A I2 = 0.75 * 100  = 75 sec
+A / B = 75 / 15 = 5 раз
+"""
+
+
+# https://stepik.org/lesson/1661195/step/7?unit=1684068
+# https://kompege.ru/task   № 166 (Уровень: Базовый)
+I = 2 * 48_000 * 16 * 90
+t = I / 32_000 / 60
+print(t)  # 72
+
 
 
 

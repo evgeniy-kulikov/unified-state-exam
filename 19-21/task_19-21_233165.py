@@ -67,7 +67,43 @@ print(*[s for s in range(1, 65) if f(s, 3) and not f(s, 1)])  # 7 20
 print(*[s for s in range(1, 65) if f(s, 4) and not f(s,2)])  # 18
 
 
+# https://stepik.org/lesson/1713458/step/5?unit=1736931
+# https://kompege.ru/task   № 844 (Уровень: Средний)
+def f(s, mv):
+    if 43 <= s <= 72:
+        return not mv % 2
+    elif s > 72:
+        return mv % 2
+    if not mv:
+        return 0
+    g = [f(s + 1, mv - 1), f(s * 2, mv - 1), f(s * 3, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return all(g)
 
+print([s for s in range(1, 43) if f(s, 2)][0])  # 14
+print(len([s for s in range(1, 43) if f(s, 3) and not f(s, 1)]))  # 3
+print(*[s for s in range(1, 43) if f(s, 4) and not f(s,2)])  # 12 39
+
+
+
+
+""" 20.1 Задание 19 - 21 ЕГЭ | Урок 2 """
+# https://stepik.org/lesson/1713459/step/2?unit=1736932
+# https://kompege.ru/task   № 853 (Уровень: Базовый)
+def f(a, b, mv, w=eval('all')):
+    if a + b >= 77:
+        return not mv % 2
+    if not mv:
+        return 0
+    g = [f(a + 1, b, mv - 1), f(a * 2, b, mv - 1), f(a, b + 1, mv - 1), f(a, b * 2, mv - 1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return w(g)
+
+print([s for s in range(1, 70) if f(7, s, 2, eval('any'))][0])  # 18
+print(*[s for s in range(1, 70) if f(7, s, 3) and not f(7, s, 1)])  # 31 34
+print([s for s in range(1, 70) if f(7, s, 4) and not f(7, s, 2)][0])  # 30
 
 
 

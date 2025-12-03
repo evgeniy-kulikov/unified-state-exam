@@ -42,6 +42,28 @@ def f(st, en):
 print(f(1, 13))  # 298
 
 
+# https://stepik.org/lesson/1715370/step/6?unit=1738823
+# https://kompege.ru/task   № 1301 Открытый вариант КЕГЭ (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st < en:
+        return 0
+    return f(st - 2, en) + f(st - 5, en)
+print(f(23, 2))  # 29
+
+
+# https://stepik.org/lesson/1715370/step/7?unit=1738823
+# https://kompege.ru/task   № 313 Джобс 28.09.2020 (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st < en:
+        return 0
+    return f(st - 1, en) + f(st - 3, en) + f(st // 3, en)
+print(f(22, 2))  # 2196
+
+
 # https://stepik.org/lesson/1715370/step/8?unit=1738823
 # https://kompege.ru/task   № 1974 Демоверсия 2022 (Уровень: Базовый)
 def f(st, en):

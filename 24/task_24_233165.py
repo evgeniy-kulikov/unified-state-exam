@@ -79,6 +79,20 @@ MX = max(len(i) for i in s)
 print(MX)  # 1713
 
 
+# https://stepik.org/lesson/1720694/step/8?unit=1744230
+# https://kompege.ru/task   № 4627 Основная волна 2022 (Уровень: Базовый)
+from re import *
+reg = r'(?:NPO|PNO)+'
+s = open('add/course_233165/24-1__08.txt').readline().strip()
+res = findall(reg, s)
+print(max(map(len, res)) // 3)  # 327
+
+# variant
+s = open('add/course_233165/24-1__08.txt').readline().strip()
+s = s.replace('NPO', '*').replace('PNO', '*')
+s = s.replace('N', ' ').replace('P', ' ').replace('O', ' ').split()
+print(max(map(len, s)))  # 327
+
 
 
 
@@ -218,6 +232,41 @@ for i in range(len(s)):
 print(max(ls))  # 90
 
 
+# https://stepik.org/lesson/1720695/step/7?unit=1744231
+# https://kompege.ru/task   № 4546 (Уровень: Базовый)
+from re import *
+reg = r'(?:A.A|C.C)+'
+s = open('add/course_233165/24-2__07.txt').readline().strip()
+a = findall(reg, s)
+a = max(map(len, a)) // 3
+b = findall(reg, s[::-1])
+b = max(map(len, b)) // 3
+print(max(a, b))  # 21
+
+# variant
+s = open('add/course_233165/24-2__07.txt').readline().strip()
+ls = [0] * len(s)
+for i in range(2, len(s)):
+    if s[i-2] + s[i] in ['AA', 'CC']:
+        ls[i] += ls[i-3] + 1
+print(max(ls))  # 21
+
+
+# https://stepik.org/lesson/1720696/step/4?unit=1744232
+# https://kompege.ru/task   № 9169 Джобс 06.06.2023 (Уровень: Сложный)
+s = open('add/course_233165/24-3__04.txt').readline().strip()
+cnt = l = 0
+MN = 10**6
+w = ('BAD', 'FAT')
+for r in range(2, len(s)):
+    if s[r-2:r+1] in w:
+        cnt += 1
+    while cnt == 3:
+        if s[l:l+3] in w:
+            cnt -= 1
+        MN = min(MN, r-l+1)
+        l += 1
+print(MN)  # 10
 
 
 
@@ -240,15 +289,6 @@ for r in range(1, len(s)):
     if cnt == 21:
         MX = max(MX, r - l + 1)
 print(MX)  # 814
-
-
-# !!!  ПОЧЕМУ  !!!
-s = open('add/course_233165/24-3__01.txt').readline()
-s = s.replace('ROR', 'RO OR')
-s = s.replace('ORO', 'OR RO')
-ls = [r for r in s.split() if r.count('RO') == 21]
-res = max(ls, key=len)
-print(len(res))  # 694
 
 
 # https://stepik.org/lesson/1720696/step/2?unit=1744232
@@ -322,4 +362,60 @@ for r in range(len(s)):
         MX = max(MX, r - l + 1)
 print(MX)  # 244
 
+
+# https://stepik.org/lesson/1720697/step/2?unit=1744233
+# https://kompege.ru/task   № 10724 (Уровень: Базовый)
+from string import ascii_uppercase as abc
+s = open('add/course_233165/24-4__02.txt').readline().strip()
+for i in abc[6:]:
+    s = s.replace(i, ' ')
+s = s.split()
+print(max(map(len, s)))  # 21
+
+
+
+# https://stepik.org/lesson/1720697/step/3?unit=1744233
+# https://kompege.ru/task   № 17535 Основная волна 07.06.24 (Уровень: Средний)
+s = open('add/course_233165/24-4__03.txt').readline().strip()
+cnt = l = MX = 0
+for r in range(1, len(s)):
+    if s[r-1:r+1] == 'CD':
+        cnt += 1
+    while cnt > 160:
+        if s[l: l+2] == 'CD':
+            cnt -= 1
+        l += 1
+    if cnt == 160:
+        MX = max(MX, r - l + 1)
+print(MX)  # 9712
+
+# variant
+s = open('add/course_233165/24-4__03.txt').readline().strip()
+MX = 0
+s = s.replace('CD', '*').split('*')
+for i in range(len(s) - 160):
+    r = ''.join(s[i:i+161])
+    MX = max(MX, len(r) + 320 + 2)
+print(MX)  # 9712
+
+
+# https://stepik.org/lesson/1720697/step/4?unit=1744233
+# https://kompege.ru/task   № 17563 Основная волна 08.06.24 (Уровень: Сложный)
+from re import *
+a = r'7+\d*'
+reg = rf'{a}(?:-{a})+'
+# reg = r'7+\d*(?:-7+\d*)+'
+s = open('add/course_233165/24-4__04.txt').readline().strip()
+s = s.replace('8', '7').replace('9', '7').replace('*', '-')
+res = findall(reg, s)
+print(max(map(len, res)))  # 40
+
+# variant
+from re import *
+a = r'[1-9]+\d*'
+reg = rf'{a}(?:[*-]{a})+'
+# reg = r'[1-9]+\d*(?:[*-][1-9]+\d*)+'
+s = open('add/course_233165/24-4__04.txt').readline().strip()
+res = findall(reg, s)
+print(max(map(len, res)))  # 40
 
