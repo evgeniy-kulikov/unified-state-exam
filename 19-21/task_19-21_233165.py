@@ -86,6 +86,31 @@ print(len([s for s in range(1, 43) if f(s, 3) and not f(s, 1)]))  # 3
 print(*[s for s in range(1, 43) if f(s, 4) and not f(s,2)])  # 12 39
 
 
+# https://stepik.org/lesson/1713458/step/6?unit=1736931
+# https://kompege.ru/task   № 854 (Уровень: Сложный)
+def f(a, m):
+    if a < 10:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-1, m-1), f(a-2, m-1), f(a-3, m-1), f(a-4, m-1), f(a-5, m-1)]
+    if not a % 2:
+        g.append(f(a // 2, m-1))
+    if not (m-1)% 2:
+        return any(g)
+    return all(g)
+
+print(*[s for s in range(10, 100) if f(s, 2)])  # 15
+print(*[s for s in range(10, 100) if f(s, 3) and not f(s, 1)])  # 17 30
+print(*[s for s in range(10, 100) if f(s, 4) and not f(s, 2)])  # 21
+"""
+15
+17 30
+21
+"""
+
+
+
 
 
 """ 20.1 Задание 19 - 21 ЕГЭ | Урок 2 """
@@ -106,5 +131,194 @@ print(*[s for s in range(1, 70) if f(7, s, 3) and not f(7, s, 1)])  # 31 34
 print([s for s in range(1, 70) if f(7, s, 4) and not f(7, s, 2)][0])  # 30
 
 
+# https://stepik.org/lesson/1713459/step/3?unit=1736932
+# https://kompege.ru/task   № 1135 (Уровень: Базовый)
+def f(a, b, m, w=eval('all')):
+    if a+b >= 68:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a + 1, b, m-1), f(a + b, b, m-1), f(a, b + 1, m-1), f(a, b + a, m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return w(g)
+
+print([s for s in range(1, 60) if f(8, s, 2, w=eval('any'))][0])  # 18
+print([s for s in range(1, 60) if f(8, s, 3) and not f(8, s, 1)][0], end=' ')
+print([s for s in range(1, 60) if f(8, s, 3) and not f(8, s, 1)][-1])  # 17 29
+print(*[s for s in range(1, 60) if f(8, s, 4) and not f(8, s, 2)])  # 17 29
+"""
+18
+17 29
+28
+"""
 
 
+# https://stepik.org/lesson/1713459/step/4?unit=1736932
+# https://kompege.ru/task   № 1420 (Уровень: Базовый)
+def f(a, b, m):
+    if a * b >= 63:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a + 1, b, m-1), f(a * 2, b, m-1), f(a, b + 1, m-1), f(a, b * 2, m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[s for s in range(1, 32) if f(2, s, 2)])  # 15
+print([s for s in range(1, 32) if f(2, s, 3) and not f(2, s, 1)][0], end=' ')
+print([s for s in range(1, 32) if f(2, s, 3) and not f(2, s, 1)][-1])  # 7 14
+print([s for s in range(1, 32) if f(2, s, 4) and not f(2, s, 2)][-1])  # 13
+"""
+15
+7 14
+13
+"""
+
+
+# https://stepik.org/lesson/1713459/step/5?unit=1736932
+# https://kompege.ru/task   № 2369 (Уровень: Сложный)
+def f(a,b,c, mv, w=eval('all')):
+    if a+b+c >= 73:
+        return not mv % 2
+    if not mv:
+        return 0
+    g = [f(a+3,b,c, mv-1), f(a+13,b,c, mv-1), f(a+23,b,c, mv-1),
+         f(a,b+3,c, mv-1), f(a,b+13,c, mv-1), f(a,b+23,c, mv-1),
+         f(a,b,c+3, mv-1), f(a,b,c+13, mv-1), f(a,b,c+23, mv-1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return w(g)
+
+print([s for s in range(1, 24) if f(2, s, 2*s, 2, eval('any'))][0])
+print([s for s in range(1, 24) if f(2, s, 2*s, 3) and not f(2, s, 2*s, 1)][0], end=' ')
+print([s for s in range(1, 24) if f(2, s, 2*s, 3) and not f(2, s, 2*s, 1)][-1])
+print(*[s for s in range(1, 24) if f(2, s, 2*s, 4) and not f(2, s, 2*s, 2)][-2:])
+"""
+9
+8 14
+10 13
+"""
+
+
+
+
+
+""" 21.1 Задание 19 - 21 ЕГЭ | Задачи прошлых лет """
+# https://stepik.org/lesson/1713460/step/3?unit=1736933
+# https://kompege.ru/task   № 9750 Основная волна 19.06.23 (Уровень: Базовый)
+def f(a, mv):
+    if a >= 88:
+        return not mv % 2
+    if not mv:
+        return 0
+    g = [f(a+1, mv-1), f(a+4, mv-1), f(a*3, mv-1)]
+    if not (mv - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[s for s in range(1, 88) if f(s, 2)])
+print(*[s for s in range(1, 88) if f(s, 3) and not f(s, 1)][:2])
+print([s for s in range(1, 88) if f(s, 4) and not f(s, 2)][0])
+"""
+29
+25 28
+24
+"""
+
+
+
+
+""""""
+""" Варианты """
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/7?unit=1753394
+#  https://kompege.ru/task  № 17875 Демоверсия 2025 (Уровень: Базовый)
+def f(a, m):
+    if a <= 19:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-2, m-1), f(a-5, m-1), f(a//3, m-1)]
+    if not (m-1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(20, 200) if f(s, 2)][0])  # 60
+print(*[s for s in range(20, 200) if f(s, 3) and not f(s, 1)][:2])  # 62 63
+print([s for s in range(20, 200) if f(s, 4) and not f(s, 2)][0])  # 64
+"""
+60
+62 63
+64
+"""
+
+
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/7?unit=1753726
+# https://kompege.ru/task  № 19251 ЕГКР 21.12.24 (Уровень: Базовый)
+def f(a, m):
+    if a >= 132:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a + 3, m - 1), f(a + 6, m - 1), f(a * 3, m - 1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(1, 132) if f(s, 2)][0])  # 41
+print(*[s for s in range(1, 132) if f(s, 3) and not f(s, 1)][:2])  # 14 35
+print([s for s in range(1, 132) if f(s, 4) and not f(s, 2)][0])  # 32
+"""
+41
+14 35
+32
+"""
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/7?unit=1754357
+# https://kompege.ru/task  № 20811 Апробация 05.03.25 (Уровень: Базовый)
+def f(a, m):
+    if a >= 51:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a + 1, m - 1), f(a + 4, m - 1), f(a * 2, m - 1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[s for s in range(1, 51) if f(s, 2)])  # 25
+print(*[s for s in range(1, 51) if f(s, 3) and not f(s, 1)])  # 21 24
+print([s for s in range(1, 51) if f(s, 4) and not f(s, 2)][0])  # 20
+"""
+25
+21 24
+20
+"""
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/7?unit=1760676
+# https://kompege.ru/task  № 21418 Досрочная волна 2025 (Уровень: Базовый)
+def f(a, m):
+    if a <= 87:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-2, m-1), f(a//2, m-1)]
+    if not (m-1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(89, 500) if f(s, 2)][0])  # 176
+print(*[s for s in range(89, 500) if f(s, 3) and not f(s, 1)][:2])  # 178 179
+print([s for s in range(89, 500) if f(s, 4) and not f(s, 2)][0])  # 180
+"""
+176
+178 179
+180
+"""

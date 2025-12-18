@@ -197,6 +197,30 @@ for n in range(4*10**8+1, 4*10**9):
 """
 
 
+# https://stepik.org/lesson/1720858/step/9?unit=1744394
+# https://kompege.ru/task   № 2588 (Уровень: Базовый)
+def f(n):
+    dv = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n // i}
+    return sorted(dv, reverse=True)
+
+for n in range(190201, 190261):
+    res = [i for i in f(n) if not i % 2]
+    if len(res) == 4:
+        print(*res[:2])
+"""
+190226 838
+190234 17294
+190238 2606
+190252 95126
+190258 758
+"""
+
+
+
+
 
 
 """ 25.2 Задание 25 ЕГЭ | Урок 2 """
@@ -271,6 +295,36 @@ for n in range(6080068, 6080177):
 6080153
 6080161
 """
+
+
+# https://stepik.org/lesson/1720859/step/4?unit=1744395
+# https://kompege.ru/task   № 506 Джобс 19.10.2020 (Уровень: Базовый)
+def fn(n):
+    dv = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n // i}
+    return dv
+
+def fs(n):
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+for n in range(25317, 51238):
+    dv = fn(n)
+    smpl = [i for i in dv if fs(i)]
+    if len(smpl) >= 6:
+        print(n, max(smpl))
+
+"""
+30030 13
+39270 17
+43890 19
+46410 17
+"""
+
 
 
 
@@ -354,6 +408,38 @@ res.sort()
 """
 
 
+# https://stepik.org/lesson/1720860/step/4?unit=1744396
+# https://kompege.ru/task   № 3693 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**6+1, 51):
+    if fnmatch(str(n), '12*45*'):
+        print(n, n // 51)
+"""
+122145 2395
+122451 2401
+124542 2442
+124593 2443
+127245 2495
+"""
+
+
+# https://stepik.org/lesson/1720860/step/5?unit=1744396
+# https://kompege.ru/task   № 4711 Демоверсия 2023 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**10+1, 2023):
+    if fnmatch(str(n), '1?2139*4'):
+        print(n, n // 2023)
+"""
+162139404 80148
+1321399324 653188
+1421396214 702618
+1521393104 752048
+"""
+
+
+
+
+
 
 
 """ 25.4 Задание 25 ЕГЭ | Задачи прошлых лет """
@@ -429,3 +515,110 @@ for n in range(800_000, 10**9):
 800024 400014
 800033 61554
 """
+
+
+# https://stepik.org/lesson/1720861/step/4?unit=1744397
+# https://kompege.ru/task   № 17564 Основная волна 08.06.24 (Уровень: Средний)
+def f(n):
+    dv = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n // i}
+    if dv:
+        return min(dv) + max(dv)
+
+k = 5
+for n in range(700_000, 10**10):
+    d = f(n)
+    if d and d % 10 == 4:
+        print(n, d)
+        k -= 1
+    if not k:
+        break
+"""
+700004 350004
+700009 41194
+700023 233344
+700024 350014
+700044 350024
+"""
+
+
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/11?unit=1753726
+# https://kompege.ru/task  № 19255 ЕГКР 21.12.24 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**10 + 1, 18579):
+    if fnmatch(str(n), '54?1?3*7'):
+        print(n, n // 18579)
+"""
+545163597 29343
+5411932647 291293
+5421036357 291783
+5451134337 293403
+5461538577 293963
+5481232317 295023
+5491636557 295583
+"""
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/11?unit=1754357
+# https://kompege.ru/task  № 20814 Апробация 05.03.25 (Уровень: Базовый)
+def f(n):
+    d = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            d |= {i, n // i}
+    return sum(d)
+
+c = 5
+for n in range(500_001, 10**10):
+    r = f(n)
+    if r and r % 10 == 9:
+        c -= 1
+        print(n, r)
+    if not c:
+        break
+"""
+500014 250009
+500038 495289
+500040 1170359
+500054 250029
+500058 667289
+"""
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/11?unit=1760676
+# https://kompege.ru/task  № 21422 Досрочная волна 2025 (Уровень: Базовый)
+def f(n):
+    d = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            d |= {i, n // i}
+    res = sorted(i for i in d if i % 10 == 7 and i != 7)
+    return res
+
+c = 5
+for n in range(1_125_001, 10**10):
+    d = f(n)
+    if d:
+        print(n, d[0])
+        c -= 1
+    if not c:
+        break
+"""
+1125003 467
+1125006 97
+1125009 17
+1125011 3187
+1125012 177
+"""
+

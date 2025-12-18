@@ -239,3 +239,66 @@ for n in range(100):
         res = max(res, r)
 print(res)  # 166
 
+
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 1
+# https://stepik.org/lesson/1729865/step/6?unit=1753692
+# https://kompege.ru/task  № 19237 ЕГКР 21.12.24 (Уровень: Базовый)
+def f(n):
+    r = ''
+    while n:
+        r += str(n % 3)
+        n //= 3
+    return r[::-1]
+
+d = 10**10
+for n in range(1, 1000):
+    r = f(n)
+    if n % 3:
+        sm = sum(map(int, r))
+        r += f(sm)
+    else:
+        r += r[-2:]
+    r = int(r, 3)
+    if r > 220:
+        d = min(d, r)
+print(d)  # 222
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730526/step/6?unit=1754355
+# https://kompege.ru/task  № 17859 Демоверсия 2025 (Уровень: Базовый)
+l = []
+for n in range(1,13):
+    b = f'{n:b}'
+    if n % 2:
+        b = '1' + b + '01'
+    else:
+        b = '10' + b
+    r = int(b, 2)
+    l.append(r)
+print(max(l))  # 109
+
+
+# 31.1 Вариант 4 | Часть 1
+# https://stepik.org/lesson/1736669/step/6?unit=1760675
+# https://kompege.ru/task  № 21404 Досрочная волна 2025 (Уровень: Базовый)
+for n in range(4, 1000):
+    b = f'{n:b}'
+    if b.count('1') % 2:
+        b += '1'
+        b = '11' + b[2:]
+    else:
+        b += '0'
+        b = '10' + b[2:]
+    r = int(b, 2)
+    if r > 480:
+        print(n)  # 176
+        break
+
+

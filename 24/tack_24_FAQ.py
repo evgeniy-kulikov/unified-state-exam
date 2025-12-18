@@ -1,6 +1,14 @@
 """"""
 
 
+# Тонкости разделения
+s = 'NNNA'
+s = s.replace('NN', 'N N')  #  N NNA   (неверно)
+
+while 'NN' in s:
+    s = s.replace('NN', 'N N')  #  N N NA   (верно)
+
+
 
 """ Решения через сплит """
 # split('Y')
@@ -19,8 +27,9 @@ n = 3  # кол-во  'AB'
 s = 'AB__AB_ABAB___AB____'.replace('AB', 'A B')
 s = s.split()  # ['A', 'B__A', 'B_A', 'BA', 'B___A', 'B____']
 for i in range(len(s) - n):
-    row = s[i: i + n + 1]
-    res = max(res, len(''.join(row)))
+    # row = s[i:i + n+1]
+    # res = max(res, len(''.join(row)))
+    res = max(res, sum(map(len, s[i:i + n+1])))
 print(res)
 
 

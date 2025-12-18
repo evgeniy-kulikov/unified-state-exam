@@ -159,3 +159,35 @@ print(s.count('1'))
 #  https://kompege.ru/task  № 23750 Демоверсия 2026 (Уровень: Средний)
 print(999)  # 999
 
+
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 1
+# https://stepik.org/lesson/1729865/step/13?unit=1753692
+for n in range(4, 10_000):
+    s = '1' + '2' * n
+    while '12' in s or '322' in s or '222' in s:
+        s = s.replace('12', '2', 1)
+        s = s.replace('322', '21', 1)
+        s = s.replace('222', '3', 1)
+    if sum(map(int, s)) == 15:
+        print(n)  # 37
+        break
+
+
+# 31.1 Вариант 4 | Часть 1
+# https://stepik.org/lesson/1736669/step/13?unit=1760675
+for n in range(3, 10_000):
+    s = '3' + '1' * n
+    while '31' in s or '211' in s or '1111' in s:
+        s = s.replace('31', '1', 1)
+        s = s.replace('211', '13', 1)
+        s = s.replace('1111', '2', 1)
+    if sum([*map(int, s)]) == 15:
+        print(n)  # 50
+        break
+

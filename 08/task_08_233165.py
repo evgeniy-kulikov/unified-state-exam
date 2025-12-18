@@ -140,6 +140,41 @@ for p in product('abcd', repeat=4):
 print(cnt)  # 35
 
 
+# https://stepik.org/lesson/1650996/step/3?unit=1673698
+# https://kompege.ru/task   № 1852 Основная волна 2021 (Уровень: Базовый)
+from itertools import product, permutations
+cnt = 0
+for p in product('gepard', repeat=5):
+    cnt += all([p.count('g')==1, p[0] != 'a', p[-1] != 'e'])
+print(cnt)  # 2200
+
+
+# https://stepik.org/lesson/1650996/step/4?unit=1673698
+# https://kompege.ru/task   № 1921 (Уровень: Базовый)
+from itertools import product, permutations
+cnt = 0
+for p in product('0123456789', repeat=3):
+    cnt += all([p[0] != '0', sorted(p) == list(p)])
+print(cnt)  # 165
+
+
+# https://stepik.org/lesson/1650996/step/5?unit=1673698
+# https://kompege.ru/task   № 1929 (Уровень: Базовый)
+from itertools import permutations
+cnt = 0
+for p in permutations('deikstra', 6):
+    if 'i' in p[:-1]:
+        cnt += p[p.index('i') + 1] in 'dkstr'
+print(cnt)  # 9000
+
+# variant
+from itertools import permutations
+cnt = 0
+for p in permutations('deikstra', 6):
+    w = ''.join(p)
+    cnt += any([s in w for s in ('id', 'ik', 'is', 'it', 'ir')])
+print(cnt)  # 9000
+
 
 
 # https://stepik.org/lesson/1650996/step/8?unit=1673698
@@ -216,5 +251,45 @@ print(res)  # 7775
 
 
 
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 1
+# https://stepik.org/lesson/1729865/step/8?unit=1753692
+# https://kompege.ru/task  № 19240 ЕГКР 21.12.24 (Уровень: Базовый)
+from itertools import *
+s = 'авнрья'
+c = res = 0
+for i in product(s, repeat=5):
+    c += 1
+    p = ''.join(i)
+    if p[0] not in 'ая' and p.count('ь') <= 1 and 'яя' not in p:
+        res = c
+print(res)  # 6406
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730526/step/9?unit=1754355
+# https://kompege.ru/task  № 17549 Основная волна 08.06.24 (Уровень: Базовый)
+from itertools import *
+cnt = 0
+res = 0
+for p in product('kocyf', repeat=5):
+    cnt += 1
+    if p[0] != 'k' and p.count('f') == 0 and p.count('y') == 2:
+        res = cnt
+print(res)  # 2313
+
+
+# 31.1 Вариант 4 | Часть 1
+# https://stepik.org/lesson/1736669/step/9?unit=1760675
+# https://kompege.ru/task  № 21407 Досрочная волна 2025 (Уровень: Базовый)
+from itertools import *
+s = 'dgiase'
+c = 0
+for p in product(s, repeat=5):
+    if p[0] not in 'iae' and p[-1] not in 'dgs':
+        c += 1
+print(c)  # 1944
 
 

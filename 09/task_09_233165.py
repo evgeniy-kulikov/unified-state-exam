@@ -74,6 +74,23 @@ for f in open('add/course_233165/9-1_09.txt'):
 print(cnt)  # 353
 
 
+# https://stepik.org/lesson/1679586/step/10?unit=1702700
+# https://kompege.ru/task   № 2095 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/9-1_10.txt'):
+    cnt += len(set(map(int, f.split()))) == 2
+print(cnt)  # 491
+
+
+# https://stepik.org/lesson/1679586/step/11?unit=1702700
+# https://kompege.ru/task   № 2034 (Уровень: Базовый)
+cnt = 0
+for f in open('add/course_233165/9-1_11.txt'):
+    p = sorted(map(int, f.split()))
+    cnt += sum(p) == 180
+print(cnt)  # 2374
+
+
 # https://stepik.org/lesson/1679586/step/12?unit=1702700
 # https://kompege.ru/task   № 2099 (Уровень: Базовый)
 cnt = res = 0
@@ -83,7 +100,6 @@ for f in open('add/course_233165/9-1_12.txt'):
         cnt += 1
         res += len(set(d)) < 3
 print(res * 100 // cnt)  # 3
-
 
 
 
@@ -139,6 +155,15 @@ for f in open('add/course_233165/9-2_05.txt'):
     if a**2 + b**2 == c**2:
         MX = max(MX, a+b)
 print(MX)  # 803
+
+
+# https://stepik.org/lesson/1679588/step/6?unit=1702702
+# https://kompege.ru/task   № 2101 (Уровень: Средний)
+cnt = 0
+for f in open('add/course_233165/9-2_06.txt'):
+    a,b,c = sorted(map(int, f.split()))
+    cnt += a**2 + b**2 > c**2
+print(cnt)  # 1496
 
 
 
@@ -301,4 +326,51 @@ for f in open('add/course_233165/9-5_09.txt'):
     if (len(d1), len(d2)) == (3, 4) and sum(d2) / 4 < max(d1):
         print(cnt)  # 17
         break
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 1
+# https://stepik.org/lesson/1729865/step/10?unit=1753692
+# https://kompege.ru/task  № 19241 ЕГКР 21.12.24 (Уровень: Базовый)
+from statistics import mean
+d = open('02_09.txt')
+cnt = res = 0
+for k in d:
+    cnt += 1
+    l = [*map(int, k.split())]
+    n1 = [i for i in l if l.count(i) == 1]
+    n3 = [i for i in l if l.count(i) == 3]
+    if len(n1) == 1 and len(n3) == 6:
+        if mean(n3) < n1[0]:
+            res = cnt
+print(res)  # 17975
+
+# https://stepik.org/lesson/1730526/step/10?unit=1754355
+# https://kompege.ru/task  № 17863 Демоверсия 2025 (Уровень: Средний)
+c = 0
+for i in open('03_09.txt'):
+    d = [*map(int, i.split())]
+    n1 = [i for i in d if d.count(i) == 1]
+    n3 = [i for i in d if d.count(i) == 3]
+    if len(n3) == 3 and len(n1) == 3:
+        c += sum(n3) ** 2 > sum(n1)**2
+print(c)  # 273
+
+
+# 31.1 Вариант 4 | Часть 1
+# https://stepik.org/lesson/1736669/step/10?unit=1760675
+# https://kompege.ru/task  № 21408 Досрочная волна 2025 (Уровень: Базовый)
+c = 0
+for i in open('04_09.txt'):
+    d = [*map(int, i.split())]
+    n1 = [k for k in d if d.count(k) == 1]
+    n3 = [k for k in d if d.count(k) == 3]
+    # if len(n1) == 1 and len(n3) == 6:
+    if len(n3) == 6:
+        c += max(n3) > n1[0]
+print(c)  # 1
+
 

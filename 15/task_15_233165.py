@@ -43,6 +43,28 @@ for a in range(1, 1000):
         break
 
 
+# https://stepik.org/lesson/1697214/step/6?unit=1720589
+# https://kompege.ru/task   № 948 (Уровень: Базовый)
+def f(x):
+    return (x%4 !=3 or x%6 != 1) <= (x%36 != a)
+
+for a in range(1, 1000):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 7
+        break
+
+
+# https://stepik.org/lesson/1697214/step/7?unit=1720589
+# https://kompege.ru/task   № 1127 (Уровень: Базовый)
+def f(x):  # (a % x != 0) работает,  (a % x) не работает !!!
+    return (not a % 7) and ((not 240 % x) <= ((a % x != 0) <= (780 % x)))
+
+for a in range(1, 1000):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 420
+        break
+
+
 # https://stepik.org/lesson/1697214/step/8?unit=1720589
 # https://kompege.ru/task   № 216 Джобс 14.09.2020 (Уровень: Базовый)
 def f(x):
@@ -63,6 +85,49 @@ for a in range(1000, 0, -1):
     if all(f(x) for x in range(1, 1000)):
         print(a)  # 13
         break
+
+
+# https://stepik.org/lesson/1697214/step/10?unit=1720589
+# https://kompege.ru/task   № 2079 (Уровень: Базовый)
+def f(x):
+    return (x & 107 == 0) <= ((x & 55 != 0 ) <= (x & a != 0))
+
+for a in range(1, 100):
+    if all(f(x) for x in range(1, 2000)):
+        print(a)  # 20
+        break
+
+
+# 👍 https://stepik.org/lesson/1697214/step/11?unit=1720589
+# https://kompege.ru/task   № 2081 (Уровень: Средний)
+# 8-битная цепочка должна начинаться с '1' (быть без незначащих нулей слева)
+p = [i for i in range(256) if f'{i:b}'.zfill(8)[:2] == '11']
+q = [*range(0, 256, 2)]
+a = []
+for x in range(256):
+    f = (x in p) or (x not in q)
+    if not f:
+        a.append(x)
+print(len(a))  # 96
+
+# variant
+cnt = 0
+for x in range(256):
+    cnt += not (f'{x:b}'.zfill(8)[:2] == '11' or x % 2)
+print(cnt)  # 96
+
+
+# https://stepik.org/lesson/1697214/step/12?unit=1720589
+# https://kompege.ru/task   № 627 Джобс 02.11.2020 (Уровень: Базовый)
+def f(x, y):
+    return all([x*y > a, x > y, x < 8])
+
+for a in range(1, 100):
+    if all(not f(x,y) for x in range(1, 100) for y in range(1, 100)):
+        print(a)  # 42
+        break
+
+
 
 
 
@@ -264,3 +329,46 @@ for l in range(120):
         if all(f(x, l, r) for x in range(200)):
             res = min(res, r - l - 1)
 print(res)  # 24
+
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/3?unit=1753726
+# https://kompege.ru/task  № 19247 ЕГКР 21.12.24 (Уровень: Базовый)
+def f (x, y):
+    return (x - 3*y < a) or (y > 400) or (x > 56)
+
+for a in range(1000):
+    if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 54
+        break
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/3?unit=1754357
+# https://kompege.ru/task  № 20809 Апробация 05.03.25 (Уровень: Базовый)
+def f(x, b):
+    return not x % a or x not in b or x % 22
+
+b = [*range(60, 81)]
+for a in range(1000, 0, -1):
+    if all(f(x, b) for x in range(1, 1000)):
+        print(a)  # 66
+        break
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/3?unit=1760676
+# https://kompege.ru/task  № 21414 Досрочная волна 2025 (Уровень: Базовый)
+def f(x, y):
+    return (5<y) or (x>32) or ((x + 2*y) < a)
+for a in range(1000):
+    if all(f(x,y) for x in range(1000) for y in range(1000)):
+        print(a)  # 43
+        break
+
+

@@ -44,6 +44,37 @@ def f(n):
 print(f(100)) # 180224
 
 
+# https://stepik.org/lesson/1697472/step/6?unit=1720848
+# https://kompege.ru/task   № 608 (Уровень: Базовый)
+def f(n):
+    if n== 1:
+        return 2
+    return f(n-1) + 5*n**2
+print(f(39))  # 102697
+
+
+# https://stepik.org/lesson/1697472/step/7?unit=1720848
+# https://kompege.ru/task   № 610 (Уровень: Базовый)
+def f(n):
+    if n < 5:
+        return 1 + 2*n
+    if n % 3:
+        return 1 + 2*n + f(n-1) + 2*f(n-2)
+    return 2 * (n + 1) * f(n-2)
+print(f(15))  # 5158048
+
+
+# https://stepik.org/lesson/1697472/step/8?unit=1720848
+# https://kompege.ru/task   № 1199 Апробация 27.04 (Уровень: Базовый)
+def f(n):
+    if n <= 1:
+        return 1
+    if n % 2:
+        return 2*f(n-2)
+    return 3*n + f(n-1)
+print(f(31))  # 32768
+
+
 # https://stepik.org/lesson/1697472/step/10?unit=1720848
 # https://kompege.ru/task   № 1408 (Уровень: Базовый)
 def f(n):
@@ -64,6 +95,7 @@ def f(n):
         return f(n-1) + 3*n**2
     return n//2 + f(n-1) + 2
 print(f(49))  # 62820
+
 
 # https://stepik.org/lesson/1697472/step/12?unit=1720848
 # https://kompege.ru/task   № 592 (Уровень: Средний)
@@ -195,3 +227,65 @@ def f(n):
 
 [f(n) for n in range(7, 2025)]
 print((2 * f(2024) + f(2023)) // f(2022))  # 8191127
+
+
+
+
+
+""""""
+""" Варианты """
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/4?unit=1753394
+#  https://kompege.ru/task  № 17872 Демоверсия 2025 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return (n - 1) * f(n - 1)
+
+[f(i) for i in range(1, 2025)]
+print((f(2024) + 2 * f(2023)) / f(2022))  # 4094550
+
+
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/4?unit=1753726
+# https://kompege.ru/task  № 19248 ЕГКР 21.12.24 (Уровень: Базовый)
+from functools import *
+@lru_cache()
+def f(n):
+    if n < 5:
+        return n
+    return 2*n * f(n-4)
+
+[f(i) for i in range(1, 13766)]
+print((f(13766) - 9 * f(13762)) // f(13758))  # 757543052
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/4?unit=1754357
+# https://kompege.ru/task  № 17872 Демоверсия 2025 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return (n-1) * f(n-1)
+
+[f(n) for n in range(1, 2025)]
+print((f(2024) + 2 * f(2023)) // f(2022))  # 4094550
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/4?unit=1760676
+# https://kompege.ru/task  № 21415 Досрочная волна 2025 (Уровень: Базовый)
+from functools import *
+@lru_cache()
+def f(n):
+    if n <= 5:
+        return 1
+    return n + f(n-2)
+
+[f(i) for i in range(2127)]
+print(f(2126) - f(2122))  # 4250
+

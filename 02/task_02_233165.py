@@ -204,6 +204,33 @@ wxzy
 """
 
 
+# https://stepik.org/lesson/1650983/step/7?unit=1673685
+# https://kompege.ru/task   № ***
+from itertools import *
+def f(a,b,c,d):
+    return ((a and b) == (not c)) and (not b or d)
+
+t = [(1,0,0,0), (1,0,1,0), (1,0,1,1), (1,1,0,0)]
+for p in permutations('abcd'):
+    if [f(**dict(zip(p,d))) for d in t] == [1,1,1,1]:
+        print(''.join(p))  # cadb
+
+
+# https://stepik.org/lesson/1650983/step/8?unit=1673685
+# https://kompege.ru/task   № ***
+from itertools import *
+def f(x,y,z,w):
+    return (not (z and (not w))) or ((z <= w) == (x <= y))
+
+for a1,a2,a3,a4,a5,a6 in product((0,1), repeat=6):
+    t = [(1,a1,a2,a3), (1,1,a4,1), (1,a5,a6,1)]
+    if len(set(t)) == 3:
+        for p in permutations('xyzw'):
+            if [f(**dict(zip(p,d))) for d in t] == [0,0,0]:
+                print(''.join(p))  # zxwy
+
+
+
 
 """ 2.3 Задание 2 | Задачи прошлых лет """
 # https://stepik.org/lesson/1650984/step/1?unit=1673686

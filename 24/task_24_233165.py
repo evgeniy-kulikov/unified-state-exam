@@ -94,6 +94,45 @@ s = s.replace('N', ' ').replace('P', ' ').replace('O', ' ').split()
 print(max(map(len, s)))  # 327
 
 
+# https://stepik.org/lesson/1720694/step/9?unit=1744230
+# https://kompege.ru/task   № 4602 Основная волна 2022 (Уровень: Базовый)
+from re import *
+reg = r'(?:[BCD][AO])+'
+s = open('add/course_233165/24-1__09.txt').readline().strip()
+res = findall(reg, s)
+print(len(max(res, key=len)) // 2)  # 174
+
+# variant
+s = open('add/course_233165/24-1__09.txt').readline().strip()
+s = s.replace('O', 'A').replace('C', 'B').replace('D', 'B')
+s = s.replace('BA', '*').replace('A', ' ').replace('B', ' ').split()
+print(len(max(s, key=len)))  # 174
+
+
+# https://stepik.org/lesson/1720694/step/10?unit=1744230
+# https://kompege.ru/task   № 4643 (Уровень: Базовый)
+from re import *
+reg = r'(?:\d{2}[AB])+'
+s = open('add/course_233165/24-1__10.txt').readline()
+res = findall(reg, s)
+print(len(max(res, key=len)) // 3)  # 67
+
+# variant
+s = open('add/course_233165/24-1__10.txt').readline()
+s = s.replace('B', 'A').replace('2', '1').replace('11A', '*')
+s = s.replace('A', ' ').replace('1', ' ').split()
+print(len(max(s, key=len)))  # 67
+
+
+# https://stepik.org/lesson/1720694/step/11?unit=1744230
+# https://kompege.ru/task   № 8510 Апробация 17.05 (Уровень: Средний)
+s = open('add/course_233165/24-1__11.txt').readline()
+s = s.replace('O', 'N').replace('P', 'N')
+while 'NN' in s:  # иначе могут остаться NN  NNNA -> N NNA
+    s = s.replace('NN', 'N N')
+s = s.split()
+print(len(max(s, key=len)))  # 57
+
 
 
 
@@ -252,21 +291,60 @@ for i in range(2, len(s)):
 print(max(ls))  # 21
 
 
-# https://stepik.org/lesson/1720696/step/4?unit=1744232
-# https://kompege.ru/task   № 9169 Джобс 06.06.2023 (Уровень: Сложный)
-s = open('add/course_233165/24-3__04.txt').readline().strip()
-cnt = l = 0
-MN = 10**6
-w = ('BAD', 'FAT')
-for r in range(2, len(s)):
-    if s[r-2:r+1] in w:
+# https://stepik.org/lesson/1720695/step/8?unit=1744231
+# https://kompege.ru/task   № 2251 (Уровень: Базовый)
+s = open('add/course_233165/24-2__08.txt').readline().strip()
+cnt = l = MX = 0
+for r in range(len(s)):
+    if s[r] == 'D':
         cnt += 1
-    while cnt == 3:
-        if s[l:l+3] in w:
+    while cnt > 2:
+        if s[l] == 'D':
             cnt -= 1
-        MN = min(MN, r-l+1)
         l += 1
-print(MN)  # 10
+    MX = max(MX, r - l + 1)
+print(MX)  # 373
+
+
+# https://stepik.org/lesson/1720695/step/9?unit=1744231
+# https://kompege.ru/task   № 10105 Демоверсия 2024 (Уровень: Средний)
+s = open('add/course_233165/24-2__09.txt').readline()
+cnt = l = mx = 0
+for r in range(len(s)):
+    if s[r] == 'T':
+        cnt += 1
+    while cnt > 100:
+        if s[l] == 'T':
+            cnt -= 1
+        l += 1
+    if cnt == 100:
+        mx = max(mx, r-l+1)
+print(mx)  # 133
+
+
+# https://stepik.org/lesson/1720695/step/10?unit=1744231
+# https://kompege.ru/task   № 13715 (Уровень: Средний)
+s = open('add/course_233165/24-2__10.txt').readline()
+cnt = l = mx = 0
+for r in range(1, len(s)):
+    if s[r-1:r+1] == 'AB':
+        cnt += 1
+    while cnt > 50:
+        if s[l:l+2] == 'AB':
+            cnt -= 1
+        l += 1
+    if cnt == 50:
+        mx = max(mx, r-l+1)
+print(mx)  # 10128
+
+# variant
+mx = 0
+s = open('add/course_233165/24-2__10.txt').readline()
+s = s.replace('AB', 'A B').split()
+for i in range(len(s) - 50):
+    mx = max(mx, sum(map(len, s[i:i+51])))
+print(mx)  # 10128
+
 
 
 
@@ -344,6 +422,76 @@ for r in range(len(st)):
 print(MN)  # 68500
 
 
+# https://stepik.org/lesson/1720696/step/4?unit=1744232
+# https://kompege.ru/task   № 9169 Джобс 06.06.2023 (Уровень: Сложный)
+s = open('add/course_233165/24-3__04.txt').readline().strip()
+cnt = l = 0
+MN = 10**6
+w = ('BAD', 'FAT')
+for r in range(2, len(s)):
+    if s[r-2:r+1] in w:
+        cnt += 1
+    while cnt == 3:
+        if s[l:l+3] in w:
+            cnt -= 1
+        MN = min(MN, r-l+1)
+        l += 1
+print(MN)  # 10
+
+
+# https://stepik.org/lesson/1720696/step/5?unit=1744232
+# https://kompege.ru/task   № 5171 (Уровень: Базовый)
+from re import *
+reg = r'(?:CA)+A?'
+s = open('add/course_233165/24-3__05.txt').readline()
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 54
+
+
+# https://stepik.org/lesson/1720696/step/6?unit=1744232
+# https://kompege.ru/task   № 2425 (Уровень: Базовый)
+# Неполная цепочка в конце
+mx = 0
+cnt = 3
+s = open('add/course_233165/24-3__06.txt').readline()
+for i in range(len(s) - 3):
+    if s[i:i + 4] in 'DBACDBA':
+        cnt += 1
+        mx = max(mx, cnt)
+    else:
+        cnt = 3
+print(mx)  # 95
+
+
+# https://stepik.org/lesson/1720696/step/7?unit=1744232
+# https://kompege.ru/task   № 2428 (Уровень: Средний)
+# Неполная цепочка как в начале, так и в конце
+mx = 0
+cnt = 2
+s = open('add/course_233165/24-3__07.txt').readline()
+for i in range(len(s) - 2):
+    if s[i:i + 3] in 'XYZXY':
+        cnt += 1
+        mx = max(mx, cnt)
+    else:
+        cnt = 2
+print(mx)  # 69
+
+
+# https://stepik.org/lesson/1720696/step/8?unit=1744232
+# https://kompege.ru/task   № 18597 (Уровень: Средний)
+from re import *
+s = open('add/course_233165/24-3__08.txt').readline()
+n = r'[1-9]\d{3}\.\d+'
+reg = rf'(?:{n}(?:&{n})+)'
+# reg = r'(?:[1-9]\d{3}\.\d+(?:&[1-9]\d{3}\.\d+)+)'
+res = findall(reg, s)
+print(max(map(len, res)))  # 45
+# 6122.27372&3813.88339566131561929530755870808
+
+
+
+
 
 
 """ 24.4 Задание 24 ЕГЭ | Задачи прошлых лет """
@@ -418,4 +566,108 @@ reg = rf'{a}(?:[*-]{a})+'
 s = open('add/course_233165/24-4__04.txt').readline().strip()
 res = findall(reg, s)
 print(max(map(len, res)))  # 40
+
+
+# https://stepik.org/lesson/1720697/step/5?unit=1744233
+# https://kompege.ru/task   № 17641 Основная волна 19.06.24 (Уровень: Гроб)   142
+# Hard task !!!
+from re import *
+n = f'(0|[1-9]\d*)'
+reg = rf'{n}([*+]{n})+'
+s = open('add/course_233165/24-4__05_1.txt').readline()
+find = finditer(reg, s)
+res = [i.group() for i in find]
+# res = [i for i in res if len(i) > 100]  # 100 для ускорения
+MX = 0
+for i in res:
+    d = i.split('+')
+    cnt = 0
+    for i in d:
+        if not eval(i):
+            cnt += len(i) + 1
+            MX = max(MX, cnt - 1)
+        else:
+            cnt = 0
+print(MX)  # 142
+
+
+# https://stepik.org/lesson/1720697/step/6?unit=1744233
+# https://kompege.ru/task   № 17878 Демоверсия 2025 (Уровень: Сложный)
+from re import *
+s = open('add/course_233165/24-4__06.txt').readline()
+n = r'(?:[1-9]\d*|0)'
+reg = rf'(?:{n}(?:[*-]{n})+)'
+# reg = rf'(?:(?:[1-9]\d*|0)(?:[*-](?:[1-9]\d*|0))+)'
+res = findall(reg, s)
+# res = [i.group() for i in finditer(reg, s)]
+print(max(map(len, res)))  # 154
+# print(max(res, key=len))
+# 79799-60-709*970*78680*797006866988009689*76687809-76796077-97079*990*8*9796-88977-6987790-87779*76-0-96-6-8766006666069770860808660*879097866096*8686*8*0
+
+
+
+
+""""""
+""" Варианты """
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/10?unit=1753394
+# https://kompege.ru/task  № 17878 Демоверсия 2025 (Уровень: Сложный)
+from re import *
+n = r'(?:[6-9]\d*|0)'
+reg = rf'(?:{n}(?:[*-]{n})+)'
+s = open('01_24.txt').read()
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 154
+
+
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/10?unit=1753726
+# https://kompege.ru/task  № 19254 ЕГКР 21.12.24 (Уровень: Базовый)
+l = cnt = res = 0
+f = open('02_24.txt').read().strip()
+for r in range(3, len(f)):
+    if f[r - 3:r + 1] == 'FSRQ':
+        cnt += 1
+    while cnt > 80:
+        if f[l:l+4] == 'FSRQ':
+            cnt -= 1
+        l += 1
+    if cnt == 80:
+        res = max(res, r - l + 1)
+print(res)  # 2379
+
+# variant
+n = 80
+res = 0
+f = open('02_24.txt').read().strip()
+f = f.replace('FSRQ', ' ').split()
+for i in range(len(f) - n):
+    sm = sum(len(k) for k in f[i:i + n+1]) + 80 * 4 + 6
+    # 81 строка где нет 'FSRQ'  +  80 подстрок 'FSRQ'  +  'FSR' + 'SRQ'
+    # возможно будет ошибка если искомый участок будет вначале строки или в ее конце
+    res = max(res, sm)
+print(res)  # 2379
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/10?unit=1754357
+# https://kompege.ru/task  № 20813 Апробация 05.03.25 (Уровень: Сложный)
+from re import *
+n = r'(?:[7-9]\d*|0)'
+reg = rf'{n}(?:[*-]{n})+'
+st = open('03_24.txt').readline().strip()
+ls = findall(reg, st)
+res = max(ls, key=len)
+print(len(res))  # 111
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/10?unit=1760676
+# https://kompege.ru/task  № 21421 Досрочная волна 2025 (Уровень: Базовый)
+from re import *
+reg = r'(?:[1-9AB][0-9AB]*[02468A])'
+s = open('04_24.txt').readline()
+f = findall(reg, s)
+res = max(f, key=len)
+print(len(res))  # 19
 

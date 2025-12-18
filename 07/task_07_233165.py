@@ -139,6 +139,29 @@ t = I / 32_000 / 60
 print(t)  # 72
 
 
+# https://stepik.org/lesson/1661195/step/8?unit=1684068
+# https://kompege.ru/task   № 981 100 базовых задач Е. Джобс (Уровень: Базовый)
+from math import ceil
+I = 4 * 40_000 * 16 * 5 * 60 / 2**23
+print(ceil(I))  # 92
+
+
+# https://stepik.org/lesson/1661195/step/9?unit=1684068
+# https://kompege.ru/task   № 1190 Апробация 27.04 (Уровень: Базовый)
+from math import ceil
+for i in range(1, 100):
+    if ceil(2 * 44_000 * i * (5 * 60 + 25) / 8) / 2**20 > 82:
+        print(i - 1)  # 24
+        break
+
+
+# https://stepik.org/lesson/1661195/step/10?unit=1684068
+# https://kompege.ru/task   № 1362 Джобс 16.05.2021 (Уровень: Базовый)
+from math import ceil
+for i in range(1, 100):
+    if ceil(2 * 80_000 * i * (3 * 60 + 25) / 8) / 2**20 > 82:
+        print(i - 1)  # 24
+        break
 
 
 
@@ -167,5 +190,44 @@ N = 1_474_560 * 280
 print(N // I)  # 32
 
 
+# https://stepik.org/lesson/1650994/step/5?unit=1673696
+# https://kompege.ru/task   № 17548 Основная волна 08.06.24 (Уровень: Базовый)
+for n in range(2000, 3000):
+    if 1024 * 960 * 11 * n > 96_468_992 * 280:
+        print(n - 1)  # 2497
+        break
+print(int(96_468_992 * 280 / (1024 * 960 * 11)))  # 2497
+
+
+
+
+
+""""""
+""" Варианты """
+# 29.1 Вариант 2 | Часть 1
+# https://stepik.org/lesson/1729865/step/8?unit=1753692
+# https://kompege.ru/task  № 19239 ЕГКР 21.12.24 (Уровень: Базовый)
+from math import ceil
+I = ceil(3840 * 2160 * 24 / 8) / 2**30
+usb = 16 // I  # 690
+print(3742 % usb)  # 292
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730526/step/8?unit=1754355
+# https://kompege.ru/task  № 20804 Апробация 05.03.25 (Уровень: Базовый)
+from math import *
+I = 1280 * 960 * ceil(log2(2048))
+S = 96_468_992 * 132
+print(int(S / I))  # 942
+
+
+# 31.1 Вариант 4 | Часть 1
+# https://stepik.org/lesson/1736669/step/8?unit=1760675
+# https://kompege.ru/task  № 21406 Досрочная волна 2025 (Уровень: Базовый)
+from math import *
+I = ceil(3840 * 2160 * 17 / 8)
+I2 = ceil(1280 * 720 * 5 / 8)
+print(int((I - I2) * 120 / 2**10))  # 1998000
 
 

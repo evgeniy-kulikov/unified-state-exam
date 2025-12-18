@@ -42,6 +42,30 @@ while n:
 print(cnt)  # 13
 
 
+# https://stepik.org/lesson/1695816/step/6?unit=1719169
+# https://kompege.ru/task   № 387 (Уровень: Базовый)
+n = 51 * 7**12 - 7**3 - 22
+cnt = 0
+while n:
+    cnt += n % 7
+    n //= 7
+print(cnt)  # 70
+
+
+# https://stepik.org/lesson/1695816/step/7?unit=1719169
+# https://kompege.ru/task   № 1071 (Уровень: Средний)
+
+for i in range(1, 1000):
+    n = 125**200 - 5**i + 74
+    cnt = 0
+    while n:
+        cnt += (n % 5 == 4)
+        n //= 5
+    if cnt == 100:
+        print(i)  # 502
+        break
+
+
 # https://stepik.org/lesson/1695816/step/8?unit=1719169
 # https://kompege.ru/task  № 2235 (Уровень: Средний)
 res = set()
@@ -50,6 +74,26 @@ while n:
     res.add(n % 15)
     n //= 15
 print(len(res))  # 10
+
+
+# https://stepik.org/lesson/1695816/step/9?unit=1719169
+# https://kompege.ru/task   № 12923 PRO100 ЕГЭ 26.01.24 (Уровень: Базовый)
+n = 3*3125**8 + 2*625**7 - 4*625**6 + 3*125**5 - 2*25**4 - 2024
+cnt = 0
+while n:
+    cnt += not n % 25
+    n //= 25
+print(cnt)  # 9
+
+
+# https://stepik.org/lesson/1695816/step/10?unit=1719169
+# https://kompege.ru/task   № 2033 (Уровень: Базовый)
+n = 6*144**26 + 11*12**75 - 48
+cnt = 0
+while n:
+    cnt += n % 12 == 11
+    n //= 12
+print(cnt)  # 51
 
 
 # https://stepik.org/lesson/1695816/step/11?unit=1719169
@@ -74,6 +118,18 @@ for x in range(100):
     if sum(b) == 61:
         print(x)  # 24
         break
+
+
+# https://stepik.org/lesson/1695816/step/12?unit=1719169
+# https://kompege.ru/task   № 1222 Апробация 27.04 (Уровень: Базовый)
+n = 5*216**1156 - 4*36**1147 + 6**1153 - 875
+cnt = 0
+while n:
+    cnt += n % 6 == 5
+    cnt -= not n % 6
+    n //= 6
+print(cnt)  # 1182
+
 
 
 
@@ -101,6 +157,23 @@ for n in range(4, 36):
 for n in range(4, 100):
     if 1*n**2 + 3*n + 2 + 11 == 1*(n + 1)**2 + 2 * (n + 1) + 4:
         print(n)  # 6
+
+
+# https://stepik.org/lesson/1695817/step/4?unit=1719170
+# https://kompege.ru/task   № 256 (Уровень: Средний)
+def conv(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+for n in range(1, 100):
+    a = len(conv(n, 6)) == 2
+    b = len(conv(n, 5)) == 3
+    c = conv(n, 11)[-1] == '1'
+    if a and b and c:
+        print(n)  # 34
 
 
 # https://stepik.org/lesson/1695817/step/9?unit=1719170
@@ -179,3 +252,73 @@ for x in range(28, 1, -1):
     if not n % 28:
         print(n // 28)  # 3319197720
         break
+
+
+
+
+""""""
+""" Варианты """
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/2?unit=1753394
+#  https://kompege.ru/task  № 17868 Демоверсия 2025 (Уровень: Базовый)
+
+for x in '0123456789abcdefghi'[::-1]:
+    n = int(f'98897{x}21', 19) + int(f'2{x}923', 19)
+    if not n % 18:
+        print(n // 18)  # 469034148
+        break
+
+# 29.1 Вариант 2 | Часть 2
+# https://stepik.org/lesson/1729899/step/2?unit=1753726
+# https://kompege.ru/task  № 19246 ЕГКР 21.12.24 (Уровень: Базовый)
+from string import ascii_lowercase as s
+a = '0123456789' + s[:15]
+for i in a[::-1]:
+    res = int(f'11353{i}12', 25) + int(f'135{i}21', 25)
+    if not res % 24:
+        print(res // 24)  # 266249847
+        break
+
+
+# 30.1 Вариант 3 | Часть 1
+# https://stepik.org/lesson/1730528/step/2?unit=1754357
+# https://kompege.ru/task  № 20808 Апробация 05.03.25 (Уровень: Средний)
+def f(n):
+    s = 0
+    while n:
+        s += not n % 7
+        n //= 7
+    return s
+
+zero = 0
+res = 0
+for x in range(2030, 0, -1):
+    n = 7**170 + 7**100 - x
+    tr = f(n)
+    if tr > zero:
+        zero = tr
+        res = x
+print(res)  # 1715
+
+#  variant
+zero = 0
+res = 0
+for x in range(1, 2031):
+    n = 7**170 + 7**100 - x
+    tr = f(n)
+    if tr >= zero:  # >=   очень важно!!!
+        zero = tr
+        res = x
+print(res)  # 1715
+
+
+# 31.2 Вариант 4 | Часть 2
+# https://stepik.org/lesson/1736670/step/2?unit=1760676
+# https://kompege.ru/task  № 21413 Досрочная волна 2025 (Уровень: Базовый)
+from string import ascii_lowercase as alf
+for x in '0123456789' + alf[:11]:
+    n = int(f'82934{x}2', 21) + int(f'2924{x}{x}7', 21) + int(f'67564{x}8', 21)
+    if not n % 20:
+        print(n // 20)  # 72450445
+        break
+
