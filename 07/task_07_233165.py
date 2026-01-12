@@ -231,3 +231,11 @@ I2 = ceil(1280 * 720 * 5 / 8)
 print(int((I - I2) * 120 / 2**10))  # 1998000
 
 
+# 32.1 Вариант 5 | Часть 1
+# https://stepik.org/lesson/1754188/step/8?unit=1778647
+# https://kompege.ru/task  № 21702 ЕГКР 19.04.25 (Уровень: Базовый)
+from math import ceil
+I = ceil(7680 * 4320 * 16 / 8) / 2**30
+usb = 9 // I
+print(4010 % usb)  # 95
+

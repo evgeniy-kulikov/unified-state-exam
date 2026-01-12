@@ -671,3 +671,110 @@ f = findall(reg, s)
 res = max(f, key=len)
 print(len(res))  # 19
 
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/10?unit=1778648
+# https://kompege.ru/task  № 21717 ЕГКР 19.04.25 (Уровень: Средний)
+# В поиске минимальной строки притаился замечательный скрытый камень 😉
+s = open('05_24.txt').read().strip()
+# s = 'QQQ' + 'RSQ' * 130 + 'SSSQ'  # проверка
+cnt = l = 0
+res = 10**10
+for r in range(2, len(s)):
+    if s[r-2:r+1] == 'RSQ':
+        cnt += 1
+    while cnt > 130:
+        if s[l:l+3] == 'RSQ':
+            cnt -= 1
+        l += 1
+    if cnt == 130 and s[r] != 'Q':
+        # на сколько нужно убрать лишние символы перед первой слева подстрокой 'RSQ' 😉
+        idx = s[l:r+1].index('RSQ')
+        res = min(res, r - l - idx + 1)
+print(res)  # 497
+
+
+# 33.2 Вариант 6 | Часть 2
+# https://stepik.org/lesson/1943171/step/10?unit=1969925
+# https://kompege.ru/task  № 23206 Основная волна 10.06.25 (Уровень: Средний)
+s = open('06_24.txt').readline().strip()
+l = c = mx = 0
+for r in range(len(s)):
+    if s[r] in '02468':
+        l = r
+        c = 0
+    if s[r] == 'S':
+        c += 1
+    if c == 35 and s[l] in '02468':
+        mx = max(mx, r - l + 1)
+print(mx)  # 292
+
+# дольше по времени
+s = open('06_24.txt').readline().strip()
+for i in '2468':
+    s = s.replace(i, '0')
+mx = 0
+for l in range(len(s)):
+    for r in range(l+mx, len(s)):
+        st = s[l:r+1]
+        if any([st[0] != '0', st.count('0') > 1, st.count('S') > 35]):
+            break
+        if st[0] == '0' and st.count('S') == 35:
+            mx = max(mx, len(st))
+print(mx)  # 292
+
+
+
+# 34.2 Вариант 7 | Часть 2
+# https://stepik.org/lesson/1943174/step/10?unit=1969928
+# https://kompege.ru/task  № 23281 Основная волна 11.06.25 (Уровень: Средний)
+# Двойной указатель
+s = open('07_24.txt').readline()
+mx = l = c_y = 0
+for r in range(len(s)):
+    if s[r] == 'Y':
+        c_y += 1
+    while c_y > 80:
+        if s[l] == 'Y':
+            c_y -= 1
+        l += 1
+    if c_y == 80 and s[l: r+1].count('2025') >= 90:
+        mx = max(mx, r-l+1)
+print(mx)  # 2981
+
+# Двойной цикл
+m = 0
+s = open('07_24.txt').readline()
+for l in range(len(s)):
+    for r in range(l+m, len(s)):
+        st = s[l:r + 1]
+        if st.count('Y') > 80:
+            break
+        if st.count('Y') == 80 and st.count('2025') >= 90:
+            m = max(m, len(st))
+print(m)  # 2981
+
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/10?unit=1969936
+# https://kompege.ru/task  № 23568 Пересдача 03.07.25 (Уровень: Средний)
+a = ''
+d = '0123456789'
+cnt = idx = 0
+res = []
+s = open('08_24.txt').readline() + '*'  # + '*'   это костыль 🤔
+for i in range(len(s) - 1):
+    if s[i] not in d and s[i + 1] in d:
+        a = s[i]
+        idx = i
+        cnt = 0
+    elif s[i] in d:
+        cnt += 1
+    elif s[i] == a and cnt:
+        res.append((cnt + 2, idx))
+        a = s[i]
+res.sort(key=lambda x: (-x[0], x[1]))
+print(res[0][1])  # 310030
+
+

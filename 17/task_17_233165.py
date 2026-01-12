@@ -67,6 +67,60 @@ for i in range(len(ls) - 1):
 print(cnt, ms)  # 140 17031
 
 
+# https://stepik.org/lesson/1698037/step/9?unit=1721419
+# https://kompege.ru/task  № 1994 (Уровень: Базовый)
+dt = [*map(int, open('17_1_09.txt'))]
+mn = 10**10
+c = 0
+for i in range(len(dt) - 1):
+    a, b = dt[i:i + 2]
+    if a * b > 0 and not (a + b) % 7:
+        c += 1
+        mn = min(mn, a*b)
+print(c, mn)  # 359 115022
+
+
+# https://stepik.org/lesson/1698037/step/10?unit=1721419
+# https://kompege.ru/task  № 1998 (Уровень: Базовый)
+from math import prod
+dt = [*map(int, open('17_1_10.txt'))]
+mx = -10**11
+c = 0
+for i in range(len(dt) - 2):
+    d = dt[i:i + 3]
+    if not prod(d) % 7 and abs(sum(d)) % 10 == 5:
+        c += 1
+        mx = max(mx, sum(d))
+print(c, mx)  # 153 19285
+
+
+# https://stepik.org/lesson/1698037/step/11?unit=1721419
+# https://kompege.ru/task  № 1999 (Уровень: Базовый)
+from statistics import mean
+dt = [*map(int, open('17_1_11.txt'))]
+mn = 10**10
+c = 0
+for i in range(len(dt) - 2):
+    d = dt[i:i + 3]
+    if any(not i % 12 for i in d) and all(not i % 3 for i in d):
+        c += 1
+        mn = min(mn, mean(d))
+print(c, mn)  # 119 -7213
+
+
+# https://stepik.org/lesson/1698037/step/12?unit=1721419
+# https://kompege.ru/task  № 2402 (Уровень: Средний
+from statistics import mean
+dt = [*map(int, open('17_1_12.txt'))]
+mn = c = 0
+for i in range(len(dt) - 2):
+    d = dt[i:i + 3]
+    if any(i % 3 == 2 for i in d):
+        c += 1
+        mn += min(d)
+print(c, mn)  # 91 2627
+
+
 
 
 """ 17.2 Задание 17 | Урок 2 """
@@ -202,4 +256,68 @@ for i in range(2, len(ls)):
         cnt += 1
         sm = max(sm, sum(d))
 print(cnt, abs(sm))  # 10007 7953
+
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/5?unit=17786487
+# https://kompege.ru/task  № 21712 ЕГКР 19.04.25 (Уровень: Базовый)
+c = 0
+sm = -1 * 10**10
+ls = [*map(int, open('05_17.txt'))]
+mn = min(i for i in ls if i > 0 and len(str(i)) == 4 and i % 10 == 6)
+for i in range(2, len(ls)):
+    d = ls[i-2:i+1]
+    n4 = [i for i in d if len(str(abs(i))) == 4 and str(i)[-1] == '6']
+    if len(n4) == 1 and sum(d) <= mn:
+        c += 1
+        sm = max(sm, sum(d))
+print(c, sm)  # 507 -164893
+
+
+# 33.2 Вариант 6 | Часть 2
+# https://stepik.org/lesson/1943171/step/5?unit=1969925
+# https://kompege.ru/task  № 23201 Основная волна 10.06.25 (Уровень: Базовый)
+c = 0
+M = 10**10
+ls = [*map(int, open('06_17.txt'))]
+mn = min(i for i in ls if i % 10 == 7 and 99 < i < 1000)
+for i in range(1, len(ls)):
+    d = ls[i-1:i+1]
+    if sum(1 for i in d if 99 < i < 1000) == 1 and not sum(d) % mn:
+        c += 1
+        M = min(M, sum(d))
+print(c, M)  # 9 107
+
+
+# 34.2 Вариант 7 | Часть 2
+# https://stepik.org/lesson/1943174/step/5?unit=1969928
+# https://kompege.ru/task  № 23276 Основная волна 11.06.25 (Уровень: Базовый)
+c = 0
+sm = -1 * 10**10
+ls = [*map(int, open('07_17.txt'))]
+mx = max(i for i in ls if str(i)[-2:] == '25')
+for i in range(2, len(ls)):
+    d = ls[i-2:i+1]
+    n4 = [i for i in d if len(str(abs(i))) == 4]
+    if len(n4) <= 2 and sum(d) <= mx:
+        c += 1
+        sm = max(sm, sum(d))
+print(c, sm)  # 6315 84523
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/5?unit=1969936
+# https://kompege.ru/task  № 23563 Пересдача 03.07.25 (Уровень: Базовый)
+c = 0
+sm = -10**10
+f = [*map(int, open('08_17.txt'))]
+mn = min(i for i in f if i > 0 and not i % 35)
+for i in range(len(f) - 1):
+    a, b = f[i:i+2]
+    if a != b and not abs(a - b) % mn:
+        c += 1
+        sm = max(sm, a + b)
+print(c, sm)  # 87 184328
+
+
 

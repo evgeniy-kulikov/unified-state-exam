@@ -75,6 +75,17 @@ def f(n):
 print(f(31))  # 32768
 
 
+# https://stepik.org/lesson/1697472/step/9?unit=172084891
+# https://kompege.ru/task  № 1020 100 базовых задач Е. Джобс (Уровень: Базовый)
+def f(n):
+    if n <= 3:
+        return 3
+    if n % 2:
+        return f(n - 1) - f(n - 2)
+    return f(n // 2) + 5
+print(f(20))  # 15
+
+
 # https://stepik.org/lesson/1697472/step/10?unit=1720848
 # https://kompege.ru/task   № 1408 (Уровень: Базовый)
 def f(n):
@@ -111,6 +122,7 @@ def f(n):
     if n > 1:
         return f(n-1) - n * g(n-1)
 print(g(18))  # 87810480
+
 
 
 
@@ -178,6 +190,36 @@ d = [f(n) for n in range(1, 1001)]
 print(sum(sum(map(int, str(i))) == 27 for i in d))  # 137
 
 
+# https://stepik.org/lesson/1697473/step/5?unit=1720849
+# https://kompege.ru/task  № 2237 (Уровень: Средний)
+def f(n):
+    if not n:
+        return 0
+    if n % 2:
+        return 1 + f(n - 1)
+    return f(n / 2)
+
+cnt = 0
+for n in range(1, 501):
+    cnt += f(n) == 8
+print(cnt)  # 5
+
+
+# https://stepik.org/lesson/1697473/step/6?unit=1720849
+# https://kompege.ru/task  № 1131 (Уровень: Средний)
+def f(n):
+    if n == 1:
+        return 1
+    if n % 2:
+        return f(n - 1) + n
+    return f(n / 2) + 1
+
+for n in range(1, 500):
+    if f(n) == 19:
+        print(n)  # 448
+        break
+
+
 # https://stepik.org/lesson/1697473/step/7?unit=1720849
 # https://kompege.ru/task   № 601 (Уровень: Средний)
 def f(n):
@@ -201,8 +243,76 @@ f(40)
 print(cnt)  # 22947841
 
 
+# https://stepik.org/lesson/1697473/step/8?unit=1720849
+# https://kompege.ru/task  № 605 (Уровень: Средний)  👍
+def f(n):
+    c = n * n
+    if n > 1:
+        # c += 2 * n + 1
+        # c += f(n - 2)
+        # c += f(n // 3)
+        c += 2 * n + 1 + f(n - 2) + f(n // 3)
+    return c
+
+print(f(100))  # 296541
+
+
+# https://stepik.org/lesson/1697473/step/9?unit=1720849
+# https://kompege.ru/task  № 2248 (Уровень: Сложный)  👍
+"""
+lru_cache  и  sys.setrecursionlimit здесь не помогут.
+строка  f(n + 3) уводит в бесконечность
+"""
+def f(n):
+    if n <= 1:
+        return n
+    if n % 3:
+        return n + f(n + 3)
+    return n + f(n / 3)
+
+for n in range(100):
+    try:
+        if f(n) > 100:
+            print(n)  # 81
+    except:  # уходим от бесконечной рекурсии 😉
+        pass
+
+
+# https://stepik.org/lesson/1697473/step/10?unit=1720849
+# https://kompege.ru/task  № 2247 (Уровень: Сложный) 👍
+def f(n):
+    if n < 3:
+        return n + 1
+    if n % 2:
+        return f(n + 2) + n + 2
+    return f(n - 2) + n - 2
+
+cnt = 0
+for n in range(1, 1000):
+    try:
+        if 10000 <= f(n) < 100000:
+            cnt += 1
+    except:
+        pass
+print(cnt)  # 216
+
+
+
+
 
 """ 16.3 Задание 16 | Задачи прошлых лет """
+# https://stepik.org/lesson/1697474/step/1?unit=1720850
+# https://kompege.ru/task  № 9747 Основная волна 19.06.23 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 11:
+        return n
+    return n + f(n - 1)
+[f(n) for n in range(10, 2025)]
+print(f(2024) - f(2021))  # 6069
+
+
 # https://stepik.org/lesson/1697474/step/2?unit=1720850
 # https://kompege.ru/task   № 9785 Основная волна 20.06.23 (Уровень: Базовый)
 from functools import lru_cache
@@ -214,6 +324,45 @@ def f(n):
         return n + 1 + f(n-2)
 [f(n) for n in range(7, 2025)]
 print(f(2024) - f(2020))  # 4048
+
+
+# https://stepik.org/lesson/1697474/step/3?unit=1720850
+# https://kompege.ru/task  № 9839 Основная волна 27.06.23 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 3:
+        return 3
+    return 2 * n + 5 + f(n - 2)
+
+[f(n) for n in range(2, 3030)]
+print(f(3027) - f(3023))  # 12114
+
+
+# https://stepik.org/lesson/1697474/step/4?unit=1720850
+# https://kompege.ru/task  № ***
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return (n + 1) * f(n - 1)
+
+[f(n) for n in range(1, 2025)]
+print((f(2024) - 3 * f(2023)) // f(2022))  # 4092528
+
+
+# https://stepik.org/lesson/1697474/step/5?unit=1720850
+# https://kompege.ru/task  № ***
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return 2 * n * f(n - 1)
+
+[f(n) for n in range(1, 2026)]
+print((f(2024) // 16 - f(2023)) // f(2022))  # 1019592
 
 
 # https://stepik.org/lesson/1697474/step/6?unit=1720850
@@ -229,6 +378,65 @@ def f(n):
 print((2 * f(2024) + f(2023)) // f(2022))  # 8191127
 
 
+# https://stepik.org/lesson/1697474/step/7?unit=1720850
+# https://kompege.ru/task  № ***
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 10:
+        return n
+    return 3 * n + f(n - 3)
+
+[f(n) for n in range(9, 6251)]
+print((f(6250) + 2 * f(6244)) // f(6238))  # 3
+
+
+# https://stepik.org/lesson/1697474/step/8?unit=1720850
+# https://kompege.ru/task  № 23756 Демоверсия 2026 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache(None)
+def g(n):
+    if n < 10:
+        return 2 * n
+    return g(n - 2) + 1
+
+def f(n):
+    return 2 * (g(n - 3) + 8)
+
+[g(n) for n in range(9, 15549)]
+print(f(15548))  # 15588
+
+
+# https://stepik.org/lesson/1697474/step/9?unit=1720850
+# https://kompege.ru/task  № 23375 Резервный день 19.06.25 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache(None)
+def g(n):
+    if n <= 9:
+        return 3 * n
+    return g(n - 4) + 2
+
+def f(n):
+    return g(n - 1) + g(n - 3)
+
+[g(n) for n in range(9, 43000)]
+print(f(42999))  # 43032
+
+
+# https://stepik.org/lesson/1697474/step/10?unit=1720850
+# https://kompege.ru/task  № 23275 Основная волна 11.06.25 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache(None)
+def g(n):
+    if n < 10:
+        return 2 * n
+    return g(n - 2) + 1
+
+def f(n):
+    return 2 * (g(n - 3) + 8)
+
+[g(n) for n in range(9, 15549)]
+print(f(15548))  # 15588
 
 
 
@@ -288,4 +496,67 @@ def f(n):
 
 [f(i) for i in range(2127)]
 print(f(2126) - f(2122))  # 4250
+
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/4?unit=17786487
+# https://kompege.ru/task  № 21711 ЕГКР 19.04.25 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n < 20:
+        return n
+    return (n - 6) * f(n - 7)
+
+[f(i) for i in range(20, 47873)]
+print((f(47872) - 290 * f(47865)) / f(47858))  # 2276939784
+
+
+# 33.2 Вариант 6 | Часть 2
+# https://stepik.org/lesson/1943171/step/4?unit=1969925
+# https://kompege.ru/task  № 23200 Основная волна 10.06.25 (Уровень: Базовый)
+from functools import *
+@lru_cache(None)
+def f(n):
+    if n < 10:
+        return n
+    return 3*n + f(n - 3)
+
+[f(i) for i in range(6251)]
+print( (f(6250) + 2*f(6244)) // f(6238) )  # 3
+
+
+# 34.2 Вариант 7 | Часть 2
+# https://stepik.org/lesson/1943174/step/4?unit=1969928
+# https://kompege.ru/task  № 23275 Основная волна 11.06.25 (Уровень: Базовый)
+from functools import *
+@lru_cache()
+def g(n):
+    if n < 10:
+        return 2 * n
+    return g(n - 2) + 1
+
+def f(n):
+    return 2 * (g(n - 3) + 8)
+
+[g(i) for i in range(15_600)]
+print(f(15_548))  # 15588
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/4?unit=1969936
+# https://kompege.ru/task  № 23562 Пересдача 03.07.25 (Уровень: Базовый)
+from functools import *
+@lru_cache(None)
+def g(n):
+    if n <= 9:
+        return 3 * n
+    return g(n - 2) + 1
+
+def f(n):
+    return g(n-1)
+
+[g(i) for i in range(1, 48000)]
+print(f(47995))  # 24017
+
 

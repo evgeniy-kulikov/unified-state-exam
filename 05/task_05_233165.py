@@ -302,3 +302,65 @@ for n in range(4, 1000):
         break
 
 
+# 32.1 Вариант 5 | Часть 1
+# https://stepik.org/lesson/1754188/step/6?unit=1778647
+# https://kompege.ru/task  № 21700 ЕГКР 19.04.25 (Уровень: Базовый)
+def f(n):
+    s = ''
+    while n:
+        s = str(n % 3) + s
+        n //= 3
+    return s
+
+res = 0
+for n in range(2, 1000):
+    b = f(n)
+    if not n % 3:
+        b += b[-2:]
+    else:
+        b += f(n % 3 * 3)
+    r = int(b, 3)
+    if r <= 150:
+        res = n
+print(res)  # 16
+
+
+# 34.1 Вариант 7 | Часть 1
+# https://stepik.org/lesson/1943172/step/6?unit=1969926
+# https://kompege.ru/task  № 23264 Основная волна 11.06.25 (Уровень: Базовый)
+def f(n):
+    s = ''
+    while n:
+        s = str(n % 3) + s
+        n //= 3
+    return s
+
+res = 10**10
+for n in range(1, 10000):
+    b = f(n)
+    if n % 3:
+        b += f((n % 3) * 5)
+    else:
+        b += b[-2:]
+    r = int(b, 3)
+    if r > 150:
+        res = min(res, r)
+print(res)  # 162
+
+
+# 35.1 Вариант 8 | Часть 1
+# https://stepik.org/lesson/1943178/step/6?unit=1969932
+# https://kompege.ru/task  № 23551 Пересдача 03.07.25 (Уровень: Базовый)
+res = 0
+for n in range(5, 1000,):
+    b = f'{n:b}'
+    if n % 2:
+        b = '1' + b + '01'
+    else:
+        b = '10' + b
+    r = int(b, 2)
+    if r < 30:
+        res = n
+print(res)
+
+

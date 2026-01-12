@@ -64,6 +64,21 @@ for i in range(1, 100):
         break
 
 
+# https://stepik.org/lesson/1688217/step/11?unit=1711506
+# https://kompege.ru/task  № 17934 (Уровень: Средний)
+from math import ceil, log2
+ind = ceil(99 * ceil(log2((510 + 10))) / 8)
+res = ceil(543 * 1024 / 4322) - ind
+print(res)  # 5
+
+
+# https://stepik.org/lesson/1688217/step/12?unit=1711506
+# https://kompege.ru/task  № 17935 (Уровень: Средний)
+from math import ceil, log2
+ind = ceil(745 * ceil(log2((999 + 10))) / 8)
+res = int(311 * 1024 / 312) - ind
+print(res * 312)  # 27456
+
 
 
 
@@ -125,6 +140,37 @@ for i in range(1, 1000):
         break
 
 
+# https://stepik.org/lesson/1688218/step/8?unit=1711507
+# https://kompege.ru/task  № 23270 Основная волна 11.06.25 (Уровень: Базовый)
+from math import ceil, log2
+for n in range(1000):
+    user = ceil(n * ceil(log2((27 + 10))) / 8)
+    if user * 3548 > 12 * 1024:
+        print(n)  # 5
+        break
+
+
+# https://stepik.org/lesson/1688218/step/9?unit=1711507
+# https://kompege.ru/task  № 23370 Резервный день 19.06.25 (Уровень: Базовый)
+from math import ceil, log2
+for n in range(1000):
+    num = ceil(n * ceil(log2((17 + 10))) / 8)
+    if num * 7_564_230 > 31 * 2**20:
+        print(n)  # 7
+        break
+
+
+# https://stepik.org/lesson/1688218/step/10?unit=1711507
+# https://kompege.ru/task  № 23749 Демоверсия 2026 (Уровень: Базовый)
+from math import ceil
+for i in range(10000):
+    if ceil(2783 * i / 8) * 3_845_627 > 11 * 2**30:
+        print(2**(i-1) + 1)  # 257
+        break
+
+
+
+
 
 """ Варианты """
 # 28.1 Вариант 1 | Часть 1
@@ -166,4 +212,55 @@ for i in range(1, 1000):
         print(2**(i-1))  # 8
         break
 
+
+# 32.1 Вариант 5 | Часть 1
+# https://stepik.org/lesson/1754188/step/12?unit=1778647
+# https://kompege.ru/task  № 21706 ЕГКР 19.04.25 (Уровень: Базовый)
+from math import ceil
+for i in range(1, 100):
+    if ceil(119 * i / 8) * 125_300 / 2**20 > 23:
+        print(2**(i-1) + 1)  # 4097
+        break
+
+
+# 33.1 Вариант 6 | Часть 1
+# https://stepik.org/lesson/1943170/step/12?unit=1969924
+# https://kompege.ru/task  № 23195 Основная волна 10.06.25 (Уровень: Базовый)
+from math import ceil
+for i in range(1, 100):
+    if 356_984 * ceil(172 * i / 8) / 2**20 > 54:
+        print(2**(i-1) + 1)  # 129
+        break
+
+
+# 34.1 Вариант 7 | Часть 1
+# https://stepik.org/lesson/1943172/step/12?unit=1969926
+# https://kompege.ru/task  № 23270 Основная волна 11.06.25 (Уровень: Базовый)
+from math import ceil, log2
+for n in range(1, 1000):
+    I = ceil(n * ceil(log2(10 + 27)) / 8) / 1024
+    if I * 3548 > 12:
+        print(n)  # 5
+        break
+
+
+# 35.1 Вариант 8 | Часть 1
+# https://stepik.org/lesson/1943178/step/12?unit=1969932
+# https://kompege.ru/task  № 23557 Пересдача 03.07.25 (Уровень: Базовый)
+from math import ceil, log2
+for n in range(1, 1000):
+    if ceil(n * ceil(log2(52 + 500 + 10)) / 8) * 45_877 / 2**20 > 49:
+        print(n)  # 896
+        break
+
+
+# 36.1 Вариант 9 | Часть 1
+# https://stepik.org/lesson/1943184/step/12?unit=1969938
+# https://kompege.ru/task  № 23749 Демоверсия 2026 (Уровень: Базовый)
+from math import ceil
+for i in range(1, 1000):
+    if ceil(2783 * i / 8) * 3_845_627 >= 11 * 2**30:
+        print(2**(i - 1) + 1)  # 257
+        # print(i)  # 9
+        break
 

@@ -285,3 +285,14 @@ def f(st, en):
 print(f(7, 13) * f(13, 15) * f(15, 51))  # 174034068
 
 
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/9?unit=17786487
+# https://kompege.ru/task  № 21716 ЕГКР 19.04.25 (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st > en or st == 56:
+        return 0
+    return f(st+3, en) + f(st+7, en) + f(st*3, en)
+print(f(12, 40) * f(40, 72) * f(72, 89))  # 324
+

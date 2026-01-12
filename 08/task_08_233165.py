@@ -293,3 +293,56 @@ for p in product(s, repeat=5):
 print(c)  # 1944
 
 
+# 32.1 Вариант 5 | Часть 1
+# https://stepik.org/lesson/1754188/step/9?unit=1778647
+# https://kompege.ru/task  № 21703 ЕГКР 19.04.25 (Уровень: Базовый)
+from itertools import *
+s = sorted('ПОБЕДА')
+c = 0
+res = 0
+for p in product(s, repeat=6):
+    c += 1
+    if len(set(p)) == 6 and p[0] == 'О' and not c % 2:
+        res = c
+print(res)  # 38306
+
+
+# 33.1 Вариант 6 | Часть 1
+# https://stepik.org/lesson/1943170/step/9?unit=1969924
+# https://kompege.ru/task  № 23192 Основная волна 10.06.25 (Уровень: Базовый)
+from itertools import *
+s = sorted([*'теория'])
+cnt = 0
+res = 0
+for p in product(s, repeat=6):
+    cnt += 1
+    if cnt % 2 and p[0] not in 'тря' and p.count('и') >= 2:
+        res = cnt
+print(res)  # 23159
+
+
+# 34.1 Вариант 7 | Часть 1
+# https://stepik.org/lesson/1943172/step/9?unit=1969926
+# https://kompege.ru/task  № 23267 Основная волна 11.06.25 (Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('строка'), repeat=5):
+    c += 1
+    if c % 2 and p[0] != 'а' and p.count('с') == 1:
+        res = c
+print(res)  # 7775
+
+
+# 35.1 Вариант 8 | Часть 1
+# https://stepik.org/lesson/1943178/step/8?unit=1969932
+# https://kompege.ru/task  № 23554 Пересдача 03.07.25 (Уровень: Базовый)
+from itertools import *
+s = sorted('алгоритм')
+c = 0
+for p in product(s, repeat=5):
+    c += 1
+    if not c % 2 and p[0] not in 'аг' and p.count('р') >= 2:
+        print(c)  # 8626
+        break
+
+

@@ -12,7 +12,7 @@ all from https://kompege.ru/task
 # https://stepik.org/lesson/1695808/step/3?unit=1719160
 # https://kompege.ru/task   № 10569 (Уровень: Базовый)
 from ipaddress import *
-net = ip_network('10.8.248.131/255.255.224.0', 0)
+net = ip_network('10.8.248.131/255.255.224.0', False)
 print(net.network_address)  # 10.8.224.0
 # FADE
 
@@ -30,7 +30,7 @@ for n in range(1,33):
 # https://kompege.ru/task   № 10570 (Уровень: Базовый)
 from ipaddress import *
 for n in range(32, 0, -1):
-    net = ip_network(f'154.201.208.17/{n}', 0)
+    net = ip_network(f'154.201.208.17/{n}', False)
     if str(net.network_address) == '154.201.192.0':
         msk = str(net.netmask).split('.')
         print(msk[2])  # 224
@@ -62,7 +62,7 @@ for n in range(1,33):
 from ipaddress import *
 cnt = 0
 for n in range(1, 33):
-    net = ip_network(f'158.116.11.146/{n}', 0)
+    net = ip_network(f'158.116.11.146/{n}', False)
     cnt += str(net.network_address) == '158.116.0.0'
 print(cnt)  # 7
 
@@ -81,7 +81,7 @@ for n in range(32, 0, -1):
 # https://stepik.org/lesson/1695808/step/10?unit=1719160
 # https://kompege.ru/task   № 10576 (Уровень: Базовый)
 from ipaddress import *
-net = ip_network(f"0.0.0.0/255.255.240.0", 0)
+net = ip_network(f"0.0.0.0/255.255.240.0", False)
 print(len([*net.hosts()]))  # 4094
 
 # без всякой мудрости 😉
@@ -105,8 +105,8 @@ for n in range(1, 33):
 # https://kompege.ru/task   № 10577 (Уровень: Базовый)
 from ipaddress import *
 for n in range(32, 0, -1):
-    net1 = ip_network(f'165.112.200.70/{n}', 0)
-    net2 = ip_network(f'165.112.175.80/{n}', 0)
+    net1 = ip_network(f'165.112.200.70/{n}', False)
+    net2 = ip_network(f'165.112.175.80/{n}', False)
     if net1 == net2:
         print(n)  # 17
         break
@@ -119,7 +119,7 @@ for n in range(32, 0, -1):
 # https://kompege.ru/task   № 10095 Демоверсия 2024 (Уровень: Средний)
 from ipaddress import *
 cnt = 0
-net = ip_network(f'192.168.32.160/255.255.255.240', 0)
+net = ip_network(f'192.168.32.160/255.255.255.240', False)
 for i in net:
     cnt += not f'{i:b}'.count('1') % 2
 print(cnt)  # 8
@@ -140,7 +140,7 @@ print(cnt)  # 10
 # https://kompege.ru/task   № 17526 Основная волна 07.06.24 (Уровень: Базовый)
 from ipaddress import *
 cnt = 0
-net = ip_network(f'172.16.128.0/255.255.192.0', 0)
+net = ip_network(f'172.16.128.0/255.255.192.0', False)
 for i in net:
     cnt += f'{i:b}'.count('1') % 8192
 print(cnt)  # 8
@@ -160,6 +160,47 @@ net = ip_network(f'45.172.106.203/255.255.252.0', False)
 print(str(net[-2]).replace('.', ''))  # 45172107254
 
 
+# https://stepik.org/lesson/1695809/step/5?unit=1719161
+# https://kompege.ru/task  № 17632 Основная волна 19.06.24 (Уровень: Базовый)
+from ipaddress import *
+cnt = 0
+net = ip_network('112.160.0.0/255.240.0.0', False)
+for i in net:
+    cnt += not f'{i:b}'.count('1') % 5
+print(cnt)  # 215766
+
+
+# https://stepik.org/lesson/1695809/step/6?unit=1719161
+# https://kompege.ru/task  № 17676 Пересдача 04.07.24 (Уровень: Базовый)
+from ipaddress import *
+cnt = 0
+net = ip_network('115.192.0.0/255.192.0.0', False)
+for i in net:
+    cnt += f'{i:b}'.count('1') % 3 != 0
+print(cnt)  # 2796202
+
+
+# https://stepik.org/lesson/1695809/step/8?unit=1719161
+# https://kompege.ru/task  № 23272 Основная волна 11.06.25 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('205.99.68.249/255.255.248.0', False)
+print(str(net[-2]).replace('.', ''))  # 2059971254
+
+
+# https://stepik.org/lesson/1695809/step/9?unit=1719161
+# https://kompege.ru/task  № 23372 Резервный день 19.06.25 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('73.148.145.65/255.224.0.0', False)
+print(str(net[-2]).replace('.', ''))  # 73159255254
+
+
+# https://stepik.org/lesson/1695809/step/10?unit=1719161
+# https://kompege.ru/task  № 23751 Демоверсия 2026 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('191.128.66.83/255.192.0.0', False)
+print(str(net[-2]).replace('.', ''))  # 191191255254
+
+
 
 
 """ Варианты """
@@ -168,7 +209,7 @@ print(str(net[-2]).replace('.', ''))  # 45172107254
 #  https://kompege.ru/task  № 17867 Демоверсия 2025 (Уровень: Базовый)
 from ipaddress import *
 cnt = 0
-net = ip_network('172.16.168.0/255.255.248.0', 0)
+net = ip_network('172.16.168.0/255.255.248.0', False)
 for i in net:
     cnt += f'{i:b}'.count('1') % 5 != 0
 print(cnt)  # 1663
@@ -178,7 +219,7 @@ print(cnt)  # 1663
 # https://stepik.org/lesson/1729899/step/1?unit=1753726
 # https://kompege.ru/task  № 19245 ЕГКР 21.12.24 (Уровень: Базовый)
 from ipaddress import *
-net = ip_network('218.194.82.148/255.255.255.192', 0)
+net = ip_network('218.194.82.148/255.255.255.192', False)
 print(str(net[-2]).replace('.', ''))  # 21819482190
 
 
@@ -199,5 +240,23 @@ print(c)  # 13003
 from ipaddress import *
 net = ip_network('143.168.72.213/255.255.255.240', False)
 print(str(net[-2]).replace('.', ''))  # 14316872222
+
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/1?unit=17786487
+# https://kompege.ru/task  № 21708 ЕГКР 19.04.25 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('11.92.135.56/255.224.0.0', False)
+print(str(net[-2]).replace('.', ''))  # 1195255254
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/1?unit=1969936
+# https://kompege.ru/task  № 23559 Пересдача 03.07.25 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network('102.162.200.51/255.255.255.0', False)
+res = str(net[-2]).split('.')
+print(sum(map(int, res)))  # 718
+
 
 

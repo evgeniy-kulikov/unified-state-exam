@@ -622,3 +622,124 @@ for n in range(1_125_001, 10**10):
 1125012 177
 """
 
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/11?unit=17786487
+# https://kompege.ru/task  № 21718 ЕГКР 19.04.25 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**10, 7993):
+    if fnmatch(str(n), '4*4736*1'):
+        print(n, n // 7993)
+"""
+44736821 5597
+4064736241 508537
+4303247361 538377
+4347368721 543897
+4447361151 556407
+4473658121 559697
+4794736931 599867
+"""
+
+
+# 33.2 Вариант 6 | Часть 2
+# https://stepik.org/lesson/1943171/step/11?unit=1969925 👍
+# https://kompege.ru/task  № 23207 Основная волна 10.06.25 (Уровень: Средний)
+def dv(n):
+    d = set()
+    for i in range(2, int(n*0.5 + 1)):
+        if not n % i:
+            d |= {i, n // i}
+    return d
+
+def smpl(n):
+    for i in range(2, int(n * 0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+c = 5
+for n in range(1_324_728, 10**10):
+    d = [i for i in dv(n) if all([smpl(i), str(i).count('5') == 1])]
+    if len(d) in (1, 2):
+        if d[0] * d[-1] == n:
+            c -= 1
+            print(n, max(d))
+    if not c:
+        break
+"""
+1324795 264959
+1324801 1151
+1324903 2543
+1325015 265003
+1325029 5279
+"""
+
+
+# 34.2 Вариант 7 | Часть 2
+# https://stepik.org/lesson/1943174/step/11?unit=1969928
+# https://kompege.ru/task  № 23282 Основная волна 11.06.25 (Уровень: Средний)
+def smp(n):
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+def dv(n):
+    res = set()
+    for i in range(2, int(n ** 0.5 + 1)):
+        if not n % i:
+            res |= {i, n // i}
+    return res
+
+c = 5
+for n in range(5_400_001, 10**10):
+    res = [i for i in dv(n) if smp(i)]
+    if len(res) >= 2:
+        m = res[0] + res[-1]
+        if m > 60_000 and str(m) == str(m)[::-1]:
+            print(n, m)
+            c -= 1
+    if not c:
+        break
+"""
+5400042 900009
+5400420 90009
+5400866 158851
+5406116 1351531
+5406420 90109
+"""
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/11?unit=1969936
+# https://kompege.ru/task  № 23569 Пересдача 03.07.25 (Уровень: Средний)
+def d(n):
+    r = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n // i}
+    return r
+
+def s(n):
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+c = 5
+for n in range(6_086_055, 10**10):
+    dv = [i for i in d(n) if s(i) and str(i).count('6') == 1]
+    if len(dv) in (1,2):
+        if dv[0] * dv[-1] == n:
+            print(n, max(dv))
+            c -= 1
+    if not c:
+        break
+"""
+6086089 2467
+6086161 3673
+6087281 9467
+6087317 36451
+6087727 2683
+"""
+

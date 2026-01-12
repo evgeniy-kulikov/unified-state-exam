@@ -322,3 +322,97 @@ print([s for s in range(89, 500) if f(s, 4) and not f(s, 2)][0])  # 180
 178 179
 180
 """
+
+
+# 32.2 Вариант 5 | Часть 2
+# https://stepik.org/lesson/1754189/step/7?unit=17786487
+# https://kompege.ru/task  № 21714 ЕГКР 19.04.25 (Уровень: Базовый)
+def f(a, m):
+    if a >= 128:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a+2, m-1), f(a+5, m-1), f(a*2, m-1)]
+    if not (m-1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(2, 127) if f(s, 2)][0])  # 62
+print(*[s for s in range(2, 127) if f(s, 3) and not f(s, 1)][:2])  # 31 57
+print([s for s in range(2, 127) if f(s, 4) and not f(s, 2)][0])  # 55
+"""
+62
+31 57
+55
+"""
+
+
+# 33.2 Вариант 6 | Часть 2
+# https://stepik.org/lesson/1943171/step/7?unit=1969925
+# https://kompege.ru/task  № 23203 Основная волна 10.06.25 (Уровень: Базовый)
+def f(a, m):
+    if a <= 11:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a - 3, m-1), f(a - 7, m-1), f(a // 3, m-1)]
+    # if not (m-1) % 2:
+    if m % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(12, 500) if f(s, 2)][0])  # 36
+print(*[s for s in range(12, 500) if f(s, 3) and not f(s, 1)][:2])  # 39 40
+print([s for s in range(12, 500) if f(s, 4) and not f(s, 2)][0])  # 42
+"""
+36
+39 40
+42
+"""
+
+
+# 34.2 Вариант 7 | Часть 2
+# https://stepik.org/lesson/1943174/step/7?unit=1969928
+# https://kompege.ru/task  № 23278 Основная волна 11.06.25 (Уровень: Базовый)
+def f(a, m):
+    if a <= 16:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-3, m-1), f(a-8, m-1), f(a//3, m-1)]
+    if not (m-1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(17, 110) if f(s, 2)][0])  # 51
+print(*[s for s in range(17, 110) if f(s, 3) and not f(s, 1)][:2])  # 54 55
+print([s for s in range(17, 110) if f(s, 4) and not f(s, 2)][0])  # 57
+"""
+51
+54 55
+57
+"""
+
+
+# 35.2 Вариант 8 | Часть 2
+# https://stepik.org/lesson/1943181/step/7?unit=1969936
+# https://kompege.ru/task  № 23565 Пересдача 03.07.25 (Уровень: Базовый)
+def f(a, m):
+    if a <= 15:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-3, m-1), f(a-8, m-1), f(a//3, m-1)]
+    if not (m-1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(16, 200) if f(s, 2)][0])  # 48
+print(*[s for s in range(16, 200) if f(s, 3) and not f(s, 1)][:2])  # 51 52
+print([s for s in range(16, 200) if f(s, 4) and not f(s, 2)][0])  # 54
+"""
+48
+51 52
+54
+"""
+

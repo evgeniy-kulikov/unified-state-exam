@@ -191,3 +191,57 @@ for n in range(3, 10_000):
         print(n)  # 50
         break
 
+
+# 32.1 Вариант 5 | Часть 1
+# https://stepik.org/lesson/1754188/step/13?unit=1778647
+for n in range(4, 10_000):
+    s = '4' + '2' * n
+    while '42' in s or '8222' in s or '2222' in s:
+        s = s.replace('42', '2', 1)
+        s = s.replace('8222', '24', 1)
+        s = s.replace('2222', '8', 1)
+    if sum(map(int, s)) == 110:
+        print(n)  # 1591
+        break
+
+
+# 33.1 Вариант 6 | Часть 1
+# https://stepik.org/lesson/1943170/step/12?unit=1969924
+# https://kompege.ru/task  № 23195 Основная волна 10.06.25 (Уровень: Базовый)
+for n in range(4, 10_000):
+    s = '7' + '8' * n
+    while '78' in s or '688' in s or '8888' in s:
+        s = s.replace('78', '8', 1)
+        s = s.replace('688', '87', 1)
+        s = s.replace('8888', '6', 1)
+    if sum(map(int, s)) == 61:
+        print(n)  # 348
+        break
+
+
+# 34.1 Вариант 7 | Часть 1
+# https://stepik.org/lesson/1943172/step/13?unit=1969926
+res = 0
+for n in range(4, 4000):
+    s = '1' + '2' * n
+    while '12' in s or '322' in s or '2222' in s:
+        s = s.replace('12', '2', 1)
+        s = s.replace('322', '21', 1)
+        s = s.replace('2222', '3', 1)
+    res = max(res, sum(map(int, s)))
+print(res)  # 89
+
+
+# 35.1 Вариант 8 | Часть 1
+# https://stepik.org/lesson/1943178/step/13?unit=1969932
+sm = 0
+for n in range(4, 10_000):
+    s = '4' + '2' * n
+    while '42' in s or '822' in s or '222' in s:
+        s = s.replace('42', '2', 1)
+        s = s.replace('822', '24', 1)
+        s = s.replace('222', '8', 1)
+    sm = max(sm, sum(map(int, s)))
+print(sm)  # 40
+
+
