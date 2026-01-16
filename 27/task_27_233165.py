@@ -148,6 +148,146 @@ print(int(p_x), int(p_y))  # 30788 -47589
 """
 
 
+# https://stepik.org/lesson/1729157/step/6?unit=1752979
+# https://kompege.ru/task  № 18624 (Уровень: Средний)
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_06_A.txt').readlines()[1:]]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_06_B.txt').readlines()[1:]]
+# data = A[:]
+data = B[:]
+print(len(data))
+
+def getCluster(p: tuple):
+    # Последовательный сбор всех точек кластера из data по условию if dist(i, p) < 1 (0,7 ... 2)
+    # из data собранные точки удаляются. Возвращается список собранных точек кластера.
+    cluster = [i for i in data if dist(i, p) < 1.2]
+    if cluster:
+        for i in cluster:
+            data.remove(i)
+        next_cluster = [getCluster(i) for i in cluster]
+        for c in next_cluster:
+            cluster.extend(c)
+    return cluster
+
+clusters = []  # Список списков кластеров
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)  # Список очередного кластера
+    print(len(cluster))
+    clusters.append(cluster)
+# print(len(A), '=', sum(len(i) for i in clusters))
+
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
+
+point = [center(i) for i in clusters]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(px), int(py))
+"""
+455058 449904
+366751 398174
+"""
+
+
+# https://stepik.org/lesson/1729157/step/7?unit=1752979
+# https://kompege.ru/task  № 18628 (Уровень: Средний)
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_07_A.txt').readlines()[1:]]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_07_B.txt').readlines()[1:]]
+data = A[:]
+# data = B[:]
+print(len(data))
+
+def getCluster(p: tuple):
+    # Последовательный сбор всех точек кластера из data по условию if dist(i, p) < 1 (0,7 ... 2)
+    # из data собранные точки удаляются. Возвращается список собранных точек кластера.
+    cluster = [i for i in data if dist(i, p) < 1]
+    if cluster:
+        for i in cluster:
+            data.remove(i)
+        next_cluster = [getCluster(i) for i in cluster]
+        for c in next_cluster:
+            cluster.extend(c)
+    return cluster
+
+clusters = []  # Список списков кластеров
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)  # Список очередного кластера
+    print(len(cluster))
+    clusters.append(cluster)
+# print(len(A), '=', sum(len(i) for i in clusters))
+
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
+
+point = [center(i) for i in clusters]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(px), int(py))
+"""
+258853 499656
+6165 372336
+"""
+
+
+
+
+# https://stepik.org/lesson/1729157/step/8?unit=1752979
+# https://kompege.ru/task  № 18676 (Уровень: Средний)
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_08_A.txt').readlines()]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_08_B.txt').readlines()]
+data = A[:]
+# data = B[:]
+print(len(data))  # проверка 1
+
+def getCluster(p: tuple):
+    cluster = [i for i in data if dist(i, p) < 1.2]
+    if cluster:
+        for i in cluster:
+            data.remove(i)
+        next_cluster = [getCluster(i) for i in cluster]
+        for c in next_cluster:
+            cluster.extend(c)
+    return cluster
+
+clusters = []
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)
+    print(len(cluster))  # проверка 2
+    clusters.append(cluster)
+
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
+
+point = [center(i) for i in clusters]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(px), int(py))
+"""
+566258 38951
+591893 290926
+"""
+
+
+
+
+
 
 
 

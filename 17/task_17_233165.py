@@ -163,6 +163,94 @@ for i in range(len(ls) - 1):
 print(cnt, mn)  # 1 -92
 
 
+# https://stepik.org/lesson/1698038/step/4?unit=1721420
+# https://kompege.ru/task  № 2238 (Уровень: Базовый)
+dt = [*map(int, open('17_2_04.txt'))]
+ms = c = 0
+ma = sum(dt) / len(dt)
+for i in range(len(dt) - 2):
+    d = dt[i:i + 3]
+    if sum(i > ma for i in d) >= 2:
+        c += 1
+        ms = max(ms, sum(d))
+print(c, ms)  # 5020 28715
+
+
+# https://stepik.org/lesson/1698038/step/5?unit=1721420
+# https://kompege.ru/task  № 2239 (Уровень: Базовый)
+dt = [*map(int, open('17_2_05.txt'))]
+ms = 10**10
+c = 0
+m19 = max(i for i in dt if not i % 19)
+for i in range(len(dt) - 1):
+    d = dt[i:i + 2]
+    if sum(i > m19 for i in d):
+        c += 1
+        ms = min(ms, sum(d))
+print(c, ms)  # 34 11169
+
+
+# https://stepik.org/lesson/1698038/step/6?unit=1721420
+# https://kompege.ru/task  № 2309 (Уровень: Базовый)
+dt = [*map(int, open('17_2_06.txt'))]
+n11 = [i for i in dt if not i % 11]
+n17 = [i for i in dt if not i % 17]
+# if len(n11) > len(n17):
+#     print(len(n11), min(n11))  # 70 363
+# else:
+#     print(len(n17), max(n17))
+a = ((n11, 'min'), (n17, 'max'))[len(n11) < len(n17)]
+print(len(a[0]), eval(a[1])(a[0]))  # 70 363
+
+
+# https://stepik.org/lesson/1698038/step/7?unit=1721420
+# https://kompege.ru/task  № 2310 (Уровень: Базовый)
+res = []
+dt = [*map(int, open('17_2_07.txt'))]
+n4 = [i for i in dt if str(i)[-1] == '4']
+s4 = min(n4) + max(n4)
+for i in range(len(dt) - 1):
+    if dt[i] + dt[i+1] < s4:
+        res.append(dt[i] + dt[i+1])
+print(len(res),  max(res))  # 503 10094
+
+
+# https://stepik.org/lesson/1698038/step/8?unit=1721420
+# https://kompege.ru/task  № 2403 (Уровень: Средний)
+res = []
+d = [*map(int, open('17_2_08.txt'))]
+for i in range(len(d) - 1):
+    if any([not d[i] % 9 and d[i+1] % 9 and abs(d[i+1]) % 8 == 3,
+           not d[i+1] % 9 and d[i] % 9 and oct(d[i])[-1] == '3']):
+        res.append(max(d[i:i+2]))
+print(len(res),  max(res))  # 252 9971
+
+
+# https://stepik.org/lesson/1698038/step/9?unit=1721420
+# https://kompege.ru/task  № 2398 (Уровень: Средний)  👍
+res = []
+d = [*map(int, open('17_2_09_var.txt'))]
+for i in range(len(d) - 2):
+    a, b, c = d[i:i+3]
+    if all([a <= 0 or a % 10 != 9, c <= 0 or c % 10 != 9, b > 0, abs(b) % 10 == 9]):
+        res.append(a + b + c)
+print(len(res),  max(res))  # 206 23427
+
+
+# https://stepik.org/lesson/1698038/step/10?unit=1721420
+# https://kompege.ru/task  № 2399 (Уровень: Средний)
+res = []
+d = [*map(int, open('17_2_10.txt'))]
+d35 = [str(i) for i in d if not i % 35]
+s35 = sum(sum(map(int, i)) for i in d35)  # 4641
+for i in range(len(d) - 1):
+    a, b = d[i:i+2]
+    if all([a > s35, b < s35, hex(b)[-2:] == 'ef']) or all([a < s35, b > s35, hex(a)[-2:] == 'ef']):
+        res.append(a + b)
+print(len(res),  min(res))  # 15 6410
+
+
+
 
 """ 17.3 Задание 17 | Задачи прошлых лет """
 # https://stepik.org/lesson/1698039/step/1?unit=1721421
@@ -190,6 +278,50 @@ for i in range(len(ls) - 2):
         cnt += 1
         ms = max(ms, sum(d))
 print(cnt, ms)  # 6315 84523
+
+
+# https://stepik.org/lesson/1698039/step/3?unit=1721421
+# https://kompege.ru/task  № 17530 Основная волна 07.06.24 (Уровень: Базовый)
+res = []
+d = [*map(int, open('17_3_03.txt'))]
+md = min(d)
+for i in range(len(d) - 1):
+    a, b = d[i:i+2]
+    if any([a % 55 == md, b % 55 == md]):
+        res.append(a + b)
+print(len(res),  min(res))  # 201 2942
+
+
+# https://stepik.org/lesson/1698039/step/4?unit=1721421
+# https://kompege.ru/task  № 17558 Основная волна 08.06.24 (Уровень: Базовый)
+res = []
+d = [*map(int, open('17_3_04.txt'))]
+l32 = len([i for i in d if not i % 32])
+for i in range(len(d) - 1):
+    a, b = d[i:i+2]
+    if any([a < 0, b < 0]) and a+b < l32:
+        res.append(a + b)
+print(len(res),  max(res))  # 4969 299
+
+
+# https://stepik.org/lesson/1698039/step/5?unit=1721421
+# https://kompege.ru/task  № 17636 Основная волна 19.06.24 (Уровень: Средний)
+res = []
+d = [*map(int, open('17_3_05.txt'))]
+m3 = max(i for i in d if abs(i) % 10 == 3 and len(str(abs(i))) == 3)
+for i in range(len(d) - 2):
+    a, b, c = d[i:i+3]
+    if any([abs(a) % 10 == 3 and len(str(abs(a))) == 3,
+            abs(b) % 10 == 3 and len(str(abs(b))) == 3,
+            abs(c) % 10 == 3 and len(str(abs(c))) == 3]) \
+            and a + b + c < m3:
+        res.append(a + b + c)
+print(len(res),  max(res))  # 147 944
+
+
+
+
+
 
 
 
@@ -318,6 +450,20 @@ for i in range(len(f) - 1):
         c += 1
         sm = max(sm, a + b)
 print(c, sm)  # 87 184328
+
+
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/5?unit=1969940
+# https://kompege.ru/task  № 23757 Демоверсия 2026 (Уровень: Базовый)
+
+d = [*map(int, open('09_17.txt'))]
+res = []
+mn = min(i for i in d if 9 < i < 100)
+for i in range(len(d) - 1):
+    a, b = d[i:i+2]
+    if sum([9 < a < 100, 9 < b < 100]) == 1 and not (a + b) % mn:
+        res.append(a + b)
+print(len(res), max(res))  # 150 9930
 
 
 

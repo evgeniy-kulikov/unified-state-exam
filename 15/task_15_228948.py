@@ -39,7 +39,7 @@ for a in range(100, 0, -1):
 def fn(n):
     for x in range(1000):
         for y in range(1000):
-            f = (x*y<a) or (x<y) or (9<x)
+            f = (x*y < a) or (x < y) or (9 < x)
             if not f: return 0
     return 1
 

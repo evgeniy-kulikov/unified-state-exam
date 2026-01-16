@@ -98,8 +98,26 @@ def f(st,en):
 print(f(3, 9) * f(9, 12) * f(12, 20)) # 234
 
 
+# https://stepik.org/lesson/1715370/step/11?unit=1738823
+# https://kompege.ru/task  № 1376 Джобс 16.05.2021 (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st < en:
+        return 0
+    return f(st - 8, en) + f(st // 2, en)
+print(f(102, 43) * f(43, 5))  # 8
 
 
+# https://stepik.org/lesson/1715370/step/12?unit=1738823
+# https://kompege.ru/task  № 222 Джобс 14.09.2020 (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st > en or st == 6:
+        return 0
+    return f(st + 2, en) + f(st * 3, en)
+print(f(1, 25) * f(25, 63))  # 8
 
 
 
@@ -141,7 +159,7 @@ print(f(7, 63))  # 116
 
 # https://stepik.org/lesson/1715371/step/4?unit=1738824
 # https://kompege.ru/task   № 1137 (Уровень: Сложный)
-# Супер задача!!!
+# Супер задача!!!  👍
 """
 Вспоминаем основы СС
 n = 3   >>> int('11' , 2)
@@ -159,7 +177,7 @@ print(f(int('100', 2), int('11101', 2)))  # 79
 
 # https://stepik.org/lesson/1715371/step/5?unit=1738824
 # https://kompege.ru/task   № 2342 (Уровень: Сложный)
-# Супер задача!!!
+# Супер задача!!!  👍
 def cnv(num):
     n = [*map(int, str(num))]
     for i in range(len(n)):
@@ -193,7 +211,7 @@ print(f(1, 20)) # 32
 
 
 # https://stepik.org/lesson/1715371/step/7?unit=1738824
-# https://kompege.ru/task   № 2340 (Уровень: Средний)
+# https://kompege.ru/task   № 2340 (Уровень: Средний)  👍
 def f(st,en):
     if st == en:
         return 1
@@ -207,6 +225,52 @@ for i in range(32, 100):
         break
 
 
+# https://stepik.org/lesson/1715371/step/8?unit=1738824
+# https://kompege.ru/task  № 886 Джобс 25.12.2020 (Уровень: Средний)
+def f(st, en, c=0):
+    if st == en and c == 7:
+        return 1
+    if st > en or c > 7:
+        return 0
+    return f(st + 1, en, c + 1) + f(st + 4, en, c + 1) + f(st * 2, en, c + 1)
+print(f(3, 27))  # 37
+
+
+# https://stepik.org/lesson/1715371/step/9?unit=1738824
+# https://kompege.ru/task  № 2339 (Уровень: Средний)  👍
+res = set()
+def f(st, c=0):
+    global res
+    if c == 15:
+        res |= {st}
+    else:
+        f(st * 2, c + 1)
+        f(st * 2 + 1, c + 1)
+
+f(1)
+print(len(res))  # 32768
+# print(2 ** 15)    # 32768  (комбинаторика)
+
+
+# https://stepik.org/lesson/1715371/step/10?unit=1738824
+# https://kompege.ru/task  № 2341 (Уровень: Сложный)  👍
+res = set()
+def f(st, c=0):
+    # if c == 8 and 1000 <= st <= 1024:
+    #     res.add(st)
+    # if c > 8:
+    #     return
+    if c == 8:
+        if 1000 <= st <= 1024:
+            res.add(st)
+    else:
+        f(st + 1, c + 1)
+        f(st + 5, c + 1)
+        f(st * 3, c + 1)
+
+f(1)
+print(len(res))  # 1
+# print(res)  # 1017
 
 
 
@@ -257,6 +321,29 @@ def f(st,en):
 print(f(5, 7) * f(7, 11))  # 14
 
 
+# https://stepik.org/lesson/1715372/step/5?unit=1738825
+# https://kompege.ru/task  № 17640 Основная волна 19.06.24 (Уровень: Базовый)
+def f (st, en):
+    if st < en:
+        return 0
+    if st == en:
+        return 1
+    return f(st - 2, en) + f(st // 2, en)
+print(f(32, 14) * f(14, 1))  # 54
+
+
+# https://stepik.org/lesson/1715372/step/7?unit=1738825
+# https://kompege.ru/task  № 23280 Основная волна 11.06.25 (Уровень: Базовый)
+def f (st, en):
+    if st < en or st == 8:
+        return 0
+    if st == en:
+        return 1
+    return f(st - 1, en) + f(st - 4, en) + f(st // 3, en)
+print(f(19, 14) * f(14, 2))  # 69
+
+
+
 
 
 
@@ -295,4 +382,16 @@ def f(st, en):
         return 0
     return f(st+3, en) + f(st+7, en) + f(st*3, en)
 print(f(12, 40) * f(40, 72) * f(72, 89))  # 324
+
+
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/9?unit=1969940
+# https://kompege.ru/task  № 23761 Демоверсия 2026 (Уровень: Базовый)
+def f(st, en):
+    if st == en:
+        return 1
+    if st < en or st == 7:
+        return 0
+    return f(st-1, en) + f(st-4, en) + f(st // 3, en)
+print(f(19, 13) * f(13, 2))
 

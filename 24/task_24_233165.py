@@ -490,6 +490,24 @@ print(max(map(len, res)))  # 45
 # 6122.27372&3813.88339566131561929530755870808
 
 
+# https://stepik.org/lesson/1720696/step/9?unit=1744232
+# https://kompege.ru/task  № 19969 (Уровень: Сложный)
+from re import *
+s = open('24-3__09.txt').readline()
+reg = r'\w+@\w+\.\w+'
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 230
+
+
+# https://stepik.org/lesson/1720696/step/10?unit=1744232
+# https://kompege.ru/task  № 19967 (Уровень: Сложный)
+from re import *
+s = open('24-3__10.txt').readline()
+n = r'(?:[1-9]\d*|0)'
+reg = rf'AFD{n}(?:[+*]{n})+'
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 70
+# AFD448*675+16*698+715*448*132191*1540851*484*502*805+38311+873*103*879*0
 
 
 
@@ -603,6 +621,131 @@ res = findall(reg, s)
 print(max(map(len, res)))  # 154
 # print(max(res, key=len))
 # 79799-60-709*970*78680*797006866988009689*76687809-76796077-97079*990*8*9796-88977-6987790-87779*76-0-96-6-8766006666069770860808660*879097866096*8686*8*0
+
+
+# https://stepik.org/lesson/1720697/step/7?unit=1744233
+# https://kompege.ru/task  № 23762 Демоверсия 2026 (Уровень: Средний)
+s = open('24-4__07.txt').readline()
+c = l = res = 0
+for r in range(len(s)):
+    if s[r] == 'Y':
+        c += 1
+    while c > 80:
+        if s[l] == 'Y':
+            c -= 1
+        l += 1
+    if c == 80 and s[l:r+1].count('2025') >= 90:
+        res = max(res, r - l + 1)
+print(res)  # 2981
+
+# variant  (high speed)
+s = open('24-4__07.txt').readline().split('Y')
+res = 0
+n = 80  # кол-во Y
+for i in range(len(s) - n):
+    r = ''.join(s[i:i + (n+1)])
+    if r.count('2025') >= 90:
+        res = max(res, len(r) + n)
+print(res)  # 2981
+
+
+# https://stepik.org/lesson/1720697/step/8?unit=1744233
+# https://kompege.ru/task  № 23206 Основная волна 10.06.25 (Уровень: Средний)
+s = open('24-4__08.txt').readline()
+for i in '2468':
+    s = s.replace(i, '0')
+l = c = res = 0
+for r in range(len(s)):
+    if s[r] == '0':
+        l = r
+        c = 0
+    c += s[r] == 'S'
+    if c == 35:
+        res = max(res, r - l + 1)
+print(res)  # 292
+
+# variant (long time)
+s = open('24-4__08.txt').readline()
+for i in '2468':
+    s = s.replace(i, '0')
+m = 0
+for l in range(len(s)):
+    for r in range(l + m, len(s)):
+        st = s[l: r + 1]
+        if any([s[l] != '0', st.count('0') > 1, st.count('S') > 35]):
+            break
+        if all([s[l] == '0', st.count('S') == 35]):
+            m = max(m, len(st))
+print(m)  # 292
+
+
+# # Где засада - непонятно!!!
+# s = open('24-4__08.txt').readline()
+# # r = 'S'*35 + 'sssss'
+# # s = f'ssss02468{r}4ttttt{r}6{r}8{r}'
+# for i in '2468':
+#     s = s.replace(i, '0')
+# s = s.split('0')
+# if s[0]:
+#     s = s[1:]
+# s.sort(key=len, reverse=True)
+# for i in s:
+#     if i.count('S') == 35:
+#         print(len(i) + 1)  # 276  ??🤔??
+#         # print(i)
+#         break
+
+
+
+# https://stepik.org/lesson/1720697/step/9?unit=1744233
+# https://kompege.ru/task  № 23381 Резервный день 19.06.25 (Уровень: Средний)
+s = open('24-4__09.txt').readline()
+for i in '2468':
+    s = s.replace(i, '0')
+w = ''
+l = m = 0
+for r in range(1, len(s) - 1):
+    if s[r-1] == '0' and s[r] not in '013579':
+        w = s[r]
+        l = r
+    if s[r + 1] == '0':
+        m = max(m, r - l + 2)
+    if s[r] != w:
+        l = r
+print(m)  # 1212
+
+# variant (long time)
+s = open('24-4__09.txt').readline()
+for i in '2468':
+    s = s.replace(i, '0')
+for i in '3579':
+    s = s.replace(i, '1')
+m = 3
+for l in range(len(s)):
+    for r in range(l + m, len(s)):
+        st = s[l: r]
+        if any([st[0] != '0', st.count('1'), len(set(st)) > 2, st.count('0') > 2]):
+            break
+        # if st[0] == st[-1] == '0' and len(set(st)) == 2:
+        if st[0] == st[-1] == '0':
+            m = max(m, len(st))
+print(m)  # 1212
+
+
+# https://stepik.org/lesson/1720697/step/10?unit=1744233
+# https://kompege.ru/task  № 23762 Демоверсия 2026 (Уровень: Средний)
+s = open('24-4__10.txt').readline()
+c = l = m = 0
+for r in range(len(s)):
+    c += s[r] == 'Y'
+    while c > 80:
+        c -= s[l] == 'Y'
+        l += 1
+    if c == 80 and s[l:r+1].count('2025') >= 90:
+        m = max(m, r - l + 1)
+print(m)  # 2981
+
+
 
 
 
@@ -778,3 +921,19 @@ res.sort(key=lambda x: (-x[0], x[1]))
 print(res[0][1])  # 310030
 
 
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/10?unit=1969940
+# https://kompege.ru/task  № 23762 Демоверсия 2026 (Уровень: Средний)
+s = open('09_24.txt').readline()
+l = c = res = 0
+for r in range(len(s)):
+    if s[r] == 'Y':
+        c += 1
+    while c > 80:
+        if s[l] == 'Y':
+            c -= 1
+        l += 1
+    row = s[l:r+1]
+    if c == 80 and row.count('2025') >= 90:
+        res = max(res, r - l + 1)
+print(res)  # 2981

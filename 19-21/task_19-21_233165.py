@@ -416,3 +416,26 @@ print([s for s in range(16, 200) if f(s, 4) and not f(s, 2)][0])  # 54
 54
 """
 
+
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/7?unit=1969940
+# https://kompege.ru/task  № 23759 Демоверсия 2026 (Уровень: Базовый)
+def f(a, m):
+    if a <= 30:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-3, m-1), f(a-5, m-1), f(a // 4, m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print([s for s in range(31, 500) if f(s, 2)][0])  # 124
+print(*[s for s in range(31, 500) if f(s, 3) and not f(s, 1)][:2])  # 127 128
+print([s for s in range(31, 500) if f(s, 4) and not f(s, 2)][0])  # 132
+"""
+124
+127 128
+132
+"""
+

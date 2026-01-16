@@ -219,7 +219,56 @@ for n in range(190201, 190261):
 """
 
 
+# https://stepik.org/lesson/1720858/step/10?unit=1744394
+# https://kompege.ru/task  № 1078 (Уровень: Базовый)
+def f(n):
+    dv = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n // i}
+    return dv
 
+for n in range(1204300, 1204381):
+    dv = f(n)
+    sd = sum(i for i in dv if not i % 2)
+    if sd and not sd % 10:
+        print(n, sd)
+"""
+1204328 948760
+1204354 27530
+1204356 1204380
+1204360 1324880
+1204366 4850
+1204370 291070
+1204378 172070
+"""
+
+
+# https://stepik.org/lesson/1720858/step/11?unit=1744394
+# https://kompege.ru/task  № 1867 Основная волна 2021 (Уровень: Базовый)
+def f(n):
+    dv = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n // i}
+    return dv
+
+c = 5
+for n in range(500_000, 10**10):
+    dv = f(n)
+    n8 = [i for i in dv if i % 10 == 8 and i != 8]
+    if n8:
+        print(n, min(n8))
+        c -= 1
+    if not c:
+        break
+"""
+500002 178
+500004 18
+500016 48
+500018 58
+500020 4348
+"""
 
 
 
@@ -743,3 +792,31 @@ for n in range(6_086_055, 10**10):
 6087727 2683
 """
 
+
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/11?unit=1969940
+# https://kompege.ru/task  № 23763 Демоверсия 2026 (Уровень: Базовый)
+def f(n):
+    d = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            d |= {i, n // i}
+    if not d:
+        return 0
+    return min(d) + max(d)
+
+c = 5
+for n in range(800_000, 10**10):
+    d = f(n)
+    if d and d % 10 == 4:
+        print(n, d)
+        c -= 1
+    if not c:
+        break
+"""
+800004 400004
+800009 114294
+800013 266674
+800024 400014
+800033 61554
+"""

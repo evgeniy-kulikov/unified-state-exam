@@ -48,3 +48,10 @@ all from https://kompege.ru/task
 # https://stepik.org/lesson/1736670/step/8?unit=1760676
 # https://kompege.ru/task  № 21419 Досрочная волна 2025 (Уровень: Базовый)
 # 22/course_233165/22-31__04.xlsx
+
+
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/8?unit=1969940
+# https://kompege.ru/task  № 23760 Демоверсия 2026 (Уровень: Базовый)
+# 22/course_233165/22-36__09.ods
+

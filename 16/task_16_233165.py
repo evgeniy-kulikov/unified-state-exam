@@ -560,3 +560,19 @@ def f(n):
 print(f(47995))  # 24017
 
 
+# 36.2 Вариант 9 | Часть 2
+# https://stepik.org/lesson/1943186/step/4?unit=1969940
+# https://kompege.ru/task  № 23756 Демоверсия 2026 (Уровень: Базовый)
+from functools import *
+@lru_cache()
+def g(n):
+    if n < 10:
+        return 2 * n
+    return g(n - 2) + 1
+
+def f(n):
+    return 2 * (g(n - 3) + 8)
+
+[g(n) for n in range(15550)]
+print(f(15548))  # 15588
+
