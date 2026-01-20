@@ -599,6 +599,39 @@ for n in range(700_000, 10**10):
 
 """"""
 """ Варианты """
+
+""""""
+""" Варианты """
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/11?unit=1753394
+# https://kompege.ru/task  № 17879 Демоверсия 2025 (Уровень: Базовый)
+def f(n):
+    d = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            d |= {i, n // i}
+            return sorted(d)
+
+cnt = 5
+for n in range(800_000, 10**10):
+    d = f(n)
+    if d:
+        m = d[0] + d[-1]
+        if m % 10 == 4:
+            print(n, m)
+            cnt -= 1
+        if not cnt:
+            break
+"""
+800004 400004
+800009 114294
+800013 266674
+800024 400014
+800033 61554
+"""
+
+
+
 # 29.1 Вариант 2 | Часть 2
 # https://stepik.org/lesson/1729899/step/11?unit=1753726
 # https://kompege.ru/task  № 19255 ЕГКР 21.12.24 (Уровень: Базовый)
@@ -820,3 +853,5 @@ for n in range(800_000, 10**10):
 800024 400014
 800033 61554
 """
+
+

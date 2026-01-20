@@ -285,39 +285,140 @@ print(int(px), int(py))
 """
 
 
+# https://stepik.org/lesson/1729157/step/09?unit=1752979
+# https://kompege.ru/task  № 18056 (Уровень: Сложный)
+# Ответ не принимается 🤔
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_09_A.txt').readlines()[1:]]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_09_B_2.txt').readlines()[1:]]
+# data = A[:]
+data = B[:]
+# print(len(data))  # проверка 1
 
+def getCluster(p):
+    clast = [i for i in data if dist(i, p) < 1]
+    for i in clast:
+        data.remove(i)
+    new_clast = [getCluster(i) for i in clast]
+    for i in new_clast:
+        clast.extend(i)
+    return clast
 
+clusters = []
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)
+    # print(len(cluster))  # проверка 2
+    clusters.append(cluster)
 
+# print(len(B), '=', sum(len(i) for i in clusters))   # проверка 3
 
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
 
-
-""""""
-""" Варианты """
-# 28.1 Вариант 1 | Часть 1
-# https://stepik.org/lesson/1729565/step/11?unit=1753394
-# https://kompege.ru/task  № 17879 Демоверсия 2025 (Уровень: Базовый)
-def f(n):
-    d = set()
-    for i in range(2, int(n**0.5 + 1)):
-        if not n % i:
-            d |= {i, n // i}
-            return sorted(d)
-
-cnt = 5
-for n in range(800_000, 10**10):
-    d = f(n)
-    if d:
-        m = d[0] + d[-1]
-        if m % 10 == 4:
-            print(n, m)
-            cnt -= 1
-        if not cnt:
-            break
+point = [center(i) for i in clusters if len(i) > 10]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(abs(px)), int(abs(py)))
 """
-800004 400004
-800009 114294
-800013 266674
-800024 400014
-800033 61554
+43744 47901
+108874 7612 🤔
 """
+
+
+
+
+# https://stepik.org/lesson/1729157/step/10?unit=1752979
+# https://kompege.ru/task  № 18625 (Уровень: Сложный)
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_10_A.txt').readlines()[1:]]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_10_B.txt').readlines()[1:]]
+# data = A[:]
+data = B[:]
+print(len(data))  # проверка 1
+
+def getCluster(p):
+    clast = [i for i in data if dist(i, p) < 1]
+    for i in clast:
+        data.remove(i)
+    new_clast = [getCluster(i) for i in clast]
+    for i in new_clast:
+        clast.extend(i)
+    return clast
+
+clusters = []
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)
+    # print(len(cluster))  # проверка 2
+    clusters.append(cluster)
+
+# print(len(B), '=', sum(len(i) for i in clusters))   # проверка 3
+
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
+
+point = [center(i) for i in clusters if len(i) > 10]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(abs(px)), int(abs(py)))
+"""
+515933 498987
+471077 409201
+"""
+
+
+
+# https://stepik.org/lesson/1729157/step/11?unit=1752979
+# https://kompege.ru/task  № 18677 (Уровень: Сложный)
+from math import dist
+A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_11_A.txt').readlines()]
+B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_11_B.txt').readlines()]
+# data = A[:]
+data = B[:]
+# print(len(data))  # проверка 1
+
+def getCluster(p):
+    clast = [i for i in data if dist(i, p) < 1]
+    for i in clast:
+        data.remove(i)
+    new_clast = [getCluster(i) for i in clast]
+    for i in new_clast:
+        clast.extend(i)
+    return clast
+
+clusters = []
+while data:
+    p = data.pop()
+    cluster = [p] + getCluster(p)
+    # print(len(cluster))  # проверка 2
+    clusters.append(cluster)
+
+# print(len(B), '=', sum(len(i) for i in clusters))   # проверка 3
+
+def center(cl: list):
+    res = []
+    for p in cl:
+        d = sum(dist(i, p) for i in cl)
+        res.append((d, p))
+    return min(res)[1]
+
+point = [center(i) for i in clusters if len(i) > 10]
+px = sum(i[0] for i in point) / len(point) * 100000
+py = sum(i[1] for i in point) / len(point) * 100000
+print(int(abs(px)), int(abs(py)))
+"""
+528073 71781
+669946 370701
+"""
+
+
 

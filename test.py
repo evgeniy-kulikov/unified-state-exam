@@ -14,47 +14,40 @@
 # variant  (slow speed)
 
 
+""""""
+# https://stepik.org/lesson/1729157/step/09?unit=1752979
+# https://kompege.ru/task  № 18056 (Уровень: Сложный)
+# Ответ не принимается
 
-# https://stepik.org/lesson/1729157/step/9?unit=1752979
-# https://kompege.ru/task  № 186788888
+# № 88888
 from math import dist
-A = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_09_A.txt').readlines()[1:]]
-B = [tuple(map(float, i.replace(',', '.').split())) for i in open('27-1_09_B.txt').readlines()[1:]]
-data = A[:]
-# data = B[:]
-print(len(data))  # проверка 1
+from statistics import mean
+def center(ls:list):
+    return
 
-def getCluster(p: tuple):
-    cluster = [i for i in data if dist(i, p) < 1]
-    if cluster:
-        for i in cluster:
-            data.remove(i)
-        next_cluster = [getCluster(i) for i in cluster]
-        for c in next_cluster:
-            cluster.extend(c)
-    return cluster
+def get_cluster(p:tuple):
+    return
 
-clusters = []
-while data:
-    p = data.pop()
-    cluster = [p] + getCluster(p)
-    print(len(cluster))  # проверка 2
-    clusters.append(cluster)
-
-print(len(B), '=', sum(len(i) for i in clusters))   # проверка 3
-
-def center(cl: list):
-    res = []
-    for p in cl:
-        d = sum(dist(i, p) for i in cl)
-        res.append((d, p))
-    return min(res)[1]
-
-point = [center(i) for i in clusters if len(i) > 10]
-px = sum(i[0] for i in point) / len(point) * 100000
-py = sum(i[1] for i in point) / len(point) * 100000
-print(int(abs(px)), int(abs(py)))
+for s in 'AB':
+    pass
 """
-43744 47901
-108874 7612
+
+"""
+
+
+
+
+# № 25441
+from math import dist
+# from statistics import mean
+def center(ls:list):
+    return
+
+def get_cluster(p:tuple):
+    return
+
+for s in 'AB':
+    pass
+"""
+
 """
