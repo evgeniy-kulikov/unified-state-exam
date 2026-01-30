@@ -422,3 +422,406 @@ print(int(abs(px)), int(abs(py)))
 
 
 
+""""""
+""" Варианты """
+
+# 28.1 Вариант 1 | Часть 1
+# https://stepik.org/lesson/1729565/step/13?unit=1753394
+# https://kompege.ru/task  № 17882 Демоверсия 2025 (Уровень: Базовый)
+from math import dist
+from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.split())) for i in open(f'01_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    P = [center(i) for i in cluster]
+    px = int(abs(mean(i[0] for i in P)) * 10_000)
+    py = int(abs(mean(i[1] for i in P)) * 10_000)
+    print(px, py)
+"""
+10738 30730
+37522 51277
+"""
+
+
+# https://stepik.org/lesson/1729899/step/13?unit=1753726
+# https://kompege.ru/task  № 19257 ЕГКР 21.12.24 (Уровень: Базовый)
+from math import dist
+from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'02_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    P = [center(i) for i in cluster]
+    px = int(abs(mean(i[0] for i in P)) * 10_000)
+    py = int(abs(mean(i[1] for i in P)) * 10_000)
+    print(px, py)
+"""
+43789 62202
+14271 54727
+"""
+
+
+# https://stepik.org/lesson/1730528/step/13?unit=1754357
+# https://kompege.ru/task  № 20816 Апробация 05.03.25 (Уровень: Базовый)
+from math import dist
+from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'04_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    P = [center(i) for i in cluster]
+    px = int(abs(mean(i[0] for i in P)) * 10_000)
+    py = int(abs(mean(i[1] for i in P)) * 10_000)
+    print(px, py)
+"""
+10592 6300
+15981 37287
+"""
+
+
+# https://stepik.org/lesson/1736670/step/13?unit=1760676
+# https://kompege.ru/task  № 21425 Досрочная волна 2025 (Уровень: Базовый)
+from math import dist
+from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 3]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'04_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    # cluster = [i for i in cluster if len(i) > 2]
+    P = [center(i) for i in cluster]
+    px = int(abs(mean(i[0] for i in P)) * 10_000)
+    py = int(abs(mean(i[1] for i in P)) * 10_000)
+    print(px, py)
+"""
+167990 73043
+122627 29105
+"""
+
+
+# https://stepik.org/lesson/1754189/step/13?unit=1778648
+# https://kompege.ru/task  № 21720 ЕГКР 19.04.25 (Уровень: Базовый)
+from math import dist
+from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 2]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'05_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    # cluster = [i for i in cluster if len(i) > 2]
+    P = [center(i) for i in cluster]
+    px = int(abs(mean(i[0] for i in P)) * 10_000)
+    py = int(abs(mean(i[1] for i in P)) * 10_000)
+    print(px, py)
+"""
+32540 13646
+47031 25263
+"""
+
+
+
+
+# https://stepik.org/lesson/1943171/step/13?unit=1969925
+# https://kompege.ru/task  № 23209 Основная волна 10.06.25 (Уровень: Базовый)
+from math import dist
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 2]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'06_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    cluster.sort(key=len)
+    P = [center(i) for i in cluster]
+    if s == 'A':
+        px = int(max(i[0] for i in P) * 10_000)
+        py = int(max(i[1] for i in P) * 10_000)
+        print(px, py)
+    else:
+        qx = int(abs(P[0][0] - P[-1][0]) * 10_000)
+        qy = int(abs(P[0][1] - P[-1][1]) * 10_000)
+        print(qx, qy)
+"""
+69663 192156
+867 161306
+"""
+
+
+
+# https://stepik.org/lesson/1943174/step/13?unit=1969928
+# https://kompege.ru/task  № 23284 Основная волна 11.06.25 (Уровень: Базовый)
+from math import dist
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'07_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    cluster.sort(key=len)
+    P = [center(i) for i in cluster]
+    if s == 'A':
+        px = int(abs(sum(i[0] for i in P)) * 10_000)
+        py = int(abs(sum(i[1] for i in P)) * 10_000)
+        print(px, py)
+    else:
+        a,b,c = P
+        q1 = int(min([dist(a,b), dist(a,c), dist(c,b)]) * 10_000)
+        q2 = int(max([dist(a,b), dist(a,c), dist(c,b)]) * 10_000)
+        print(q1, q2)
+"""
+107002 323741
+58778 151839
+"""
+
+
+
+# https://stepik.org/lesson/1943181/step/13?unit=1969936
+# https://kompege.ru/task  № 23571 Пересдача 03.07.25 (Уровень: Базовый)
+from math import dist
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def dist_Q(a:list, b:list):
+    res = []
+    for p in a:
+        res.extend([dist(i, p) for i in b])
+    return res
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'08_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    # cluster.sort(key=len)
+
+    if s == 'A':
+        P = [center(i) for i in cluster]
+        px = int(abs(sum(i[0] for i in P)) * 10_000)
+        py = int(abs(sum(i[1] for i in P)) * 10_000)
+        print(px, py)
+    else:
+        a,b,c = cluster
+        ls = [(a, b+c), (b, a+c), (c, a+b)]
+        Q = [dist_Q(i, k) for i, k in ls]
+        q1 = int(min([min(i) for i in Q]) * 10_000)
+        q2 = int(max([max(i) for i in Q]) * 10_000)
+        print(q1, q2)
+"""
+92256 258611
+33863 170816
+"""
+
+
+# https://stepik.org/lesson/1943186/step/13?unit=1969940
+# https://kompege.ru/task  № 23766 Демоверсия 2026 (Уровень: Базовый)
+from math import dist
+# from statistics import mean
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def center_Q(p:tuple, ls:list):
+    res = []
+    [res.append(dist(p, i)) for i in ls]
+    return max(res)
+
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+
+for s in 'AB':
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'09_27_{s}.txt')]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p)
+        # print(len(clust))
+        cluster.append(clust)
+    # print(sum(len(i) for i in cluster))
+    # input('>>> ')
+    cluster = [i for i in cluster if len(i) > 2]
+    cluster.sort(key=len)
+    P = [center(i) for i in cluster]
+    if s == 'A':
+        px = int(abs(min(i[0] for i in P)) * 10_000)
+        py = int(abs(min(i[1] for i in P)) * 10_000)
+        print(px, py)
+    else:
+        q1 = int(dist(P[0], P[-1]) * 10_000)
+        q2 = int(max([center_Q(p, cl) for p, cl in zip(P, cluster)]) * 10_000)
+        print(q1, q2)
+"""
+38471 61225
+142058 25299
+"""
+

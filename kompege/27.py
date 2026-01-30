@@ -6,7 +6,17 @@ https://kompege.ru/task
 # last 25441
 """
 21931 21932 
-25442 25443 25444 25445 25446 25447 25448
+25441 25442 25443 25444 25445 25446 25447 25448
+"""
+
+"""
+course 233165
+17882 17916 
+18051 18314 18624 18625 18628 18676 18677 
+19257 
+20816 
+21425 21720 
+23209 23284 23571 23766 
 """
 
 # № 21931 (Уровень: Базовый)
@@ -88,6 +98,53 @@ print(Px, Py)
 144062 61170
 """
 
+
+# № 25441
+from math import dist
+def center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+def center_B(ls:list, p):
+    return max(dist(i, p) for i in ls)
+
+def get_cluster(p:tuple, k):
+    cluster = [i for i in data if dist(p, i) < k]
+    [data.remove(i) for i in cluster]
+    next_clust = [get_cluster(i, k) for i in cluster]
+    [cluster.extend(i) for i in next_clust]
+    return cluster
+
+for s, k in zip('AB', (1, 0.2)):
+    data = [tuple(map(float, i.replace(',','.').split())) for i in open(f'25441_27_{s}.txt')]
+    # print(len(data))
+    res = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_cluster(p, k)
+        # print(len(clust))
+        res.append(clust)
+    # print(sum(len(i) for i in res))
+    # input('>>> ')
+    res = [i for i in res if len(i) > 2]
+    res.sort(key=len)
+    P = [center(i) for i in res]
+    if s == 'A':
+        px = int(abs(P[0][0] - P[1][0]) * 10_000)
+        py = int(abs(P[0][1] - P[1][1]) * 10_000)
+        print(px, py)
+    else:
+        a,b,c = P
+        q1 = int(dist(a, c) * 10_000)
+        q2 = int(max(center_B(cl, i) for cl, i in zip(res, P)) * 10_000)
+        print(q1, q2)
+"""
+18236 93042
+9163 1646
+"""
 
 
 # № 25442
