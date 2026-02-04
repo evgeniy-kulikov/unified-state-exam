@@ -319,9 +319,74 @@ for i in range(len(d) - 2):
 print(len(res),  max(res))  # 147 944
 
 
+# https://stepik.org/lesson/1698039/step/6?unit=1721421
+# https://kompege.ru/task   № 17873 Демоверсия 2025 (Уровень: Базовый)
+ls = [*map(int, open('add/course_233165/17_3_06.txt'))]
+mn = min(ls)
+cnt = mx = 0
+for i in range(len(ls) - 1):
+    a, b = ls[i:i+2]
+    if any([a % 16 == mn, b % 16 == mn]):
+        cnt += 1
+        mx = max(mx, a+b)
+print(cnt, mx)  # 1214 176024
 
 
+# https://stepik.org/lesson/1698039/step/7?unit=1721421
+# https://kompege.ru/task   № 23201 Основная волна 10.06.25 (Уровень: Базовый)
+ls = [*map(int, open('add/course_233165/17_3_07.txt'))]
+mn = min(i for i in ls if i % 10 == 7 and 100 <= i < 1000)  # 107
+cnt = 0
+min_sm = 10**10
+for i in range(len(ls) - 1):
+    n = ls[i:i+2]
+    sm = sum(n)
+    if all([not sm % mn, sum(100 <= i < 1000 for i in n) == 1]):
+        cnt += 1
+        min_sm = min(min_sm, sm)
+print(cnt, min_sm)  # 9 107
 
+
+# https://stepik.org/lesson/1698039/step/8?unit=1721421
+# https://kompege.ru/task   № 23276 Основная волна 11.06.25 (Уровень: Базовый)
+ls = [*map(int, open('add/course_233165/17_3_08.txt'))]
+mn = max(i for i in ls if abs(i) % 100 == 25)  # 84725
+cnt = 0
+res = -10**7
+for i in range(len(ls) - 2):
+    d = ls[i:i+3]
+    if sum(1000 <= abs(i) < 10000 for i in d) <= 2 and sum(d) <= mn:
+        cnt += 1
+        res = max(res, sum(d))
+print(cnt, res)  # 6315 84523
+
+
+# https://stepik.org/lesson/1698039/step/9?unit=1721421
+# https://kompege.ru/task   № 23376 Резервный день 19.06.25 (Уровень: Базовый)
+ls = [*map(int, open('add/course_233165/17_3_09.txt'))]
+mn = max(i for i in ls if abs(i) % 100 == 37 and len(str(abs(i))) == 5)  #
+cnt = 0
+res = 0
+for i in range(len(ls) - 1):
+    d = ls[i:i+2]
+    if sum(len(str(abs(i))) == 5 for i in d) == 1 and sum(d) ** 2 > mn ** 2:
+        cnt += 1
+        res = max(res, sum(d))
+print(cnt, res)  # 350 107294
+
+
+# https://stepik.org/lesson/1698039/step/10?unit=1721421
+# https://kompege.ru/task   № 23757 Демоверсия 2026 (Уровень: Базовый)
+ls = [*map(int, open('add/course_233165/17_3_10.txt'))]
+mn = min(i for i in ls if 10 <= i < 100)  # 10
+cnt = 0
+res = 0
+for i in range(len(ls) - 1):
+    d = ls[i:i+2]
+    if sum(10 <= i < 100 for i in d) == 1 and not sum(d) % mn:
+        cnt += 1
+        res = max(res, sum(d))
+print(cnt, res)  # 150 9930
 
 
 

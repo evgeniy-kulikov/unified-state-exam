@@ -110,6 +110,74 @@ print(*[s for s in range(10, 100) if f(s, 4) and not f(s, 2)])  # 21
 """
 
 
+# https://stepik.org/lesson/1713458/step/9?unit=1736931
+# https://kompege.ru/task   № 847 (Уровень: Базовый)
+def f(a, m):
+    if a > 33:
+        return not m % 2
+    if not m:
+        return False
+    g = [f(a+1,  m-1), f(a+2,  m-1), f(a+3,  m-1), f(a*2,  m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[a for a in range(1, 34) if f(a, 2)])  # 16
+print(*[a for a in range(1, 34) if f(a, 3) and not f(a, 1)])  # 8 15
+print(*[a for a in range(1, 34) if f(a, 4) and not f(a, 2)])  # 8 15
+"""
+16
+8 15
+12
+"""
+
+
+# https://stepik.org/lesson/1713458/step/10?unit=1736931
+# https://kompege.ru/task   № 845 (Уровень: Средний)  Случай перелета за верхнюю границу ✅
+def f(a, m):
+    if 36 <= a <= 60:
+        return not m % 2
+    if a > 60:  # ✅
+        return m % 2
+    if not m:
+        return False
+    g = [f(a+1,  m-1), f(a*2,  m-1), f(a*3,  m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[a for a in range(1, 36) if f(a, 2)])  # 34
+print(len([a for a in range(1, 36) if f(a, 3) and not f(a, 1)]))  # 1
+print(*[a for a in range(1, 36) if f(a, 4) and not f(a, 2)])  # 11 32
+"""
+34
+1
+11 32
+"""
+
+
+# https://stepik.org/lesson/1713458/step/11?unit=1736931
+# https://kompege.ru/task   № 1202 Апробация 27.04 (Уровень: Базовый)
+def f(a, b, m):
+    if a + b >= 59:
+        return not m % 2
+    if not m:
+        return False
+    g = [f(a+1, b, m-1), f(a*2, b, m-1), f(a, b+1, m-1), f(a, b*2, m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print([a for a in range(1, 53) if f(a, 5, 1)][0])  # 27
+print(*[a for a in range(1, 53) if f(a, 5, 3) and not f(a, 5, 1)])  # 24 26
+print([a for a in range(1, 53) if f(a, 5, 4) and not f(a, 5, 2)][0])  # 23
+"""
+27
+24 26
+23
+"""
+
+
 
 
 
@@ -200,6 +268,83 @@ print(*[s for s in range(1, 24) if f(2, s, 2*s, 4) and not f(2, s, 2*s, 2)][-2:]
 8 14
 10 13
 """
+
+
+# https://stepik.org/lesson/1713459/step/6?unit=1736932
+# https://kompege.ru/task   № 843 (Уровень: Средний)
+from math import ceil
+def f(a, b, m):
+    if a + b <= 20:
+        return not m % 2
+    if not m:
+        return False
+    # g = [f(a-1, b, m-1), f(ceil(a / 2), b, m-1), f(a, b-1, m-1), f(a, ceil(b / 2), m-1)]
+    g = [f(a-1, b, m-1), f((a+1) // 2, b, m-1), f(a, b-1, m-1), f(a, (b+1) // 2, m-1)]  # ceil(5/2) == (5+1)//2 ✅
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[a for a in range(11, 100) if f(10, a, 2)])  # 21
+print(*[a for a in range(11, 100) if f(10, a, 3) and not f(a, 10, 1)])  # 22 42
+print([a for a in range(11, 100) if f(10, a, 4) and not f(a, 10, 2)][0])  # 24
+"""
+11
+22 42
+24
+"""
+
+
+# https://stepik.org/lesson/1713459/step/7?unit=1736932
+# https://kompege.ru/task   № 2370 (Уровень: Средний)
+def f(a, m):
+    if a >= 2163:
+        return not m % 2
+    if not m:
+        return False
+    g = [f(a+1, m-1), f(a*3, m-1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print(*[a for a in range(1, 2163) if f(a, 2)])  # 720
+print(*[a for a in range(1, 2163) if f(a, 3) and not f(a, 1)][:2])  # 240 719
+print(*[a for a in range(1, 2163) if f(a, 4) and not f(a, 2)])  # 718
+"""
+720
+240 719
+718
+"""
+
+
+# https://stepik.org/lesson/1713459/step/8?unit=1736932
+# https://kompege.ru/task   № 9750 (Уровень: Средний)
+def f(a, m):
+    if a <= 19:
+        return not m % 2
+    if not m:
+        return False
+    g = [f(a-5, m-1)]
+    if not a % 2:
+        g += [f(a//2, m-1)]
+    if not a % 3:
+        g += [f(a // 3, m - 1)]
+    if a % 2 and a % 3:
+        g += [f(a + 1, m - 1)]
+    if not (m - 1) % 2:
+        return any(g)
+    return all(g)
+
+print([a for a in range(20, 100) if f(a, 2)][0])  # 25
+print(*[a for a in range(20, 100) if f(a, 3) and not f(a, 1)][:2])  # 40 43
+print([a for a in range(20, 100) if f(a, 4) and not f(a, 2)][0])  # 60
+"""
+25
+40 43
+60
+"""
+
+
+
 
 
 

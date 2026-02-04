@@ -8,7 +8,7 @@ mask = '123*45?'
 mask = '1[02468]3*4[13579]?'  # учесть четность / нечётность разряда
 step = 1  # или больше
 for i in range(0, 10**10, step):
-    if fnmatch(str(i), mask):
+    if fnmatch(str(i), mask):  # True or False
         print(i, i // step)
 # step - на что должно делиться число,
 # mask - какой маске удовлетворять.
@@ -29,6 +29,15 @@ for i in range(0, 10**10, step):
 Простые множители числа — это простые числа (делители, которые делятся только на 1 и на самих себя, 
 например 2, 3, 5, 7, 11...), 
 которые при перемножении дают исходное число.
+
+
+Если сумма чисел числа делится на 3, то и само число делится на 3  --> 174 (1+7+4 = 12)  174 / 3 = 58
+
+
+Каждое число можно представить произведением простых чисел
+Разложение чисел на простые множители:
+https://tetrika-school.ru/blog/razlozhenie-chisel-na-prostye-mnozhiteli/
+https://skysmart.ru/articles/mathematic/razlozhenie-chisel-na-prostye-mnozhiteli
 """
 
 

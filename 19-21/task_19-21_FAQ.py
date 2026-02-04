@@ -48,3 +48,6 @@ def f(s, mv):
 print(*[s for s in range(1, 36) if f(s, 2)])  # 34
 print([s for s in range(1, 36) if f(s, 3) and not f(s, 1)])  # 33  >>> 1 значение
 print(*[s for s in range(1, 36) if f(s, 4) and not f(s, 2)])  # 11 32
+
+# ceil(5/2) == (5+1)//2 ✅
+

@@ -375,6 +375,111 @@ for n in range(25317, 51238):
 """
 
 
+# https://stepik.org/lesson/1720859/step/5?unit=1744395
+# https://kompege.ru/task   № 953 (Уровень: Базовый)
+def f(n):
+    res = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            res |= {i, n//i}
+    return res
+
+def s(n):
+    for i in range(2, int(n ** 0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+c = 7
+for n in range(500_000, 0, -1):
+    dv = f(n)
+    if dv:
+        dv = sum(i for i in dv if s(i))
+    if dv and not dv % 10:
+        print(n, dv)
+        c -= 1
+    if not c:
+        break
+"""
+499996 2560
+499995 320
+499994 22740
+499989 860
+499981 13550
+499971 166660
+499959 18520
+"""
+
+
+# https://stepik.org/lesson/1720859/step/6?unit=1744395
+# https://kompege.ru/task   № 2591 (Уровень: Средний)
+def d(n):
+    res = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            res |= {i, n//i}
+    return sorted(res)
+
+def s(n):
+    for i in range(2, int(n ** 0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+
+for n in range(125697, 125722):
+    dv = [i for i in d(n) if s(i)]
+    if len(dv) == 2 and dv[0] * dv[1] == n:
+        print(*dv)
+"""
+7 17957
+337 373
+2 62851
+3 41903
+7 17959
+"""
+
+
+# https://stepik.org/lesson/1720859/step/7?unit=1744395
+# https://kompege.ru/task   № 635 Джобс 02.11.2020 (Уровень: Сложный)
+def d(n):
+    dv = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n//i}
+    return dv
+
+for n in range(106732567, 152673837):
+    if n ** 0.5 == int(n ** 0.5):  # ищем нечетное кол-во делителей
+        dv = [i for i in d(n)]
+        if len(dv) == 3:
+            print(n, max(dv))
+
+#  С применением знаний математики 👍
+# Разложение чисел на простые множители
+# https://tetrika-school.ru/blog/razlozhenie-chisel-na-prostye-mnozhiteli/
+# https://skysmart.ru/articles/mathematic/razlozhenie-chisel-na-prostye-mnozhiteli
+from math import ceil
+def s(n):
+    for i in range(2, int(n ** 0.5 + 1)):
+        if not n % i:
+            return False
+    return True
+a = ceil(106732567**0.25)
+b = int(152673837**0.25)
+for n in range(a, b+1):
+    i = s(n)
+    if i:
+        print(n**4, n**3)
+"""
+112550881 1092727
+131079601 1225043
+141158161 1295029
+"""
+
+
+
+
+
 
 
 
@@ -486,7 +591,152 @@ for n in range(0, 10**10+1, 2023):
 """
 
 
+# https://stepik.org/lesson/1720860/step/6?unit=1744396
+# https://kompege.ru/task   № 4899 (Уровень: Средний)
+from fnmatch import *
+def d(n):
+    dv = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n//i}
+    return dv
 
+c = 7
+for n in range(65000, 10**10, 2):
+    if fnmatch(str(n), '6*97*5?'):
+        dv = [i for i in d(n) if not i % 2]
+        if len(dv) >= 4:
+            print(n, sum(dv))
+            c -= 1
+    if not c:
+        break
+"""
+69750 129792
+69752 122080
+69756 139536
+69758 75152
+609750 1103232
+609752 1291248
+609754 630840
+"""
+
+
+# https://stepik.org/lesson/1720860/step/7?unit=1744396
+# https://kompege.ru/task   № 4900 (Уровень: Средний)
+from fnmatch import fnmatch
+def d(n):
+    dv = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n//i}
+    return list(dv)
+
+res = []
+c = 5
+for n in range(10**7, 1,-1):
+    if fnmatch(str(n), '9?*55*7'):
+        dv = d(n)
+        if len(dv):
+            res.append((n, sum(dv) % 21))
+            c -= 1
+    if not c:
+        break
+res.sort()
+[print(*i) for i in res]
+"""
+9995597 18
+9996557 12
+9997557 12
+9998557 17
+9999557 0
+"""
+
+
+# https://stepik.org/lesson/1720860/step/8?unit=1744396
+# https://kompege.ru/task   № 4901 (Уровень: Средний)
+from fnmatch import fnmatch
+def d(n):
+    dv = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n//i}
+    return list(dv)
+
+c = 7
+for n in range(0, 10**10, 7*8):
+    if fnmatch(str(n), '?6*6*?6'):
+        dv = d(n)
+        if dv and not n % 6:
+            print(n, sum(dv))
+            c -= 1
+    if not c:
+        break
+"""
+56616 162240
+66696 191040
+161616 527744
+166656 523264
+266616 862680
+360696 1094400
+366576 1083264
+"""
+
+
+# https://stepik.org/lesson/1720860/step/9?unit=1744396
+# https://kompege.ru/task   № 4902 (Уровень: Средний)
+from fnmatch import fnmatch
+def d(n):
+    dv = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            dv |= {i, n//i}
+    return list(dv)
+
+res = []
+a = 10**7 // 217 * 217  # 9999794
+c = 7
+for n in range(a, 0, -217):
+    if fnmatch(str(n), '14?4*'):
+        dv = d(n)
+        if dv:
+            res.append((n, sum(i for i in dv if i % 2)))
+            c -= 1
+    if not c:
+        break
+res.sort()
+[print(*i) for i in res]
+"""
+1484714 958464
+1484931 2336768
+1494045 3345408
+1494262 964608
+1494479 1806336
+1494696 306432
+1494913 1785088
+"""
+
+
+# https://stepik.org/lesson/1720860/step/10?unit=1744396
+# https://kompege.ru/task   № 3901 Джобс 14.05.2022 (Уровень: Базовый)
+from fnmatch import fnmatch
+st = 700000 // 13 * 13 + 13  # 700011
+cnt = 5
+for n in range(st, 10**10, 13):
+    a = not fnmatch(str(n), '*0??3*')
+    b = not fnmatch(str(n), '*4??2')
+    c = not fnmatch(str(n), '*1*')
+    if all([a, b, c]):
+        print(n, sum(map(int, str(n))))
+        cnt -= 1
+    if not cnt:
+        break
+"""
+700024 13
+700050 12
+700076 20
+700089 24
+700206 15
+"""
 
 
 
@@ -591,6 +841,11 @@ for n in range(700_000, 10**10):
 700024 350014
 700044 350024
 """
+
+
+
+
+
 
 
 
