@@ -1,8 +1,24 @@
 """ https://kompege.ru/task """
 """
-8002 9918
-11663 12468 12923 17527 17555 
+6985
+8002 8370 8417 8425 8675 8951 9918
+11663 12468 12923 17527 17555 17627 17633
 """
+
+
+
+# 6985 (Уровень: Средний)
+from itertools import product
+c = 0
+res = None
+for p in product('aklmpc', repeat=6):
+    c += 1
+    r = ''.join(p)
+    if not any(['kc' in r, 'ck' in r]) and len(set(r)) == 4:
+        res = c
+print(res)  # 46605
+
+
 
 
 # 8002 (Уровень: Базовый)
@@ -12,6 +28,48 @@ for i in a[::-1]:
     if not n % 7:
         print(n // 7)  # 648833380
         break
+
+
+# 8370 Danov2305 (Уровень: Средний)
+for p in range(5, 1000):
+    for q in range(6, 1000):
+        if 2*p**2 + 3*p + 4 == 3*q**2 + 4*q + 5:
+            print(2*p**2 + 3*p + 4)  # 564
+            exit()
+
+
+# 8417 (Уровень: Базовый)
+from itertools import permutations
+c = 0
+for p in permutations('aaassss', 5):
+    c += p.count('s') > p.count('a') and 'aa' not in ''.join(p)
+print(c)  # 1224
+
+
+# 8425 (Уровень: Средний)
+for p in range(5, 1000):
+    for y in range(p):
+        for x in range(p):
+            if (3*p + 2) * (p + 4) == x*p**2 + y*p + 2:
+                print(y*p + x)  # 23
+
+
+# 8675 (Уровень: Базовый)
+for x in '0123456789abcdef'[::-1]:
+    n = int(f'1f3b{x}75', 16) +  int(f'5d{x}3b', 16)
+    if not n % 11:
+        print(n // 11)  # 3012112
+        break
+
+
+# 8951 Джобс 02.06.2023 (Уровень: Базовый)
+for n in range(6, 36):
+    # r = 7**500 - int('53', n)
+    r = 7**500 - 5*n + 3
+    if not r % 6:
+        print(n)
+        break
+
 
 # 9918 (Уровень: Сложный)
 # Арифметика и Комбинаторика
@@ -82,3 +140,25 @@ for x in range(2030, 0, -1):
     if c == 70:
         print(x)  # 2029
         break
+
+
+# 17627 Основная волна 19.06.24 (Уровень: Базовый)
+from itertools import product
+c = 0
+for p in product('0123456789aaaaa', repeat=5):
+    c += p[0] != '0' and p.count('8') == 1 and p.count('a') >= 2
+print(c)  # 83175
+
+
+# 17633 Основная волна 19.06.24 (Уровень: Базовый)
+for x in range(1000):
+    n = 6**260 + 6**160 + 6**60 - x
+    c = 0
+    while n:
+        c += not n % 6
+        n //= 6
+    if c == 202:
+        print(x)  # 216
+        break
+
+

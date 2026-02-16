@@ -3,9 +3,10 @@
 https://kompege.ru/task
 Анализ данных
 """
-# last 25441
+# last 21929
 """
-21931 21932 
+20294
+21929 21930 21931 21932 
 25441 25442 25443 25444 25445 25446 25447 25448
 """
 
@@ -18,6 +19,122 @@ course 233165
 21425 21720 
 23209 23284 23571 23766 
 """
+
+
+
+
+# 20294 (Уровень: Базовый)
+from math import dist
+def centr(ls:list):
+    res = []
+    for i in ls:
+        ln = len([k for k in ls if dist(i, k) <= 1])
+        res.append((ln, i[1], i))
+    return min(res, key=lambda x: (x[0], -x[1]))[2]
+
+def get_clust(p, k):
+    clust = [i for i in data if dist(p, i) <= k]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i, k) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+for i, k in zip('AB', (1, 0.4)):
+    f = open(f'add/27/20294_27_{i}.txt')
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data))
+    clusters = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_clust(p, k)
+        # print(len(clust))
+        clusters.append(clust)
+    # print(sum(len(i) for i in clusters), '\n')
+    res = [centr(i) for i in clusters]
+    Px = sum(i[0] for i in res) / len(res) * 100000
+    Py = sum(i[1] for i in res) / len(res) * 100000
+    print(int(Px), abs(int(Py)))
+"""
+135491 131265
+232818 15126
+"""
+
+
+
+
+# 21929 (Уровень: Базовый)
+from math import dist
+def centr(ls:list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return min(res)[1]
+
+def get_clust(p:list):
+    clust = [i for i in data if dist(p, i) <= 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+for i in 'AB':
+    f = open(f'add/27/21929_27_{i}.txt')
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data))
+    clusters = []
+    while data:
+        p = data.pop()
+        cl = [p] + get_clust(p)
+        # print(len(cl))
+        clusters.append(cl)
+    # print(sum(len(i) for i in clusters), '\n')
+    res = [centr(i) for i in clusters]
+    Px = int(sum(i[0] for i in res) / len(res) * 10_000)
+    Py = int(sum(i[1] for i in res) / len(res) * 10_000)
+    print(Px, Py)
+"""
+45336 117141
+167659 143170
+"""
+
+
+# 21930 (Уровень: Базовый)
+from math import dist
+def centr(ls:list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return max(res)[1]
+
+def get_clust(p, k):
+    clust = [i for i in data if dist(p, i) <= k]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i, k) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+for i, k in zip('AB', (1, 1)):
+    f = open(f'add/27/21930_27_{i}.txt')
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data))
+    clusters = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_clust(p, k)
+        # print(len(clust))
+        clusters.append(clust)
+    # print(sum(len(i) for i in clusters), '\n')
+    res = [centr(i) for i in clusters]
+    Px = sum(i[0] for i in res) / len(res) * 10000
+    Py = sum(i[1] for i in res) / len(res) * 10000
+    print(int(Px), int(Py))
+"""
+18049 111324
+174474 142246
+"""
+
 
 # № 21931 (Уровень: Базовый)
 from math import dist
@@ -43,8 +160,7 @@ for k in zip('AB', (1, 1)):
         p = data.pop()
         clust = [p] + get_cluster(p, k[1])
         # print(len(clust))
-        clusters.append(
-            clust)
+        clusters.append(clust)
     # print(sum(len(i) for i in clusters))
     clusters.sort(key=len)
     P = [center(i) for i in clusters]
@@ -67,7 +183,7 @@ def center(ls:list):
         res.append((sm, p))
     return min(res)[1]
 
-def getClust(p:tuple):
+def getClust(p:list):
     clust = [i for i in data if dist(p, i) < 2]
     [data.remove(i) for i in clust]
     nextClust = [getClust(i) for i in clust]

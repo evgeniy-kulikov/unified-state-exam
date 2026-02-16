@@ -368,19 +368,19 @@ print(cnt, cur)  # 854 54
 f = open('add/26/26_21598.txt').readlines()
 n = int(f[0])  # количество сотрудников
 data = [[*map(int, i.split())] for i in f[1:]]   # время входа, время выхода
-time = [0] * 1441
+time = [0] * 1441  # ноль будет означать те моменты, когда кол-во сотрудников не меняется
 for el in data:
     st, en = el
     time[st] = 1  # фиксируем моменты прихода и ухода сотрудников
     time[en] = 1
-change = [i for i in range(1441) if time[i] != 0]  # индекс списка - минута в которую изменение кол-ва сотрудников
+change = [i for i in range(1441) if time[i] != 0]  # индекс списка - минута в которую изменялось кол-во сотрудников
 # res - временные интервалы между событиями изменения кол-ва сотрудников.
 # Начальный и конечный добавляем вручную.
 res = [change[0] - 0, 1440 - change[-1]]
 # for i in range(len(change) - 1):
 #     res.append(change[i + 1] - change[i])
-for a, b in zip(change[1:], change):  # zip место индексов
-    res.append(a - b)
+for a, b in zip(change, change[1:]):  # zip место индексов
+    res.append(b - a)
 print(change[-2], max(res))  # 1431 13
 
 
