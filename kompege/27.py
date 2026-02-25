@@ -3,15 +3,15 @@
 https://kompege.ru/task
 Анализ данных
 """
-# last 21929
+
 """
-20294
-21929 21930 21931 21932 
+18150 20294
+21599 21911 21929 21930 21931 21932 
 25441 25442 25443 25444 25445 25446 25447 25448
 """
 
 """
-course 233165
+✔️ course 233165
 17882 17916 
 18051 18314 18624 18625 18628 18676 18677 
 19257 
@@ -21,6 +21,48 @@ course 233165
 """
 
 
+
+
+# 18150 (Уровень: Базовый)
+from math import dist
+def centr(ls: list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return min(res)[1]
+
+f = open(f'add/27/18150_27_A.txt')
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], []]
+for i in data:
+    if i[0] > 0:
+        clust[0].append(i)
+    else:
+        clust[1].append(i)
+c = [centr(i) for i in clust]
+px = int(sum(i[0] for i in c) / 2 * 1000)
+py = int(sum(i[1] for i in c) / 2 * 1000)
+print(abs(px), abs(py)) # 336 1859
+
+f = open(f'add/27/18150_27_B.txt')
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], [], []]
+for i in data:
+    if i[0] < 0:
+        clust[0].append(i)
+    elif i[1] > 4:
+        clust[1].append(i)
+    else:
+        clust[2].append(i)
+c = [centr(i) for i in clust]
+px = int(sum(i[0] for i in c) / 3 * 1000)
+py = int(sum(i[1] for i in c) / 3 * 1000)
+print(abs(px), abs(py)) # 2467 1343
+"""
+336 1859
+2467 1343
+"""
 
 
 # 20294 (Уровень: Базовый)
@@ -60,6 +102,172 @@ for i, k in zip('AB', (1, 0.4)):
 """
 
 
+
+
+
+# 21425 Досрочная волна 2025 (Уровень: Базовый)
+from math import dist
+def centr(ls: list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return min(res)[1]
+
+def get_clust(p):
+    clust = [i for i in data if dist(i, p) < 3]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+for s in 'AB':
+    f = open(f'add/27/21425_27_{s}.txt').readlines()
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    cluster = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_clust(p)
+        cluster += [clust]
+    target = [centr(i) for i in cluster]
+    px = int((sum(i[0] for i in target) / len(target)) * 10_000)
+    py = int((sum(i[1] for i in target) / len(target)) * 10_000)
+    print(px, py)
+"""
+167990 73043
+122627 29105
+"""
+
+
+
+
+# 21599 (Уровень: Средний)
+# ✅ кластеры собираем вручную (без функции) через построение прямолинейного графика
+from math import dist
+def centr(ls: list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return min(res)[1]
+
+f = open(f'add/27/21599_27_A.txt').readlines()
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], [], []]
+for i in data:  # 0
+    x, y = i
+    k0 = 5 / 11
+    # b0 = y - k0 * x = -5
+    if y - k0 * x > -5:
+        clust[0].append(i)
+[data.remove((i)) for i in clust[0]]
+for i in data:  # 2
+    x, y = i
+    if y < -7:
+        clust[2].append(i)
+[data.remove((i)) for i in clust[2]]
+for i in data:  # 1
+    clust[1].append(i)
+cntr = [centr(i) for i in clust]
+px = int(abs(sum(i[0] for i in cntr) / 3) * 10_000)
+py = int(abs(sum(i[1] for i in cntr) / 3) * 10_000)
+print(px, py)  # 178755 2896
+
+f = open(f'add/27/21599_27_B.txt').readlines()
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], [], [], [], [], []]
+# def g_clust(p) не помогает ✔️
+# k0 = -5/2
+# b0 = 13 * 2.5
+# y = (5 - 0) / (15 - 13) * x - 13 * b
+# y = -2.5 * x - 13 * 2.5
+for i in data:  # 0
+    x, y = i
+    if -2.5 * x - y > 13 * 2.5:
+        clust[0].append(i)
+[data.remove(i) for i in clust[0]]
+for i in data:  # 1
+    x, y = i
+    if x < -9.5:
+        clust[1].append(i)
+[data.remove(i) for i in clust[1]]
+for i in data:  # 2
+    x, y = i
+    # k2 = 12 / 6  # 2
+    # b2 = -6 * k2  # 12
+    # y = 2 * x + 12
+    if y - 2 * x > 12:
+        clust[2].append(i)
+[data.remove(i) for i in clust[2]]
+for i in data:  # 3
+    x, y = i
+    # k3 = 3 / 5  # 3/5
+    # b3 = 0 * k2  # 0
+    # y = (3/5) * x
+    if y - (3/5) * x > 0:
+        clust[3].append(i)
+[data.remove(i) for i in clust[3]]
+for i in data:  # 4
+    x, y = i
+    if y > -5:
+        clust[4].append(i)
+[data.remove(i) for i in clust[4]]
+for i in data:  # 5
+    x, y = i
+    if y < -5:
+        clust[5].append(i)
+[data.remove(i) for i in clust[5]]
+cntr = [centr(i) for i in clust]
+px = int(abs(sum(i[0] for i in cntr) / 6) * 10_000)
+py = int(abs(sum(i[1] for i in cntr) / 6) * 10_000)
+print(px, py)  # 37392 50998
+"""
+178755 2896
+37392 50998
+"""
+
+
+# 21911 Открытый вариант 2025 (Уровень: Базовый)
+# ✅ Из-за большого разброса точек, кластеры собираем вручную (без функции)
+from math import dist
+def centr(ls: list):
+    res = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        res.append((sm, i))
+    return min(res)[1]
+
+f = open(f'add/27/21911_27_A.txt')
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], []]
+for i in data:
+    if i[1] > 2:
+        clust[0].append(i)
+    else:
+        clust[1].append(i)
+c = [centr(i) for i in clust]
+px = int(sum(i[0] for i in c) / 2 * 10_000)
+py = int(sum(i[1] for i in c) / 2 * 10_000)
+print(px, py) # 26216 24182
+
+f = open(f'add/27/21911_27_B.txt')
+data = [[*map(float, i.replace(',', '.').split())] for i in f]
+clust = [[], [], []]
+for i in data:
+    if i[0] < 10:
+        clust[0].append(i)
+    elif i[0] > 20:
+        clust[1].append(i)
+    else:
+        clust[2].append(i)
+c = [centr(i) for i in clust]
+px = int(sum(i[0] for i in c) / 3 * 10_000)
+py = int(sum(i[1] for i in c) / 3 * 10_000)
+print(px, py) # 150891 63754
+"""
+26216 24182
+150891 63754
+"""
 
 
 # 21929 (Уровень: Базовый)

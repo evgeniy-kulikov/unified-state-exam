@@ -2,7 +2,7 @@
 """
 225 507 788 954 1304 
 11681 13394 1395 15341 1868
-2149 2612 2613 2614 3664
+2149 2612 2613 2614 2910 3664
 4604(=4712) 4629 4660 4712 7096
 21598 21719 21910(=21424)
 """
@@ -184,27 +184,6 @@ for r, s in d:
                 exit()
 
 
-# 3664 (Уровень: Базовый)
-f = open('add/26/26_3664.txt').readlines()
-# f = open('txt.txt').readlines()
-D = dict()
-res = []
-for i in f[1:]:
-    k, v = map(int, i.split())  # ряд, место
-    D.setdefault(k, [])
-    D[k] += [v]
-for k, v in D.items():
-    v.sort()
-    mx = 0
-    for i in range(len(v) - 1):
-        mx = max(mx, v[i+1] - v[i] - 1)
-    res.append([mx, k])
-res.sort(reverse=True)
-print(res[0][1], res[0][0])  # 9570 9743
-
-
-
-
 
 
 # 2149 (Уровень: Базовый)
@@ -306,6 +285,42 @@ for i in range(len(book) - 1, 0, -1):
         print(c, book[i])  # 398 273
         break
 
+
+# 20910 Апробация 05.03.25 (Уровень: Средний)
+# получение данных
+f = open('add/26/26_20910.txt').readlines()
+_, R, S = map(int, f[0].split())  # кол-во занятых мест, кол-во рядов, кол-во мест в ряду
+res = []
+d = {k: [] for k in range(1, S + 1)}  # {место: [ряды], ...}
+for n in f[1:]:
+    r, s = map(int, n.split())  # номер ряда, номер места
+    d[s] += [r]
+# анализ данных
+for i in range(1, S):  # ⛔ для занятого 1-го ряда алгоритм не подходит
+    a = min(d[i]) if d[i] else R+1
+    b = min(d[i+1]) if d[i+1] else R+1
+    res.append((min([a, b]) - 1, i))
+res.sort(key=lambda x: (-x[0], x[1]))
+print(*res[0])  # 21028 6660
+
+
+# 3664 (Уровень: Базовый)
+f = open('add/26/26_3664.txt').readlines()
+# f = open('txt.txt').readlines()
+D = dict()
+res = []
+for i in f[1:]:
+    k, v = map(int, i.split())  # ряд, место
+    D.setdefault(k, [])
+    D[k] += [v]
+for k, v in D.items():
+    v.sort()
+    mx = 0
+    for i in range(len(v) - 1):
+        mx = max(mx, v[i+1] - v[i] - 1)
+    res.append([mx, k])
+res.sort(reverse=True)
+print(res[0][1], res[0][0])  # 9570 9743
 
 
 

@@ -90,6 +90,25 @@ def fn(n):
 print(fn(17)) # True
 print(fn(18)) # False
 
+def prime(n, p=2):
+    """поиск простых делителей среди всех делителей числа"""
+    for i in range(p, int(n**0.5 + 1)):
+        if not n % i:
+            return [i] + prime(n // i, i)
+    return [n]  # само число простой делитель
+
+def f(n):
+    res = set()
+    for i in range(2, int(n ** 0.5 + 1)):
+        if not n % i:
+            res |= {i, n // i}
+    return res
+
+print(f(12))  # {2, 3, 4, 6}
+print(set(prime(12)))  # {2, 3}
+
+
+
 
 
 
