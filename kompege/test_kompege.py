@@ -1,25 +1,20 @@
 # https://stepik.org/lesson/1400060/step/12?unit=1417013
+# https://kompege.ru/task
 # 21424 Досрочная волна 2025 (Уровень: Базовый)
 # f = open('add/26/26_21424.txt').readlines()
 # f = open('txt.txt').readlines()
 # подготовка
 # обработка
+""""""
+# https://stepik.org/lesson/1209382/step/5?unit=1222617  (11)
+# https://stepik.org/lesson/1400061/step/10?unit=14170144  (27)
+# https://kompege.ru/task
 
 # from math import dist
 # def centr(ls:list):
 #     pass
 # def get_clust(p, p):
 #     pass
-# f = open(f'add/27/20294_27_A.txt')
-# https://stepik.org/lesson/1400061/step/5?unit=1417014
-
-# 7718 (Уровень: Средний)
-
-""""""
-# https://stepik.org/lesson/1209382/step/5?unit=1222617  (11)
-# https://stepik.org/lesson/1400061/step/10?unit=14170144  (27)
-# https://kompege.ru/task
-
 # def g_clust(p, k=5):
 #     clust = [i for i in data if dist(p, i) < k]
 #     [data.remove(i) for i in clust]
@@ -51,15 +46,131 @@
 
 # https://stepik.org/lesson/1400061/step/12?unit=1417014
 # 21425 Досрочная волна 2025 (Уровень: Базовый)
+# from string import ascii_lowercase as w
+# from itertools import *
+# from math  import ceil, log2
+# from ipaddress import *
+# from functools import lru_cache
+# from re import *
+# f = open('24var07.txt').readline()
+# f = open('txt.txt').readlines()
 
-from itertools import *
-from math  import ceil, log2
-from ipaddress import *
-from functools import lru_cache
-from re import *
-f = open('24var07.txt').readline()
-n = r'(?:0|[1-9]\d*)'
-reg = rf'{n}(?:[*-]{n})+'
-res = findall(reg, f)
-print(len(max(res, key=len)))  # 356
+
+# https://stepik.org/lesson/1362233/step/3?unit=1378103
+# 17537
+
+
+# f = open('add/26/_1111.txt').readlines()
+# c = 0
+# for i in f:
+#     n = [*map(int, i.split())]
+#     n1 = [i for i in n if n.count(i)==1]
+#     n2 = [i for i in n if n.count(i)==2]
+#     if len(n1)==3 and len(n2)==4:
+#         c += sum(n2) / 4 < sum(n) / 7
+# print(c)
+
+# i = ceil(log2(10 + 250))
+# I = ceil(60 * i / 8) * 65_536 / 1024
+# print(int(I))
+
+# for i in range(10_000 - 1, 3, -1):
+#     s = '5' + '2' * i
+#     while '52' in s or '2222' in s or '1122' in s:
+#         s = s.replace('52', '11', 1)
+#         s = s.replace('2222', '5', 1)
+#         s = s.replace('1122', '25', 1)
+#     if sum(map(int, s)) == 64:
+#         print(i)
+#         break
+
+
+# net = ip_network('192.168.32.160/255.255.255.240', 0)
+# c = 0
+# for i in net:
+#     c += not f'{i:b}'.count('1') % 2
+# print(c)
+
+# alf = '0123456789' + w[:9]
+# for i in alf[::-1]:
+#     n = int(f'98897{i}21', 19) + int(f'2{i}923', 19)
+#     if not n % 18:
+#         print(n // 18)
+#         break
+
+# def f(x, y, a):
+#     return (x + 2*y < a) or (y>x) or (x>60)
+#
+# for a in range(1000):
+#     if all(f(x, y, a) for x in range(1000) for y in range(1000)):
+#         print(a)
+#         break
+
+# @lru_cache()
+# def f(n):
+#     if n > 2024:
+#         return n
+#     return n * f(n+1)
+#
+# [f(i) for i in range(2025, 0, -1)]
+# print(f(2022) / f(2024))
+
+# c = 0
+# sm = 0
+# d = [*map(int, open('add/26/_1111.txt'))]
+# mx = max([i for i in d if str(i)[-2:] == '13'])
+# for i in range(len(d) - 2):
+#     n =  d[i:i+3]
+#     n3 = [i for i in n if 100 <= abs(i) < 1000]
+#     if len(n3) == 2 and sum(n) <= mx:
+#         c += 1
+#         sm = max(sm, sum(n))
+# print(c, sm)
+
+# # 26551 (Уровень: Базовый)
+# from re import *
+# s = open('add/24/24_26551.txt').read()
+# reg = r'[1-9A-D][0-9A-D]*[0248AC]'  # четное
+# res = findall(reg, s)
+# print(len(max(res, key=len)))  # 2598
+
+# f = open('add/KIM_25163454/9_27621.txt').readlines()
+# https://kompege.ru/task
+""""""
+
+# 24
+# 27634
+
+# f = open('add/KIM_25164989/9_27764.txt').readlines()
+# from math import ceil, log2
+
+# https://kompege.ru/variant?kim=25164989
+
+# 27
+# 27780 Апробация 04.03.26 (Уровень: Базовый)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

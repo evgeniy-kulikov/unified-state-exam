@@ -1,9 +1,10 @@
 """ https://kompege.ru/task """
 """
-225 507 788 954 1304 
-11681 13394 1395 15341 1868
-2149 2612 2613 2614 2910 3664
+225 507 788 954 
+1304 1395 1868
+2149 2612 2613 2614 3664
 4604(=4712) 4629 4660 4712 7096
+10107 11681 12256 13394 15341 17537
 21598 21719 21910(=21424)
 """
 
@@ -80,6 +81,8 @@ b = int(dk + dm)
 print(a, b)  # 7500 314590
 
 
+
+
 # 1304 Открытый вариант КЕГЭ (Уровень: Базовый)
 f = open('add/26/26_1304.txt').readlines()
 s, n = map(int, f[0].split())  # грузоподъёмность, количество груза
@@ -99,42 +102,6 @@ for i in range(n-1, 0, -1):
         break
 
 
-
-# 11681 (Уровень: Базовый) ❓
-f = open('add/26/26_11681.txt').readlines()
-n, k = map(int, f[0].split())  # N товаров для закупки,  K товаров для скидки
-d = [[*map(int, i.split())] for i in f[1:]]  # стоимость товара,  процент скидки
-for i in d:
-    i += [i[0] * i[1] / 100]  # выгода при скидке
-d.sort(key=lambda x: (-x[2], x[0]))
-a = sum(i[0] - i[2] for i in d[:k]) + sum(i[0] for i in d[k:])
-b = d[k-1][2]  # расхождение между условием, примером и принимаемым ответом.
-# Принимается выгода товара купленного со скидкой, с минимально возможной стоимостью.
-# А требовали минимальную возможную стоимость товара, купленного со скидкой.
-print(int(a), int(b))  # 2903432767 194784 ❓
-
-
-# 13394 Открытый курс "Слово пацана" (Уровень: Базовый) 👍
-from math import ceil
-f = open('add/26/26_13394.txt').readlines()
-D = [*map(int, f[1:])]
-sale = [i for i in D if i > 350]
-not_sale = sum(i for i in D if i <= 350)
-sale.sort(reverse=True)
-# Тактика покупателя
-# Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дешевые товары) продавать без скидки
-sm_user = 0
-for i in range(0, len(sale), 3):
-    a, b, c = sale[i:i + 3]
-    sm_user += ceil(a + b + c * 0.25)
-print(not_sale + sm_user, end=' ')
-# Тактика продавца
-# Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дорогие товары) продавать без скидки
-idx = len(sale) // 3
-sm_store = sum(sale[:-idx]) + ceil(sum(i * 0.25 for i in sale[-idx:]))
-print(not_sale + sm_store)  # 3924309 4275729
-
-
 # 1395 (Уровень: Базовый)
 f = open('add/26/26_1395.txt').readlines()
 s, n = map(int, f[0].split())
@@ -150,20 +117,6 @@ for i in range(n):
 a = n - idx - 1
 b = sum(d[idx+1:])
 print(a, b)  # 7655 542450
-
-
-# 15341 Досрочная волна 2024 (Уровень: Базовый)
-f = open('add/26/26_15341.txt').readlines()
-n = int(f[0])
-d = [*map(int, f[1:])]
-d.sort(reverse=True)
-cur = d[0]
-c = 1
-for i in d[1:]:
-    if cur - i >= 8:
-        c += 1
-        cur = i
-print(c, cur)  # 1198 54
 
 
 # 1868 Основная волна 2021 (Уровень: Базовый)
@@ -286,24 +239,6 @@ for i in range(len(book) - 1, 0, -1):
         break
 
 
-# 20910 Апробация 05.03.25 (Уровень: Средний)
-# получение данных
-f = open('add/26/26_20910.txt').readlines()
-_, R, S = map(int, f[0].split())  # кол-во занятых мест, кол-во рядов, кол-во мест в ряду
-res = []
-d = {k: [] for k in range(1, S + 1)}  # {место: [ряды], ...}
-for n in f[1:]:
-    r, s = map(int, n.split())  # номер ряда, номер места
-    d[s] += [r]
-# анализ данных
-for i in range(1, S):  # ⛔ для занятого 1-го ряда алгоритм не подходит
-    a = min(d[i]) if d[i] else R+1
-    b = min(d[i+1]) if d[i+1] else R+1
-    res.append((min([a, b]) - 1, i))
-res.sort(key=lambda x: (-x[0], x[1]))
-print(*res[0])  # 21028 6660
-
-
 # 3664 (Уровень: Базовый)
 f = open('add/26/26_3664.txt').readlines()
 # f = open('txt.txt').readlines()
@@ -379,6 +314,131 @@ print(cnt, cur)  # 854 54
 
 
 
+# 10107 Демоверсия 2024 (Уровень: Средний)
+fl = open('26_10107.txt').readlines()
+d = [[*map(int, i.split())] for i in fl[1:]]
+# сортируем по возрастанию времени окончания.
+d.sort(key=lambda x: x[1])
+res = []
+end = 0
+for i in d:
+    st, en = i
+    if st >= end:
+        res.append(i)
+        end = en
+# ищем самое позднее время начала последнего мероприятия от окончания предпоследнего отобранного мероприятия
+mx = 0
+for i in d:
+    if res[-2][1] <= i[0]:
+        mx = max(mx, i[0])
+print(len(res), mx - res[-2][1])  # 32 15
+
+
+# 11681 (Уровень: Базовый) ❓
+f = open('add/26/26_11681.txt').readlines()
+n, k = map(int, f[0].split())  # N товаров для закупки,  K товаров для скидки
+d = [[*map(int, i.split())] for i in f[1:]]  # стоимость товара,  процент скидки
+for i in d:
+    i += [i[0] * i[1] / 100]  # выгода при скидке
+d.sort(key=lambda x: (-x[2], x[0]))
+a = sum(i[0] - i[2] for i in d[:k]) + sum(i[0] for i in d[k:])
+b = d[k-1][2]  # расхождение между условием, примером и принимаемым ответом.
+# Принимается выгода товара купленного со скидкой, с минимально возможной стоимостью.
+# А требовали минимальную возможную стоимость товара, купленного со скидкой.
+print(int(a), int(b))  # 2903432767 194784 ❓
+
+
+# 12256 ЕГКР 16.12.23 (Уровень: Базовый)
+f = open('add/26/26_12256.txt').readlines()
+S, N = map(int, f[0].split())
+d = sorted(map(int, f[1:]))
+sm = cnt = 0
+for i in range(N):
+    if sm + d[i] <= S:
+        sm += d[i]
+    else:
+        sm -= d[i-1]
+        cnt = i
+        break
+# ищем самую тяжёлую посылку
+for i in range(-1, -N, -1):
+    if sm + d[i] <= S:
+        print(cnt, d[i])  # 629 50
+        break
+
+
+# 13394 Открытый курс "Слово пацана" (Уровень: Базовый) 👍
+from math import ceil
+f = open('add/26/26_13394.txt').readlines()
+D = [*map(int, f[1:])]
+sale = [i for i in D if i > 350]
+not_sale = sum(i for i in D if i <= 350)
+sale.sort(reverse=True)
+# Тактика покупателя
+# Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дешевые товары) продавать без скидки
+sm_user = 0
+for i in range(0, len(sale), 3):
+    a, b, c = sale[i:i + 3]
+    sm_user += ceil(a + b + c * 0.25)
+print(not_sale + sm_user, end=' ')
+# Тактика продавца
+# Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дорогие товары) продавать без скидки
+idx = len(sale) // 3
+sm_store = sum(sale[:-idx]) + ceil(sum(i * 0.25 for i in sale[-idx:]))
+print(not_sale + sm_store)  # 3924309 4275729
+
+
+# 15341 Досрочная волна 2024 (Уровень: Базовый)
+f = open('add/26/26_15341.txt').readlines()
+n = int(f[0])
+d = [*map(int, f[1:])]
+d.sort(reverse=True)
+cur = d[0]
+c = 1
+for i in d[1:]:
+    if cur - i >= 8:
+        c += 1
+        cur = i
+print(c, cur)  # 1198 54
+
+
+# 17537 Основная волна 07.06.24 (Уровень: Средний)
+""" ряды - столбцы """
+f = open('add/26/26_17537.txt').readlines()
+N, R, C = map(int, f[0].split())  # ticket, row, col
+data = [[*map(int, i.split())] for i in f[1:]]  # row, col
+dc = {i: R+1 for i in range(1, C+1)}  # R+1 если в столбце нет занятых мест
+for i in data:
+    row, col = i
+    dc[col] = min(dc[col], row)
+res = []
+for i in range(2, C + 1):
+    m = min(dc[i-1], dc[i]) - 1  # -1 переходим на ряд ниже занятого места
+    res.append([m, i])
+res.sort()
+print(*res[-1])  # 9991 5643
+
+
+
+
+# 20910 Апробация 05.03.25 (Уровень: Средний)
+# получение данных
+f = open('add/26/26_20910.txt').readlines()
+_, R, S = map(int, f[0].split())  # кол-во занятых мест, кол-во рядов, кол-во мест в ряду
+res = []
+d = {k: [] for k in range(1, S + 1)}  # {место: [ряды], ...}
+for n in f[1:]:
+    r, s = map(int, n.split())  # номер ряда, номер места
+    d[s] += [r]
+# анализ данных
+for i in range(1, S):  # ⛔ для занятого 1-го ряда алгоритм не подходит
+    a = min(d[i]) if d[i] else R+1
+    b = min(d[i+1]) if d[i+1] else R+1
+    res.append((min([a, b]) - 1, i))
+res.sort(key=lambda x: (-x[0], x[1]))
+print(*res[0])  # 21028 6660
+
+
 # 21598 (Уровень: Средний) 👍
 f = open('add/26/26_21598.txt').readlines()
 n = int(f[0])  # количество сотрудников
@@ -437,4 +497,7 @@ for i in d:
         cnt += 1
         cur = i
 print(cnt, cur)  # 1040 57
+
+
+
 
