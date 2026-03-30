@@ -12,8 +12,8 @@
 ❗
 🆗
 ✔
-🌶
 ⚡
+🌶️
 🍓
 🍒
 ⌛
@@ -37,17 +37,14 @@ from math import log2
 """
 
 """
+#
+# https://stepik.org/lesson/1354559/step/3?unit=1370386
+# 1753
 
 
 
 
-
-
-
-
-
-
-
+# from math import ceil, log2
 
 
 

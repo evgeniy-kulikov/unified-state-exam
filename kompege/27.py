@@ -7,7 +7,7 @@ https://kompege.ru/task
 """
 18150 20294
 21599 21911 21929 21930 21931 21932 
-25441 25442 25443 25444 25445 25446 25447 25448
+25441 25442 25443 25444 25445 25446 25447 25448 27779
 """
 
 """
@@ -798,4 +798,47 @@ for fl in zip('AB', (1, 1)):
 """
 15342 115607
 9762 9518
+"""
+
+
+# 27780 Апробация 04.03.26 (Уровень: Базовый)
+from math import dist
+def get_center(ls: list):
+    r = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        r.append((sm, i))
+    return min(r)[1]
+
+def get_clust(p):
+    clust = [i for i in data if dist(i, p) < 2]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+for w in 'AB':
+    f = open(f'add/KIM_25164989/27{w}_27780.txt').readlines()
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data))
+    clust = []
+    while data:
+        p = data.pop()
+        clust.append([p] + get_clust(p))
+    # [print(len(i)) for i in clust]
+    # print(sum(len(i) for i in clust))
+    # print()
+    clust.sort(key=len)
+    center = [get_center(i) for i in clust]
+    if w == 'A':
+        a1 = len(clust[-1])
+        a2 = int(sum(dist(i, (1.0, 1.5)) for i in center) * 10_000)
+        print(a1, a2)  # 344 294354
+    else:
+        b1 = sum(1 for i in clust[1] if dist(i, center[1]) <= 1.2 and i != center[1])
+        b2 = int(min(dist(i, center[-1]) for i in clust[-1] if i != center[-1]) * 10_000)
+        print(b1, b2)
+"""
+344 294354
+152 528
 """

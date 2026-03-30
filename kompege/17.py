@@ -2,7 +2,7 @@
 """
 5491 7718 8475
 11236 11949 13088
-23276
+23276 27629
 """
 
 
@@ -112,3 +112,19 @@ for i in range(len(d) - 2):
             c += 1
             sm = max(sm, sum(ls))
 print(c, sm)  # 6315 84523
+
+
+# 27629 Апробация 04.03.26 (Уровень: Базовый)
+c = 0
+res = 0
+f = open('add/KIM_25164989/17_27629.txt').readlines()
+d = [*map(int, f)]
+n_43 = max(i for i in d if len(str(abs(i))) == 4 and str(i)[-2:] == '43')
+for i in range(len(d) - 1):
+    num = d[i:i+2]
+    if any(len(str(abs(k))) == 4 for k in num):
+        if sum(num) ** 2 < n_43 ** 2:
+            c += 1
+            res = max(res, sum(num) ** 2)
+print(c, res)  # 1218 98843364
+

@@ -136,28 +136,70 @@
 
 # f = open('add/KIM_25163454/9_27621.txt').readlines()
 # https://kompege.ru/task
+# ✅️Better
+""""""
+# 26078 (Уровень: Базовый) ⛔ ❓  # суперсложная задача
+# d = st = open('add/26/24_26078.txt').read()
+# st = open('add/26/24_26078.txt').read().replace('W', 'W W').split()
+# res = []
+# n = 90
+# for i in range(len(st) - n):
+#     s = st[i:i + n + 1]
+#     if ''.join(s).count('2025') >= 110:
+#         res.append(s)
+#
+# https://kompege.ru/task
 """"""
 
-# 24
-# 27634
+# 8510 Апробация 17.05 (Уровень: Средний)
+# s = open('add/24/24_8510.txt').read()
 
-# f = open('add/KIM_25164989/9_27764.txt').readlines()
+
+# def b5(n):
+#     r = ''
+#     while n:
+#         r = str(n % 5) + r
+#         n //= 5
+#     return r
+
 # from math import ceil, log2
+# for i in range(1, 100):
+#     if (ceil(1600 * 1200 * i / 8) / 5 + 100*1024) * 32 > 10 * 2**20:
+#         print(2**(i-1))
+#         break
+# 👍 сложная задача
 
-# https://kompege.ru/variant?kim=25164989
+# https://stepik.org/lesson/1071633/step/6?unit=1081443
+# from ipaddress import *
+# for n in range(1, 33):
+#     net = ip_network(f'115.12.69.38/{n}', 0)
+#     if str(net.network_address) == '115.12.64.0':
+#         print(n)
+#         break
 
-# 27
-# 27780 Апробация 04.03.26 (Уровень: Базовый)
+def b7(n):
+    r = ''
+    while n:
+        r = str(n%7) + r
+        n //= 7
+    return r
+
+# res = 0
+# n = 7**500 + 7**200 - 7**50
+# for x in range(n, 0, -1):
+#     res = max(res, sum(map(int, b7(x))))
+#     if res > 1200:
+#         print(res)
+# print(res)
+
+
+# 111 (Уровень: Сложный) 🌶️
+# from functools import *
+# @lru_cache(None)
 
 
 
-
-
-
-
-
-
-
+# https://stepik.org/lesson/564227/step/15?unit=558475
 
 
 

@@ -4,8 +4,8 @@
 1304 1395 1868
 2149 2612 2613 2614 3664
 4604(=4712) 4629 4660 4712 7096
-10107 11681 12256 13394 15341 17537
-21598 21719 21910(=21424)
+10107 11681 12256 13394 15341 17537 17881
+21598 21719 21910(=21424) 27779
 """
 
 
@@ -407,16 +407,31 @@ print(c, cur)  # 1198 54
 f = open('add/26/26_17537.txt').readlines()
 N, R, C = map(int, f[0].split())  # ticket, row, col
 data = [[*map(int, i.split())] for i in f[1:]]  # row, col
-dc = {i: R+1 for i in range(1, C+1)}  # R+1 если в столбце нет занятых мест
+dc = {i: R+1 for i in range(1, C+1)}  # R+1 если в столбце нет занятых мест (виртуальный ряд после последнего)
 for i in data:
     row, col = i
-    dc[col] = min(dc[col], row)
+    dc[col] = min(dc[col], row)  # первый занятый ряд для данного вертикального значения места
 res = []
 for i in range(2, C + 1):
     m = min(dc[i-1], dc[i]) - 1  # -1 переходим на ряд ниже занятого места
     res.append([m, i])
 res.sort()
 print(*res[-1])  # 9991 5643
+
+
+# 17881 Демоверсия 2025 (Уровень: Базовый)
+from statistics import mean
+f = open('26.txt').readlines()
+n = int(f[0])
+d = [[*map(int, i.split())] for i in f[1:]]
+d222 = [i for i in d if i.count(2) == 3]  # получили по 3 двойки
+d222.sort()
+
+d = [i + [mean(i[1:])] for i in d if not i.count(2)]  # без двоек
+d.sort(key=lambda x: (-x[-1], x[0]))
+a = d[n // 4 - 1][0]  # n // 4 - 1  ✅ т.к индекс начинается с нуля
+b = d222[0][0]
+print(a, b)  # 52326 635
 
 
 
@@ -498,6 +513,20 @@ for i in d:
         cur = i
 print(cnt, cur)  # 1040 57
 
+
+
+# 27779 Апробация 04.03.26 (Уровень: Базовый)
+f = open('add/KIM_25164989/26_27779.txt').readlines()
+# f = open('add/KIM_25164989/test.txt').readlines()
+N = int(f[0])
+d = sorted(map(int, f[1:]), reverse=True)
+c = 1
+cur = d[0]
+for i in range(N-1):
+    if cur - d[i] >= 8:
+        c += 1
+        cur = d[i]
+print(c, cur)  # 1159 57
 
 
 
