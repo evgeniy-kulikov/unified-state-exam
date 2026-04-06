@@ -13,6 +13,16 @@ for i in range(0, 10**10, step):
 # step - на что должно делиться число,
 # mask - какой маске удовлетворять.
 
+# Альтернатива fnmatch
+from itertools import product
+d = []
+for i in range(4):
+    d.extend([''.join(p) for p in product('0123456789', repeat=i)])
+for a in '0123456789':
+    for b in d:
+        n = int(f'1{a}2157{b}4')
+        ...
+
 """
 У нечетного числа не может быть четных делителей.
 Все делители нечетного числа также будут нечетными. 15 --> 1, 3, 5, 15

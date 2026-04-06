@@ -1,9 +1,65 @@
 """ https://kompege.ru/task """
 """
-7086 7265 7353 7817 8159 8676 9545
-1127 11665 12247 12469
-24988 25279 25354
+307
+
+1127 1276 7086 7265 7353 7817 8159 8676 9370 9545 
+11665 12247 12469 17528
+21710 24988 25279 25354
+
+  🍒 отрезки
 """
+
+
+
+
+# 307 Джобс 28.09.2020 (Уровень: Средний)  🍒 отрезки
+def f(x):
+    p = 3 <= x <= 15
+    q = 14 <= x <= 25
+    a = a1 <= x <= a2
+    # return not (p == q) or not a
+    return p != q or not a
+
+n = [i for k in (3,14,15,25) for i in (k-0.1, k, k+0.1)]
+res = 0
+for a1 in n:
+    for a2 in n:
+        if a1 < a2 and all(f(x) for x in n):
+            res = max(res, a2 - a1)
+print(round(res))  # 11  (10.9)
+
+
+
+
+
+
+# 1127 (Уровень: Базовый)
+def f(x):
+    return not a % 7 and (240 % x or not a % x or 780 % x)
+
+for a in range(1, 1000):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 420
+        break
+
+
+
+
+# 1276 (Уровень: Средний)  🍒 отрезки
+def f(x):
+    p = 15 <= x <= 33
+    q = 35 <= x <= 48
+    a = a1 <= x <= a2
+    # return (a and not q) <= (p or q)
+    return not a or q or p
+
+res = 0
+n = [i for k in (15,33,45,68) for i in (k-0.2, k, k+0.2)]
+for a1 in n:
+    for a2 in n:
+        if a2 > a1 and all(f(x) for x in n):
+            res = max(res, a2-a1)
+print(res)  # 18
 
 
 # 7086 OpenFIPI (Уровень: Базовый)
@@ -71,6 +127,18 @@ for b in range(1, 1000):
         break
 
 
+# 9370 Джобс 10.06.23 (Уровень: Сложный)  🍒 отрезки
+def f(x):
+    p = 5 <= x <= 54
+    q = 50 <= x <= 93
+    return p or not q or x > a
+
+for a in range(1000):
+    if sum(1 for i in range(1000) if not f(i)) == 20:
+        print(a)  # 74
+        break
+
+
 # 9545 Джобс 14.06.23 (Уровень: Базовый)
 def f(x):
     return x % 10 or x % 26 or x < 300 or a <= x
@@ -81,14 +149,6 @@ for a in range(1000, 0, -1):
         break
 
 
-# 1127 (Уровень: Базовый)
-def f(x):
-    return not a % 7 and (240 % x or not a % x or 780 % x)
-
-for a in range(1, 1000):
-    if all(f(x) for x in range(1, 1000)):
-        print(a)  # 420
-        break
 
 
 # 11665 (Уровень: Базовый)
@@ -111,22 +171,56 @@ for a in range(1000, 0, -1):
         break
 
 
-# 12469 (Уровень: Базовый)
-from math import ceil
-def f(x, a1, a2):
+# 12469 (Уровень: Базовый)  🍒 отрезки
+def f(x):
     c = 29 <= x <= 100
     d = 7 <= x <= 68
     a = a1 <= x <= a2
     return not d or c or a
 
-N = [i / 2 for i in range(400)]
+n = [i for k in (7,29,68,100) for i in (k-0.1, k, k+0.1)]
 res = 400
-for a1 in N:
-    for a2 in N:
+for a1 in n:
+    for a2 in n:
+        if a1 < a2 and all(f(x) for x in n):
+            res = min(res, a2 - a1)
+print(round(res))  # 22  (21.9)
+
+
+# 17528 Основная волна 07.06.24 (Уровень: Базовый)  🍒 отрезки
+def f(x):
+    p = 15 <= x <= 40
+    q = 21 <= x <= 63
+    a = a1 <= x <= a2
+    return not p or not q or a
+
+res = 1000
+# n = [i * 0.25 for i in range(400)]  # перебор дольше по времени
+n = [y for x in (15, 21, 40, 63) for y in (x-0.1, x, x+0.1)]  # ✅ критические точки: концы P,Q и сдвиги
+for a1 in n:
+    for a2 in n:
         if a1 < a2:
-            if all(f(x, a1, a2) for x in N):
-                res = min(res, a2 - a1)
-print(ceil(res))  # 22
+            if all(f(x) for x in n):
+                res = min(res, a2-a1)
+print(res)  # 19
+
+
+
+# 21710 ЕГКР 19.04.25 (Уровень: Базовый)  🍒 отрезки
+def f(x):
+    b = 36 <= x <= 75
+    c = 60 <= x <= 110
+    a = a1 <= x <= a2
+    return (not a) <= (b == c)
+    # return a or (b == c)
+
+res = 0
+n = [i for k in (36,75,60,110) for i in (k-0.1, k, k+0.1)]
+for a1 in n:
+    for a2 in n:
+        if a2 > a1 and all(f(x) for x in n):
+            res = max(res, a2-a1)
+print(round(res))  # 74  (74.1999)
 
 
 # 24988  (Уровень: Базовый)
