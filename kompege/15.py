@@ -1,12 +1,12 @@
 """ https://kompege.ru/task """
 """
-307
+307 4988 743 753
+1127 1234 1276 7086 7265 7353 7817 8159 8676 9370 9545 
+11665 12247 12469 17528 19980
+20905 21710 24988 25279 25354
 
-1127 1276 7086 7265 7353 7817 8159 8676 9370 9545 
-11665 12247 12469 17528
-21710 24988 25279 25354
-
-  🍒 отрезки
+🍒 отрезки
+🍓 множества
 """
 
 
@@ -29,6 +29,47 @@ for a1 in n:
 print(round(res))  # 11  (10.9)
 
 
+# 4988 (Уровень: Базовый)  🍒 отрезки + делители
+def f(x):
+    b = 70 <= x <= 80
+    return not x % 12 and b and x % a
+
+c = 0
+for a in range(1, 1000):
+    if all(not f(x) for x in range(1, 1000)):
+        c += 1
+print(c)  # 12
+
+
+# 743 (Уровень: Средний)  🍓 множества
+def f(x):
+    b = x in {1,3,5,7,9,11}
+    c = x in {3,6,9,12}
+    A = x in a
+    # return (b <= (not c)) or A
+    return not b or not c or A
+
+a = set()
+for i in range(1, 20):
+    if not f(i):
+        a.add(i)
+print(sum(a))  # {9, 3}
+
+
+# 753 (Уровень: Средний)  🍒 отрезки
+def f(x):
+    p = 5 <= x <= 30
+    q = 14 <= x <= 23
+    a = a1 <= x <= a2
+    return (p != q) or not a
+
+res = 0
+n = [i for k in (5,30,14,23) for i in (k-0.1, k , k +0.1)]
+for a1 in n:
+    for a2 in n:
+        if a1 < a2 and all(f(x) for x in n):
+            res = max(res, a2 - a1)
+print(round(res))  # 9
 
 
 
@@ -43,6 +84,15 @@ for a in range(1, 1000):
         break
 
 
+# 1234 (Уровень: Базовый)
+def f(x):
+    b = 120 <= x <= 130
+    return not b or x % 7 or a > 2*x
+
+for a in range(1000):
+    if all(f(x) for x in range(1000)):
+        print(a)  # 253
+        break
 
 
 # 1276 (Уровень: Средний)  🍒 отрезки
@@ -204,6 +254,39 @@ for a1 in n:
                 res = min(res, a2-a1)
 print(res)  # 19
 
+
+# 19980 (Уровень: Средний)  🍒 отрезки + числа ✅
+def f(x):
+    p = 52 <= x <= 105
+    q = 0 <= x <= 53
+    a = a1 <= x <= a2
+    return (not p and not q and not a) <= (x**2 > 303601)  # 551**2 == 303601 ✅
+
+res = 1000
+n = [i for k in (0,53,52,105,551) for i in (k-0.1, k, k+0.1)][1:]  # убираем отрицательное значение
+for a1 in n:
+    for a2 in n:
+        if a1 < a2 and all(f(x) for x in n):
+            res = min(res, a2-a1)
+print(round(res))  # 446
+
+
+
+
+# 20905 Апробация 05.03.25 (Уровень: Базовый)  🍒 отрезки
+def f(x):
+    p = 17 <= x <= 58
+    q = 29 <= x <= 80
+    a = a1 <= x <= a2
+    return not p or not q or a
+
+res = 1000
+n = [i for k in (17,58,29,80) for i in (k-0.1, k , k +0.1)]
+for a1 in n:
+    for a2 in n:
+        if a1 < a2 and all(f(x) for x in n):
+            res = min(res, a2 - a1)
+print(round(res))  # 29
 
 
 # 21710 ЕГКР 19.04.25 (Уровень: Базовый)  🍒 отрезки

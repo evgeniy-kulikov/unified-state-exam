@@ -6,7 +6,7 @@ https://kompege.ru/task
 
 """
 18150 20294
-21599 21911 21929 21930 21931 21932 
+21599 21911 21929 21930 21931 21932 23384 23766
 25441 25442 25443 25444 25445 25446 25447 25448 27779
 """
 
@@ -15,9 +15,7 @@ https://kompege.ru/task
 17882 17916 
 18051 18314 18624 18625 18628 18676 18677 
 19257 
-20816 
-21425 21720 
-23209 23284 23571 23766 
+20816 21425 21720 23209 23284 23571 
 """
 
 
@@ -100,6 +98,7 @@ for i, k in zip('AB', (1, 0.4)):
 135491 131265
 232818 15126
 """
+
 
 
 
@@ -421,6 +420,97 @@ print(Px, Py)
 32865 70666
 144062 61170
 """
+
+
+# 23384 Резервный день 19.06.25 (Уровень: Базовый)
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    res = []
+    for p in ls:
+        sm = sum(dist(p, i) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+
+for w in 'AB':
+    data = [[*map(float, i.replace(',', '.').split())] for i in open(f'27{w}.txt')]
+    # print(len(data))
+    clust = []
+    while data:
+        p = data.pop()
+        cl = [p] + get_clust(p)
+        if len(cl) > 1:
+            clust += [cl]
+    # [print(len(i)) for i in clust]
+    # print(sum(len(i) for i in clust), '\n')
+    center = [get_center(i) for i in clust]
+    if w == 'A':
+        px = int(abs(sum(i[0] for i in center) * 10_000))
+        py = int(abs(sum(i[1] for i in center) * 10_000))
+        print(px, py)  # 110156 196632
+    else:
+        q1 = int(min(dist(i, [0,0,]) for i in center) * 10_000)
+        q2 = int(max(dist(i, [0,0,]) for i in center) * 10_000)
+        print(q1, q2)  # 224871 273226
+"""
+110156 196632
+224871 273226
+"""
+
+
+# 23766 Демоверсия 2026 (Уровень: Базовый)
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(i, p) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    res = []
+    for p in ls:
+        sm = sum(dist(i, p) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+for w in 'AB':
+    data = [[*map(float, i.replace(',', '.').split())] for i in open(f'27{w}.txt')]
+    # print(len(data))
+    clust = []
+    while data:
+        p = data.pop()
+        cl = [p] + get_clust(p)
+        if len(cl) > 1:
+            clust += [cl]
+    # [print(len(i)) for i in clust]
+    # print(sum(len(i) for i in clust), '\n')
+    clust.sort(key=len)
+    center = [get_center(i) for i in clust]
+
+    if w == 'A':
+        px = int(abs(min(i[0] for i in center)) * 10_000)
+        py = int(abs(min(i[1] for i in center)) * 10_000)
+        print(px, py)  # 38471 61225
+    else:
+        q1 = int(dist(center[0], center[-1]) * 10_000)
+        mx = [max(dist(ce, i) for i in cl) for ce, cl in zip(center, clust)]
+        q2 = int(max(mx) * 10_000)
+        print(q1, q2) # 142058 25299
+"""
+38471 61225
+142058 25299
+"""
+
+
+
 
 
 # № 25441

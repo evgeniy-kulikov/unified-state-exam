@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-5491 7718 8475
+5491 7718 8475 9748
 11236 11949 13088
 23276 27629
 """
@@ -46,6 +46,19 @@ for i in range(len(d) - 2):
             cnt += 1
             res = max(res, sum(d[i:i+3]))
 print(cnt, res)  # 5312 20235
+
+
+# 9748 Основная волна 19.06.23 (Уровень: Средний)
+f = [*map(int, open('17.txt'))]
+c = sm = 0
+MX = max(i for i in f if i % 100 == 15)
+for i in range(len(f) - 2):
+    n = f[i:i+3]
+    if sum(1 for i in n if 1000 <=i < 10000) == 1:
+        if sum(n) >= MX:
+            c += 1
+            sm = max(sm, sum(n))
+print(c, sm)  # 299 196183
 
 
 

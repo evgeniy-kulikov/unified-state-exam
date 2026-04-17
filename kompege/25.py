@@ -137,21 +137,18 @@ def dv(n):
             r |= {i, n // i}
     return r
 
-def smpl(n):
-    for i in range(2, int(n**0.5 +1 )):
-        if not n % i:
-            return False
-    return True
+def spl(n):
+    return all(n % i for i in range(2, int(n**0.5) + 1))
 
 c = 5
 for n in range(5_400_000, 10**10):
     r = dv(n)
     res = [i for i in r if smpl(i)]
-    if len(res) > 1:
+    if res:
         m = min(res) + max(res)
         if str(m) == str(m)[::-1] and m > 60_000:
-            c -= 1
             print(n, m)
+            c -= 1
     if not c:
         break
 """
@@ -172,23 +169,34 @@ def dv(n):
     return r
 
 def smpl(n):
-    for i in range(2, int(n**0.5 +1 )):
-        if not n % i:
-            return False
-    return True
+    s = [n % i for i in range(2, int(n**0.5 + 1))]
+    return all(n % i for i in range(2, int(n**0.5 + 1)))
 
 c = 5
 for n in range(6_651_220, 10**10):
-    r = dv(n)
-    res = [i for i in r if smpl(i)]
-    res = [i for i in res if str(i).count('2') == 1]
-    if res:
-        m = min(res) * max(res)
-        if m == n:
-            c -= 1
-            print(n, max(res))
     if not c:
         break
+    r = dv(n)
+    res = [i for i in r if smpl(i) and str(i).count('2')]
+    if res:
+        if min(res) * max(res) == n:  # ❓ число может быть только из такого варианта 🤔
+            c -= 1
+            print(n, max(res))
+
+# Вариант
+c = 5
+for n in range( 6_651_220, 10**10):
+    if not c:
+        break
+    dv_num = dv(n)
+    if dv_num:
+        d = [i for i in dv_num if smpl(i) and str(i).count('2')]
+        if d:
+            for p in product(d, repeat=2):
+                if p[0] * p[1] == n:  # ✔️ Так точно найдем
+                    print(n, max(p))
+                    c -= 1
+                    break
 """
 6651241 2579
 6651262 3325631

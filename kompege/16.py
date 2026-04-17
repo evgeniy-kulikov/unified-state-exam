@@ -2,6 +2,7 @@
 """
 699
 1594 17557
+23562 
 """
 
 
@@ -43,3 +44,21 @@ def f(n):
 
 [f(i) for i in range(1, 2025)]
 print((f(2024) // 16 - f(2023)) // f(2022))  # 1019592
+
+
+
+
+
+# 23562 Пересдача 03.07.25 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache
+def g(n):
+    if n <= 9:
+        return 3 * n
+    return g(n-2) + 1
+
+# def f(n):  # лишняя функция
+#     return g(n-1)
+
+[g(n) for n in range(9, 47995)]
+print(g(47994))  # 24017
