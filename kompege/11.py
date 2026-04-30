@@ -1,10 +1,27 @@
 """ https://kompege.ru/task """
 """
-494
-1342 2571 4462 4616 6746 7813 8469 9742
+136 303 494
+1342 2119 2571 4462 4616 5061 5914 6746 7032 7813 8469 9742
 10713 11230 11660 16377 17524 17552 17630
 20805 20972 21594 23195 23370
 """
+
+
+# 136 (Уровень: Средний)
+from math import ceil, log2
+i_cod = ceil(log2(52 + 10)) # 6
+cod = ceil(11 * 6 / 8)
+num = ceil(7 / 8)
+add = 28 - (cod + num)
+print(add)  # 18
+
+
+# 303 Джобс 28.09.2020 (Уровень: Средний)
+from math import ceil
+cod = ceil(11 * 5 / 8)
+num = ceil((5*5 + 10) / 8)
+add = 30 - (cod + num)
+print(add)  # 18
 
 
 # 494 Джобс 19.10.2020 (Уровень: Средний)
@@ -26,12 +43,30 @@ res = (I1 + I2) * 256 // 1024
 print(res)
 
 
+# 2119 Danov2201 (Уровень: Сложный) 🌶️
+from math import ceil, log2
+i = ceil(log2(10 + 52))
+for n in range(1, 100):
+    if ceil(n * i / 8) * 1000 > 4 * 1024:
+        print(62**(n - 1))  # 62**5 ->  916132832  кол-во комбинаций
+        break
+
+
 #  2571 (Уровень: Средний)
 from math import ceil, log2
 p1 = 10 * 5
 p2 = ceil(log2(99999))
 I = ceil((p1 + p2) / 8) + 13
 print(1800 // I)  # 81
+
+
+# 3169 (Уровень: Средний)
+from math import ceil
+p1 = 15 * 5
+p2 = 14
+p = ceil((p1 + p2) / 8)
+res = 1600 // (p + 12)
+print(res)  # 66
 
 
 # 4462 Джобс 15.06.2022 (Уровень: Базовый)
@@ -54,11 +89,46 @@ I = ceil(294 * ceil(log2(10 + 4550)) / 8)
 print(I * 131_072 // 2**10)  # 61184
 
 
+# 5061 (Уровень: Сложный)
+from math import ceil, log2
+i = ceil(log2(52 + 11))
+for add in range(1, 1000):
+    p1 = (ceil(35 * i / 8) + add) * 4
+    p2 = (ceil(27 * i / 8) + add) * 5
+    if p1 + p2 > 320:
+        print(add)
+        break
+
+
+# 5914 (Уровень: Средний)
+from math import ceil
+p1 = 26 * 5
+p2 = 12
+res = ceil(38_776 * (p1 + p2) / 2**13)
+print(res)  # 673
+
+
 # 6746 Апробация 10.03.23 (Уровень: Базовый)
 from math import ceil, log2
 i = ceil(log2(10 + 5000))
 res = ceil(318 * i / 8) * 8192
 print(res // 1024)  # 4136
+
+
+# 7032 Danov2303 (Уровень: Сложный) 🌶️
+from math import ceil, log2
+num = 4
+lertter = 2
+sex = 1
+day = 5
+mouth = 4
+name = 7
+row = 6  # byte (размер записи без поля фамилии в байтах)
+for i in range(1, 2000):
+    if (6 + i) * 1279 > 10 * 1024:
+        surname = i - 1
+        print(2**(surname * 8))  # 65536
+        break
 
 
 # 7813 (Уровень: Базовый)

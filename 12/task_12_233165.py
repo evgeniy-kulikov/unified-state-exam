@@ -24,13 +24,13 @@ for n0 in range(1000):
                 print(str1.count('0'))  # 880
 
 # variant
-for n2 in range(1, 1001):
+for n2 in range(1, 1000):
     n1 = 2 * n2
     n0 = 1000 - n1 - n2
     sum1 = n1 + 2 * n2
     sum2 = 2 * n0 + n2
     if sum1 == sum2 - 1640:
-        print(n0)
+        print(n0)  # 880
 
 
 # https://stepik.org/lesson/1695399/step/4?unit=1718750

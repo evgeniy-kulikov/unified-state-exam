@@ -5,8 +5,8 @@ https://kompege.ru/task
 """
 
 """
-18150 20294
-21599 21911 21929 21930 21931 21932 23384 23766
+18031 18150 20294 20911
+21425 21599 21911 21929 21930 21931 21932 23384 23766
 25441 25442 25443 25444 25445 25446 25447 25448 27779
 """
 
@@ -15,9 +15,58 @@ https://kompege.ru/task
 17882 17916 
 18051 18314 18624 18625 18628 18676 18677 
 19257 
-20816 21425 21720 23209 23284 23571 
+20816 21720 23209 23284 23571 
 """
 
+
+
+
+
+# 18031 (Уровень: Базовый)  ✅  нестандартная задача
+from math import dist
+def get_cluster(p):
+    clust = [i for i in data_in if dist(p, i) < 1]
+    [data_in.remove(i) for i in clust]
+    next_clust = [get_cluster(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_min(a: list, b: list):  # ✅  нестандартная функция
+    res = []
+    for i in a:
+        ls = [[dist(i, k), i, k] for k in b]
+        ls.sort()
+        res.append(ls[0])
+    res.sort()
+    return res[0]
+
+
+for w in 'AB':
+    f = open(f'27{w}.txt')
+    data_in = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data_in))
+    clusters = []
+    while data_in:
+        p = data_in.pop()
+        clusters.append(get_cluster(p) + [p])
+    # [print(len(i)) for i in clusters]
+    # print(sum(len(i) for i in clusters), '\n')
+    min_clust = []
+    n = len(clusters)
+    for i in range(n):
+        for k in range(i + 1, n):
+            a, b = clusters[i], clusters[k]
+            min_clust += [get_min(a, b)]
+    min_clust.sort()
+    a, b = min_clust[0][1], min_clust[0][2]
+    sx = int((a[0] + b[0]) * 1000)
+    sy = int((a[1] + b[1]) * 1000)
+    print(sx, sy)
+
+"""
+1731 6256
+18166 26588
+"""
 
 
 
@@ -136,6 +185,44 @@ for s in 'AB':
 167990 73043
 122627 29105
 """
+
+
+
+#  20911 Апробация 05.03.25 (Уровень: Базовый)
+from math import dist
+def get_cluster(p):
+    clust = [i for i in data_in if dist(p, i) < 2]
+    [data_in.remove(i) for i in clust]
+    next_clust = [get_cluster(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(a: list):
+    res = []
+    for i in a:
+        sm = sum(dist(i, k) for k in a)
+        res.append([sm, i])
+    return min(res)[1]
+
+for w in 'AB':
+    f = open(f'27{w}.txt')
+    data_in = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data_in))
+    clusters = []
+    while data_in:
+        p = data_in.pop()
+        clusters.append(get_cluster(p) + [p])
+    # [print(len(i)) for i in clusters]
+    # print(sum(len(i) for i in clusters), '\n')
+    center = [get_center(i) for i in clusters]
+    px = int(abs(sum(i[0] for i in center) / len(center)) * 10_000)
+    py = int(abs(sum(i[1] for i in center) / len(center)) * 10_000)
+    print(px, py)
+"""
+28603 10294
+61260 11206
+"""
+
 
 
 

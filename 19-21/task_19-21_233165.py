@@ -164,13 +164,11 @@ def f(a, b, m):
     if not m:
         return False
     g = [f(a+1, b, m-1), f(a*2, b, m-1), f(a, b+1, m-1), f(a, b*2, m-1)]
-    if not (m - 1) % 2:
-        return any(g)
-    return all(g)
+    return any(g) if  m % 2 else all(g)
 
-print([a for a in range(1, 53) if f(a, 5, 1)][0])  # 27
-print(*[a for a in range(1, 53) if f(a, 5, 3) and not f(a, 5, 1)])  # 24 26
-print([a for a in range(1, 53) if f(a, 5, 4) and not f(a, 5, 2)][0])  # 23
+print([a for a in range(1, 53) if f(a, 5, 1)][0])
+print(*[a for a in range(1, 53) if f(a, 5, 3) and not f(a, 5, 1)])
+print([a for a in range(1, 53) if f(a, 5, 4) and not f(a, 5, 2)][0])
 """
 27
 24 26
@@ -386,13 +384,11 @@ def f(a, m):
     if not m:
         return 0
     g = [f(a-2, m-1), f(a-5, m-1), f(a//3, m-1)]
-    if not (m-1) % 2:
-        return any(g)
-    return all(g)
+    return any(g) if m % 2 else all(g)
 
-print([s for s in range(20, 200) if f(s, 2)][0])  # 60
-print(*[s for s in range(20, 200) if f(s, 3) and not f(s, 1)][:2])  # 62 63
-print([s for s in range(20, 200) if f(s, 4) and not f(s, 2)][0])  # 64
+print([s for s in range(20, 200) if f(s, 2)][0])
+print(*[s for s in range(20, 200) if f(s, 3) and not f(s, 1)][:2])
+print([s for s in range(20, 200) if f(s, 4) and not f(s, 2)][0])
 """
 60
 62 63

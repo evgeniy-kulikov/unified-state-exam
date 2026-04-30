@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
 5553 6901 8553 9155
-10090 11201 11291 11827 12097 12240 12917 16319 16374 17521 17549 1933
+10090 11201 11291 11300 11827 12097 12240 12462 12917 16319 16374 17521 17549 1933
 23367 23746 
 """
 
@@ -74,6 +74,16 @@ for p in permutations('*0**1*'):
 print(c)  # 96
 
 
+# 11300 (Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('ГОНДУБШ'), repeat=6):
+    c += 1
+    if all([p[0]!='Б', c % 2, p.count('Н') >= 2, not p.count('У')]):
+        res = c
+print(res)  # 117625
+
+
 # 11827 (Уровень: Средний)
 from itertools import *
 c = 0
@@ -115,6 +125,15 @@ c = 0
 for p in product('012345678', repeat=5):
     c += p[0] != '0' and p.count('5') == 1 and not sum(a == b for a, b in zip(p, p[1:]))
 print(c)  # 13377
+
+
+# 12462 PRO100 ЕГЭ 29.12.23 (Уровень: Базовый) ✅
+from itertools import *
+c = 0
+for r in (3, 5):
+    for p in product('0123456789abcdef', repeat=r):
+        c += all(a > b for a , b in zip(p, p[1:]))
+print(c)  # 4928
 
 
 # 12917 PRO100 ЕГЭ 26.01.24 (Уровень: Базовый)
