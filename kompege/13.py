@@ -1,9 +1,71 @@
 """ https://kompege.ru/task """
 """
-10578 10715 10773 10776 10786 10788 10789 11662 11779 11780 11787 11794 11835
-12088 12245 12947 17627 17632
+10160 10161 10164 10166 10578 10715 10773 10776 10781 10785 10786 10788 10789 11662 11779 11780 11787 11794 11835
+12088 12245 12947 14649 17632 19748
 23372 23559
 """
+
+
+# 10160 (Уровень: Базовый)
+from ipaddress import *
+c = 0
+for i in range(1, 33):
+    net = ip_network(f'76.155.48.2/{i}', 0)
+    c += str(net.network_address) == '76.155.48.0'
+print(c)  # 11
+
+
+# 10161 (Уровень: Средний)
+from ipaddress import *
+res = 0
+for i in range(1, 33):
+    net1 = ip_network(f'211.115.61.154/{i}', 0)
+    net2 = ip_network(f'211.115.59.137/{i}', 0)
+    if net1 == net2:
+        m = str(net1.netmask).split('.')[2]
+        res = max(res, int(m))
+print(res)  # 248
+
+# variant
+from ipaddress import *
+for i in range(32, 0, -1):
+    net1 = ip_network(f'211.115.61.154/{i}', 0)
+    net2 = ip_network(f'211.115.59.137/{i}', 0)
+    if net1 == net2:
+        m = str(net1.netmask).split('.')[2]
+        print(m)  # 248
+        break
+
+
+# 10164 (Уровень: Средний)
+from ipaddress import *
+n = 0
+net = ip_network('156.132.15.138/255.255.252.0', 0)
+for i in net.hosts():
+    n += 1
+    # if i == ip_address('156.132.15.138'):
+    if str(i) == '156.132.15.138':
+        print(n)  # 906
+        break
+
+# variant
+from ipaddress import *
+n = 0
+net = ip_network('156.132.15.138/255.255.252.0', 0)
+n = [*net.hosts()]
+print(n.index(ip_address('156.132.15.138')) + 1)  # 906
+
+
+# 10166 (Уровень: Базовый)
+from ipaddress import *
+n = 0
+net = ip_network('0.0.0.0/255.255.254.0', 0)
+n = [*net.hosts()]
+print(len(n))  # 510
+
+# variant
+# .254.0 >>  .11111110.00000000
+print(2**9 - 2)  # 510
 
 
 # 10578 (Уровень: Базовый)
@@ -32,6 +94,26 @@ for m in range(1, 33):
     net = ip_network(f'133.57.64.130/{m}', False)
     c += str(net) == f'133.57.64.0/{m}'
 print(c)  # 7
+
+
+# 10781 (Уровень: Средний)
+from ipaddress import *
+for m in range(32, 0, -1):
+    net1 = ip_network(f'112.117.107.70/{m}', 0)
+    net2 = ip_network(f'112.117.121.80/{m}', 0)
+    if net1 == net2:
+        print(net1.num_addresses)  # 8192
+        print(2**(32 - m))  # 8192
+        break
+
+
+# 10785 (Уровень: Базовый)
+from ipaddress import *
+for m in range(1, 33):
+    net = ip_network(f'192.75.64.98/{m}', 0)
+    if str(net.network_address) == '192.75.64.0':
+        print(m) # 18
+        break
 
 
 # 10786 (Уровень: Средний)
@@ -167,6 +249,15 @@ for n in range(32, 0, -1):
         break
 
 
+# 14649 Открытый курс "Слово пацана" (Уровень: Средний)
+from ipaddress import *
+for a in range(255, -1, -1):
+    net = ip_network(f'116.242.{a}.26/255.255.255.224', 0)
+    if all(f'{i:b}'[:16].count('1') >= f'{i:b}'[16:].count('1') for i in net):
+        print(a)  # 240
+        break
+
+
 # 17632 Основная волна 19.06.24 (Уровень: Базовый)
 from ipaddress import *
 c = 0
@@ -175,6 +266,18 @@ for i in net:
     c += not f'{i:b}'.count('1') % 5
 print(c)  # 215766
 
+
+# 19748 (Уровень: Средний)
+from ipaddress import *
+for m in range(32, 12, -1):
+    c = 0
+    net1 = ip_network(f'157.220.185.237/{m}', 0)
+    net2 = ip_network(f'157.220.184.230/{m}', 0)
+    if net1 == net2:
+        c += sum(f'{i:b}'.count('1') == 15 for i in net1)
+    if c:
+        print(c)  # 9
+        break
 
 
 

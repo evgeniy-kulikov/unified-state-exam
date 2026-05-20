@@ -1,9 +1,10 @@
 """ https://kompege.ru/task """
 """
 926
-6985
+5632 6985
 8002 8370 8417 8425 8675 8951 9918
-11663 12468 12923 17527 17555 17627 17633
+11663 12468 12923 17527 17555 17633 18168 19246
+24629 25353 27298
 """
 
 
@@ -20,6 +21,32 @@ print(res, k) # 3000 500    сумма / число разрядов
 
 
 
+
+
+# 5632 (Уровень: Средний)
+from string import printable as alf
+def f(x, y):
+    a = int(f'32{y}{x}a', 21)
+    b = int(f'16{y}18', 21)
+    return a + b
+
+for x in alf[:21]:
+    if all(not f(x,y) % 12 for y in alf[1:21:2]):
+        # print(x)  # 3
+        print(f(x, 7) // 12)  # 71524
+        break
+
+# variant
+def f(x, y):
+    a = 3*21**4 + 2*21**3 + y*21**2 + x*21**1 + 10*21**0
+    b = 1*21**4 + 6*21**3 + y*21**2 + 1*21**1 + 8*21**0
+    return a + b
+
+for x in range(21):
+    if all(not f(x,y) % 12 for y in range(1, 21, 2)):
+        # print(x) # 3
+        print(f(x, 7) // 12)  # 71524
+        break
 
 
 # 6985 (Уровень: Средний)
@@ -157,14 +184,6 @@ for x in range(2030, 0, -1):
         break
 
 
-# 17627 Основная волна 19.06.24 (Уровень: Базовый)
-from itertools import product
-c = 0
-for p in product('0123456789aaaaa', repeat=5):
-    c += p[0] != '0' and p.count('8') == 1 and p.count('a') >= 2
-print(c)  # 83175
-
-
 # 17633 Основная волна 19.06.24 (Уровень: Базовый)
 for x in range(1000):
     n = 6**260 + 6**160 + 6**60 - x
@@ -177,3 +196,75 @@ for x in range(1000):
         break
 
 
+# 18168 (Уровень: Сложный) 🌶️
+# очень долго
+res = []
+d = 5**2025 + 5**400
+# len(str(d)) # 1416
+for x in range(70000, 60000, -1):
+    c = 0
+    n = d - x
+    while n:
+        c += n % 5 == 4
+        n //= 5
+    res.append((c, x))
+print(max(res)[1]) # (399, 62501) (398, 59376) (399, 46876)
+# 62501
+
+
+# 19246 ЕГКР 21.12.24 (Уровень: Базовый)
+from string import printable as alf
+for x in alf[:25][::-1]:
+    num = int(f'11353{x}12', 25) + int(f'135{x}21', 25)
+    if not num % 24:
+        print(num // 24)  # 266249847
+        break
+
+
+
+
+# 24629 (Уровень: Базовый)
+n = 14**1402 + 28**501 - 14**51 - 1400
+c = 0
+while n:
+    c += n % 14 == 13  # D
+    n //= 14
+print(c)  # 511
+
+
+# 25353 ЕГКР 13.12.25 (Уровень: Базовый)
+for x in range(1, 27_000):
+    c = 0
+    n = 3 * 27**9 + 2 * 27**6 + 27**3 - x
+    while n:
+        c += not n % 27
+        n //= 27
+    if c == 6:
+        print(x)  # 27
+        break
+
+
+# 27298 (Уровень: Средний)
+for x in range(40):
+    a = 8*40**6 + 7*40**5 + 1*40**4 + x*40**3 + 2*40**2 + 9*40**1 + 1*40**0
+    b = 3*40**6 + 6*40**5 + 6*40**4 + x*40**3 + 6*40**2 + 3*40**1 + 1*40**0
+    c = 9*40**6 + 7*40**5 + 3*40**4 + x*40**3 + 6*40**2 + 1*40**1 + 8*40**0
+    res = a + b + c
+    if not res % 39:
+        # print(x)  # 10
+        print(res // 13)  # 6461195610
+        break
+
+# перевод в десятичную СС из другой СС (если ее база больше 36)
+def cnv(ls:list, b):
+    r = sum(int(n) * b**i for i, n in enumerate(ls[::-1]))
+    return r
+
+for x in range(40):
+    a = f'8 7 1 {x} 2 9 1'.split()
+    b = f'3 6 6 {x} 6 3 1'.split()
+    c = f'9 7 3 {x} 6 1 8'.split()
+    res = cnv(a, 40) + cnv(b, 40) + cnv(c, 40)
+    if not res % 39:
+        print(res // 13)  # 6461195610
+        break

@@ -4,7 +4,7 @@
 1304 1395 1868
 2149 2612 2613 2614 3664
 4604(=4712) 4629 4660 4712 7096
-10107 11681 12256 13394 15341 17537 17881
+10107 11681 12256 13394 15341 17537 17881 19256
 21598 21719 21910(=21424) 23765 27779
 """
 
@@ -449,17 +449,37 @@ print(*res[-1])  # 9991 5643
 
 # 17881 Демоверсия 2025 (Уровень: Базовый)
 from statistics import mean
-f = open('26.txt').readlines()
-n = int(f[0])
-d = [[*map(int, i.split())] for i in f[1:]]
-d222 = [i for i in d if i.count(2) == 3]  # получили по 3 двойки
-d222.sort()
+f = open('26_17881.txt')
+N = int(f.readline())
+data = [[*map(int, i.split())] for i in f]
+data = [(i[0], mean(i[1:]), i[1:].count(2)) for i in data]
+d1 = [i for i in data if not i[2]]   # Без двоек
+d2 = sorted(i for i in data if i[2]==3)  # получили по 3 двойки
+d1.sort(key=lambda x: (-x[1], x[0]))
+idx = N // 4 - 1  # ✅ т.к индекс начинается с нуля
+print(d1[idx][0], d2[0][0])  # 52326 635
 
-d = [i + [mean(i[1:])] for i in d if not i.count(2)]  # без двоек
-d.sort(key=lambda x: (-x[-1], x[0]))
-a = d[n // 4 - 1][0]  # n // 4 - 1  ✅ т.к индекс начинается с нуля
-b = d222[0][0]
-print(a, b)  # 52326 635
+
+# 19256 ЕГКР 21.12.24 (Уровень: Базовый)
+f = open('26_19256.txt').readlines()
+data = [[*map(int, i.split())] for i in f[1:]]  # идентификатор студента / номер правильно решённой задачи
+dt = dict()
+for i in data:
+    dt.setdefault(i[0], set())
+    dt[i[0]] |= {i[1]}
+res = []
+for k, v in dt.items():
+    v = sorted(v)
+    c = cnt = 1
+    for i in range(1, len(v)):
+        if v[i] - v[i-1] == 1:
+            c += 1
+            cnt = max(cnt, c)
+        else:
+            c = 1
+        res += [(k, cnt)]
+res.sort(key=lambda x: (-x[1], x[0]))
+print(*res[0])  # 40031 148
 
 
 

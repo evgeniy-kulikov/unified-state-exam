@@ -35,9 +35,11 @@ pic_new = 300 * 300 * n * log2(256) / 8 / 1024 / 1024
 print(pic_new) # 1.02996826171875  =>  1
 
 
+# 156 (Уровень: Средний)
 # https://stepik.org/lesson/1084599/step/4?unit=1094961
-pic = 640 * 480 * 16 / 8  #  1 фото
-serial = pic * 128 / 1024 / 1024
+from math import ceil
+pic = ceil(640 * 480 * 16 / 8)  #  1 фото
+serial = pic * 128 / 2**20
 print(serial)  # 75
 
 

@@ -1,18 +1,18 @@
 """ https://kompege.ru/task """
 """
-887 934 1147 1866 1874 6029 8510 9753
-10105 12254 16333 17535 17641 17878 19149
-24895 24977 25361 26077 26491 26551 26549 27069 27634 27777
+887 934 1147 1866 1874 2424 2428 3375 5139 5810 5955 6029 8510 9753 9791
+10105 12254 14647 16333 17535 17641 17878 19149 19254
+24895 24977 25361 26077 26078 26491 26551 26549 27069 27634 27777
 """
 
 """
 https://stepik.org/course/233165
 21 
 1040 1302 1428 1975
-2251 2420 2422 2423 2425 2426 2427 2428
+2251 2420 2422 2423 2425 2426 2427
 4113 4546 4602 4627 4643
 5171 6734 8510 9169 9552
-10105 10724 11954 12476 13715 17563 17878 18597 19967 19969
+10105 10724 11954 12476 13715 17563 18597 19967 19969
 20813 21421 21717 23206 23281 23381 23568 23762
 """
 
@@ -90,13 +90,102 @@ s = open('add/24/24_1874.txt').read().replace('QW', 'Q W').split()
 print(len(max(s, key=len)))  # 5267
 
 
+# 2424 (Уровень: Базовый)
+from re import *
+res = 0
+for s in open('24_2424.txt').readlines():
+    ls = findall(r'(?:XYZ)+', s)
+    res = max(res, len(max(ls, key=len, default='')))
+print(res)
+
+
+# 2428 (Уровень: Средний)
+from re import *
+res = 0
+reg = r'(?:Z|YZ)(?:XYZ)+(?:X|XY)'
+for s in open('24_2428.txt').readlines():
+    ls = findall(reg, s)
+    res = max(res, len(max(ls, key=len, default='')))
+print(res)
+
+# ✅ Неполная цепочка как в начале, так и в конце ✅
+res = 0
+cnt = 2
+s = open('24_2428.txt').readline()
+for i in range(len(s) - 2):
+    if s[i:i + 3] in 'XYZXY':
+        cnt += 1
+        res = max(res, cnt)
+    else:
+        cnt = 2
+print(res)  # 69
+
+
+# 3375 Джобс 22.04.2022 (Уровень: Базовый) ✅ зеркальность внутри пары ❗❗
+f = open('24_3375.txt').read()
+f = f.replace('B', ' ').split()
+res = 0
+for s in f:
+    # AAAAACC  k=0 AAAA, CC,   k = 1 AAAACC  (разный вариант чтения строки)
+    for k in (0, 1):
+        c = 0
+        for i in range(k, len(s), 2):
+            if s[i:i+2] in ('AA', 'CC'):
+                c += 1
+                res = max(res, c)
+            else:
+                c = 0
+print(res)  # 5
+
+
+# 5139 /dev/inf 11.22 (Уровень: Средний)
+from re import *
+s = open('24_5139.txt').read()
+for i in 'EU':
+    s = s.replace(i, 'A')
+for i in 'CDF':
+    s = s.replace(i, 'B')
+res = findall(r'(?:BAB)+', s)
+res = max(res, key=len)
+print(len(res) // 3)  # 6
+
+# variant
+s = open('24.txt').read()
+for i in 'EU':
+    s = s.replace(i, 'A')
+for i in 'CDF':
+    s = s.replace(i, 'B')
+s = s.replace('BAB', '*').replace('A', ' ').replace('B', ' ').split()
+print(len(max(s, key=len)))
+
+
+# 5810 (Уровень: Сложный)
+from re import *
+res = 0
+reg1 = r'(?:XY)+'
+reg2 = r'(?:YZ)+'
+reg3 = r'(?:YZ)*|(?:XYZ)*|(?:XY)*'
+for s in open('24_5810.txt').readlines():
+    for i in (reg1, reg2, reg3):
+        ls = findall(i, s)
+        res = max(res, len(max(ls, key=len, default='')))
+print(res)  # 44
+
+
+# 5955 (Уровень: Средний)
+s = open('24_5955.txt').read()
+s = s.replace('O', 'A').replace('C', 'F').replace('D', 'F')
+s = s.replace('FAAF', 'FAA AAF').split()
+print(len(max(s, key=len)))  # 599
+
+
 # 6029 ФИПИ 03.02.23 (Уровень: Базовый)
 s = open('add/24/24_6029.txt').read()
 s = s.replace('D', ' ')
 s = s.replace('EE', 'E E').replace('EE', 'E E')  # EEEEEE >> E EE EE E >> E E E E E E
 s = s.replace('FF', 'F F').replace('FF', 'F F')  # FFFFFF >> F FF FF F >> F F F F F F
 s = s.split()
-print(len(max(s, key=len)))
+print(len(max(s, key=len)))  # 11
 
 # variant
 from re import *
@@ -160,6 +249,14 @@ for i in range(len(s) - 150):
 print(res)  # 244
 
 
+# 9791 Основная волна 20.06.23 (Уровень: Средний)
+from re import *
+s = open('24_9791.txt').read()
+reg = r'[1-9A-F]+'
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 21
+
+
 
 
 
@@ -190,6 +287,23 @@ for i in range(2, len(s) - 2):
     else:
         c = 0
 print(res)  # 54
+
+
+# 14647 Открытый курс "Слово пацана" (Уровень: Базовый)
+s = open('24.14_14647.txt').read()
+l = res = 0
+x = y = 0
+for r in range(len(s)):
+    x += s[r] == 'X'
+    y += s[r] == 'Y'
+    while x > 1 or y > 1:
+        x -= s[l] == 'X'
+        y -= s[l] == 'Y'
+        l += 1
+    if x==y==1:
+        res = max(res, r-l+1)
+print(res)  # 225
+
 
 
 # 16333 Открытый вариант 2024 (Уровень: Базовый)
@@ -224,8 +338,22 @@ with open('24_17535.txt') as f:
         res = max(res, len(''.join(r)))
 print(res)  # 9712
 
+# variant
+s = open('24_17535.txt').read().strip()
+l = c = res = 0
+for r in range(1, len(s)):
+    if s[r-1:r+1] == 'CD':
+        c += 1
+    while c > 160:
+        if s[l:l + 2] == 'CD':
+            c -= 1
+        l += 1
+    if c == 160:
+        res = max(res, r-l+1)
+print(res)  # 9712
 
-# 17641 Основная волна 19.06.24 (Уровень: Гроб) 🌶️
+
+# 17641 Основная волна 19.06.24 (Уровень: Гроб) 🌶️ 🌶️ 🌶️
 from re import *
 s = open('24.txt').read()
 # 1) находим правильные арифметические строки
@@ -248,6 +376,23 @@ print(MX)  # 142
 
 # variant
 from re import *
+file = open('24.txt').read().strip()
+n = r'(?:0|[1-9]\d*)'  # числа без нулей слева
+num = rf'(?:{n}(?:[+*]{n})*)'  # правильные арифметические строки 4*0*102+102+5*0
+res = 0
+ls = findall(num, file)
+for s in ls:
+    r = ''
+    for i in s.split('+'):
+        if any([i[:2]=='0*', '*0*' in i, i[-2:]=='*0', i=='0']):
+            r += i + '+'
+        else:
+            r += ' '  # убираем между плюсами выражения не равные нулю
+    res = max(res, len(max([i.strip('+') for i in r.split()], key=len, default='')))
+print(res)
+
+# variant
+from re import *
 s = open("24.txt").readline()
 n = f'(?:0|[1-9]\d*)'
 n_mul = f'(?:{n}\*)*'  # 1*
@@ -257,10 +402,11 @@ reg = rf'(?:{mult}(?:\+{mult})*)'  # 1*0*2+1*0*2
 print(max(len(i) for i in findall(reg, s)))
 
 
+
 # 17878 Демоверсия 2025 (Уровень: Сложный)
 from re import *
-s = open('24.txt').read()
-n = r'(?:0|[6-9][06-9]*)'
+s = open('24_1.txt').read().strip()
+n = r'(?:0|[1-9]\d*)'
 reg = rf'{n}(?:[*-]{n})+'
 res = findall(reg, s)
 res = max(res, key=len)
@@ -276,6 +422,31 @@ res = findall(reg, s)
 res = [i for i in res if not eval(i) % 2]
 print(len(max(res, key=len)))  # 78
 
+
+# 19254 ЕГКР 21.12.24 (Уровень: Базовый)
+s = open('24.txt').read().strip()
+l = c = res = 0
+for r in range(3, len(s)):
+    c += s[r-3:r+1] == 'FSRQ'
+    while c > 80:
+        c -= s[l:l+4] == 'FSRQ'
+        l += 1
+    if c == 80:
+        res = max(res, r-l+1)
+print(res)  # 2379
+
+# Через split()
+s = open('24.txt').read().strip()
+# print(s[:4], s[-4:]) # проверка концов: должны отличаться от 'FSRQ'
+res = 0
+s = s.split('FSRQ')
+n = 80
+for i in range(len(s) - n):
+    # 'k' это прибавка еще от двух 'FSRQ'  >>  'SRQ' + ... + 'FSR'
+    k = 6 if 0 < i < len(s) - n-1 else 3  # учет изменения прибавки для первой и последней выборки
+    r = sum(map(len, s[i:i + n+1])) + 4 * n + k
+    res = max(res, r)
+print(res)  # 2379
 
 
 
@@ -344,6 +515,36 @@ for st in ls:
 print(res)  # 76
 
 
+# 26078 (Уровень: Базовый) ❗❗❗ Супер сложная задача ❗❗❗
+# Сперва ищем строки типа '***W**2025****W***W***2025**W**2025**' ('W' ровно 90)
+# На финише ищем подстроки типа '2025****W***W***2025' которые начинаются и оканчиваются на '2025' ('2025' ровно 110),
+# а внутри ровно 90 символов 'W'
+
+st = open('24_26078.txt').read().split('W')
+n = 90
+n25 = 110
+res = 10 ** 10
+for i in range(len(st) - n):
+    # подстроки типа 'W***W**2025***W**2025**W' ('W' ровно 90)
+    sw_90 = 'W' + 'W'.join(st[i + 1: i + n + 1 - 1]) + 'W'
+    if sw_90.count('2025') >= n25:
+        res = min(res, len(sw_90))  # 782
+
+    # подстроки типа '***2025****W***W***2025**W*' ('W' ровно 90  и '2025' >= 110)
+    s_w = 'W'.join(st[i: i + n + 1])  # 'W' ровно 90
+    if s_w.count('2025') >= n25:
+        i1 = s_w.index('2025')
+        i2 = s_w.rindex('2025')
+        s_w = s_w[i1:i2 + 4]  # отсекаем лишние концы справа и слева  '2025****W***W***2025' ('2025' ровно 110)
+        s_2025 = s_w.split('2025')
+        for i in range(1, len(s_2025) - n25 - 1 - 1):
+            s = '2025' + '2025'.join(s_2025[i:i + n25 - 1]) + '2025'  # '2025' ровно 110
+            if s.count('W') == n:
+                res = min(res, len(s))  # 780
+print(res)  # 780
+
+
+
 # 26491 (Уровень: Сложный)
 from re import *
 s = open('add/24/24_26491.txt').readline()
@@ -366,24 +567,28 @@ print(len(max(res, key=len)))  # 2598
 
 
 # 26549 (Уровень: Базовый)
-"""сложность 4 из 5"""
-s = open('add/24/24_26549.txt').read()
-l = 0
-c = 0
+"""❗❗❗ сложность 4 из 5 """
+# быстро
+st = open('24.txt').read().replace('2025', '2 025').split()
 res = 0
-for r in range(len(s)):
+for i in range(len(st) - 49):
+    s = ''.join(st[i:i+50])
+    if s.count('Y') >= 140:
+        res = max(res, len(s) + 3)  # +3 == +025 на хвосте
+print(res)  # 938
+
+s = open('add/24/24_26549.txt').read()
+l = res = d25 = 0
+for r in range(3, len(s)):
     if s[r-3:r+1] == '2025':
-        c += 1
-    while c > 50:
-        if s[l:l+4] == '2025':
-            c -= 1
+        d25 += 1
+    while d25 > 50:
+        d25 -= s[l: l+4] == '2025'
         l += 1
     if s[r-3:r+1] != '2025':
-        continue
-    else:
-        if s[l:r+1].count('2025') == 50:
-            if s[l:r + 1].count('Y') >= 140:
-                res = max(res, r - l + 1)
+        continue  # ускоряем
+    if d25 == 50 and s[l:r + 1].count('Y') >= 140:
+        res = max(res, r - l + 1)
 print(res)  # 938
 
 

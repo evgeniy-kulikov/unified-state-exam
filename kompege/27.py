@@ -5,7 +5,7 @@ https://kompege.ru/task
 """
 
 """
-18031 18150 20294 20911
+18031 18150 19257 20294 20911
 21425 21599 21911 21929 21930 21931 21932 23384 23766
 25441 25442 25443 25444 25445 25446 25447 25448 27779
 """
@@ -14,7 +14,6 @@ https://kompege.ru/task
 ✔️ course 233165
 17882 17916 
 18051 18314 18624 18625 18628 18676 18677 
-19257 
 20816 21720 23209 23284 23571 
 """
 
@@ -110,6 +109,44 @@ print(abs(px), abs(py)) # 2467 1343
 336 1859
 2467 1343
 """
+
+
+# 19257 ЕГКР 21.12.24 (Уровень: Базовый)
+from math import dist
+def get_clust(p, k):
+    clust = [i for i in data if dist(i, p) < k]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i, k) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for p in ls:
+        sm = sum(dist(p,k) for k in ls)
+        r += [(sm, p)]
+    return min(r)[1]
+
+for w, k in zip('AB', (3, 1)):
+    data = [[*map(float, i.replace(',', '.').split())] for i in open(f'27_{w}.txt').readlines()]
+    # print(len(data))
+    clusters = []
+    while data:
+        p = data.pop()
+        clust = get_clust(p, k) + [p]
+        clusters.append(clust)
+    # [print(len(i)) for i in clusters]
+    # print(sum(len(i) for i in clusters), '\n')
+    center = [get_center(i) for i in clusters]
+    px = int(abs((sum(i[0] for i in center) / len(center)) * 10_000))
+    py = int(abs((sum(i[1] for i in center) / len(center)) * 10_000))
+    print(px, py)
+"""
+43789 62202
+14271 54727
+"""
+
+
 
 
 # 20294 (Уровень: Базовый)

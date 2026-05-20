@@ -1,10 +1,45 @@
 """ https://kompege.ru/task """
 """
-5553 6901 8553 9155
-10090 11201 11291 11300 11827 12097 12240 12462 12917 16319 16374 17521 17549 1933
+52 399 1241 3729 5553 6901 8553 9155
+10090 11201 11291 11300 11827 12097 12240 12462 12917 16319 16374 17521 17549 17627 1933
 23367 23746 
 """
 
+
+
+# 52 Джобс 31.08.2020 (Уровень: Базовый)
+from itertools import *
+c = 0
+for p in product('ГАФНИЙ', repeat=4):
+    c += p[0] != 'Й' and sum(1 for i in p if i in 'АИ') > 0
+print(c)  # 888
+
+
+# 399 (Уровень: Базовый)
+from itertools import *
+c = 0
+for p in set(permutations('011456')):
+    s = ''.join(p).replace('0' , '1')
+    c += '11' not in s
+print(c)  # 72
+
+
+# 1241 Статград 26.04.2021 (Уровень: Базовый)
+from itertools import *
+c = 0
+for p in product('000012', repeat=5):
+    c += p.count('1') <=1 and p.count('2') <= 1
+print(c)  # 4864
+
+
+# 3729 Джобс 05.05.2022 (Уровень: Средний)
+from itertools import *
+c = res = 0
+for p in product('АЕЖЙМУ', repeat=5):
+    c += 1
+    if not c % 2:
+        res += all(a != b for a, b in zip(p, p[1:]))
+print(res)  # 1875
 
 
 # 5553 (Уровень: Базовый)
@@ -195,6 +230,14 @@ for p in product(s, repeat=5):
     if not p.count('Ф') and p.count('У') == 2:
             res = c
 print(res) # 2313
+
+
+# 17627 Основная волна 19.06.24 (Уровень: Базовый)
+from itertools import product
+c = 0
+for p in product('0123456789aaaaa', repeat=5):
+    c += p[0] != '0' and p.count('8') == 1 and p.count('a') >= 2
+print(c)  # 83175
 
 
 # 1933 (Уровень: Базовый)

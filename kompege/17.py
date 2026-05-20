@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
 5491 7718 8475 9748
-11236 11949 13088
+11236 11949 13088 19249
 23276 27629
 """
 
@@ -110,6 +110,20 @@ for i in range(len(d) - 2):
         res = max(res, sum(num))
 print(cnt, res)  # 21 114132
 
+
+# 19249 ЕГКР 21.12.24 (Уровень: Базовый)
+d = [*map(int, open('17_19249.txt'))]
+cnt = 0
+M = 10**10
+mx = max(i for i in d if str(i)[-2:]=='43')
+for a,b,c in (zip(d, d[1:], d[2:])):
+    ls = [a,b,c]
+    if any(len(str(abs(i)))==5 and str(i)[-2:]=='43' for i in ls):
+        abc = a**2 + b**2 + c**2
+        if abc <= mx**2:
+            cnt += 1
+            M  = min(M, abc)
+print(cnt, M)  # 92 838850571
 
 
 

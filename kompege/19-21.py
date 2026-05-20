@@ -459,7 +459,6 @@ def f(a,b,m, w=0):
         return any(g)
     return any(g) if w else all(g)
 
-
 print([s for s in range(1, 59) if f(6, s, 2, 1)][0])  # 7
 print(*[s for s in range(1, 59) if f(6, s, 3) and not f(6, s, 1)][:2])  # 10 19
 print([s for s in range(1, 59) if f(6, s, 4) and not f(6, s, 2)][0])  # 18
