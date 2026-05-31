@@ -1,8 +1,7 @@
 """ https://kompege.ru/task """
 """
-926
-5632 6985
-8002 8370 8417 8425 8675 8951 9918
+926 5632
+8002 8370 8425 8675 8951 9918
 11663 12468 12923 17527 17555 17633 18168 19246
 24629 25353 27298
 """
@@ -10,17 +9,12 @@
 
 
 # 926 Джобс 08.02.2021 (Уровень: Сложный) 🌶️
-res = 0
-k = 0
 n = 7**500 + 7**200 - 7**50
-for i in range(1, 1000):
-    if int('6' * i, 7) <= n:
-        res = 6 * i
-        k = i
-print(res, k) # 3000 500    сумма / число разрядов
-
-
-
+for i in range(1000, 0, -1):
+    if int('6' * i, 7) < n:
+        print(6 * i) # 3000   сумма разрядов
+        # print(i)   # 500   число разрядов
+        break
 
 
 # 5632 (Уровень: Средний)
@@ -49,19 +43,6 @@ for x in range(21):
         break
 
 
-# 6985 (Уровень: Средний)
-from itertools import product
-c = 0
-res = None
-for p in product('aklmpc', repeat=6):
-    c += 1
-    r = ''.join(p)
-    if not any(['kc' in r, 'ck' in r]) and len(set(r)) == 4:
-        res = c
-print(res)  # 46605
-
-
-
 
 # 8002 (Уровень: Базовый)
 a = '0123456789abcdefgh'
@@ -73,19 +54,15 @@ for i in a[::-1]:
 
 
 # 8370 Danov2305 (Уровень: Средний)
-for p in range(5, 1000):
-    for q in range(6, 1000):
-        if 2*p**2 + 3*p + 4 == 3*q**2 + 4*q + 5:
-            print(2*p**2 + 3*p + 4)  # 564
+for p in range(5, 100):
+    for q in range(6, 100):
+        left = 2*p**2 + 3*p + 4
+        right = 3*q**2 + 4*q + 5
+        if left == right:
+            print(left)  # 564
+            # print(p, q)  # 16 13
             exit()
 
-
-# 8417 (Уровень: Базовый)
-from itertools import permutations
-c = 0
-for p in permutations('aaassss', 5):
-    c += p.count('s') > p.count('a') and 'aa' not in ''.join(p)
-print(c)  # 1224
 
 
 # 8425 (Уровень: Средний)

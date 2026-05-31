@@ -84,12 +84,15 @@
 #         print(i)
 #         break
 
+from ipaddress import *
+# for m in range(32,0,-1):
+#     net = ip_network(f'203.155.64.98/{m}', 0)
+#     if str(net.network_address) == '203.155.64.0':
+#         print(m)
+#         break
 
-# net = ip_network('192.168.32.160/255.255.255.240', 0)
-# c = 0
-# for i in net:
-#     c += not f'{i:b}'.count('1') % 2
-# print(c)
+
+
 
 # alf = '0123456789' + w[:9]
 # for i in alf[::-1]:

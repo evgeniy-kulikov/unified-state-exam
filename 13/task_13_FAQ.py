@@ -40,7 +40,7 @@ Generate Iterator over usable hosts in a network.
 it doesn't return the network or broadcast addresses
 
 ip_network(address).num_addresses
-возвращает количество возможных номеров компьютеров в сети
+возвращает int() количество возможных адресов в сети
 (включая адрес сети и широковешательный)
 
 """
@@ -50,6 +50,7 @@ ip_network(address).num_addresses
 десятичное в двоичное
 f'{8:b}'  -->  1000
 bin(8)[2:]  -->  1000
+f'{8:08b}'  -->  00001000
 
 двоичное в десятичное
 int('1000', 2)  --> 8
@@ -63,5 +64,4 @@ int('1000', 2)  --> 8
 """
 
 # конвертирование десятичного IP адреса в двоичный
-def bin_ip(s: str):
-    return '.'.join(f'{int(i):b}'.zfill(8) for i in s.split('.'))
+f'{ip:b}'

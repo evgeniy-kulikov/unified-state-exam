@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
-5627 6262 8475
-12795
+5627 6262 8467 8475 9696
+12795 16375
 23747
 """
 
@@ -31,6 +31,16 @@ for d in data:
 print(cnt)  # 1852
 
 
+#  8467 (Уровень: Средний)
+c  = 0
+for s in open('9_8467.txt'):
+    d = sorted(map(int, s.split()))
+    a = len(set(d)) == 5
+    b = 2 * (d[0] + d[-1]) < sum(d[1:-1])
+    c += a + b == 1
+print(c)  # 4720
+
+
 # 8475 (Уровень: Средний)
 from math import prod
 f = open('add/09/09_8946.txt')
@@ -40,6 +50,16 @@ for d in data:
     if d[-1]**2 > prod(d[:-1]):
         cnt += sum(d[-2:]) / sum(d[:-2]) >= 2
 print(cnt)  # 10
+
+
+#  9696 Danov2307 (Уровень: Средний)
+c = 0
+for s in open('9_9696.txt'):
+    d = sorted(map(int, s.split()))
+    n2 = [i  for i in d if d.count(i) == 2]
+    if len(n2) == 2:
+        c += sum(d[2:]) > sum(d[:2]) * 2 and d[-1] % d[0] != 0
+print(c)  # 125
 
 
 
@@ -53,6 +73,15 @@ for d in data:
     cnt += a in d
 print(cnt)  # 35
 
+
+# 16375 ЕГКР 27.04.24 (Уровень: Базовый)
+cnt = 0
+for row in [[*map(int, i.split())] for i in open('09.txt')]:
+    if len(set(row)) == 6:
+        a, b, c = sorted(i for i in row if row.count(i) == 1)[:3]
+        d = [i for i in row if row.count(i) == 2][0]
+        cnt += a * b * c > d**2
+print(cnt)  # 293
 
 
 

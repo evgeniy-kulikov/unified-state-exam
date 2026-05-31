@@ -1,9 +1,28 @@
 """ https://kompege.ru/task """
 """
-10160 10161 10164 10166 10578 10715 10773 10776 10781 10785 10786 10788 10789 11662 11779 11780 11787 11794 11835
-12088 12245 12947 14649 17632 19748
+10157 10158  10160 10161 10163 10164 10165 10166 10167 10169 10171 10172 10578 10715 10773 10776 10781 10785 10786 10788 10789 
+11662 11779 11780 11787 11794 11835
+12088 12245 12451 12947 14649 17632 18487 19748
 23372 23559
 """
+
+
+# 10157 (Уровень: Базовый)
+from ipaddress import *
+for m in range(32, 0, -1):
+    net = ip_network(f'241.185.253.57/{m}', 0)
+    if str(net.network_address) == '241.185.252.0':
+        print(32 - m)  # 9
+        break
+
+
+# 10158 (Уровень: Базовый)
+from ipaddress import *
+for m in range(33):
+    net = ip_network(f'204.108.112.142/{m}', 0)
+    if str(net.network_address) == '204.108.64.0':
+        print(32 - m)  # 14
+        break
 
 
 # 10160 (Уровень: Базовый)
@@ -37,6 +56,12 @@ for i in range(32, 0, -1):
         break
 
 
+# 10163 (Уровень: Средний)
+from ipaddress import *
+net = list(ip_network(f'192.168.156.235/255.255.255.240', 0))
+print(net.index(ip_address('192.168.156.235')))  # 11  (индекс 0 ушел на адрес сети)
+
+
 # 10164 (Уровень: Средний)
 from ipaddress import *
 n = 0
@@ -56,6 +81,13 @@ n = [*net.hosts()]
 print(n.index(ip_address('156.132.15.138')) + 1)  # 906
 
 
+# 10165 (Уровень: Базовый)
+from ipaddress import *
+net = ip_network(f'0.0.0.0/255.255.255.128', 0)
+print(net.num_addresses - 2)  # 126  (индекс 0 ушел на адрес сети)
+# 128 -> 1000 0000 -> 2**7 = 128 - 2 = 126
+
+
 # 10166 (Уровень: Базовый)
 from ipaddress import *
 n = 0
@@ -66,6 +98,41 @@ print(len(n))  # 510
 # variant
 # .254.0 >>  .11111110.00000000
 print(2**9 - 2)  # 510
+
+
+# 10167 (Уровень: Базовый)
+from ipaddress import *
+for m in range(1, 33):
+    if ip_network(f'108.133.75.91/{m}', 0).network_address == ip_address('108.133.75.64'):
+        print(2**(32-m))  # 64
+        break
+# Каждый нуль в маске - это два варианта адреса в сети. В данной задаче маска содержит шесть "0"  -> 2**6 = 64
+
+
+# 10169 (Уровень: Средний)
+for m in range(33):
+    net1 =  ip_network(f'157.127.182.76/{m}', 0)
+    net2 =  ip_network(f'157.127.190.80/{m}', 0)
+    if net1 != net2:
+        print(m)  # 21
+        break
+
+
+# 10171 (Уровень: Средний)
+for m in range(1, 33):
+    net = ip_network(f'115.53.128.88/{m}', 0)
+    if net.network_address == ip_address('115.53.128.0'):
+        if net.num_addresses - 2 >= 1000:
+            print(net.netmask)  # 6
+
+
+# 10172 (Уровень: Средний)
+for m in range(32, 0, -1):
+    net = ip_network(f'175.122.80.13/{m}', 0)
+    if net.network_address == ip_address('175.122.80.0'):
+        if net.num_addresses - 2 >= 60:
+            print(33 - m)  # 7
+            break
 
 
 # 10578 (Уровень: Базовый)
@@ -228,6 +295,18 @@ for i in net:
 print(c)  # 8
 
 
+# 12451 (Уровень: Средний) 🌶️🌶️🌶️
+# Ловушка: адрес IP может оказаться как network/broadcast в формируемой сети из этого адреса IP ✅
+from ipaddress import *
+c = 0
+for x in range(256):
+    IP = f'246.81.65.{x}'
+    net = ip_network(f'{IP}/255.255.255.224', 0)
+    if ip_address(IP) not in (net[0], net[-1]):  # Проверяем, что IP не network/broadcast ✅
+        c += all(f'{i:b}'[16:24].count('0') > f'{i:b}'[24:].count('0') for i in net.hosts())
+print(c)  # 120
+
+
 # 12947 (Уровень: Базовый)
 from ipaddress import *
 c = 0
@@ -267,6 +346,15 @@ for i in net:
 print(c)  # 215766
 
 
+# 18487 (Уровень: Средний)
+from ipaddress import *
+for x in range(256):
+    net = ip_network(f'192.214.{x}.184/255.255.255.224', 0)
+    if all(f'{i:b}'.count('1') > 15 for i in net) :
+        print(x)  # 127
+        break
+
+
 # 19748 (Уровень: Средний)
 from ipaddress import *
 for m in range(32, 12, -1):
@@ -292,5 +380,44 @@ from ipaddress import *
 net = ip_network('102.162.200.51/255.255.255.0', 0)
 r = str(net[-2])
 print(sum(map(int, r.split('.'))))  # 718
+
+
+
+
+
+
+""" Сложные задания из других источников """
+# https://stepik.org/lesson/1073822/step/13?unit=1085000 🌶️️🌶️🌶️
+from ipaddress import *
+res = 0
+for m in range(0, 25): # первый октет уже полный а последнмй должен быть пустым
+    net = ip_network(f'85.169.154.54/{m}', 0)
+    if sum(map(int, str(net.network_address).split('.'))) == 408:
+        xy = sum(map(int, str(net.netmask).split('.')[1:3]))
+        res = max(res, xy)
+print(res)  # 510
+
+res = 0
+for x in range(256):
+    for y in range( 256):
+        try:
+            net = str(ip_network(f'85.169.154.54/255.{x}.{y}.0', 0).network_address)
+            if sum(map(int, net.split('.'))) == 408:
+                res = max(res, x+y)
+        except:
+            ...
+print(res)  # 510
+
+
+# https://stepik.org/lesson/1073822/step/15?unit=1085000 🌶️️🌶️
+from ipaddress import *
+res = set()
+for m in range(33):
+    net = ip_network(f'125.28.160.73/{m}', 0)
+    if str(net.network_address) == '125.28.160.0':
+        if net.num_addresses >= 500:
+            res.add(str(net.netmask).split('.')[2])
+            # print(str(net.netmask).split('.')[2])
+print(len(res))  # 5
 
 

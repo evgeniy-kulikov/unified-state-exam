@@ -7,7 +7,7 @@ https://kompege.ru/task
 """
 18031 18150 19257 20294 20911
 21425 21599 21911 21929 21930 21931 21932 23384 23766
-25441 25442 25443 25444 25445 25446 25447 25448 27779
+25441 25442 25443 25444 25445 25446 25447 25448 27780 28776 29081 29357
 """
 
 """
@@ -1040,8 +1040,7 @@ for w in 'AB':
         p = data.pop()
         clust.append([p] + get_clust(p))
     # [print(len(i)) for i in clust]
-    # print(sum(len(i) for i in clust))
-    # print()
+    # print(sum(len(i) for i in clust), '\n')
     clust.sort(key=len)
     center = [get_center(i) for i in clust]
     if w == 'A':
@@ -1055,4 +1054,178 @@ for w in 'AB':
 """
 344 294354
 152 528
+"""
+
+
+# 28766 Досрочная волна 2026 (Уровень: Базовый)  ️✅ цветные разноразмерные звезды
+# https://vk.com/video-205865487_456240544?t=1h31m45s
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(i[:2], p[:2]) < 2]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for p in ls:
+        sm = sum(dist(i[:2], p[:2]) for i in ls)
+        r.append((sm, p))
+    return min(r)[1]
+
+def get_b1(ls):
+    # r = []
+    # for p in ls:
+    #     for k in ls:
+    #         if p != k:
+    #             r.append(dist(p[:2], k[:2]))
+    r = [dist(p[:2], k[:2]) for p in ls for k in ls if p != k]
+    return min(r)
+
+
+for w in 'AB':
+    data = [i.replace(',', '.').split() for i in open(f'27_{w}_28766.txt')]
+    data = [[*map(float, i[:2])] + [i[2]] for i in data]
+    # print(len(data))
+    clust = []
+    while data:
+        p = data.pop()
+        clust.append(get_clust(p) + [p])
+    # [print(len(i)) for i in clust]
+    # print(sum(len(i) for i in clust), '\n')
+    if w == 'A':
+        clust.sort(key=len)
+        # center = [get_center(i) for i in clust]
+        center = get_center(clust[0])[:2]
+        # A = []
+        # for k in clust[0] + clust[1]:
+        #     if k[2][0]+k[2][-3:] == 'YIII':
+        #         A.append(dist(center, k[:2]))
+        A = [dist(center, k[:2]) for k in clust[0]+clust[1] if k[2][0]+k[2][-3:] == 'YIII']
+        a1 = int(min(A) * 10_000)
+        a2 = int(max(A) * 10_000)
+        print(a1, a2)  # 4940 74302
+    else:
+        center = [get_center(i)[:2] for i in clust]
+        B = [[], [], []]
+        for i in range(3):
+            for k in clust[i]:
+                if k[-1][0] + k[-1][2:] == 'ZI':
+                    B[i].append(k)
+        b1 = int(min(get_b1(B[i]) for i in range(3) if len(B[i]) > 1) * 10_000)
+        # ручной участок кода
+        # print([len(i) for i in B])  # [9, 3, 1]  # определяем минимальное и максимальное количество жёлтых сверхгигантов
+        b2 = int(dist(center[0], center[-1]) * 10_000)  # нужные индексы берем из строчки выше
+        print(b1, b2)  # 1035 125591
+"""
+4940 74302
+1035 125591
+"""
+
+
+# 29081 (Уровень: Средний) 🌶️✅ цветные разноразмерные звезды
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(i[:2], p[:2]) < 2]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for p in ls:
+        sm = sum(dist(i[:2], p[:2]) for i in ls)
+        r.append((sm, p))
+    return min(r)[1]
+
+for w in 'AB':
+    data = [i.replace(',', '.').split() for i in open(f'27_{w}_29081.txt')]
+    data = [[*map(float, i[:2])] + [i[2]] for i in data]
+    # print(len(data))
+    clust = []
+    while data:
+        p = data.pop()
+        clust.append(get_clust(p) + [p])
+    # [print(len(i)) for i in clust]
+    # print(sum(len(i) for i in clust), '\n')
+    if w == 'A':
+        center = [get_center(i) for i in clust]
+        a = []
+        for i in range(len(clust)):
+            a += [dist(center[i][:2], k[:2]) for k in clust[i] if k != center[i] and k[2] == 'VII']
+        a1 = int(min(a) * 10_000)
+        a2 = int(max(a) * 10_000)
+        print(a1, a2)  # 1495 16955
+    else:
+        B = [[], [], []]
+        [B[i].append(k[:2]) for i in range(3) for k in clust[i] if k[2][1] in '89']
+        # for i in range(3):
+        #     for k in clust[i]:
+        #         if  k[2][1] in '89':
+        #             B[i].append(k[:2])
+        b1_1 = [dist(i, k) for i in B[0] for k in B[1] + B[2]]
+        b1_2 = [dist(i, k) for i in B[1] for k in B[2]]
+        b1 = int(min(b1_1 + b1_2) * 10_000)
+        b2_0 = [dist(i, k) for i in B[0] for k in B[0] if i != k]
+        b2_1 = [dist(i, k) for i in B[1] for k in B[1] if i != k]
+        b2_2 = [dist(i, k) for i in B[2] for k in B[2] if i != k]
+        B2 = b2_0 + b2_1 + b2_2
+        b2 = int(sum(B2) / len(B2) * 10_000)
+        print(b1, b2)
+"""
+1495 16955
+54154 11641
+"""
+
+
+# 29357 Открытый вариант 2026 (Уровень: Средний) 🌶️✅ цветные разноразмерные звезды
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(p, i[:2]) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i[:2]) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for k in ls:
+        sm = sum(dist(i[:2], k[:2]) for i in ls)
+        r.append((sm, k))
+    return min(r)[1]
+
+for w in 'AB':
+    data = [i.replace(',','.').strip().split(' ') for i in open(f'27_{w}_29357.txt').readlines()]
+    data = [[*map(float, i[:2])] + [i[2]] for i in data]
+    # print(len(data))
+    cluster = []
+    while data:
+        p = data.pop()
+        cluster.append(get_clust(p[:2]) + [p])
+    # [print(len(i)) for i in cluster]
+    # print(sum(len(i) for i in cluster), '\n')
+    if w == 'A':
+        cluster.sort(key=len)
+        center = get_center(cluster[0])[:2]  # центр кластера, содержащий наименьшее количество точек
+        a = min([dist(center, [x, y]), (x, y)] for x, y, z in cluster[0] if z[0] + z[-3:] == 'MIII')[1]  # красный гигант
+        ax = int(abs(a[0] * 10_000))
+        ay = int(abs(a[1] * 10_000))
+        print(ax, ay)  # 44694 69754
+    else:
+        cluster.sort(key=lambda x: sum(1 for i in x if i[2][0] + i[2][-3:] == 'KIII'))  # оранжевый гигант
+        center = [get_center(cluster[0])[:2], get_center(cluster[-1])[:2]]
+        b1 = int(dist(*center) * 10_000)
+        b = [[] for i in range(3)]
+        for i in range(3):
+            for k in cluster[i]:
+                if k[2][0] + k[2][2:] == 'GV':  # жёлтый карлик
+                    b[i].append(k[:2])
+        r = [(dist(i, k)) for ls in b for i in ls for k in ls]
+        b2 = int(max(r) * 10_000)
+        print(b1, b2)  # 138716 34029
+"""
+44694 69754
+138716 34029
 """

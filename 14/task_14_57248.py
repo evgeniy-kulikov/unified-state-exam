@@ -162,3 +162,136 @@ for x in p[:11]:
         if not r % 131:
             print(r // 131)  # 552647
 
+
+# https://stepik.org/lesson/253328/step/1?unit=233542
+for n in range(5, 36):
+    if int('204', n+1) == int('204', n) + int('26', 16):
+        print(n)  # 9
+        break
+
+# https://stepik.org/lesson/253328/step/2?unit=233542
+def cnv(n, b=4):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+d = [i for i in range(2, 26) if cnv(i)[-2:] == '11']
+print(*d, sep=',')  # 5,21
+
+
+# https://stepik.org/lesson/253328/step/3?unit=233542
+for x in range(100):
+    if int('35', 6) + x == int('35', 7):
+        print(x)  # 3
+        break
+
+
+# https://stepik.org/lesson/253328/step/4?unit=233542
+def cnv(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+for i in range(1, 100):
+    if cnv(i, 9)[-1] == '4':
+        print(cnv(i, 3)[-1])  # 1
+        break
+"""
+base_9  --> 0, 1, 2, 3,  4
+base_3  --> 0, 1, 2, 10, 11
+"""
+
+
+# https://stepik.org/lesson/253328/step/5?unit=233542
+# нужно окончание '1', '3'  но не '13' ❗
+def cnv(n, b):
+    r = ''
+    while n:
+        d = n % b
+        if d < 10:
+            r = str(d) + r  # 0 - 9
+        else:
+            r = '*' + r # 10 - и больше
+        n //= b
+    return r
+
+for b in range(4, 100):
+    if cnv(75, b)[-2:] == '13':
+        print(b, end=',')  # 8,72
+
+
+# https://stepik.org/lesson/253328/step/6?unit=233542
+def cnv(n, b):
+    r = ''
+    while n:
+        d = n % b
+        if d < 10:
+            r = str(d) + r  # 0 - 9
+        else:
+            r = '*' + r # 10 - и больше
+        n //= b
+    return r
+
+for n in range(1, 31):
+    if cnv(n, 5)[0] == '3':
+        print(n, end=',')  # 3,15,16,17,18,19
+
+
+# https://stepik.org/lesson/253328/step/7?unit=233542
+def cnv(n, b):
+    r = ''
+    while n:
+        d = n % b
+        if d < 10:
+            r = str(d) + r  # 0 - 9
+        else:
+            r = '*' + r # 10 - и больше
+        n //= b
+    return r
+
+for n in range(1, 26):
+    if cnv(n, 4)[-2:] == '11':
+        print(n, end=',')  # 5,21
+
+
+# https://stepik.org/lesson/253328/step/10?unit=233542
+def cnv(n, b):
+    r = 0
+    while n:
+        r += n % b == 5
+        n //= b
+    return r
+
+n = 2*216**6 + 3*36**9 - 432
+print(cnv(n, 6))  # 14
+
+
+# https://stepik.org/lesson/253326/step/1?unit=233541
+c = 0
+s = '10001011 10111000 10011011 10110100'.split()
+for i in s:
+    c += int(i, 2) > int('a4', 16) + int('20', 8)
+print(c)  # 1
+
+
+# https://stepik.org/lesson/253326/step/2?unit=233541
+c = 0
+for x in range(1, 10000):
+    c += int('2a', 16) < x < int('61', 8)
+print(c)  # 6
+
+
+# https://stepik.org/lesson/253326/step/4?unit=233541
+def cnv(n, b):
+    r = 0
+    while n:
+        r += n % b == 3
+        n //= b
+    return r
+
+n = 4**500 + 3*4**2500 - 1024
+print(cnv(n, 4))  # 496

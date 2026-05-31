@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
-52 399 1241 3729 5553 6901 8553 9155
-10090 11201 11291 11300 11827 12097 12240 12462 12917 16319 16374 17521 17549 17627 1933
+52 399 1241 1339 1933 3729 4564 5553 6901 6985 8417 8553 9155
+10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 
 23367 23746 
 """
 
@@ -32,6 +32,39 @@ for p in product('000012', repeat=5):
 print(c)  # 4864
 
 
+# 1339 Danov2101 (Уровень: Сложный)
+from itertools import product, permutations
+res = []
+ls = [''.join(p) for p in permutations('мари')]
+for i in ls:
+    for p in product('ина', repeat=4):
+        res += [i + ''.join(p)]
+res.sort()
+print(res.index('марианна') + 1)  # 1078
+
+# short code
+from itertools import product, permutations
+ls = [''.join(p) for p in permutations('мари')]
+res = sorted(i + ''.join(p) for i in ls for p in product('ина', repeat=4))
+print(res.index('марианна') + 1)  # 1078
+
+
+# 1933 (Уровень: Базовый)
+from itertools import *
+res = []
+for p in permutations('КЛАБХАУС'):
+    if not sum(a == b for a, b in zip(p, p[1:])):
+        res.append(p)
+print(len(set(res)))  # 15120  # set() для исключения ✅ дубликатов
+
+# ✅️Better
+from itertools import *
+c = 0
+for p in set(permutations('КЛАБХАУС')):  # set() для исключения ✅ дубликатов
+    c += not sum(a == b for a, b in zip(p, p[1:]))
+print(c)  # 15120
+
+
 # 3729 Джобс 05.05.2022 (Уровень: Средний)
 from itertools import *
 c = res = 0
@@ -40,6 +73,26 @@ for p in product('АЕЖЙМУ', repeat=5):
     if not c % 2:
         res += all(a != b for a, b in zip(p, p[1:]))
 print(res)  # 1875
+
+
+# 4564 (Уровень: Сложный) 🌶️🌶️🌶️  всего 281_474_976_710_656 комбинаций - МНОГО!!!
+# Перебор за долю секунды
+z = 0
+for a in range(15, 10, -1):
+    for b in range(a-1, 9, -2):
+        for c in range(b-1, 8, -2):
+            for d in range(c-1, 7, -2):
+                for e in range(d-1, 6, -2):
+                    for f in range(e-1, 5, -2):
+                        for g in range(f-1, 4, -2):
+                            for h in range(g-1, 3, -2):
+                                for i in range(h-1, 2, -2):
+                                    for j in range(i-1, 1, -2):
+                                        for k in range(j-1, 0, -2):
+                                            for l in range(k-1, -1, -2):
+                                                # r = [a, b, c, d, e, f, g, h, i, j, k, l]  #  очень быстро
+                                                z += 1
+print(z)  # 104
 
 
 # 5553 (Уровень: Базовый)
@@ -61,6 +114,26 @@ for p in product(s, repeat=5):
     if sum(i in 'БРШ' for i in p) <= 3 and len(set(p)) == 4:
             res = c
 print(res) # 913
+
+
+# 6985 (Уровень: Средний)
+from itertools import product
+c = 0
+res = None
+for p in product('aklmpc', repeat=6):
+    c += 1
+    r = ''.join(p)
+    if not any(['kc' in r, 'ck' in r]) and len(set(r)) == 4:
+        res = c
+print(res)  # 46605
+
+
+# 8417 (Уровень: Базовый)
+from itertools import permutations
+c = 0
+for p in permutations('aaassss', 5):
+    c += p.count('s') > p.count('a') and 'aa' not in ''.join(p)
+print(c)  # 1224
 
 
 # 8553 (Уровень: Средний)
@@ -145,11 +218,11 @@ print(c)  # 40500
 
 
 # 12097 Новогодний вариант (Уровень: Базовый)
-from itertools import *
+from itertools import product
 c = res = 0
-for p in product('agdilnrj', repeat=6):
+for p in product('12345678', repeat=6):
     c += 1
-    if not c % 2 and p.count('d') == 3 and p[0] != 'j':
+    if p[0] != '8' and p.count('3') == 3 and not c % 2:
         res = c
 print(res)  # 226456
 
@@ -183,6 +256,45 @@ c = 0
 for p in set(permutations('ПРОСТО')):
     c += 'ОО' not in ''.join(p)
 print(c)  # 240
+
+
+# 13094 (Уровень: Средний)  # ✅✅✅✅✅
+from itertools import *
+od = '1357'
+ev = '2468'
+c = 0
+for p in product(od,ev,od,ev,od,ev,od,ev,od):  # ✅✅✅✅✅
+    if all(p.count(i) <= 3 for i in p):
+        c += 1
+# умножили на 2 тк есть такое же кол-во чисел начинающихся с четного
+print(c * 2)  # 483840
+
+# Реализация того, что происходит в коде  product('1357', '2468', '1357', ... , '1357')
+cnt = 0
+s1 = '1357'
+s2 = '2468'
+for a in s1:
+    for b in s2:
+        for c in s1:
+            for d in s2:
+                for f in s1:
+                    for g in s2:
+                        for h in s1:
+                            for k in s2:
+                                for l in s1:
+                                    z = a + b + c + d + f + g + h + k + l
+                                    if all(z.count(x) <= 3 for x in z):
+                                        cnt += 1
+print(cnt * 2)  # 483840
+# умножили на 2 тк есть такое же кол-во чисел начинающихся с четного
+
+from itertools import product
+c = 0
+for p in product(map(int, '12345678'), repeat=9):  # ⛔⛔⛔ ДОЛГО ❗❗❗
+    if all(p.count(i) <= 3 for i in p):
+        if all(a%2 != b%2 for a, b in zip(p, p[1:])):
+            c += 1
+print(c)  # 483840
 
 
 # 16319 Открытый вариант 2024 (Уровень: Базовый)
@@ -238,23 +350,6 @@ c = 0
 for p in product('0123456789aaaaa', repeat=5):
     c += p[0] != '0' and p.count('8') == 1 and p.count('a') >= 2
 print(c)  # 83175
-
-
-# 1933 (Уровень: Базовый)
-from itertools import *
-res = []
-for p in permutations('КЛАБХАУС'):
-    if not sum(a == b for a, b in zip(p, p[1:])):
-        res.append(p)
-print(len(set(res)))  # 15120  # set() для исключения ✅ дубликатов
-
-# ✅️Better
-from itertools import *
-c = 0
-for p in set(permutations('КЛАБХАУС')):  # set() для исключения ✅ дубликатов
-    c += not sum(a == b for a, b in zip(p, p[1:]))
-print(c)  # 15120
-
 
 
 

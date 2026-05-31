@@ -4,6 +4,7 @@
 😉
 🙂
 🤔
+😛
 👍
 ✅
 ✔️
@@ -142,8 +143,8 @@ from math import dist
 # print(res)
 
 # 16
-# from functools import lru_cache
-# @lru_cache(None)
+# from functools import lru_caeve
+# @lru_caeve(None)
 # def f(n):
 #     if n == 1:
 #         return 1
@@ -191,6 +192,31 @@ from re import *
 # 🆗 x и y
 
 
+""" 01 """
+# from itertools import *
+# print(*'12345678')
+# s = 'abcdefgh'
+# g = 'af fh hc cb bd dg ga gf eb ed eh'.split()
+# t = '234 157 147 138 268 58 23 456'.split()
+# for p in permutations(s):
+#     if all(str(p.index(a) + 1) in t[p.index(b)] for a, b in g):
+#         print(*p)
+"""
+
+"""
+
+""" 02 """
+from itertools import *
+# def f(x,y,w,z):
+#     return not (((not x) or y) and (not w)) or (not (z and (not (y and w))))
+#
+# for m1,m2,m3,m4,m5,m6,m7 in product((0,1), repeat=7):
+#     t = [(0,m1,m2,1), (m3,1,m4,m5), (1,0,m6,m7)]
+#     if len(set(t)) == 3:
+#         for p in permutations('xywz'):
+#             if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
+#                 print(''.join(p))
+
 """ 05 """
 # 9774 Основная волна 20.06.23 (Уровень: Средний)
 # def f(n, b=9):
@@ -219,68 +245,6 @@ from re import *
 #     if r > 300:
 #         res = min(res, r)
 # print(res)  # 309
-
-
-""" 01 """
-# from itertools import *
-# print(*'12345678')
-# s = 'abcdefgh'
-# g = 'af fh hc cb bd dg ga gf eb ed eh'.split()
-# t = '234 157 147 138 268 58 23 456'.split()
-# for p in permutations(s):
-#     if all(str(p.index(a) + 1) in t[p.index(b)] for a, b in g):
-#         print(*p)
-"""
-
-"""
-
-""" 02 """
-from itertools import *
-# def f(x,y,w,z):
-#     return not (((not x) or y) and (not w)) or (not (z and (not (y and w))))
-#
-# for m1,m2,m3,m4,m5,m6,m7 in product((0,1), repeat=7):
-#     t = [(0,m1,m2,1), (m3,1,m4,m5), (1,0,m6,m7)]
-#     if len(set(t)) == 3:
-#         for p in permutations('xywz'):
-#             if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
-#                 print(''.join(p))
-
-
-
-
-""" 05 """
-# def f(n):
-#     r = ''
-#     while n:
-#         r  = str(n % 3) + r
-#         n //= 3
-#     return r
-#
-# R = 10000
-# for n in range(12, 10000):
-#     b = f(n)
-#     if n % 3:
-#         sm = sum(map(int, b))
-#         b += f(sm)
-#     else:
-#         b += b[-2:]
-#     r = int(b, 3)
-#     if r > 220:
-#         R = min(R, r)
-# print(R)
-
-# res = 1000
-# for n in range(1000):
-#     b = f'{n:b}'
-#     b += '01'[b.count('1') % 2]
-#     b += '01'[b.count('1') % 2]
-#     r = int(b, 2)
-#     if r > 75:
-#         res = min(res, r)
-# print(res)
-
-
 
 """ 06 """
 # from turtle import *
@@ -311,65 +275,69 @@ from itertools import *
 #         dot()
 # done()
 
-
 """ 07 """
-from math import ceil, log2
-
-
-
-
-
+# from math import ceil, log2
+# for add in range(10000):
+#     if (ceil(9 * 4 / 8) + add) * 23 == 713:
+#         print(add)
+#         break
 
 """ 08 """
-# from itertools import *
-# res = c = 0
-# for p in product('авнрья', repeat=5):
-#     s = ''.join(p)
-#     c += 1
-#     if s[0] != 'я' and s.count('ь') <= 1 and 'яя' not in s:
-#         res = c
-# print(res)  #
-
+# from itertools import permutations
 # c = 0
-# for p in set(permutations('011456')):
-#     s = ''.join(p).replace('0' , '1')
-#     c += '11' not in s
+# for p in permutations('0011111', 5):
+#     c += p.count('0') <= 1
 # print(c)  # 72
 
-# c = 0
-# for p in product('0123456789abcde', repeat=5):
-#     if p[0] != '0' and p.count('8') == 1:
-#         if len([i for i in p if int(i, 15) > 9]) >=2:
-#             c += 1
-# print(c)  # 72
-
+# for p in permutations(alf, 12):
+#     if all(a>b for a, b in zip(p, p[1:])):
+#         c += all(a%2 != b%2 for a, b in zip(p, p[1:]))
+# print(c)  #
 
 
 
 """ 09 """
-# c = res = 0
-# for s in open('9_19241.txt'):
-#     c += 1
-#     d = [*map(int, s.split())]
-#     n3 = [i for i in d if d.count(i) == 3]
-#     n1 = [i for i in d if d.count(i) == 1]
-#     if len(n3) == 6 and sum(n3) / 6 < n1[0]:
-#         res = c
-# print(res)  # 17975
+#  9696 Danov2307 (Уровень: Средний)
+# c = 0
+# for s in open('6tU4Wdefq.txt'):
+#     d = sorted(map(int, s.split()))
+#     n2 = [i  for i in d if d.count(i) == 2]
+#     if len(n2) == 2:
+#         c += sum(d[2:]) > sum(d[:2]) * 2 and d[-1] % d[0] != 0
+# print(c)  # 125
 
 
+# https://stepik.org/lesson/564220/step/7?unit=558468 🌶️🌶️🌶️ НУЖНО РЕШИТЬ
+# c = 0
+# d = [[*map(int, i.split())] for i in open('9-228.txt')]
+# d_col = [list(i) for i in zip(*d)]
+# for row in d:
+#     k = 0
+#     n = [(0, i)[row.count(i) == 1] for i in row]    # хотя бы одно число в строке
+#     for i in range(6):
+#         if n[i] and d_col[i].count(n[i]) < 180:
+#             k += 1
+#     if k :
+#         c += 1
+# print(c)  # 1624 5089 9908 13854 15631
 
-
-
+# https://stepik.org/lesson/564220/step/7?unit=558468 🌶️🌶️🌶️ НУЖНО РЕШИТЬ
+# c = 0
+# d = [[*map(int, i.split())] for i in open('9-228.txt')]
+# d_col = [list(i) for i in zip(*d)]
+# for row in d:
+#     if len(set(row)) == 6:  # каждое число в строке
+#         if all(d_col[i].count(row[i]) >= 180 for i in range(6)):
+#             c += 1
+# print(c)  # 312
 
 """ 11 """
-# 19243 ЕГКР 21.12.24 (Уровень: Базовый)
-from math import ceil, log2
-# for i in range(1, 100):
-#     if ceil(377 * i / 8) * 23155 > 5536 * 2**10:
-#         print(2**(i-1) + 1)  # 33
+# from math import ceil, log2
+# i = ceil(log2(10 + 26 + 450))
+# for n in range(1, 1000):
+#     if ceil(n * i / 8) * 708 > 213 * 2**10:
+#         print(n)
 #         break
-
 
 # i = ceil(log2(10 + 52 + 458))
 # for n in range(1, 1000):
@@ -377,21 +345,62 @@ from math import ceil, log2
 #         print(n - 1)
 #         break
 
-
 """ 12 """
 
-
 """ 13 """
-from ipaddress import *
-# net = ip_network('218.194.82.148/255.255.255.192', 0)
-# print(net[-2])
 
-# for m in range(32, 0, -1):
-#     if ip_network(f'120.120.120.35/{m}', 0).network_address == ip_address('120.120.120.0'):
-#         print(m)
+from ipaddress import *
+# c = 0
+# net = ip_network(f'232.126.150.18/255.255.240.0', 0)
+# for i in net.hosts():
+#     c += 1
+#     if i == ip_address('232.126.150.18'):
+#         print(c)
 #         break
 
+# from ipaddress import *
+# for x in range(256):
+#     net = ip_network(f'192.214.{x}.184/255.255.255.224', 0)
+#     if all(f'{i:b}'.count('1') > 15 for i in net) :
+#         print(x)  # 127
+#         break
+
+# from ipaddress import *
+# for m in range(32, 0, -1):
+#     net = ip_network(f'98.162.71.94/{m}', 0)
+#     if net.network_address == ip_address('98.162.71.64'):
+#         print(net.num_addresses)
+#         break
+
+
 """ 14 """
+
+# def cnv(n, b):
+#     r = ''
+#     while n:
+#         r = str(n % b) + r
+#         n //= b
+#     return r
+
+# def cnv(n, b):
+#     r = 0
+#     while n:
+#         r += n % b == число
+#         n //= b
+#     return r
+
+# def cnv(n, b):
+#     r = ''
+#     while n:
+#         d = n % b
+#         if d < 10:
+#             r = str(d) + r  # 0 - 9
+#         else:
+#             r = '*' + r # 10 - и больше
+#         n //= b
+#     return r
+
+
 # for x in range(40):
 #     a = 8*40**6 + 7*40**5 + 1*40**4 + x*40**3 + 2*40**2 + 9*40**1 + 1*40**0
 #     if not a % 39:
@@ -419,6 +428,23 @@ from ipaddress import *
 #         print(num // 24)  # 266249847
 #         break
 
+
+# def cnv(n, b=5):
+#     r = ''
+#     while n:
+#         r = str(n % b) + r
+#         n //= b
+#     return r
+
+# for x in range(100000):
+#     n = 125**7 - 25**4 + x
+#     s = cnv(n)
+#     if s.count('4') == 15 and s.count('3') == 1 and s.count('1') == 2:
+#         print(x)
+#         break
+
+
+
 """ 15 """
 # def f(x,y):
 #     return (x-3*y < a) or (y>400) or (x>56)
@@ -430,8 +456,8 @@ from ipaddress import *
 
 """ 16 """
 # https://stepik.org/lesson/1576458/step/8?unit=1597732
-# from functools import lru_cache
-# @lru_cache()
+# from functools import lru_caeve
+# @lru_caeve()
 # def f(n):
 #     if n < 5:
 #         return n
@@ -439,9 +465,6 @@ from ipaddress import *
 #
 # [f(i) for i in range(4, 13767)]
 # print((f(13766) - 9 * f(13762)) / f(13758))
-
-
-
 
 """ 17 """
 # https://stepik.org/lesson/1576458/step/9?unit=1597732
@@ -474,7 +497,6 @@ from ipaddress import *
 
 
 # https://stepik.org/lesson/1576459/step/1?unit=1597733
-
 
 """ 19-21 """
 # 17638 Основная волна 19.06.24 (Уровень: Базовый)
@@ -526,12 +548,7 @@ from ipaddress import *
 # print(*[s for s in range(1, 39) if f(s, 3) and not f(s, 1)])
 # print([s for s in range(1, 39) if f(s, 4) and not f(s, 2)][0])
 
-
-
 """ 22 """
-
-
-
 
 """ 23 """
 # def f(a, b, c=0):
@@ -543,22 +560,10 @@ from ipaddress import *
 #     return f(a-1, b, c) + f(a//2, b, c)
 # print(f(30, 1))  # 115
 
-
-
-
-
-
 """ 24 """
 # s = open('24.txt').read().strip()
 
 
-
-
-
-"""
-
-"""
-...
 
 # from re import *
 # s = open('24_1.txt').read().strip()
@@ -598,7 +603,7 @@ from ipaddress import *
 # def dv(n):
 #     for i in range(2, int(n**0.5 + 1)):
 #         if not n % i:
-#             return i + n // i  # ✅ первыми находятся мин. и макс. делители. Другие уже не нужны.
+#             return i + n // i
 # c = 5
 # for n in range(800_001, 10**10):
 #     m = dv(n)
@@ -618,10 +623,6 @@ from ipaddress import *
 
 # def spl(n):
 #     return all(n % i for i in range(2, int(n**0.5 + 1)))
-
-
-
-
 
 """ 26 """
 from statistics import mean
@@ -652,11 +653,6 @@ from statistics import mean
 
 
 # d = [(k, sorted(v)) for k, v in dt.items()]
-
-...
-
-
-
 
 """ 27 """
 # from math import dist
@@ -751,33 +747,7 @@ from statistics import mean
 #     px = int(abs((sum(i[0] for i in center) / len(center)) * 10_000))
 #     py = int(abs((sum(i[1] for i in center) / len(center)) * 10_000))
 #     print(px, py)
-# """
-# 43789 62202
-# 14271 54727
-# """
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Total Many 🍒🍒🍒
+# print((18_000 - 85_640) + (545_000 - 288_670 - 110_000 - 43_000))  # 35_690  дебет на 31.05
