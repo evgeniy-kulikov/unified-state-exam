@@ -122,6 +122,17 @@ print(f(12))  # {2, 3, 4, 6}
 print(set(prime(12)))  # {2, 3}
 
 
+# раздожить число на простые множители (любое число можно разложить) ✅
+def mul(n):
+	d = []
+	for i in range(2, int(n**0.5 + 1)):
+		while not n % i:
+			d.append(i)
+			n //= i
+	if n > 1:
+		d.append(n)
+	return d
+
 
 
 

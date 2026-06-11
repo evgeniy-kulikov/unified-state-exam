@@ -3,8 +3,8 @@
 225 507 788 889 954 
 1304 1395 1868
 2149 2612 2613 2614 3664
-4604(=4712) 4629 4660 4712 7096
-10107 11681 12256 13394 15341 17537 17881 19256
+4205(=7274) 4604(=4712) 4629 4660 4712 7096
+10107 11681 12256 13394 15341 17537 17643 17881 19256
 21598 21719 21910(=21424) 23765 27779
 """
 
@@ -288,6 +288,24 @@ print(res[0][1], res[0][0])  # 9570 9743
 
 
 
+# 4205 Открытый вариант 2022 (Уровень: Базовый)
+# 7274 OpenFIPI (Уровень: Базовый)
+f = open('add/26/26_4205.txt').readlines()  # or  26_7274.txt
+d = dict()
+for row in f[1:]:
+    k, v = map(int, row.split()) # номер ряда / номер места в этом ряду
+    d.setdefault(k, [])
+    d[k] += [v]
+dt = [(k, sorted(v)) for k, v in d.items()]
+dt.sort(reverse=1)
+for r in dt:
+    if len(r[1]) > 1:
+        for a, b in zip(r[1], r[1][1:]):
+            if b - a == 14:
+                print(r[0], a+1)  # 59966 50449
+                exit()
+
+
 # 4604 Основная волна 2022 (Уровень: Базовый)
 f = open('add/26/26_4604.txt').readlines()
 # f = open('txt.txt').readlines()
@@ -304,14 +322,12 @@ print(cnt, cur)  # 2767 51
 
 
 # 4629 Основная волна 2022 (Уровень: Базовый)
-f = open('add/26/26_4629.txt').readlines()
-n = int(f[0])  # количество товаров
-d = [*map(int, f[1:])]   # цены товаров
-d.sort(reverse=True)
-user = sum(i / 2 for i in d[:n//4]) + sum(i for i in d[n//4:])
-d.sort()
-store = sum(i / 2 for i in d[:n//4]) + sum(i for i in d[n//4:])
-print(int(user), int(store))  # 39434611 48825239
+D = [*map(int, open('add/26/26_4629.txt').readlines())]
+N = D[0]  # количество товаров
+d = sorted(D[1:])
+sm1 = sum(d[:N*3//4]) + sum(d[N*3//4:]) // 2  # покупатель
+sm2 = sum(d[:N//4]) // 2 + sum(d[N//4:])  # магазин
+print(sm1, sm2)  # 39434611 48825239
 
 
 # 4660 Основная волна 2022 (Уровень: Базовый)
@@ -378,20 +394,20 @@ print(int(a), int(b))  # 2903432767 194784 ❓
 
 # 12256 ЕГКР 16.12.23 (Уровень: Базовый)
 f = open('add/26/26_12256.txt').readlines()
-S, N = map(int, f[0].split())
-d = sorted(map(int, f[1:]))
-sm = cnt = 0
+M,N = map(int, f[0].split())
+D = sorted(map(int, f[1:]))
+c = m = 0
 for i in range(N):
-    if sm + d[i] <= S:
-        sm += d[i]
+    if m + D[i] <= M:
+        c += 1
+        m += D[i]
     else:
-        sm -= d[i-1]
-        cnt = i
+        m -= D[i-1]
         break
 # ищем самую тяжёлую посылку
-for i in range(-1, -N, -1):
-    if sm + d[i] <= S:
-        print(cnt, d[i])  # 629 50
+for i in range(N-1, -1, -1):
+    if m + D[i] <= M:
+        print(c, D[i])  # 629 50
         break
 
 
@@ -445,6 +461,24 @@ for i in range(2, C + 1):
     res.append([m, i])
 res.sort()
 print(*res[-1])  # 9991 5643
+
+
+# 17643 Основная волна 19.06.24 (Уровень: Базовый)
+f = open('26_17643.txt').readlines()
+N = int(f[0])
+data = [[*map(int, i.split())] for i in f[1:]]  # артикул / цена / статус(0-продан/1-не продан)
+avr = sum(i[1] for i in data) / N
+expensive = [i for i in data if i[1] > avr]
+d = {i[0]: [i[1], 0, 0] for i in expensive}  # [i[1],0,0] цена / кол-во: продан/не продан
+for i in expensive:
+    if i[2]:
+        d[i[0]][2] += 1
+    else:
+        d[i[0]][1] += 1
+res = [[k] + [*v] for k, v in d.items()] # артикул / цена / кол-во: продан/не продан
+res.sort(key=lambda x: (-x[2], -x[1], x[3]))
+_,a,b,c = res[0]
+print(a*b, c)  # 43656 36
 
 
 # 17881 Демоверсия 2025 (Уровень: Базовый)

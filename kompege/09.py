@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
 5627 6262 8467 8475 9696
-12795 16375
+11946 12795 16375 17550
 23747
 """
 
@@ -64,6 +64,19 @@ print(c)  # 125
 
 
 
+# 11946 (Уровень: Средний)
+c = 0
+for n in open('09.txt'):
+    d = [*map(int, n.split())]
+    n3 = [i for i in d if d.count(i)==3]
+    n1 = [i for i in d if d.count(i)==1]
+    a = len(n3)==3 and len(n1)==4
+    # b = all(a <= b for a,b,in zip(d, d[1:]))
+    b = d == sorted(d)
+    c += a + b <= 1
+print(c)
+
+
 # 12795 Открытый курс "Слово пацана" (Уровень: Средний)
 f = open('add/09/09_12795.txt')
 cnt = 0
@@ -82,6 +95,18 @@ for row in [[*map(int, i.split())] for i in open('09.txt')]:
         d = [i for i in row if row.count(i) == 2][0]
         cnt += a * b * c > d**2
 print(cnt)  # 293
+
+
+# 17550 Основная волна 08.06.24 (Уровень: Базовый)
+c = 0
+for n in open('09.txt'):
+    d = [*map(int, n.split())]
+    n3 = [i for i in d if d.count(i)==3]
+    n1 = [i for i in d if d.count(i)==1]
+    if len(n3)==len(n1)==3:
+        c += sum(n3)**2 > sum(n1)**2
+print(c)  # 19
+
 
 
 

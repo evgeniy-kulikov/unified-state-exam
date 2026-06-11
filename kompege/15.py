@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-216 307 432 627 743 752 753 762 764
+216 307 432 627 743 752 753 754 762 764
 1015 1127 1198 1234 1276 1295 1409 1968 2078 2080 2123 3156 4988 7086 7265 7353 7817 8159 8676 9370 9545 
 11665 12247 12469 13082 17528 17871 19980
 20905 21710 24988 25279 25354
@@ -107,6 +107,24 @@ for a1 in n:
         if a1 < a2 and all(f(x) for x in n):
             res = max(res, a2 - a1)
 print(round(res))  # 9
+
+
+# 754 (Уровень: Средний)
+def f(x):
+    A = x in a
+    P = x in {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+    Q = x in {5, 10, 15, 20, 25, 30, 35, 40, 45, 50}
+    # return (A <= P) and (Q <= (not A))
+    # return (not A or P) and (not Q or not A)
+    return not A or (not Q and P)
+
+a = set(range(1, 1000))
+for x in range(1, 100000):
+    if f(x) == 0:
+        a.remove(x)
+# print(a)  # {2, 4, 6, 8, 12, 14, 16, 18}
+print(len(a))  # 8
+
 
 
 """ Взято на мой курс """
@@ -567,17 +585,19 @@ def d(n):
     r = set()
     for i in range(2, int(n**0.5 + 1)):
         if not n % i:
-            r |= {i, n // i}
+            r |= {i, n //i}
     return r
+
 def f(x, y):
     a = 100 <= x <= 200
-    # b = not x % 121 and (1 < x < 121)
-    b = (x == 11)
     c = x in d(y)
-    return (not c) or (a and (not b))
+    b = x == 11 # d(121)  # {11}
+    if d(y):  # множество C непустое
+        return not c or (not b and a)
+    return 0
 
-for y in range(10_000, 20_000):
-    if all(f(x, y) for x in range(1, 20_000)) and d(y):  # множество C непустое
+for y in range(2, 20000):
+    if all(f(x, y) for x in range(1, 20000)):
         print(y)  # 10201
         break
 

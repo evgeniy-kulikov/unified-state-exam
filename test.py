@@ -22,6 +22,13 @@
 ⌛
 √
 """
+
+# Total Many 🍒🍒🍒
+# print((545_000 - 288_670 - 110_000 - 43_000) + (18_000 - 85_640))  # 35_690  дебет на 31.05
+# print((621_000 + 8_005 - 289_077 - 110_000 - 43_000) - 85_640)  # 101_288  дебет на 05.06
+
+
+
 """"""
 # ЕГЭ Информатика 2026 | Полный Курс
 # https://stepik.org/course/233165
@@ -39,142 +46,12 @@ from ipaddress import *
 from math import ceil, log2
 from math import dist
 
-# https://stepik.org/lesson/1368763/step/6?unit=1384856
-
-# 07
-# from math import ceil, log2
-# for i in range(1, 100):
-#     if ceil(640*480 * (i+6) / 8) > 600 * 2**10:
-#         print(2**(i-1))
-#         break
-
-# 09
-# c = 0
-# for s in open('09.txt'):
-#     d = [*map(int, s.smplit())]
-#     n1 = [i for i in d if d.count(i) == 1]
-#     n3 = [i for i in d if d.count(i) == 3]
-#     if len(n1) == len(n3) == 3:
-#         c += sum(n3)**2 > sum(n1)**2
-# print(c)
-
-# 11
-# i = ceil(log2(10 + 52 + 963))
-# for n in range(1, 1000):
-#     if ceil(n * i / 8) * 2000 > 693 * 1024:
-#         print(n-1)
-#         break
-
-# 12
-# s = '1' * 81
-# while '11111' in s or '888' in s:
-#     if '11111' in s:
-#         s = s.replace('11111', '88', 1)
-#     else:
-#         s = s.replace('888', '8', 1)
-# print(s)
-
-
-# 13
-
-# 12947 (Уровень: Базовый)
-# from ipaddress import *
-# c = 0
-# net = ip_network('203.111.195.0/255.255.240.0', 0)
-# for i in net:
-#     b = f'{i:b}'
-#     c += not b.count('0') % 3 and '111' in b and '000' in b
-# print(c)  # 1043
-
-# c = 0
-# for m in range(1, 33):
-#     net = ip_network(f'251.211.38.240/{m}', 0)
-#     if str(net.network_address) == '251.211.38.0':
-#         c += 1
-# print(c)
-
-# from ipaddress import *
-# c = 0
-# for m in range(1, 33):
-#     net1 = ip_network(f'201.44.240.33/{m}', 0)
-#     net2 = ip_network(f'201.44.240.107/{m}', 0)
-#     if net1 == net2:
-#         c += f'{net1.network_address:b}'.count('1') >= 5
-# print(c)  # 15
-
-
-
-
-# 14
-# n = 7**170 + 7**100
-# for x in range(2030, 0, -1):
-#     c = 0
-#     r = n - x
-#     while r:
-#         c += not r % 7
-#         r //= 7
-#     if c == 71:
-#         print(x)
-#         break
-
-
-# 15.1
-# def f(x, y):
-#     return x + y <= 30 or y <= x + 2 or y >= a
-# for a in range(1000, -1, -1):
-#     if all(f(x, y) for x in range(1000) for y in range(1000)):
-#         print(a)
-#         break
-
-# 15.2
-# 17528 Основная волна 07.06.24 (Уровень: Базовый)
-# def f(x):
-#     p = 15 <= x <= 40
-#     q = 21 <= x <= 63
-#     a = a1 <= x <= a2
-#     return not p or not q or a
-#
-# res = 1000
-# n = [y for x in (15, 21, 40, 63) for y in (x-0.1, x, x+0.1)] # критические точки: концы P,Q и сдвиги
-# for a1 in n:
-#     for a2 in n:
-#         if a1 < a2 and all(f(x) for x in n):
-#             res = min(res, a2-a1)
-# print(res)
-
-# 16
-# from functools import lru_caeve
-# @lru_caeve(None)
-# def f(n):
-#     if n == 1:
-#         return 1
-#     if n > 1:
-#         return (n-1) * f(n-1)
-# [f(n) for n in range(2025)]
-# print((f(2024) + 2*f(2023)) / f(2022))
-
-
-# 17
-# res = sm = 0
-# d = [*map(int, open('17.txt'))]
-# MX = min(d)
-# for i in range(len(d) - 1):
-#     if any(i % 16 == MX for i in d[i:i+2]):
-#         res += 1
-#         sm = max(sm, sum(d[i:i+2]))
-# print(res, sm)  # 1214 176024
-
 """
 🍒 отрезки
 🍒 отрезки + делители
 🍓 множества
 ⌛ конъюнкция
 """
-
-"""❌ Не решено ❌"""
-
-
-
 
 from itertools import *
 from turtle import *
@@ -186,10 +63,6 @@ from math import dist
 from re import *
 
 
-# 🍒 отрезки
-# 🍓 множества
-# ⌛ конъюнкция
-# 🆗 x и y
 
 
 """ 01 """
@@ -349,14 +222,10 @@ from itertools import *
 
 """ 13 """
 
-from ipaddress import *
-# c = 0
-# net = ip_network(f'232.126.150.18/255.255.240.0', 0)
-# for i in net.hosts():
-#     c += 1
-#     if i == ip_address('232.126.150.18'):
-#         print(c)
-#         break
+# from ipaddress import *
+# net = ip_network(f'218.194.82.148/255.255.255.192', 0)
+# print(net[-2])
+
 
 # from ipaddress import *
 # for x in range(256):
@@ -366,11 +235,22 @@ from ipaddress import *
 #         break
 
 # from ipaddress import *
-# for m in range(32, 0, -1):
-#     net = ip_network(f'98.162.71.94/{m}', 0)
-#     if net.network_address == ip_address('98.162.71.64'):
-#         print(net.num_addresses)
+# c = 0
+# for m in range(1, 33):
+#     net = ip_network(f'115.53.128.88/{m}', 0)
+#     if net.network_address == ip_address('115.53.128.0'):
+#         if net.num_addresses - 2 >= 1000:
+#             c += 1
+# print(c)
+
+# from ipaddress import *
+# for m in range(32, -1, -1):
+#     net1 = ip_network(f'154.63.206.129/{m}', 0)
+#     net2 = ip_network(f'154.63.100.75/{m}', 0)
+#     if net1 == net2:
+#         print(sum(not f'{i:b}'.count('1') % 2 for i in net1))
 #         break
+
 
 
 """ 14 """
@@ -422,11 +302,22 @@ from ipaddress import *
 
 
 # from string import printable as alf
-# for x in alf[:25][::-1]:
-#     num = int(f'11353{x}12', 25) + int(f'135{x}21', 25)
-#     if not num % 24:
-#         print(num // 24)  # 266249847
+# for x in alf[:24][::-1]:
+#     n = int(f'4m{x}f', 24) + int(f'265afdn{x}', 24)
+#     if not n % 23:
+#         print(n // 23)
 #         break
+
+# from string import printable as alf
+# [print(alf.index(i)) for i in 'xyz']   # 33 34 35
+# res = []
+# for a in range(55):
+#     n1 = 35*55**3 + a*55**2 + 34*55**1 + 33*55**0
+#     n2 = 2*55**3 + 33*55**2 + a*55**1 + 34*55**0
+#     if not (n1 - n2) % 29:
+#         res.append((a, n1 - n2))
+# print(abs(max(res)[1] - min(res)[1]))
+
 
 
 # def cnv(n, b=5):
@@ -446,12 +337,11 @@ from ipaddress import *
 
 
 """ 15 """
-# def f(x,y):
-#     return (x-3*y < a) or (y>400) or (x>56)
-# for a in range(1000):
-#     if all(f(x,y) for x in range(1, 1000) for y in range(1, 1000)):
-#         print(a)
-#         break
+# https://stepik.org/lesson/564224/step/11?unit=558472
+
+
+
+
 
 
 """ 16 """
@@ -559,6 +449,45 @@ from ipaddress import *
 #         return 1
 #     return f(a-1, b, c) + f(a//2, b, c)
 # print(f(30, 1))  # 115
+
+# def f(a, b, c=0):
+#     c += a==10
+#     if a > b or a == 20:
+#         return 0
+#     if a == b and c:
+#         return 1
+#     return f(a+1, b, c) + f(a+2, b, c) + f(a*3, b, c)
+# print(f(4, 22))  # 715
+
+
+# 13099 (Уровень: Средний)
+# def f(a, b, w=0):
+#     if a == b:
+#         return 1
+#     if a > b+1:  #  b+1 >>  8 * 2 = 16 -> 16 - 1 = 15
+#         return 0
+#     return (f(a-1, b, 1) if not w else 0) + f(a*2, b, 0) + f(a*3, b, 0)
+# print(f(3, 15))  # 6
+#
+# def f(a, b, w=''):
+#     if a == b:
+#         return 1
+#     if a > b+1 or '--' in w:  #  b+1 >>  8 * 2 = 16 -> 16 - 1 = 15
+#         return 0
+#     return f(a-1, b, w+'-') + f(a*2, b, w+'*') + f(a*3, b, w+'*')
+# print(f(3, 15))  # 6
+
+
+
+# https://stepik.org/lesson/1228672/step/6?unit=1242205
+
+# def f(a, b):
+#     if a >= b:
+#         return a == b
+#     return f(a+1, b) + f((a+10, a)[a//10==9], b)
+# print(f(15, 37))  # 20
+
+
 
 """ 24 """
 # s = open('24.txt').read().strip()
@@ -749,5 +678,60 @@ from statistics import mean
 #     print(px, py)
 
 
-# Total Many 🍒🍒🍒
-# print((18_000 - 85_640) + (545_000 - 288_670 - 110_000 - 43_000))  # 35_690  дебет на 31.05
+# https://stepik.org/lesson/1201175/step/1?unit=1214384
+# from turtle import *
+# tracer(0)
+# # lt(90)
+# screensize(2000, 2000)
+# k = 50
+#
+# for _ in '12':
+#     fd(1000*k)
+#     bk(2000*k)
+#     fd(1000*k)
+#     lt(90)
+# rt(90)
+#
+#
+# for _ in range(11):
+#     fd(4*k)
+#     rt(60)
+#
+#
+# pu()
+# for x in range(-10, 30):
+#     for y in range(-10, 30):
+#         goto(x*k, y*k)
+#         dot()
+# done()
+
+
+# 16
+# https://stepik.org/lesson/1228671/step/14?unit=1242204
+
+
+
+# https://stepik.org/lesson/1038794/step/11?unit=1062789
+def f(a, m, w=0):
+    if a >= 21:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a + 1, m - 1), f(a * 2, m - 1)]
+    if w:
+        return any(g)
+    return any(g) if m % 2 else all(g)
+
+print([i for i in range(1, 21) if f(i, 3)][0])
+print([i for i in range(1, 21) if f(i, 4) and not f(i, 2)][0])
+print(*[i for i in range(1, 21) if f(i, 5) and not f(i, 1) and not f(i, 3)][:2])
+
+"""
+5
+8
+4 7
+"""
+
+
+
+

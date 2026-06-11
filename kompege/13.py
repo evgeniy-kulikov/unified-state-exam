@@ -119,11 +119,13 @@ for m in range(33):
 
 
 # 10171 (Уровень: Средний)
+c = 0
 for m in range(1, 33):
     net = ip_network(f'115.53.128.88/{m}', 0)
     if net.network_address == ip_address('115.53.128.0'):
         if net.num_addresses - 2 >= 1000:
-            print(net.netmask)  # 6
+            c += 1
+print(c)  # 6
 
 
 # 10172 (Уровень: Средний)

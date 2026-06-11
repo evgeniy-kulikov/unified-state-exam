@@ -41,7 +41,7 @@ it doesn't return the network or broadcast addresses
 
 ip_network(address).num_addresses
 возвращает int() количество возможных адресов в сети
-(включая адрес сети и широковешательный)
+(включая адрес сети и широковешательный ❗❗❗)
 
 """
 

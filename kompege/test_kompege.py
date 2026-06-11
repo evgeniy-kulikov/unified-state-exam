@@ -202,7 +202,7 @@ def b7(n):
 
 
 
-# https://stepik.org/lesson/564227/step/15?unit=558475
+
 
 
 
