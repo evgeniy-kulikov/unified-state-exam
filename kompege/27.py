@@ -5,12 +5,17 @@ https://kompege.ru/task
 """
 
 """
-18031 18150 19257 20294 20911
-21425 21599 21911 21929 21930 21931 21932 23384 23766
-25441 25442 25443 25444 25445 25446 25447 25448 27780 28776 29081 29357
+18031 18150 19257 20294 20911 20816
+21425 21599 21911 21929 21930 21931 21932 23384 23571 23766
+25441 25442 25443 25444 25445 25446 25447 25448 27591 27780 28776 29081 29357
+31163
 """
 
+
 """
+✔️ 27/add/task_27_kompege.py
+24562 24985 25364
+
 ✔️ course 233165
 17882 17916 
 18051 18314 18624 18625 18628 18676 18677 
@@ -186,6 +191,41 @@ for i, k in zip('AB', (1, 0.4)):
 """
 
 
+# 20816 Апробация 05.03.25 (Уровень: Базовый)
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(p, i) < 2]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        r += [(sm, i)]
+    return min(r)[1]
+
+for w in 'AB':
+    data = [[*map(float, i.split())] for i in open(f'27{w}.txt').readlines()]
+    # print(len(data))
+    clusterts = []
+    while data:
+        p = data.pop()
+        clust = get_clust(p) + [p]
+        clusterts.append(clust)
+    # [print(len(i)) for i in clusterts]
+    # print(sum(len(i) for i in clusterts), '\n')
+    center = [get_center(i) for i in clusterts]
+    px = int(abs(sum(i[0] for i in center) / len(center)) * 10_000)
+    py = int(abs(sum(i[1] for i in center) / len(center)) * 10_000)
+    print(px, py)
+"""
+10592 6300
+15981 37287
+"""
+
 
 
 
@@ -351,42 +391,37 @@ print(px, py)  # 37392 50998
 
 
 # 21911 Открытый вариант 2025 (Уровень: Базовый)
-# ✅ Из-за большого разброса точек, кластеры собираем вручную (без функции)
+f = open(f'add/27/21911_27_A.txt')
 from math import dist
-def centr(ls: list):
-    res = []
+def get_clust(p:list):
+    clust = [i for i in data if dist(p, i) <= 3]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls: list):
+    r = []
     for i in ls:
         sm = sum(dist(i, k) for k in ls)
-        res.append((sm, i))
-    return min(res)[1]
+        r.append((sm, i))
+    return min(r)[1]
 
-f = open(f'add/27/21911_27_A.txt')
-data = [[*map(float, i.replace(',', '.').split())] for i in f]
-clust = [[], []]
-for i in data:
-    if i[1] > 2:
-        clust[0].append(i)
-    else:
-        clust[1].append(i)
-c = [centr(i) for i in clust]
-px = int(sum(i[0] for i in c) / 2 * 10_000)
-py = int(sum(i[1] for i in c) / 2 * 10_000)
-print(px, py) # 26216 24182
-
-f = open(f'add/27/21911_27_B.txt')
-data = [[*map(float, i.replace(',', '.').split())] for i in f]
-clust = [[], [], []]
-for i in data:
-    if i[0] < 10:
-        clust[0].append(i)
-    elif i[0] > 20:
-        clust[1].append(i)
-    else:
-        clust[2].append(i)
-c = [centr(i) for i in clust]
-px = int(sum(i[0] for i in c) / 3 * 10_000)
-py = int(sum(i[1] for i in c) / 3 * 10_000)
-print(px, py) # 150891 63754
+for w in 'AB':
+    f = open(f'add/27/21911_27_{w}.txt.txt')
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    # print(len(data))
+    clusters = []
+    while data:
+        p = data.pop()
+        clust = [p] + get_clust(p)
+        clusters.append(clust)
+    # [print(len(i)) for i in clusters]
+    # print(sum(len(i) for i in clusters), '\n')
+    center = [get_center(i) for i in clusters]
+    px = int(sum(i[0] for i in center) / len(center) * 10_000)
+    py = int(sum(i[1] for i in center) / len(center) * 10_000)
+    print(px, py)
 """
 26216 24182
 150891 63754
@@ -431,6 +466,7 @@ for i in 'AB':
 
 
 # 21930 (Уровень: Базовый)
+""" Взято на мой курс """
 from math import dist
 def centr(ls:list):
     res = []
@@ -546,6 +582,7 @@ print(Px, Py)
 """
 
 
+""" Взято на мой курс """
 # 23384 Резервный день 19.06.25 (Уровень: Базовый)
 from math import dist
 def get_clust(p):
@@ -556,37 +593,85 @@ def get_clust(p):
     return clust
 
 def get_center(ls):
-    res = []
-    for p in ls:
-        sm = sum(dist(p, i) for i in ls)
-        res.append((sm, p))
-    return min(res)[1]
-
+    r = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        r += [(sm, i)]
+    return min(r)[1]
 
 for w in 'AB':
-    data = [[*map(float, i.replace(',', '.').split())] for i in open(f'27{w}.txt')]
+    data = [[*map(float, i.split())] for i in open(f'27{w}.txt').readlines()]
     # print(len(data))
-    clust = []
+    clusterts = []
     while data:
         p = data.pop()
-        cl = [p] + get_clust(p)
-        if len(cl) > 1:
-            clust += [cl]
-    # [print(len(i)) for i in clust]
-    # print(sum(len(i) for i in clust), '\n')
-    center = [get_center(i) for i in clust]
-    if w == 'A':
-        px = int(abs(sum(i[0] for i in center) * 10_000))
-        py = int(abs(sum(i[1] for i in center) * 10_000))
+        clust = get_clust(p) + [p]
+        clusterts.append(clust)
+    # [print(len(i)) for i in clusterts]
+    # print(sum(len(i) for i in clusterts), '\n')
+    clusterts = [i for i in clusterts if len(i) > 1]
+    center = [get_center(i) for i in clusterts]
+    if w == "A":
+        px = int(abs(sum(i[0] for i in center)) * 10_000)
+        py = int(abs(sum(i[1] for i in center)) * 10_000)
         print(px, py)  # 110156 196632
     else:
-        q1 = int(min(dist(i, [0,0,]) for i in center) * 10_000)
-        q2 = int(max(dist(i, [0,0,]) for i in center) * 10_000)
+        q1 = int(min(dist(i, (0,0)) for i in center) * 10_000)
+        q2 = int(max(dist(i, (0,0)) for i in center) * 10_000)
         print(q1, q2)  # 224871 273226
 """
 110156 196632
 224871 273226
 """
+
+
+# 23571 Пересдача 03.07.25 (Уровень: Базовый)
+from math import dist
+def get_clust(p):
+    clust = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls):
+    r = []
+    for i in ls:
+        sm = sum(dist(i, k) for k in ls)
+        r += [(sm, i)]
+    return min(r)[1]
+
+for w in 'AB':
+    data = [[*map(float, i.split())] for i in open(f'27{w}.txt').readlines()]
+    # print(len(data))
+    clusterts = []
+    while data:
+        p = data.pop()
+        clust = get_clust(p) + [p]
+        clusterts.append(clust)
+    # [print(len(i)) for i in clusterts]
+    # print(sum(len(i) for i in clusterts), '\n')
+    clusterts = [i for i in clusterts if len(i) > 1]
+    if w == "A":
+        center = [get_center(i) for i in clusterts]
+        px = int(abs(sum(i[0] for i in center)) * 10_000)
+        py = int(abs(sum(i[1] for i in center)) * 10_000)
+        print(px, py)  # 92256 258611
+    else:
+        a,b,c = clusterts
+        q = []
+        for p1, p2 in ((a, b), (b, c), (c, a)):
+            for i in p1:
+                for k in p2:
+                    q.append(dist(i, k))
+        q1 = int(min(q) * 10_000)
+        q2 = int(max(q) * 10_000)
+        print(q1, q2)  # 33863 170816
+"""
+92256 258611
+33863 170816
+"""
+
 
 
 # 23766 Демоверсия 2026 (Уровень: Базовый)
@@ -625,7 +710,7 @@ for w in 'AB':
         print(px, py)  # 38471 61225
     else:
         q1 = int(dist(center[0], center[-1]) * 10_000)
-        mx = [max(dist(ce, i) for i in cl) for ce, cl in zip(center, clust)]
+        mx = [max(dist(ce, i) for i in cl) for ce, cl in zip(center, clust)]  # ✅ круто!
         q2 = int(max(mx) * 10_000)
         print(q1, q2) # 142058 25299
 """
@@ -953,7 +1038,6 @@ for s, k in zip('AB', (1, 1)):
     # print(sum(len(i) for i in clusters))
     clusters = [i for i in clusters if len(i) > 5]
     clusters.sort(key=len)
-
     P = [center(i) for i in clusters]
     if s == 'A':
         Px = int(abs(min(i[0] for i in P)) * 10_000)
@@ -969,7 +1053,7 @@ for s, k in zip('AB', (1, 1)):
 """
 
 
-
+""" Взято на мой курс """
 # № 25448 (Уровень: Базовый)
 from math import dist
 from statistics import mean
@@ -1012,6 +1096,55 @@ for fl in zip('AB', (1, 1)):
 """
 15342 115607
 9762 9518
+"""
+
+
+""" Взято на мой курс """
+# 27591 (Уровень: Базовый)
+from math import dist
+def get_clust(p:list):
+    clust = [i for i in data if dist(i, p) < 2]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_diameter(ls:list):
+    res = []
+    for p in ls:
+        sm = max((dist(i, p), i, p) for i in ls)
+        res.append(sm)
+    return max(res)[1:]
+
+for w in 'AB':
+    f = open(f'add/27/27591_27{w}.txt')
+    data = [[*map(float, i.replace(',', '.').split())] for i in f]
+    clusters = []
+    # print(len(data), '= ', end='')
+    while data:
+        p = data.pop()
+        clust = [p] + get_clust(p)
+        clusters.append(clust)
+    # print(sum(len(i) for i in clusters))
+    # [print(len(i)) for i in clusters]
+    if w == 'A':
+        diameters = [get_diameter(i) for i in clusters]
+        px = int(abs(min(i[0][0] + i[1][0] for i in diameters)) * 10_000)
+        py = int(abs(max(i[0][1] + i[1][1] for i in diameters)) * 10_000)
+        print(px, py)  # 76190 248298
+    else:
+        clusters = [i for i in clusters if len(i) > 1]
+        clusters.sort(key=len)
+        diameters = [get_diameter(i) for i in clusters]
+        q1 = int(dist(*diameters[0]) * 10_000)
+        d = []
+        [d.extend(i) for i in diameters]
+        # q2 = int(max(dist(i, k) for i in d for k in d) * 10_000)  # все будет верно, но так есть лишние расчеты
+        q2 = int(max(dist(d[i], d[k]) for i in range(len(d)) for k in range(i+1, len(d))) * 10_000)
+        print(q1, q2)  # 39417 157278
+"""
+76190 248298
+39417 157278
 """
 
 
@@ -1229,3 +1362,60 @@ for w in 'AB':
 44694 69754
 138716 34029
 """
+
+
+
+
+# 31163 Основная волна 19.06.26 (Уровень: Базовый) 🌶️✅ цветные разноразмерные звезды
+from math import dist
+
+def get_clust(p:list):
+    clust = [i for i in data if dist(p[:2], i[:2]) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def get_center(ls:list):
+    res = []
+    for p in ls:
+        sm = sum(dist(p[:2], i[:2]) for i in ls)
+        res.append([sm, p])
+    return min(res)[1]
+
+for w in 'AB':
+    f = open(f'add/27/31163_27_{w}.txt')
+    data = [i.replace(',', '.').split() for i in f]
+    data = [[*map(float, i[:2])] + [i[2]] for i in data]
+    # print(len(data), end=' = ')
+    clusters = []
+    while data:
+        p = data.pop()
+        clust = get_clust(p) + [p]
+        clusters.append(clust)
+    # print(sum(len(i) for i in clusters))
+    # [print(len(i)) for i in clusters]
+    centers = [get_center(i) for i in clusters]
+    if w == 'A':
+        a1 = 10**10
+        for clu, cen in zip(clusters, centers):
+            d = min(dist(cen[:2], i[:2]) for i in clu if i[2][0] + i[2][2:] == 'KIII')
+            a1 = min(a1, d)
+        a1 = int(a1 * 10_000)
+        a2 = int(sum(dist((-1, -2), i[:2]) for i in centers) * 10_000)
+        print(a1, a2)
+    else:
+        b = [(sum(i[2][0] + i[2][2:] == 'KIII' for i in cl), idx) for idx, cl in enumerate(clusters)]
+        b = centers[min(b)[1]]
+        b1 = int(abs(b[0]) * 10_000)
+        b2 = int(abs(b[1]) * 10_000)
+        print(b1, b2)
+"""
+765 173445
+15800 35517
+"""
+
+
+
+
+

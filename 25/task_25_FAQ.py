@@ -13,7 +13,7 @@ for i in range(0, 10**10, step):
 # step - на что должно делиться число,
 # mask - какой маске удовлетворять.
 
-# Альтернатива fnmatch
+# Альтернатива fnmatch✅✅✅
 from itertools import product
 d = []
 for i in range(4):
@@ -22,6 +22,12 @@ for a in '0123456789':
     for b in d:
         n = int(f'1{a}2157{b}4')
         ...
+
+# Better ✅✅✅
+from itertools import  *
+alf = [''.join(i) for l in range(4) for i in product('0123456789', repeat=l)]
+
+
 
 """
 1 не является простым числом. Согласно современному определению, 
@@ -56,7 +62,7 @@ https://skysmart.ru/articles/mathematic/razlozhenie-chisel-na-prostye-mnozhiteli
 
 
 # Поиск натурального числа (простое число)
-def fn(n):
+def prime(n):
     if n == 1:
         return False
     for i in range(2, int(n ** 0.5) + 1):
@@ -65,11 +71,11 @@ def fn(n):
     return True  # 1
 
 # короче
-def fn(n):
+def prime(n):
     return n > 1 and all(n % i for i in range(2, int(n ** 0.5) + 1))
 
 # Поиск натуральных делителей числа
-def fn(n):
+def dv(n):
     res = set()
     for i in range(1, int(n ** 0.5) + 1):
         if not n % i:
@@ -79,7 +85,7 @@ def fn(n):
     return res
 
 # Поиск натуральных минимальных и максимальных делителей числа (кроме 1 и самого числа)
-def fn(num):
+def dv(num):
     for i in range(1, int(num ** 0.5) + 1):
         if not num % i:
             return i, num // i

@@ -1,10 +1,11 @@
 """ https://kompege.ru/task """
 """
 315 
-1867 2588 2590 2594 3376 4739 4741 5224 5642 5736 6095 8426 8481 8511
-11249 12477 12932 17536 17564 17642 19255
+1867 2588 2590 2594 3376 4335 4739 4741 5224 5642 5736 6095 6210 6276 8426 8481 8511 8960 8696 9076 9170
+10725 11249 11672 12477 12932 17536 17564 17642 19255
 21909 23282 23382 23569 23763 28944
 """
+
 
 
 
@@ -140,6 +141,35 @@ for n in range(0, 14_600_000, 21):
 """
 
 
+# 4335 Пробный 06.2022 /dev/inf advanced (Уровень: Базовый)
+def dv(n):
+    r = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return r
+
+def prime(n):
+    return all(n % i for i in range(2, int(n ** 0.5 + 1)))
+
+c = 5
+for n in range(960_000, 10**6):
+    d = dv(n)
+    simple = [i for i in d if prime(i) and i // 10 % 10 == 3]
+    if len(simple) >= 3:
+        print(n, sum(simple))
+        c -= 1
+    if not c:
+        break
+"""
+960063 119
+960066 799
+960102 389
+960219 299
+960227 609
+"""
+
+
 # 4739 (Уровень: Средний)
 def f(n):
     if n > 10_000:
@@ -250,6 +280,42 @@ for a in range(3):
 """
 
 
+# 6210 (Уровень: Средний)
+from fnmatch import *
+def dv(n):
+    r = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return r
+
+for n in range(0, 10**7, 53):
+    if fnmatch(str(n), '*2?2*') and str(n) == str(n)[::-1]:
+        r = dv(n)
+        if r and len(r) > 30:
+            print(n, sum(r))
+"""
+212212 508032
+2527252 5588352
+4282824 13789440
+4626264 11787120
+8125218 19595520
+8824288 19908504
+"""
+
+
+# 6276 Danov2302 (Уровень: Средний)
+from fnmatch import *
+for n in range(0, 2*10**9, 2023):
+    if fnmatch(str(n), '1?1?1?1*1') and sum(map(int, str(n))) == 22:
+        print(n)
+"""
+19131511
+1012141291
+1319111311
+1516111051
+"""
+
 
 # 8426 (Уровень: Средний)
 def f(n):
@@ -292,7 +358,129 @@ for n in range(0, 10**8+1, 253):
 """
 
 
+# 8960 Джобс 02.06.2023 (Уровень: Базовый)
+from fnmatch import *
+def dv(n):
+    r = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return sum(r)
 
+c = 5
+for n in range(500_000, 10**10):
+    d = dv(n)
+    if fnmatch(str(d), '*7?'):
+        print(n, d)
+        c -= 1
+    if not c:
+        break
+"""
+500001 666672
+500048 968874
+500069 500070
+500079 666776
+500114 750174
+"""
+
+
+# 8696 (Уровень: Средний)
+from fnmatch import *
+def dv(n):
+    r = set()
+    for i in range(2, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return sum(r)
+
+def prime(n):
+    return all(n % i for i in range(2, int(n ** 0.5 + 1)))
+
+c = 5
+for n in range(1273547, 10**10):
+    m = dv(n)
+    if m and prime(m % 100_000):
+        print(n, m)
+        c -= 1
+    if not c:
+        break
+"""
+1273566 1637537
+1273570 1139869
+1273578 1287317
+1273582 651769
+1273590 2225609
+"""
+
+
+# 9076 Danov2306 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**9, 2023):
+    r = sum(map(int, str(n)))
+    if r < 20 and not r % 7:
+        if fnmatch(str(n), '20*23'):
+            print(n)
+"""
+2023
+204323
+2025023
+20232023
+202302023
+"""
+
+
+# 9170 (Уровень: Средний)
+from fnmatch import *
+def dv(n):
+    r = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return r
+
+for n in range(10**6-1, 0, -1):
+    d = [*dv(n)]
+    if len(d) >= 24:
+        d_24 = [i for i in d if fnmatch(str(i), '4*')]
+        if len(d_24) == 24:
+            print(n, max(d_24))
+            break  # результат всего один (+ долгий перебор)
+"""
+997920 498960
+"""
+
+
+
+
+
+# 10725 (Уровень: Средний)
+from fnmatch import *
+def dv(n):
+    r = set()
+    for i in range(1, int(n**0.5 + 1)):
+        if not n % i:
+            r |= {i, n//i}
+    return r
+
+c = 7
+for n in range(65_000, 10**10):
+    if fnmatch(str(n), '6*97*5?'):
+        d = dv(n)
+        even = [i for i in d if not i % 2]
+        if len(even) >= 4:
+            print(n, sum(even))
+            c -= 1
+    if not c:
+        break
+"""
+69750 129792
+69752 122080
+69756 139536
+69758 75152
+609750 1103232
+609752 1291248
+609754 630840
+"""
 
 
 # 11249 (Уровень: Базовый)
@@ -313,6 +501,37 @@ for n in range(0, 8 * 10**9, 9627):
 7416188331 770353
 7618355331 791353
 7676117331 797353
+"""
+
+
+
+# 11672 (Уровень: Базовый)
+from fnmatch import *
+for n in range(0, 10**10, 21025):
+    even = sum(i in '02468' for i in str(n))
+    odd = sum(i in '13579' for i in str(n))
+    if fnmatch(str(n), '12*34?5'):
+        if even == odd:
+            print(n, n//21025)
+
+# Variant
+from itertools import  *
+alf = [''.join(i) for l in range(5) for i in product('0123456789', repeat=l)]
+for a in alf:
+    for b in '0123456789':
+        n = int(f'12{a}34{b}5')
+        if not n % 21025:
+        # if n <= 10**10 and not n % 21025:
+            if sum(int(i) % 2 for i in str(n)) == sum(int(i) % 2 == 0 for i in str(n)):
+                print(n , n//21025)
+"""
+1214803475 57779
+1233263425 58657
+1240033475 58979
+1241673425 59057
+1258493425 59857
+1265263475 60179
+1283723425 61057
 """
 
 

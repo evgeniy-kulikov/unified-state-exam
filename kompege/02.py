@@ -4,6 +4,7 @@
 6843 6989 6992 9357
 12671 13077
 23261 23361 
+31109 31140 31210 
 """
 
 
@@ -25,7 +26,6 @@ for m1,m2,m3,m4,m5 in product((0,1), repeat=5):
 from itertools import *
 def f1(x,y,z):
     return not x or y and z
-
 
 t = [(0,1,0), (1,1,0)]
 for p in permutations('xyz'):
@@ -129,4 +129,45 @@ for a1, a2, a3, a4, a5, a6, a7 in product((0, 1), repeat=7):
                 print(''.join(p))  # zxwy
 
 
+
+
+
+# 31109 Основная волна 18.06.26 (Уровень: Базовый)
+from itertools import *
+def f(x,y,w,z):
+    return ((w == (not x)) <= (not (z <= w))) or not y
+
+for m1,m2,m3,m4,m5 in product((0,1), repeat=5):
+    t = [(m1,0,1,0), (0,m2,m3,0), (m4,1,1,m5)]
+    if len(set(t)) == 3:
+        for p in permutations('xywz'):
+            if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
+                print(''.join(p))  # xwyz
+
+
+# 31140 Основная волна 19.06.26 (Уровень: Базовый)
+from itertools import *
+def f(x,y,w,z):
+    # return not (z <= x) or (y <= w) or not y
+    return z and not x or not y or w
+
+for m1,m2,m3,m4,m5,m6,m7 in product((0,1), repeat=7):
+    t = [(0,1,m1,m2), (m3,0,m4,m5), (1,m6,0,m7)]
+    if len(set(t)) == 3:
+        for p in permutations('xywz'):
+            if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
+                print(''.join(p))  # zxwy
+
+
+# 31210 Резерв 22.06.26 (Уровень: Базовый)
+from itertools import *
+def f(x,y,w,z):
+    return ((y <= w) <= x) or not z
+
+for m1,m2,m3,m4,m5,m6,m7 in product((0,1), repeat=7):
+    t = [(m1,m2,0,0), (m3,1,m4,m5), (m6,0,1,m7)]
+    if len(set(t)) == 3:
+        for p in permutations('xywz'):
+            if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
+                print(''.join(p))  # zywx
 

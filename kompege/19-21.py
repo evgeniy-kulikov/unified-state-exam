@@ -1,9 +1,10 @@
 """ https://kompege.ru/task """
 """
-841 844 845 846 847 854 884
+841 843 844 845 846 847 854 884
 1061 1136 1252 1349 2364 2575 2865 3970 8163 9788
-11281 11669 12928
+11281 11669 12251 12928
 15336 17532 17560 19635 17638 17875 18958 19750
+22066 23565
 """
 
 
@@ -28,6 +29,28 @@ print(*[s for s in range(1, 118) if f(7, s, 4) and not f(7, s, 2)])
 8
 12 29
 28
+"""
+
+
+# 843 (Уровень: Средний)
+def f(a,b,m,w=0):
+    if a+b <= 20:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-1, b, m-1), f((a+1)//2, b, m-1), f(a, b-1, m-1), f(a, (b+1)//2, m-1)]
+    if m % 2:
+        return any(g)
+    return any(g) if w else all(g)
+
+print(*[s for s in range(11, 1000) if f(10, s, 2)])
+d_20 = [s for s in range(11, 100) if f(10, s, 3) and not f(10, s, 1)]
+print(min(d_20), max(d_20))
+print([s for s in range(11, 100) if f(10, s, 4) and not f(10, s, 2)][-1])
+"""
+21
+22 42
+24
 """
 
 
@@ -228,18 +251,18 @@ print(*[s for s in range(1, 70) if f(9, s, 4) and not f(9, s, 2)])
 # 1252 Статград 26.04.2021 (Уровень: Базовый)
 # ✔️ 2 кучи
 def f(a, b, m, w=0):
-    if a+b >= 88:
+    if a + b >= 88:
         return not m % 2
     if not m:
         return 0
     g = [f(a+1, b, m-1), f(a*3, b, m-1), f(a, b+1, m-1), f(a, b*3, m-1)]
-    if m % 2:
+    if w:
         return any(g)
-    return any(g) if w else all(g)
+    return any(g) if m % 2 else all(g)
 
 print([s for s in range(1, 82) if f(6, s, 2, 1)][0])
 print(*[s for s in range(1, 82) if f(6, s, 3) and not f(6, s, 1)])
-print([s for s in range(1, 82) if f(6, s, 2)][-1])
+print([s for s in range(1, 82) if f(6, s, 2)][0])
 """
 10
 9 23 26
@@ -464,6 +487,25 @@ print([s for s in range(117, 10_001) if f(s, 4) and not f(s, 2)][-1])  # 1080
 
 
 
+# 12251 ЕГКР 16.12.23 (Уровень: Базовый)
+def f(a,m):
+    if a >= 301:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a+3, m-1), f(a*5, m-1)]
+    return any(g) if m % 2 else all(g)
+
+print([s for s in range(1, 301) if f(s, 2)][0])
+print(*[s for s in range(1, 301) if f(s, 3) and not f(s, 1)][:2])
+print([s for s in range(1, 301) if f(s, 4) and not f(s, 2)][0])
+"""
+58
+12 55
+52
+"""
+
+
 # 12928 PRO100 ЕГЭ 26.01.24 (Уровень: Средний)
 def f(a, m):
     if a >= 21:
@@ -657,3 +699,44 @@ print([s for s in range(20, 500) if f(s, 4) and not f(s, 2)][0])  # 60
 40 43
 60
 """
+
+
+
+
+# 22066 (Уровень: Базовый)
+def f(a, b, m):
+    if a + b >= 100:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a+3, b, m-1), f(a*2, b, m-1), f(a, b+3, m-1), f(a, b*2, m-1)]
+    return any(g) if m % 2 else all(g)
+
+print([s for s in range(1, 83) if f(17, s, 2)][0])
+print(*[s for s in range(1, 83) if f(17, s, 3) and not f(17, s, 1)][:2])
+print(*[s for s in range(1, 83) if f(17, s, 4) and not f(17, s, 2)])
+"""
+40
+20 29
+36
+"""
+
+
+# 23565 Пересдача 03.07.25 (Уровень: Базовый)
+def f(a, m):
+    if a <= 15:
+        return not m % 2
+    if not m:
+        return 0
+    g = [f(a-3, m-1), f(a-8, m-1),  f(a//3, m-1)]
+    return any(g) if m % 2 else all(g)
+
+print([s for s in range(16, 200) if f(s, 2)][0])
+print(*[s for s in range(16, 200) if f(s, 3) and not f(s, 1)][:2])
+print([s for s in range(16, 200) if f(s, 4) and not f(s, 2)][0])
+"""
+48
+51 52
+54
+"""
+

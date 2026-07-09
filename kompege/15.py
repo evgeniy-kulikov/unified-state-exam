@@ -4,6 +4,7 @@
 1015 1127 1198 1234 1276 1295 1409 1968 2078 2080 2123 3156 4988 7086 7265 7353 7817 8159 8676 9370 9545 
 11665 12247 12469 13082 17528 17871 19980
 20905 21710 24988 25279 25354
+31122 31153 31164
 
 🍒 отрезки
 🍓 множества
@@ -634,3 +635,51 @@ for a in range(78100, 100000):
             if f(x, y):
                 print(a)  # 78122
                 exit()
+
+
+
+
+# 31122 Основная волна 18.06.26 (Уровень: Базовый)
+def f(x):
+    b = 70 <= x <= 90
+    return not x % a or (not b or x % 16)
+
+res = 0
+for a in range(1, 1000):
+    if all(f(x) for x in range(1, 10000)):
+        res = max(res, a)
+print(res)  # 80
+
+
+# 31153 Основная волна 19.06.26 (Уровень: Базовый)
+def f(x):
+    b = 290 <= x <= 750
+    c = 135 <= x <= 675
+    a = a1 <= x <= a2
+    # return (not b and c) <= ((not a and c) <= b)
+    return not c or b or a
+
+res = 1000
+p = [i for k in (135,290,675,750) for i in (k-0.1, k, k+0.1)]
+for a1 in p:
+    for a2 in p:
+        if a1 < a2 and all(f(x) for x in range(-800, 800)):
+            res = min(res, a2 - a1)
+print(round(res))  # 155
+
+
+#  31164 Основная волна 19.06.26 (Уровень: Базовый)
+def f(x):
+    b = 32 <= x <= 425
+    c = 130 <= x <= 480
+    d = 290 <= x <= 575
+    a = a1 <= x <= a2
+    return (not c or not d) and a and not b
+
+res = 0
+p = [i for k in (32,425,130,480,290,575) for i in (k-0.1, k, k+0.1)]
+for a1 in p:
+    for a2 in p:
+        if a1 < a2 and all(not f(x) for x in range(-600, 600)):
+            res = max(res, a2 - a1)
+print(round(res))  # 448
