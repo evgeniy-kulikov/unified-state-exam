@@ -1,9 +1,10 @@
 """ https://kompege.ru/task """
 """
-887 934 1147 1866 1874 1975 2250 2424 2428 3018 3375 5139 5810 5955 6029 8510 9753 9791
-10105 12254 14647 16333 17535 17641 17878 19149 19254
+887 934 1147 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 5810 5955 6029 8510 9753 9791 9845
+10105 12254 14647 16333 16388 17535 17641 17878 19149 19254 19717
 24895 24977 25361 26077 26078 26491 26551 26549 27069 27634 27777
 """
+
 
 """
 https://stepik.org/course/233165
@@ -126,6 +127,29 @@ for s in open('24_2424.txt').readlines():
 print(res)
 
 
+# № 2425 (Уровень: Базовый)
+s = open('24_2425.txt').read()
+c = cnt = 3
+ok = False
+for i in range(len(s) - 3):
+    if s[i:i+4] == 'DBAC':
+        ok = True  # ✅ отсечка неполных начал
+    if ok and s[i:i+4] in 'DBACDBA':  # без ok будут попадать начала, 'DBAC' и хвосты
+        c += 1
+        cnt = max(c, cnt)
+    else:
+        c = 3
+        ok = False
+print(cnt)  # 95
+
+# variant
+s = s.replace('DBAC', '****').replace('*DBA', '****').replace('*DB', '***').replace('*D', '**')  # + неполные хвосты
+for i in 'ABCDEF':
+    s = s.replace(i, ' ')  # отсечка лишнего и ✅неполных начал
+res = max(len(i) for i in s.split())
+print(res)  # 95
+
+
 # 2428 (Уровень: Средний)
 from re import *
 res = 0
@@ -146,6 +170,20 @@ for i in range(len(s) - 2):
     else:
         cnt = 2
 print(res)  # 69
+
+
+# 2577 (Уровень: Базовый)  # ❗Ловушка❗: необходимо совмещение 2-х методов 👍
+s = open('24_2577.txt').read().split('Y')
+res = 0
+for el in s:
+    c = l = 0
+    for r in range(len(el)):
+        c += el[r]=='.'
+        while c > 5:
+            c -= el[l] == '.'
+            l += 1
+        res = max(res, r-l+1)
+print(res)
 
 
 # 3018 (Уровень: Средний)
@@ -190,6 +228,19 @@ for i in 'CDF':
     s = s.replace(i, 'B')
 s = s.replace('BAB', '*').replace('A', ' ').replace('B', ' ').split()
 print(len(max(s, key=len)))
+
+
+# 3792 (Уровень: Базовый)
+from re import *
+s = open('24_3792.txt').read()
+res = findall(r'[ABC]+', s)
+print(len(max(res, key=len)))  # 16
+
+# variant
+s = open('24_3792.txt').read()
+for i in 'DE':
+    s = s.replace(i, ' ')
+print(max(len(i) for i in s.split()))  # 16
 
 
 # 5810 (Уровень: Сложный)
@@ -290,6 +341,21 @@ res = findall(reg, s)
 print(len(max(res, key=len)))  # 21
 
 
+# 9845 Основная волна 27.06.23 (Уровень: Базовый)
+s = open('24_9845.txt').read()
+s = s.replace('B', 'A').replace('C', 'A').replace('9', '8')
+while 'AA' in s or  '88' in s:
+    s = s.replace('AA', 'A A')
+    s = s.replace('88', '8 8')
+print(max(len(i) for i in s.split()))  # 18
+
+from re import *
+s = open('24_9845.txt').read()
+reg = r'(?:\d\D)+|(?:\D\d)+'
+res = findall(reg, s)
+print(max(len(i) for i in res))  # 18
+
+
 
 
 
@@ -310,15 +376,14 @@ print(res)  # 133
 
 # 12254 ЕГКР 16.12.23 (Уровень: Базовый)
 s = open('24_12254.txt').readline().replace('RSQ', '*')
-# s = '__' + 'SQRSQRS'.replace('RSQ', '*') + '__'  # по хорошему, на концах нужно добавить по два символа (не из 'RSQ*')
-res = c = 0
-for i in range(2, len(s) - 2):
-    if s[i] == '*':
-        c += 3
-        c += sum([s[i-2:i]=='SQ', s[i-1]=='Q', s[i+1]=='R', s[i+1:i+3]=='RS'])
+c = res = 2
+for i in range(2, len(s)):
+    w = s[i-2:i+1]
+    if w in 'RSQRS':
+        c += 1
         res = max(res, c)
     else:
-        c = 0
+        c = 2
 print(res)  # 54
 
 
@@ -359,6 +424,18 @@ for a, b in zip(s, s[1:]):
     else:
         c = 1
 print(res)  # 17
+
+
+# 16388 ЕГКР 27.04.24 (Уровень: Базовый)
+s = open('24_16388.txt').read()
+c = cnt = 3
+for i in range(len(s) - 3):
+    if s[i:i+4] in 'KLMNKLM':  # ✅ учитываем неполные НАЧАЛА и ХВОСТЫ
+        c += 1
+        cnt = max(c, cnt)
+    else:
+        c = 3
+print(cnt)  # 182
 
 
 # 17535 Основная волна 07.06.24 (Уровень: Средний)
@@ -480,6 +557,22 @@ for i in range(len(s) - n):
     r = sum(map(len, s[i:i + n+1])) + 4 * n + k
     res = max(res, r)
 print(res)  # 2379
+
+
+# 19717 (Уровень: Средний)
+s = open('24.5_1971724.5_19717.txt').read()
+l = c = res = 0
+for r in range(len(s)):
+    if s[r] == 'M':
+        c += 1
+    while c > 278:
+        if s[l] == 'M':
+            c -= 1
+        l += 1
+    if c <= 278:
+        res = max(res, r - l + 1)
+print(res)  # 2471
+
 
 
 
@@ -638,19 +731,30 @@ print(len(ans.split()))  # 4
 
 
 # 27634 Апробация 04.03.26 (Уровень: Базовый) ✔️
-"""поиск минимальной длины строки"""
+"""поиск минимальной ❗❗❗ длины строки"""
 res = 10**10
 l = c = 0
 s = open('add/KIM_25163454/24_27634.txt').readline().strip()
 for r in range(len(s)):
     if s[r] == 'Z':
         c += 1
-    while c > 269:  # 270 - 1
+    while c >= 270:
         if s[l] == 'Z':  # в начале и конце строки стоит 'Z' и их ровно 270
             res = min(res, r - l + 1)
             c -= 1
         l += 1
 print(res)  # 1058
+
+# variant
+s = open('add/KIM_25163454/24_27634.txt').read()
+A = 270
+res = 10**10
+s = s.split('Z')[1:-1]
+for i in range(len(s) - A + 2):
+    w = ''.join(s[i:i + A - 1])
+    res = min(res, len(w) + A)
+print(res)  # 1058
+
 
 
 # 27777 Апробация 04.03.26 (Уровень: Базовый)

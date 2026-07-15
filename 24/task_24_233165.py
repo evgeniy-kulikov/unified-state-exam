@@ -448,20 +448,6 @@ res = findall(reg, s)
 print(len(max(res, key=len)))  # 54
 
 
-# https://stepik.org/lesson/1720696/step/6?unit=1744232
-# https://kompege.ru/task   № 2425 (Уровень: Базовый)
-# Неполная цепочка в конце
-mx = 0
-cnt = 3
-s = open('add/course_233165/24-3__06.txt').readline()
-for i in range(len(s) - 3):
-    if s[i:i + 4] in 'DBACDBA':
-        cnt += 1
-        mx = max(mx, cnt)
-    else:
-        cnt = 3
-print(mx)  # 95
-
 
 # https://stepik.org/lesson/1720696/step/7?unit=1744232
 # https://kompege.ru/task   № 2428 (Уровень: Средний)
