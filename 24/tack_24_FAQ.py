@@ -45,7 +45,7 @@ s = open('24.txt').read().split('A')[1:-1]
 A = 500
 Min = 10**6
 for i in range(len(s) - (A-2)):
-    w = ''.join(s[i:i + (A-1)])
+    w = ''.join(s[i:i + (A-2) + 1])
     Min = min(Min, len(w) + A)
 print(Min)
 
@@ -55,7 +55,7 @@ s = open('24.txt').read().split('A')
 A = 350
 MX = 0
 for i in range(len(s) - A):
-    w = ''.join(s[i:i + (A+1)])
+    w = ''.join(s[i:i + A + 1])
     MX = max(MX, len(w) + A)
 print(MX)
 

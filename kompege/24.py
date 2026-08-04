@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
-887 934 1147 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 5810 5955 6029 8510 9753 9791 9845
-10105 12254 14647 16333 16388 17535 17641 17878 19149 19254 19717
+887 934 1147 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 5810 5955 6029 6275 7356 8510 9753 9791 9845
+10105 11954 12254 14647 16333 16388 17535 17641 17878 19149 19254 19717
 24895 24977 25361 26077 26078 26491 26551 26549 27069 27634 27777
 """
 
@@ -284,6 +284,41 @@ for i in (a, b):  # исключаем наложение подстрок
 print(res)  # 11
 
 
+# 6275 Danov2302 (Уровень: Сложный)
+def f(st):
+    alf = '0123456789ABCDEF'
+    return all(i in st for i in alf)
+
+s = open('24_6275.txt').read()
+l = 0
+res = 10**10
+for r in range(15, len(s)):
+    while f(s[l:r + 1]):
+        res = min(res, r-l+1)
+        l += 1
+print(res)  # 42
+
+
+# 7356 (Уровень: Средний)
+s = open('24_7356.txt').readline().replace('O', 'A').replace('C', 'F').replace('D', 'F').replace('FA', '**')
+l = res = 0
+for r in range(len(s)):
+    while s[l:r+1].count('**') > 5:
+        l += 1
+    res = max(res, r-l+1)
+print(res) # 27
+
+# variant
+s = open('24_7356.txt').readline().replace('O', 'A').replace('C', 'F').replace('D', 'F').replace('FA', 'F A').split()
+N = 5
+res = 0
+for i in range(len(s) - N):
+    w = ''.join(s[i:i+N + 1])
+    res = max(res, len(w))
+print(res)  # 27
+
+
+
 # 8510 Апробация 17.05 (Уровень: Средний)
 s = open('add/24/24_8510.txt').read()
 s = s.replace('N', 'O').replace('P', 'O')
@@ -325,11 +360,12 @@ for r in range(len(s)):
         res = max(res, r-l+1)
 print(res)  # 244
 
-
+# variant
 s = open('24.txt').readline().strip().split('Y')
+Y = 150
 res = 0
-for i in range(len(s) - 150):
-    res = max(res, len(''.join(s[i:i+151])) + 150)
+for i in range(len(s) - Y):
+    res = max(res, len(''.join(s[i:i+151])) + Y)
 print(res)  # 244
 
 
@@ -372,6 +408,39 @@ for r in range(len(st)):
     if c == 100:
         res = max(res, r - l + 1)
 print(res)  # 133
+
+
+# 11954 (Уровень: Средний)
+st = open('24.txt').read().split('Y')
+st = [i for i in st if i.count('X') >= 500]
+res = 10**10
+for s in st:
+    l = c = 0
+    for r in range(len(s)):
+        c += s[r]=='X'
+        while c > 500:
+            c -= s[l]=='X'
+            l += 1
+        if c==500:
+            res = min(res, r-l+1)
+print(res) # 68500
+
+# variant
+s = open('24.txt').readline()
+res = 10**10
+l = c = 0
+for r in range(len(s)):
+    if s[r]=='Y':
+        l = r+1
+        c = 0
+    c += s[r] == 'X'
+    while c > 500:
+        c -= s[l] == 'X'
+        l += 1
+    if c == 500:
+        res = min(res, r - l + 1)
+print(res)
+
 
 
 # 12254 ЕГКР 16.12.23 (Уровень: Базовый)
