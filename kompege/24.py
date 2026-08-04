@@ -584,7 +584,7 @@ print(max(len(i) for i in findall(reg, s)))
 
 # 17878 Демоверсия 2025 (Уровень: Сложный)
 from re import *
-s = open('24_1.txt').read().strip()
+s = open('24.txt').read().strip()
 n = r'(?:0|[1-9]\d*)'
 reg = rf'{n}(?:[*-]{n})+'
 res = findall(reg, s)

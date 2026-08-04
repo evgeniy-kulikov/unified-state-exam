@@ -1,10 +1,31 @@
 """ https://kompege.ru/task """
 """
-699 
+593=724 699 
 1594 4740 8474 8561
 10659 17557
-23562 
+23562 25355 25397
 """
+
+
+# 593 (Уровень: Средний)
+# 724 Джобс 23.11.2020 (Уровень: Средний)
+from functools import lru_cache
+def f(n):
+    if n == 1:
+        return 1
+    if n > 1:
+        return f(n - 1) - 2*g(n - 1)
+
+@lru_cache(None)
+def g(n):
+    if n == 1:
+        return 1
+    if n > 1:
+        return f(n - 1) + g(n - 1) + n
+
+[g(n) for n in range(1, 37)]
+# print(g(36))  # 378805153
+print(sum(map(int, str(g(36)))))  # 40
 
 
 # 699 Джобс 16.11.2020 (Уровень: Базовый)
@@ -117,3 +138,44 @@ def g(n):
 #     return g(n-1)
 [g(n) for n in range(9, 47995)]
 print(g(47994))  # 24017
+
+
+# 25355 ЕГКР 13.12.25 (Уровень: Базовый)
+from functools import lru_cache
+@lru_cache(None)
+def f(n):
+    if n < 19:
+        return 6 * (g(n - 7) - 36)
+    return f(n - 4) + 3580
+
+@lru_cache(None)
+def g(n):
+    if n < 248045:
+        return g(n + 9) - 4
+    return n / 20 + 28  #  float
+
+[g(n) for n in range(248045, 10, -1)]  # для каждой функции @lru_cache делает свою таблицу ✅
+[f(n) for n in range(19, 674)]  # для каждой функции @lru_cache делает свою таблицу ✅
+# print(f(673))  # 47.0
+print(int(f(673)))  # 47  # f может быть float из-за деления в G
+
+
+# 25397 (Уровень: Средний)
+from functools import lru_cache
+@lru_cache(None)
+def f(n):
+    if n <= 40:
+        return 3 * (g(n - 2) - 15)
+    return f(n - 4) + 3020
+
+@lru_cache(None)
+def g(n):
+    if n < 301208:
+        return g(n + 7) - 21
+    return 10 * n + 50
+
+[g(n) for n in range(301208, 0, -1)]  # для каждой функции @lru_cache делает свою таблицу ✅
+[f(n) for n in range(2026)]  # для каждой функции @lru_cache делает свою таблицу ✅
+print(f(2026))  # 7826800
+
+

@@ -25,8 +25,11 @@
 
 # Total Many 🍒🍒🍒
 # print((545_000 - 288_670 - 110_000 - 43_000) + (18_000 - 85_640))  # 35_690  дебет на 31.05
-# print((621_000 + 8_005 - 289_077 - 110_000 - 43_000) - 85_640)  # 101_288  дебет на 05.06
-
+# print((535_000 + 4_480 - 293_058 - 110_000 - 43_000) - 76_618)  # 16_804  дебет на 19.06
+# print((565_000-60_000 + 795 - 291_045 - 110_000 - 43_000) - 76_618)  # -14_868  дебет на 30.06
+# print((494_000 + 200 - 288_159 - 110_000 - 43_000) - 81_487)  # -28_446  дебет на 20.07
+# print((513_000 + 330 - 297_070 - 110_000 - 43_000) - 81_487)  # -18_227  дебет на 31.07
+# print((385_000+150_000 + 580 - 295_745 - 110_000 - 43_000) - 81_487)  # 5_348  дебет на 15.08
 
 
 """"""
@@ -681,16 +684,13 @@ from statistics import mean
 # https://stepik.org/lesson/1201175/step/1?unit=1214384
 # from turtle import *
 # tracer(0)
-# # lt(90)
+# lt(90)
 # screensize(2000, 2000)
 # k = 50
-#
-# for _ in '12':
-#     fd(1000*k)
-#     bk(2000*k)
-#     fd(1000*k)
-#     lt(90)
-# rt(90)
+# for _ in range(4):  # оси
+#     fd(50*k)
+#     bk(50*k)
+#     rt(90)
 #
 #
 # for _ in range(11):
@@ -705,33 +705,176 @@ from statistics import mean
 #         dot()
 # done()
 
+# 19-21
+# https://stepik.org/lesson/1221217/step/2?unit=1234627
 
-# 16
-# https://stepik.org/lesson/1228671/step/14?unit=1242204
+# 22
+# https://stepik.org/lesson/1038797/step/8?unit=1062790
 
 
 
-# https://stepik.org/lesson/1038794/step/11?unit=1062789
-def f(a, m, w=0):
-    if a >= 21:
-        return not m % 2
-    if not m:
+
+# https://stepik.org/lesson/413775/step/2?unit=584888
+
+
+# https://stepik.org/lesson/661483/step/13?unit=659105
+
+
+# s = open('24.txt').read()
+# s = input()
+# # s = 'CCCBBABAABCC'
+# from string import ascii_uppercase as alf
+#
+# d = {i: 0 for i in alf}
+# for a,b,c in zip(s, s[1:], s[2:]):
+#     if a == b:
+#         d[c] += 1
+# d = sorted([(a, b) for a, b in d.items()], key=lambda x: (-x[1], x[0]))
+# print(*d[0], sep='') #
+
+# variant
+# from re import *
+
+# https://stepik.org/lesson/1254257/step/13?unit=1268462
+
+# s = open('24.txt').read()
+# # s = '0.11.2.3.444.5..6666666666'
+# A = 2
+# res = 0
+# s = s.split('.')
+# for i in range(len(s) - A):
+#     w = '.'.join(s[i:i + A + 1])
+#     res = max(res, len(w))
+# print(res)  # 403
+
+# s = open('24.txt').read()
+# # s = '1.11.11.2222'
+# l = c = res = 0
+# for r in range(len(s)):
+#     c += s[r] == '.'
+#     while c > 2:
+#         c -= s[l] == '.'
+#         l += 1
+#     res = max(res, r - l + 1)
+# print(res)
+
+
+# res = 10**10
+# l = c = 0
+# s = open('24.txt').read().strip()[1:-1]
+# for r in range(len(s)):
+#     if s[r] == 'Z':
+#         c += 1
+#     while c >= 270:
+#         if s[l] == 'Z':  # в начале и конце строки стоит 'Z' и их ровно 270
+#             res = min(res, r - l + 1)
+#             c -= 1
+#         l += 1
+# print(res)  # 1058
+
+# s = open('24.txt').read()
+# l = c = 0
+# res = 10**6
+# for r in range(len(s)):
+#     if s[r] == 'A':
+#         c += 1
+#     while c >= 35:
+#         if s[l] == 'A':
+#             res = min(res, r - l + 1)
+#             c -= 1
+#         l += 1
+# print(res)  # 40
+
+
+# s = open('24.txt').read()
+# c = l = res = 0
+# for r in range(len(s)):
+#     c += s[r]=='.'
+#     while c > 4:
+#         c -= s[l] == '.'
+#         l += 1
+#     if c <= 4:
+#         res = max(res, r-l+1)
+# print(res)
+
+
+# Минимальная длина
+# минимальное количество идущих подряд символов, среди которых символ А встречается не менее 500 раз
+# s = open('24.txt').read().split('A')[1:-1]
+# A = 500
+# Min = 10**6
+# for i in range(len(s) - (A-2)):
+#     w = ''.join(s[i:i + (A-2) + 1])
+#     Min = min(Min, len(w) + A)
+# print(Min)
+
+# Максимальная длина
+# максимальное количество идущих подряд символов, среди которых символ А встречается не более 350 раз.
+# s = open('24.txt').read().split('A')
+# A = 350
+# MX = 0
+# for i in range(len(s) - A):
+#     w = ''.join(s[i:i + A + 1])
+#     MX = max(MX, len(w) + A)
+# print(MX)
+
+
+# variant
+# https://stepik.org/lesson/1323132/step/5?unit=1340050
+
+# c = 0
+# for n in range(1, 1000):
+#     b = f'{n:b}'
+#     b += ('00', '10')[n % 2]
+#     b += ('0', '1')[b.count('1') % 2]
+#     c += 130 <= int(b, 2) <= 350
+# print(c)
+
+# res = 0
+# for n in range(1, 10000):
+#     b = f'{n:b}'
+#     for _ in range(2):
+#         b += str(b.count('1') % 2)
+#     r = int(b, 2)
+#     if r <= 71:
+#         res = max(res, r)
+# print(res)
+
+
+""""""
+"""
+course_72713
+task_**_72713
+task **
+https://stepik.org/course/72713/syllabus
+Подготовка к ЕГЭ по информатике
+"""
+
+
+
+
+# https://stepik.org/lesson/2226020/step/7?unit=2259762
+
+# 5494 (Уровень: Средний) 🌶️🌶️
+def f(st, en, w='--'):
+    if st > en:
         return 0
-    g = [f(a + 1, m - 1), f(a * 2, m - 1)]
-    if w:
-        return any(g)
-    return any(g) if m % 2 else all(g)
+    if st == en:
+        return 1
+    return ((f(st+1, en, w+'+') if w[-2:] != '++' else 0) + 
+            (f(st*2, en, w+'*') if w[-2:] != '**' else 0))
+print(f(1, 16))  # 101
 
-print([i for i in range(1, 21) if f(i, 3)][0])
-print([i for i in range(1, 21) if f(i, 4) and not f(i, 2)][0])
-print(*[i for i in range(1, 21) if f(i, 5) and not f(i, 1) and not f(i, 3)][:2])
-
-"""
-5
-8
-4 7
-"""
-
-
-
-
+# variant
+def f(st, en, prev='', c=0):
+    if st > en: 
+        return 0
+    if st == en: 
+        return 1
+    res = 0  # ✅ переменная для хранения количества путей
+    if prev != '1' or c < 2:  # если предыдущая команда не 1, или 1 не было уже дважды подряд
+        res += f(st+1, en, '1', c+1 if prev=='1' else 1)  # выполняем команду 1
+    if prev != '2' or c < 2:  # если предыдущая команда не 2, или 2 не было уже дважды подряд
+        res += f(st*2, en, '2', c+1 if prev=='2' else 1)  # выполняем команду 2
+    return res  # ✅ возвращаем общее количество путей
+print(f(1, 16))  # 101

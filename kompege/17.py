@@ -1,7 +1,7 @@
 """ https://kompege.ru/task """
 """
-5491 7718 8475 9748
-11236 11949 13088 19249
+5491 6605 7718 8475 9748
+11236 11949 13088 16328 16383 17530 17636 19249
 23276 27629
 """
 
@@ -19,6 +19,18 @@ for a, b in zip(d, d[1:]):
             c += 1
             res = max(res, sm)
 print(c, res)  # 355 99033293
+
+
+# 6605 Пробник ИМЦ СПб (Уровень: Средний)
+f = [*map(int, open('17.txt'))]
+M = max(i for i in f if abs(i)%10==5)**2
+c = S = 0
+for a, b in zip(f, f[1:]):
+    if sum(abs(i)%10==5 for i in [a, b]) == 1:
+        if abs(a**2 - b**2) <= M:
+            c += 1
+            S = max(S, abs(a**2 - b**2))
+print(c, S)  # 938 98327944
 
 
 # 7718 (Уровень: Средний)
@@ -109,6 +121,53 @@ for i in range(len(d) - 2):
         cnt += 1
         res = max(res, sum(num))
 print(cnt, res)  # 21 114132
+
+
+# 16328 Открытый вариант 2024 (Уровень: Базовый)
+f = [*map(int, open('17_16328.txt'))]
+M = min(i for i in f if not i%19)
+c = S = 0
+for a, b in zip(f, f[1:]):
+    if any([not a % M, not b % M]):
+        c += 1
+        S = max(S, a+b)
+print(c, S)  # 142 175430
+
+
+# 16383 ЕГКР 27.04.24 (Уровень: Базовый)
+f = [*map(int, open('17_16383.txt'))]
+M = max(i for i in f if len(str(abs(i)))==5 and str(abs(i))[-2:]=='21')**2
+cnt = S = 0
+for a, b in zip(f, f[1:]):
+    if a**2 + b**2 >= M:
+        if sum(len(str(abs(i)))==5 and str(abs(i))[-2:]=='21' for i in [a, b]) == 1:
+                cnt += 1
+                S = max(S, a+b)
+print(cnt, S)  # 74 103365
+
+
+# 17530 Основная волна 07.06.24 (Уровень: Базовый)
+f = [*map(int, open('17_17530.txt'))]
+M = min(f)
+c = 0
+S = 10**10
+for a, b in zip(f, f[1:]):
+    if any([a%55 == M, b%55 == M]):
+        c += 1
+        S = min(S, a+b)
+print(c, S)  # 201 2942
+
+
+# 17636 Основная волна 19.06.24 (Уровень: Средний)
+f = [*map(int, open('17_17636.txt'))]
+M = max(i for i in f if len(str(abs(i)))==3 and str(i)[-1]=='3')
+cnt = S = 0
+for a, b, c in zip(f, f[1:], f[2:]):
+    if a + b + c < M:
+        if any(i for i in [a, b, c]  if len(str(abs(i)))==3 and str(i)[-1]=='3'):
+                cnt += 1
+                S = max(S, a+b+c)
+print(cnt, S)  # 147 944
 
 
 # 19249 ЕГКР 21.12.24 (Уровень: Базовый)

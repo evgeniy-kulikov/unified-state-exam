@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-52 399 1241 1339 1933 3729 4564 5553 6901 6985 8417 8553 9155
+52 399 1241 1339 1363 1933 2928 3029 3729 4564 5553 6901 6985 8417 8553 9155
 10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 
 23367 23746 
 """
@@ -49,6 +49,15 @@ res = sorted(i + ''.join(p) for i in ls for p in product('ина', repeat=4))
 print(res.index('марианна') + 1)  # 1078
 
 
+# 1363 Джобс 16.05.2021 (Уровень: Сложный)
+from itertools import *
+c = 0
+for p in product(range(5), repeat=6):
+    if p[0] == 3:
+        c += not sum(p) % 2  # для систем счисления с нечётным основанием: число чётно тогда, когда чётна сумма его цифр.
+print(c)  # 1562
+
+
 # 1933 (Уровень: Базовый)
 from itertools import *
 res = []
@@ -63,6 +72,26 @@ c = 0
 for p in set(permutations('КЛАБХАУС')):  # set() для исключения ✅ дубликатов
     c += not sum(a == b for a, b in zip(p, p[1:]))
 print(c)  # 15120
+
+
+# 2928 Апробация 19.02.2022 (Уровень: Средний)
+from itertools import *
+c = 0
+for p in product('0123456', repeat=7):
+    if p[0] in '1246':
+        p = ''.join(p)
+        c += not ('22' in p and '44' in p)
+print(c)  # 466456
+
+
+# 3029 (Уровень: Средний)
+from itertools import *
+c = 0
+bag = [i*3 for i in '012345678']
+for p in product('012345678', repeat=7):
+    if p[0] != '0' and p[-1] not in '347':
+        c += all(i not in ''.join(p) for i in bag)
+print(c)  # 2676053
 
 
 # 3729 Джобс 05.05.2022 (Уровень: Средний)

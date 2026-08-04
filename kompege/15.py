@@ -1,9 +1,9 @@
 """ https://kompege.ru/task """
 """
-216 307 432 627 743 752 753 754 762 764
-1015 1127 1198 1234 1276 1295 1409 1968 2078 2080 2123 3156 4988 7086 7265 7353 7817 8159 8676 9370 9545 
-11665 12247 12469 13082 17528 17871 19980
-20905 21710 24988 25279 25354
+216 307 432 627 743 750 752 753 754 762 764
+1015 1072 1127 1198 1234 1276 1295 1409 1968 2078 2080 2123 3156 4277 4283 4988 7086 7265 7353 7817 8159 8676 9370 9545 
+10717 11607 11665 12247 12469 12924 13082 17528 17871 19980
+20809 20905 21710 24988 25279 25354
 31122 31153 31164
 
 🍒 отрезки
@@ -76,6 +76,20 @@ for x in range(1, 100):
     if not f(x):
         a.add(x)
 print(sum(a))  # 12
+
+
+
+# 750 (Уровень: Средний)
+def f(x):
+    a = x in A
+    return a or (x not in {1, 12} and x not in {12, 13, 14, 15, 16})
+    # return a or not (x in {1, 12} or x in {12, 13, 14, 15, 16})
+
+A = set()  # {1, 12, 13, 14, 15, 16}
+for x in range(100):
+    if not f(x):
+        A.add(x)
+print(len(A))  # 6
 
 
 """ Взято на мой курс """
@@ -164,6 +178,19 @@ for a in range(1, 1000):
     if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
         print(a)  # 183
         break
+
+
+# 1072 (Уровень: Базовый)
+def f(x):
+    a = x in A
+    p = x in set(range(2, 31, 2))
+    q = x in set(range(1, 32, 3))
+    # return (not a or p) and (not q or not a)
+    return not a or (not q and p)
+
+A = set(range(100))  # {2, 6, 8, 12, 14, 18, 20, 24, 26, 30}
+[A.remove(x) for x in range(100) if not f(x)]
+print(len(A))  # 10
 
 
 # 1127 (Уровень: Базовый)
@@ -258,6 +285,21 @@ for x in range(1, 100):
         a.add(x)
 print(prod(a))  # 108
 
+# variant
+from math import prod
+def f(x):
+    p = x in {2,4,6,8,10,12,14,16,18,20}
+    q = x in {3,6,9,12,15,18,21,24,27,30}
+    r = x in {12,24,36,48,60}
+    a = x in A
+    # return (not a) <= ((p and q) <= r)
+    return a or not p or not q or r
+
+A = set()  # {18, 6}
+[A.add(x) for x in range(1, 62) if not f(x)]
+print(prod(A))  # 3
+
+
 
 """ Взято на мой курс """
 # 1968 Демоверсия 2022 (Уровень: Средний)  🍒 отрезки
@@ -328,6 +370,36 @@ for x in range(1, 100):
         a.remove(x)
 print(len(a))  # 8
 # print(a)  # {2, 4, 6, 8, 12, 14, 16, 18}
+
+
+# 4277 (Уровень: Средний)
+def f(x):
+    return (x % a or x % 37 or not x % 3737) and a < 1000
+
+for a in range(999, 0, -1):
+    if all(f(x) for x in range(1, 100000)):
+        print(a)  # 909
+        break
+
+
+
+
+
+# 4283 (Уровень: Средний)
+from math import prod
+def f(x):
+    p = x in {1,3,4,9,11,13,15,17,19,21}
+    q = x in {3,6,9,12,15,18,21,24,27,30}
+    A = x in a
+    # return (p <= a) or (not a <= not q)
+    return not p or A or not q
+
+a = set()  # {3, 9, 15, 21}
+[a.add(x) for x in range(1, 100) if not f(x)]
+# for x in range(1, 100):
+#     if not f(x):
+#         A.add(x)
+print(prod(a))  # 8505
 
 
 """ Взято на мой курс """
@@ -434,6 +506,32 @@ for a in range(1000, 0, -1):
 
 
 
+
+# 10717 (Уровень: Базовый)
+def tr(x, y, z):
+    a, b, c = sorted([x, y, z])
+    return a+b > c
+
+def f(x):
+    return not ((tr(x, 11,18) == (max(x, 5) <= 68)) and tr(x, a, 5))
+
+for a in range(100, 0, -1):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 64
+        break
+
+
+#  11607 (Уровень: Средний)
+def f(x):
+    # return (not ((not x % 263) <= (not x % a))) and (not x % 71)
+    return not x % 263 and x % a and not x % 71
+
+for a in range(20_000, 0, -1):
+    if all(not f(x) for x in range(1, 100000)):
+        print(a)  # 18673  (263 * 71)
+        break
+
+
 # 11665 (Уровень: Базовый)
 def f(x):
     return (a + x > 700 - a) and (a % 100 + 100 % x > 50)
@@ -468,6 +566,19 @@ for a1 in n:
         if a1 < a2 and all(f(x) for x in n):
             res = min(res, a2 - a1)
 print(round(res))  # 22  (21.9)
+
+
+# 12924 (Уровень: Базовый)
+def f(x):
+    p = x in {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+    q = x in {3, 6, 9, 12, 15, 18, 21, 24, 27, 30 }
+    a = x in A
+    # return (a <= p) and (not q <= (not a))
+    return not a or (p and q)
+
+A = set(range(1, 32))  # {6, 12, 18}
+[A.remove(x) for x in range(1, 32) if not f(x)]
+print(len(A))  # 3
 
 
 # 13082 (Уровень: Базовый) 🆗 x и y
@@ -532,6 +643,17 @@ for a1 in n:
 print(round(res))  # 446
 
 
+
+
+# 20809 Апробация 05.03.25 (Уровень: Базовый)
+def f(x):
+    b = 60 <= x <= 80
+    return not x % a or not b or x % 22
+
+for a in range(1000, 0, -1):
+    if all(f(x) for x in range(1, 2000)):
+        print(a)  # 66
+        break
 
 
 # 20905 Апробация 05.03.25 (Уровень: Базовый)  🍒 отрезки
