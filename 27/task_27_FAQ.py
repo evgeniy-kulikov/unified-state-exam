@@ -19,6 +19,14 @@ s = dist(p1, p2)
 print(s)  # 5
 
 
+# выделить кластеры
+def get_cluster(p:tuple):
+    res = [i for i in data if dist(p, i) < 1]
+    [data.remove(i) for i in res]
+    next_clust = [get_cluster(i) for i in res]
+    [res.extend(i) for i in next_clust]
+    return res
+data = []
 
 # определение центроида кластера
 def centroid(cl):  # cl  - кластер

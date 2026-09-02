@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-1063 1351 2340 3032 3084 4488 4489 4500 4502 5443 5494 5552 7011 7347 8585 9376
+1063 1254 1351 2340 2342 2714 3032 3084 4488 4489 4499 4500 4502 5443 5494 5552 6635 7011 7347 8585 9376
 11953 12475 13099 14419 19253 19487 24804 27130 27311
 """
 
@@ -14,6 +14,36 @@ def f(a, b, c=0):
         return 0
     return f(a+1, b, c) + f(a*2, b, c) + f(a+(2 if a % 2 else 1), b, c)  # 👍
 print(f(3, 25))  # 229635
+
+
+# 1254 Статград 26.04.2021 (Уровень: Средний) ❗❗❗✔️✔️✔️
+def f(st, en, c=0):
+    if st > en:
+        return 0
+    if st == en and c==9:
+        return 1
+    return f(st*2, en, c+1) +  f(st*2 + 1, en, c+1)
+
+res = set()
+for n in range(2, 2000):
+    if f(1, n):
+        res.add(n)
+print(len(res))  # 512
+
+# другой подход 🍒🍒🍒
+# реально необходимое применение itertools в задаче 6635 ✅
+from itertools import product
+res = set()
+for p in product((0, 1), repeat=9):
+    st = 1
+    for i in range(9):
+        if p[i]:
+            st *= 2
+        else:
+            st = st * 2 + 1
+    res.add(st)
+print(len(res))  # 512
+
 
 
 # 1351 Danov2101 (Уровень: Средний)
@@ -40,6 +70,29 @@ for n in range(32, 100):
     if f(31, n) == 1001:
         print(n)  # 56
         break
+
+
+# 2342 (Уровень: Сложный) 🌶️🌶️
+def f(st, en):
+    if st > en:
+        return 0
+    if st == en:
+        return 1
+    return (f(st+1, en) +
+            f(int(''.join(str(i+1) if i<9 else str(i) for i in map(int, str(st)))), en))
+print(f(25, 51))  # 33
+
+
+# 2714 Пробный 02.2022 /dev/inf Middle level (Уровень: Средний)
+def f(st, en, p=0):
+    if st > en:
+        return 0
+    if st == en and p==6:
+        return 1
+    return (f(st+1, en, p + (not st%2)) +
+            f(st+3, en, p + (not st%2)) +
+            f(st+5, en, p + (not st%2)))
+print(f(3, 25))  # 3432
 
 
 # 3032 (Уровень: Средний)
@@ -109,6 +162,15 @@ def f(st, en, p=0):  # p=1 если предыдущая команда была
             (f(st*2, en, 1) + f(st*3, en, 1) if not p else 0))
 print(f(1, 30))  # 211
 
+
+# 4499 (Уровень: Средний) 🌶️
+def f(st, en, a=0, b=0):  # a +,  b *
+    if st > en:
+        return 0
+    if st == en and b > a:
+        return 1
+    return f(st+3, en, a+1, b) + f(st*2, en, a, b+1) + f(st*7, en, a, b+1)
+print(f(2, 472))  # 52
 
 
 # 4500 (Уровень: Сложный) 🌶️🌶️
@@ -195,6 +257,25 @@ def f(a, b, c=0):
         return  a == b and c
     return f(a+2, b, c) + f(a+int(max(str(a))), b, c)
 print(f(32, 76))  # 476
+
+
+
+# 6635 Пробник ИМЦ СПб (Уровень: Средний)
+# другой подход 🍒🍒🍒
+from itertools import product
+res = set()
+for p in product((0, 1), repeat=13):
+    st = 333
+    for i in range(13):
+        if p[i]:
+            st -= 3
+        else:
+            st = -3 * st
+    if st < 0:
+        res.add(st)
+print(len(res))  # 2224
+# print(min(res))  # -530909559  рекурсией перебирать ОЧЕНЬ ДОЛГО
+
 
 
 # 7011 (Уровень: Средний)

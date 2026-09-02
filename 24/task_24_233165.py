@@ -554,22 +554,25 @@ print(MX)  # 9712
 # https://stepik.org/lesson/1720697/step/4?unit=1744233
 # https://kompege.ru/task   № 17563 Основная волна 08.06.24 (Уровень: Сложный)
 from re import *
-a = r'7+\d*'
-reg = rf'{a}(?:-{a})+'
+n = r'[7-9]+\d*'
+reg = rf'{n}(?:[*-]{n})+'
+# reg = r'[1-9]+\d*(?:[*-][1-9]+\d*)+'
+s = open('add/course_233165/24-4__04.txt').readline().strip()
+res = findall(reg, s)
+print(max(map(len, res)))  # 40
+
+# variant
+from re import *
+n = r'7+\d*'
+reg = rf'{n}(?:-{n})+'
 # reg = r'7+\d*(?:-7+\d*)+'
 s = open('add/course_233165/24-4__04.txt').readline().strip()
 s = s.replace('8', '7').replace('9', '7').replace('*', '-')
 res = findall(reg, s)
 print(max(map(len, res)))  # 40
 
-# variant
-from re import *
-a = r'[1-9]+\d*'
-reg = rf'{a}(?:[*-]{a})+'
-# reg = r'[1-9]+\d*(?:[*-][1-9]+\d*)+'
-s = open('add/course_233165/24-4__04.txt').readline().strip()
-res = findall(reg, s)
-print(max(map(len, res)))  # 40
+
+
 
 
 # https://stepik.org/lesson/1720697/step/5?unit=1744233
