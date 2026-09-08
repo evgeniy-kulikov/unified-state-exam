@@ -297,7 +297,7 @@ print(sm, res[0][1])  # 391 15230058
 
 
 # https://stepik.org/lesson/1726035/step/5?unit=1749717
-# https://kompege.ru/task   № 732 Джобс 23.11.2020 (Уровень: Базовый)
+# https://kompege.ru/task   № 732 Джобс 13_(23).11.2020 (Уровень: Базовый)
 data = open('add/course_233165/26-2_05.txt').readlines()
 n, k = map(int, data[0].split())
 D = [tuple(map(int, i.split())) for i in data[1:]]
@@ -344,7 +344,7 @@ print(cnt_A, m - sm)  # 35 44
 
 
 # https://stepik.org/lesson/1726035/step/7?unit=1749717
-# https://kompege.ru/task   № 6056 ФИПИ 04.02.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 6056 ФИПИ 04.02.13_(23) (Уровень: Базовый)
 data = open('add/course_233165/26-2_07.txt').readlines()
 D = [*map(int, data[1:])]
 D.sort(reverse=True)
@@ -379,7 +379,7 @@ print(*R[0])  # 36 106
 
 
 # https://stepik.org/lesson/1726035/step/9?unit=1749717
-# https://kompege.ru/task   № 9756 Основная волна 19.06.23 (Уровень: Средний)
+# https://kompege.ru/task   № 9756 Основная волна 19.06.13_(23) (Уровень: Средний)
 data = open('add/course_233165/26-2_09.txt').readlines()
 n = int(data[0])
 D = [tuple(map(int, i.split())) for i in data[1:]]
@@ -600,7 +600,7 @@ print(stamp, res[0][1])  # 38 1985
 
 """ 26.4 Задание 26 ЕГЭ | Задачи прошлых лет """
 # https://stepik.org/lesson/1726037/step/1?unit=1749719
-# https://kompege.ru/task  № 9756 Основная волна 19.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9756 Основная волна 19.06.13_(23) (Уровень: Средний)
 data = open('add/course_233165/26-4_01.txt').readlines()
 n = int(data[0])
 data = [tuple(map(int, i.split())) for i in data[1:]]
@@ -621,7 +621,7 @@ print(len(res) + 1, last)  # 16 1345
 
 
 # https://stepik.org/lesson/1726037/step/2?unit=1749719
-# https://kompege.ru/task  № 9793 Основная волна 20.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9793 Основная волна 20.06.13_(23) (Уровень: Средний)
 # Описание условия мутное!!!
 # Другими словами: сортируем детали по минимальному времени (t шлиф. или t окрас.).
 data = open('add/course_233165/26-4_02.txt').readlines()

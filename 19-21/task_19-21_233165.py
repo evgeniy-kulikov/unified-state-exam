@@ -172,7 +172,7 @@ print([a for a in range(1, 53) if f(a, 5, 4) and not f(a, 5, 2)][0])
 """
 27
 24 26
-23
+13_(23)
 """
 
 
@@ -350,7 +350,7 @@ print([a for a in range(20, 100) if f(a, 4) and not f(a, 2)][0])  # 60
 
 """ 21.1 Задание 19 - 21 ЕГЭ | Задачи прошлых лет """
 # https://stepik.org/lesson/1713460/step/3?unit=1736933
-# https://kompege.ru/task   № 9750 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9750 Основная волна 19.06.13_(23) (Уровень: Базовый)
 def f(a, mv):
     if a >= 88:
         return not mv % 2

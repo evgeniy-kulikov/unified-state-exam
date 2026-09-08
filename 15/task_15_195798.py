@@ -217,7 +217,7 @@ for a in range(100):
         break
 
 
-""" 23.5 Закрепление (ч. 2) """
+""" 13_(23).5 Закрепление (ч. 2) """
 # ОТРЕЗКИ
 # https://stepik.org/lesson/1227732/step/5?unit=1241247
 # pic/course_195798/001.gif

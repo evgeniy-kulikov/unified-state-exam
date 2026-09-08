@@ -435,7 +435,7 @@ with open('test.txt') as fl:
     print(c)  # 3119
 
 
-""" 23.4 Закрепление (ч. 1) """
+""" 13_(23).4 Закрепление (ч. 1) """
 # https://stepik.org/lesson/1227731/step/9?unit=1241246
 c = 0
 with open('test.txt') as fl:

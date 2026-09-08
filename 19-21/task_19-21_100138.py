@@ -499,7 +499,7 @@ def fn(st, mv):
 
 for s in range(1, 31):
     if fn(s, 3) and not fn(s, 1):
-        print(s) # 12 23  --> 2
+        print(s) # 12 13_(23)  --> 2
 
 
 # https://stepik.org/lesson/912172/step/4?unit=917804
@@ -644,7 +644,7 @@ def fn(a, b, mv, w=eval('all')):
     return w(rules)
 
 print([s for s in range(1, 33) if fn(7, s, 1)])  # 17 32
-# [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+# [17, 18, 19, 20, 21, 22, 13_(23), 24, 25, 26, 27, 28, 29, 30, 31, 32]
 
 
 # https://stepik.org/lesson/597911/step/4?unit=592978
@@ -694,7 +694,7 @@ def fn(a, b, mv, w=eval('all')):
     return w(rules)
 
 print(*[s for s in range(1, 33) if fn(7, s, 2, w=eval('any'))])  # 9
-# [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+# [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 13_(23), 24, 25, 26, 27, 28, 29, 30]
 
 
 # https://stepik.org/lesson/597911/step/9?unit=592978
@@ -707,7 +707,7 @@ def fn(a, b, mv, w=eval('all')):
     return w(rules)
 
 print(len([s for s in range(1, 31) if fn(9, s, 1)]))  # 15
-# [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+# [16, 17, 18, 19, 20, 21, 22, 13_(23), 24, 25, 26, 27, 28, 29, 30]
 print([s for s in range(1, 31) if fn(9, s, 2)])  # 15
 print(len([s for s in range(1, 31) if fn(9, s, 3) and not fn(9, s, 1)])) # 2
 # [3, 14]
@@ -724,7 +724,7 @@ def fn(a, b, mv, w=eval('all')):
     return w(rules)
 
 print([s for s in range(1, 31) if fn(9, s, 2, w=eval('any'))])  # 4
-# [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+# [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 13_(23), 24, 25, 26, 27, 28, 29]
 
 
 # https://stepik.org/lesson/597911/step/12?unit=592978
@@ -915,7 +915,7 @@ print(min(s for s in range(1, 50) if fn(s, 2)), end=' ')
 print(len([s for s in range(1, 50) if fn(s, 3) and not fn(s, 1)]), end=' ')
 print(min(s for s in range(1, 50) if fn(s, 4) and not fn(s, 2)), end=' ')
 print(max(s for s in range(1, 50) if fn(s, 4) and not fn(s, 2)))
-# 25 23 4 18 19
+# 25 13_(23) 4 18 19
 
 
 # https://stepik.org/lesson/765361/step/13?unit=767587
@@ -963,7 +963,7 @@ print(min(s for s in range(1, 52) if fn(5, s, 1)), end = ' ')
 print(len([s for s in range(1, 52) if fn(5, s, 2)]), end = ' ')
 print(*[s for s in range(1, 52) if fn(5, s, 3) and not fn(5, s, 1)], end = ' ')
 print(*[s for s in range(1, 52) if fn(5, s, 4) and not fn(5, s, 2)])
-# 26 0 23 25 22 24
+# 26 0 13_(23) 25 22 24
 
 
 # https://stepik.org/lesson/765362/step/4?unit=767588
@@ -1178,8 +1178,8 @@ def fn(a, cnt, end):
 
 print(min(s for s in range(1, 58) if fn(s, 0, 2)), end=' ')  # 28
 print(*[s for s in range(1, 58) if fn(s, 0, 3) and not fn(s, 0, 1)][:2], end=' ')  # 14 24
-print(min(s for s in range(1, 58) if fn(s, 0, 4) and not fn(s, 0, 2)))  # 23
-# 28 14 24 23
+print(min(s for s in range(1, 58) if fn(s, 0, 4) and not fn(s, 0, 2)))  # 13_(23)
+# 28 14 24 13_(23)
 
 
 # https://stepik.org/lesson/767729/step/13?unit=770126

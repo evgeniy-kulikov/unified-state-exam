@@ -244,7 +244,7 @@ print(MX // 2)  # 317
 
 
 # https://stepik.org/lesson/1720695/step/6?unit=1744231
-# https://kompege.ru/task   № 9552 Джобс 14.06.23 (Уровень: Сложный)
+# https://kompege.ru/task   № 9552 Джобс 14.06.13_(23) (Уровень: Сложный)
 s = open('add/course_233165/24-2__06.txt').readline().strip()
 cnt = MX = i = 0
 while i <= len(s):  # возможность прохода по строке с переменным шагом
@@ -351,7 +351,7 @@ print(mx)  # 10128
 
 """ 24.3 Задание 24 ЕГЭ | Урок 3 """
 # https://stepik.org/lesson/1720696/step/1?unit=1744232
-# https://kompege.ru/task   № 12476 PRO100 ЕГЭ 29.12.23 (Уровень: Сложный)
+# https://kompege.ru/task   № 12476 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Сложный)
 l = cnt = MX = 0
 s = open('add/course_233165/24-3__01.txt').readline()
 for r in range(1, len(s)):
@@ -500,7 +500,7 @@ print(len(max(res, key=len)))  # 70
 
 """ 24.4 Задание 24 ЕГЭ | Задачи прошлых лет """
 # https://stepik.org/lesson/1720697/step/1?unit=1744233
-# https://kompege.ru/task   № 9753 Основная волна 19.06.23 (Уровень: Сложный)
+# https://kompege.ru/task   № 9753 Основная волна 19.06.13_(23) (Уровень: Сложный)
 cnt = l = MX = 0
 s = open('add/course_233165/24-4__01.txt').readline()
 for r in range(len(s)):

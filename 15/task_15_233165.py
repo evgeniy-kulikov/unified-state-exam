@@ -150,7 +150,7 @@ def f(x, y):
 
 for a in range(100, 0, -1):
     if all(f(x, y) for x in range(1000) for y in range(1000)):
-        print(a)  # 23
+        print(a)  # 13_(23)
         break
 
 # https://stepik.org/lesson/1697215/step/3?unit=1720590
@@ -270,7 +270,7 @@ print(res)  # 36
 
 """ 15.3 Задание 15 | Задачи прошлых лет """
 # https://stepik.org/lesson/1697216/step/1?unit=1720591
-# https://kompege.ru/task   № 9746 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9746 Основная волна 19.06.13_(23) (Уровень: Базовый)
 def f(x,y):
     return x < a or y < a or (x + 2*y > 50)
 
@@ -291,7 +291,7 @@ for a in range(1000):
 
 
 # https://stepik.org/lesson/1697216/step/3?unit=1720591
-# https://kompege.ru/task   № 9838 Основная волна 27.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9838 Основная волна 27.06.13_(23) (Уровень: Базовый)
 def f(x, y):
     return (x + 2 * y > a) or y < x or x < 30
 

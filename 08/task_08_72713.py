@@ -63,4 +63,21 @@ for p in permutations('nadpis#', 7):
 print(c)  # 4224
 
 
+# https://stepik.org/lesson/373149/step/9?unit=360764
+from itertools import *
+c = 0
+for p in (product('abcdxyz', repeat=4)):
+    c += p[0] in 'xyz' and all(not p[1:].count(i) for i in 'xyz')
+print(c)
+
+
+# https://stepik.org/lesson/450409/step/6?unit=440851
+from itertools import *
+c = 0
+for p in (permutations(range(10), 6)):
+    if p[0] and p[-1] in (0, 5):
+        c += all(a % 2 != b % 2 for a, b in zip(p, p[1:]))
+print(c) # 1296
+
+
 

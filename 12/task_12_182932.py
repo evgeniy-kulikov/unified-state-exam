@@ -22,7 +22,7 @@ for i in range(4, 10_000):
     if sm_i > sm_max:
         sm_max = sm_i
         s_max = s
-print(sm_max)  # 23
+print(sm_max)  # 13_(23)
 print(s_max)  # 9914
 
 

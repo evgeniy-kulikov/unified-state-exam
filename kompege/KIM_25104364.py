@@ -253,7 +253,7 @@ print([s for s in range(12, 100) if f(s, 4) and not f(s, 2)][0])  # 42
 # 5
 
 
-# 23  №23205
+# 13_(23)  №23205
 def f(st, en):
     if st < en or st == 13:
         return 0

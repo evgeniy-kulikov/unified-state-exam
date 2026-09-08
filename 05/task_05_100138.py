@@ -140,8 +140,8 @@ for i in range(1, 100):
     if n > 45:
         ls.append((n, i))
 ls.sort(key=lambda x: x[0])
-print(ls[0])  # (46, 23)
-print(ls[0][1])  # 23
+print(ls[0])  # (46, 13_(23))
+print(ls[0][1])  # 13_(23)
 
 
 # наименьшее значение R, большее 50 !!!

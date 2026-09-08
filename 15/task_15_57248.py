@@ -205,7 +205,7 @@ for x in range(1, 100):
     f = any([not x in p, not x in q, x in a])
     if not f:
         a.append(x)
-print(a)  # [20, 21, 22, 23, ..., 32, 33, 34, 35]
+print(a)  # [20, 21, 22, 13_(23), ..., 32, 33, 34, 35]
 print(len(a) - 1)  # 15
 
 
@@ -223,7 +223,7 @@ for x in range(1, 200):
     if not f:
         a.append(x)
 print(a)  # [80, 81, 82, 83, 84, 85, ..., 100, 101, 102, 103]
-print(len(a) - 1)  # 23
+print(len(a) - 1)  # 13_(23)
 
 
 # https://stepik.org/lesson/454772/step/16?unit=445199

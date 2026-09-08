@@ -84,21 +84,21 @@ print(res * 312)  # 27456
 
 """ 11.2 Задание 11 | Задачи прошлых лет """
 # https://stepik.org/lesson/1688218/step/1?unit=1711507
-#  https://kompege.ru/task  № 9742 Основная волна 19.06.23 (Уровень: Базовый)
+#  https://kompege.ru/task  № 9742 Основная волна 19.06.13_(23) (Уровень: Базовый)
 from math import log2, ceil
 ind = ceil(105 * ceil(log2(1500 + 10)) / 8)
 print(ind * 16_384 / 2**10)  # 2320
 
 
 # https://stepik.org/lesson/1688218/step/2?unit=1711507
-# https://kompege.ru/task   № 9780 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9780 Основная волна 20.06.13_(23) (Уровень: Базовый)
 from math import log2, ceil
 I = ceil(25 * ceil(log2(26)) / 8)
 print(I * 35)  # 560
 
 
 # https://stepik.org/lesson/1688218/step/3?unit=1711507
-# https://kompege.ru/task   № 9834 Основная волна 27.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9834 Основная волна 27.06.13_(23) (Уровень: Базовый)
 from math import log2, ceil
 I = ceil(10 * ceil(log2(52)) / 8)
 print(I * 65_536 // 1024)  # 512

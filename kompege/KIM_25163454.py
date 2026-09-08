@@ -229,7 +229,7 @@ print([s for s in range(2, 194) if f(17, s, 4) and not f(17, s, 2)][0])  # 87
 
 
 
-# 23
+# 13_(23)
 def f(st, en):
     if st == en:
         return 1
@@ -261,7 +261,7 @@ print(res)  # 1058
 from fnmatch import *
 
 for n in range(171, 10**8 + 1, 171):
-    if fnmatch(str(n), '1*23??56'):
+    if fnmatch(str(n), '1*13_(23)??56'):
         print(n, n // 171)
 """
 1237356 7236

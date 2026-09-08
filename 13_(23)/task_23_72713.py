@@ -1,7 +1,7 @@
 """"""
 """
 course_72713
-task 23
+task 13_(23)
 https://stepik.org/course/72713/syllabus
 Подготовка к ЕГЭ по информатике
 """

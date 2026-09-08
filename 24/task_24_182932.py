@@ -5,7 +5,7 @@ Task 24
 https://stepik.org/course/182932
 """
 
-""" 23.1 Задачи на строки и подстроки """
+""" 13_(23).1 Задачи на строки и подстроки """
 
 # https://stepik.org/lesson/1247109/step/2?unit=1260932
 with open('add/course_182932/24_2420.txt') as file:

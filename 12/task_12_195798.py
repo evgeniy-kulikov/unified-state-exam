@@ -12,7 +12,7 @@ for n in range(6, 100):
     s = "1" + '3' * n
     while any(['12' in s, '233' in s, '3333' in s]):
         s = s.replace('12', '332', 1)
-        s = s.replace('233', '23', 1)
+        s = s.replace('233', '13_(23)', 1)
         s = s.replace('3333', '32', 1)
     if not sum(map(int, s)) % 6:
         print(n)  # 20
@@ -36,7 +36,7 @@ for n in range(1000):
     s = '3' + '0' * 40 + '1' * n + '2' * 40
     while any(['31' in s, '32' in s, '30' in s]):
         s = s.replace('31', '223', 1)
-        s = s.replace('32', '23', 1)
+        s = s.replace('32', '13_(23)', 1)
         s = s.replace('30', '13', 1)
     s = s.replace('3', '0', 1)
     r = str(sum(map(int, s)))
@@ -313,8 +313,8 @@ for a in range(50):
 res = 1000
 for n in range(4, 2000):
     s = '3' * n + '5'
-    while '23' in s or '5333' in s or '33333' in s:
-        s = s.replace('23', '3', 1)
+    while '13_(23)' in s or '5333' in s or '33333' in s:
+        s = s.replace('13_(23)', '3', 1)
         s = s.replace('5333', '32', 1)
         s = s.replace('33333', '55', 1)
     res = min(res, sum(map(int, s)))
@@ -395,7 +395,7 @@ for i in range(1, 50):
                 break
 
 
-""" 23.5 Закрепление (ч. 2) """
+""" 13_(23).5 Закрепление (ч. 2) """
 # https://stepik.org/lesson/1227732/step/2?unit=1241247
 for i in range(1, 50):
     for j in range(1, 50):

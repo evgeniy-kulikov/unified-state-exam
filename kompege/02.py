@@ -50,7 +50,7 @@ for p in permutations('xywz'):
         print(''.join(p))  # wyxz
 
 
-# 9357 Джобс 10.06.23 (Уровень: Средний)
+# 9357 Джобс 10.06.13_(23) (Уровень: Средний)
 from itertools import *
 def f1(x,y,w,z):
     return (x <= y) or (not w == z)

@@ -27,7 +27,7 @@ for p in permutations('abcdefg'):
 from itertools import permutations
 print(*'12345678')
 g = 'fbe aeh fgh gh ab ca cd cdb'
-t = '248 157 456 136 23 34 28 17'
+t = '248 157 456 136 13_(23) 34 28 17'
 g = {frozenset(i) for i in g.split()}
 for p in permutations('abcdefgh'):
     t_g = t
@@ -38,7 +38,7 @@ for p in permutations('abcdefgh'):
         print(*p)
 # 1 2 3 4 5 6 7 8
 # h c a b f e g d
-# 23
+# 13_(23)
 
 
 # https://stepik.org/lesson/767811/step/13?unit=770173

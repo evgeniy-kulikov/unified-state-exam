@@ -94,7 +94,7 @@ from math  import ceil, log2
 i = ceil(log2(10 + 70))  # 7
 for n in range(1, 100):
     if ceil(n * i / 8) * 1234567 > 24 * 2**20:
-        print(n)  # 23
+        print(n)  # 13_(23)
         break
 
 
@@ -198,7 +198,7 @@ print([i for i in range(61, 600) if f(i, 4) and not f(i, 2)][0])
 """
 
 
-# 23
+# 13_(23)
 def f(st, en):
     if st == en:
         return 1

@@ -13,7 +13,7 @@ for p in permutations('ABCDEFGH'):
         print(*p)
 # 1 2 3 4 5 6 7 8
 # G A E H C F B D
-# C>B=24 + A>H=23 = 47
+# C>B=24 + A>H=13_(23) = 47
 
 
 # 02
@@ -268,7 +268,7 @@ print(min(s for s in range(17, 100) if fn(s, 4) and not fn(s, 2)))  # 57
 # 14
 
 
-# 23
+# 13_(23)
 # № 23280
 def fn(st, en):
     if st == en: return 1

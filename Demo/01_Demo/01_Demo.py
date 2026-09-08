@@ -188,7 +188,7 @@ for x in range(0, 100):
     f = not x in p or not x in q or x in a
     if not f:
         a.append(x)
-# print(a)  # [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+# print(a)  # [21, 22, 13_(23), 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 print(max(a) - min(a))  # 19
 
 
@@ -228,7 +228,7 @@ print(*[i for i in range(100, 21, -1) if not fn(i, 1) and fn(i, 3)][-2:][::-1]) 
 print(min([i for i in range(100, 21, -1) if not fn(i, 2) and fn(i, 4)]))  # 64
 
 
-# 23
+# 13_(23)
 def f(st, end):
     if st < end: return 0
     if st == end: return 1

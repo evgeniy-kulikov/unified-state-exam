@@ -11,7 +11,7 @@ all from https://kompege.ru/task
 """ Базовые """
 # https://stepik.org/lesson/1708805/step/2?unit=1732307
 # 18/add/course_233165/18-3_02.xls
-# https://kompege.ru/task   № 79787 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 79787 Основная волна 20.06.13_(23) (Уровень: Базовый)
 
 
 
@@ -29,4 +29,4 @@ all from https://kompege.ru/task
 
 # https://stepik.org/lesson/1708796/step/4?unit=1732299
 # 18/add/course_233165/18-2_04.xls
-# https://kompege.ru/task   № 726 Джобс 23.11.2020 (Уровень: Сложный)
+# https://kompege.ru/task   № 726 Джобс 13_(23).11.2020 (Уровень: Сложный)

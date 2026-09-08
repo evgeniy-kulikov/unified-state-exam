@@ -141,7 +141,7 @@ def f(a,b, mv):
         return any(g)
     return all(g)
 
-# print([s for s in range(1, 91) if f(5, s, 2)][0])  # 23  (return any(g))
+# print([s for s in range(1, 91) if f(5, s, 2)][0])  # 13_(23)  (return any(g))
 print(*[s for s in range(1, 91) if f(5, s, 3) and not f(5, s, 1)][-2:])  # 37 44
 print([s for s in range(1, 91) if f(5, s, 4) and not f(5, s, 2)][0])  # 36
 

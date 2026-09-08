@@ -45,8 +45,8 @@ for y in range(1, 4):
         s = st
         while '12' in s or '13' in s:
             s = s.replace('12', '21', 1)
-            s = s.replace('31', '23', 1)
-            s = s.replace('13', '23', 1)
+            s = s.replace('31', '13_(23)', 1)
+            s = s.replace('13', '13_(23)', 1)
         if s.count('1') == 0 and sum(map(int, s)) == 404:
             if len(st) > nm:
                 nm = len(st)
@@ -65,8 +65,8 @@ print(ns_out)  #  22222222........2233
 s = '1' * 199 + '33'
 while '12' in s or '13' in s:
     s = s.replace('12', '21', 1)
-    s = s.replace('31', '23', 1)
-    s = s.replace('13', '23', 1)
+    s = s.replace('31', '13_(23)', 1)
+    s = s.replace('13', '13_(23)', 1)
 if s.count('1') == 0 and sum(map(int, s)) == 404:
     print(len(s)) # 201
 
@@ -126,7 +126,7 @@ print(s)  # 332211
 s = '123' * 50
 while '12' in s or '32' in s or '31' in s:
     s = s.replace('12', '21', 1)
-    s = s.replace('32', '23', 1)
+    s = s.replace('32', '13_(23)', 1)
     s = s.replace('31', '13', 1)
 print(s[21] + s[81] + s[121])  # 213
 

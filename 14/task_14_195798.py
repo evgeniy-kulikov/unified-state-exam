@@ -184,7 +184,7 @@ for i in range(5, 37):
             a = int('32', i) * int('14', i)
             b = int(f'{x}{y}2', i)
             if a == b:
-                print(int(f'{y}{x}', i))  # 23
+                print(int(f'{y}{x}', i))  # 13_(23)
                 break
 
 # short solution
@@ -192,7 +192,7 @@ for p in range(5, 10):
     for x in range(p):
         for y in range(p):
             if (3 * p + 2) * (1 * p + 4) == (x * p**2 + y * p + 2):
-                print(y * p + x)  # 23
+                print(y * p + x)  # 13_(23)
                 break
 
 
@@ -311,7 +311,7 @@ for x in '0123456789ab':
         break
 
 
-""" 23.5 Закрепление (ч. 2) """
+""" 13_(23).5 Закрепление (ч. 2) """
 # https://stepik.org/lesson/1227732/step/4?unit=1241247
 num = 36**8 + 6**20 -12
 c = 0

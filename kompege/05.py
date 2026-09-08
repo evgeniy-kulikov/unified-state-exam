@@ -2,8 +2,8 @@
 
 """
 352
-10087 1114 1332 1519
-9360 9774 12459 12914
+1114 1332 1519 2461 3754 
+9360 9736 9774 9777 9831 10087 12459 12914
 """
 
 
@@ -19,23 +19,6 @@ for n in range(1, 1000):
     if int(b, 2) > 228:
         print(n)
         break
-
-
-
-
-
-# 10087 Демоверсия 2024 (Уровень: Базовый)
-res = 1000
-for n in range(4, 1000):
-    b = f'{n:b}'
-    if n % 3:
-        b += f'{n%3 * 3:b}'
-    else:
-        b += b[-3:]
-    r = int(b,2)
-    if r > 151:
-        res = min(res, r)
-print(res)  # 163
 
 
 # 1114 (Уровень: Базовый)
@@ -81,7 +64,24 @@ for n in range(66, 1000):
         break
 
 
-# 9360 Джобс 10.06.23 (Уровень: Базовый)
+# 2461 (Уровень: Средний)
+for n in range(100, 1000):
+    a,b,c = map(int, str(n))
+    ls = sorted([a**2 + b**2, b**2 + c**2])
+    if str(ls[1]) + str(ls[0]) == '9010':
+        print(n)  # 139
+        break
+
+
+# 3754 (Уровень: Сложный)
+for n in range(398, 1000):
+    d = [int(a+b) for a, b in zip(str(n), str(n)[1:])]
+    if max(d) + min(d) == 137:
+        print(n)  # 398
+        break
+
+
+# 9360 Джобс 10.06.13_(23) (Уровень: Базовый)
 res = []
 for n in range(1, 1000):
     b = f'{n:b}'
@@ -96,7 +96,21 @@ res.sort()
 print(res[0][1])  # 39
 
 
-# 9774 Основная волна 20.06.23 (Уровень: Средний)
+# 9736 Основная волна 19.06.13_(23)(Уровень: Базовый)
+res = 0
+for n in range(4, 1000):
+    b = f'{n:b}'
+    if n % 3:
+        b += f'{n%3 * 3:b}'
+    else:
+        b += b[-3:]
+    r = int(b, 2)
+    if r <= 170:
+        res = max(res, r)
+print(res)  # 166
+
+
+# 9774 Основная волна 20.06.13_(23) (Уровень: Средний)
 def f(n, b=3):
     r = ''
     while n:
@@ -117,7 +131,41 @@ for n in range(1, 10000):
 print(res)  # 141
 
 
-# 12459 PRO100 ЕГЭ 29.12.23 (Уровень: Базовый)
+# 9777 Основная волна 20.06.13_(23)(Уровень: Базовый)
+from itertools import *
+res = k = 0
+for x in sorted(product(range(1,10), repeat=5)):
+    k += 1
+    if k % 2 and x[0] != 8 and x.count(2) == 2:
+        res = k
+print(res)  # 58979
+
+
+# 9831 Основная волна 27.06.13_(23)(Уровень: Базовый)
+from itertools import *
+res = 0
+for p in sorted(product(range(16), repeat=3)):
+    if p[0] and len(set(p)) == 3:
+        # res += p[0] % 2 != p[1] % 2 and p[1] % 2 != p[2] % 2
+        res += all(a % 2 != b % 2 for a, b in zip(p, p[1:]))
+print(res)  # 840
+
+
+# 10087 Демоверсия 2024 (Уровень: Базовый)
+res = 1000
+for n in range(4, 1000):
+    b = f'{n:b}'
+    if n % 3:
+        b += f'{n%3 * 3:b}'
+    else:
+        b += b[-3:]
+    r = int(b,2)
+    if r > 151:
+        res = min(res, r)
+print(res)  # 163
+
+
+# 12459 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Базовый)
 def cnv(n, b):
     r = ''
     while n:

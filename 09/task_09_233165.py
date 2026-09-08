@@ -341,7 +341,7 @@ print(cnt)  # 4209
 
 
 # https://stepik.org/lesson/1679595/step/3?unit=1702709
-# https://kompege.ru/task   № 9740 Основная волна 19.06.23 (Уровень: Средний)
+# https://kompege.ru/task   № 9740 Основная волна 19.06.13_(23) (Уровень: Средний)
 cnt = 0
 for f in open('add/course_233165/9-4_03.txt'):
     d = sorted(map(int, f.split()))
@@ -353,7 +353,7 @@ print(cnt)  # 36
 
 
 # https://stepik.org/lesson/1679595/step/4?unit=1702709
-# https://kompege.ru/task  № 9778 Основная волна 20.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9778 Основная волна 20.06.13_(23) (Уровень: Средний)
 cnt = 0
 with open('add/course_233165/9-4_04.txt') as fl:
     for f in fl:
@@ -367,7 +367,7 @@ with open('add/course_233165/9-4_04.txt') as fl:
 
 
 # https://stepik.org/lesson/1679595/step/5?unit=1702709
-# https://kompege.ru/task  № 9832 Основная волна 27.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9832 Основная волна 27.06.13_(23) (Уровень: Средний)
 with open('add/course_233165/9-4_05.txt') as fl:
     for f in fl:
         d = [*map(int, f.split())]
@@ -444,7 +444,7 @@ print(cnt)  # 1835
 
 """ 9.5 Задание 9 | Задачи прошлых лет """
 # https://stepik.org/lesson/1679589/step/2?unit=1702704
-# https://kompege.ru/task  № 9740 Основная волна 19.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9740 Основная волна 19.06.13_(23) (Уровень: Средний)
 cnt = 0
 for row in open('9-5_02.txt'):
     d = sorted(map(int, row.split()))
@@ -456,7 +456,7 @@ print(cnt)  # 36
 
 
 # https://stepik.org/lesson/1679589/step/3?unit=1702704
-# https://kompege.ru/task  № 9778 Основная волна 20.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9778 Основная волна 20.06.13_(23) (Уровень: Средний)
 cnt = 0
 for row in open('9-5_03.txt'):
     cnt += 1
@@ -470,7 +470,7 @@ for row in open('9-5_03.txt'):
 
 
 # https://stepik.org/lesson/1679589/step/4?unit=1702704
-# https://kompege.ru/task  № 9832 Основная волна 27.06.23 (Уровень: Средний)
+# https://kompege.ru/task  № 9832 Основная волна 27.06.13_(23) (Уровень: Средний)
 for row in open('9-5_04.txt'):
     d = list(map(int, row.split()))
     n1 = [i for i in d if d.count(i) == 1]

@@ -237,14 +237,14 @@ print(len(res))
 
 # https://stepik.org/lesson/784661/step/6?unit=787258
 s = input()
-s = s.replace('123', '12 23')
+s = s.replace('123', '12 13_(23)')
 res = max(s.split(), key=len)
 print(len(res))  # 35
 
 
 # https://stepik.org/lesson/784661/step/7?unit=787258
 s = input()
-s = s.replace('123', '12 23').replace('AB', 'AB BC')
+s = s.replace('123', '12 13_(23)').replace('AB', 'AB BC')
 res = max(s.split(), key=len)
 print(len(res))
 
@@ -265,7 +265,7 @@ print(len(res))  # 29
 
 # https://stepik.org/lesson/784661/step/10?unit=787258
 s = input()
-s = s.replace('123', '12 23').replace('A', ' ')
+s = s.replace('123', '12 13_(23)').replace('A', ' ')
 res = max(s.split(), key=len)
 print(len(res))
 
@@ -287,7 +287,7 @@ print(len(res))  # 36
 # https://stepik.org/lesson/784661/step/15?unit=787258
 s = input()
 while '232' in s:
-    s = s.replace('232', '23 32', 1)
+    s = s.replace('232', '13_(23) 32', 1)
 res = max(s.split(), key=len)
 print(len(res))
 

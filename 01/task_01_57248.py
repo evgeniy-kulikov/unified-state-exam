@@ -64,7 +64,7 @@ for p in permutations(g):
 from itertools import permutations
 g = 'BF DFA BC DGE CG FCE ABG'
 g = {frozenset(i) for i in g.split()}
-t = '56 347 257 26 136 145 23'
+t = '56 347 257 26 136 145 13_(23)'
 print(*'1234567')
 for p in permutations('ABCDEFG'):
     tmp = t

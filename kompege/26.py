@@ -3,9 +3,10 @@
 225 507 788 889 954 
 1304 1395 1868
 2149 2612 2613 2614 3664
-4205(=7274) 4604(=4712) 4629 4660 4712 7096
+4205(=7274) 4604(=4712) 4629 4660 4712 6800 7096
 10107 11681 12256 13394 15341 17537 17643 17881 19256
 21598 21719 21910(=21424) 23765 27779
+31370 31520 
 """
 
 
@@ -342,6 +343,24 @@ store = sum(i for i in d[:-n//4]) + sum(i / 2 for i in d[-n//4:])
 print(int(user), int(store))  # 44101521 48825239
 
 
+# 6800 (Уровень: Средний) 🌶️🌶️🌶️🌶️🌶️
+# Логика: суммируем (5/6 начала списка + от 0 до 5 позиций) + (1/6 конца списка (со скидкой))
+f = open("26.txt")
+n = int(next(f))
+data = sorted(map(int, f))
+rub = 100_000
+SM = 0
+for i in range(1, n+1):
+    idx = (i) // 6
+    fool = sum(data[:i - idx])
+    sale = sum(data[i-idx:i]) * 0.5
+    if fool + sale <= rub:
+        SM = fool + sale
+    else:
+        print(i-1, rub - SM)  # 470 20
+        break
+
+
 # 7096 OpenFIPI (Уровень: Базовый)
 f = open('add/26/26_7096.txt').readlines()
 D = [*map(int, f[1:])]
@@ -392,7 +411,7 @@ b = d[k-1][2]  # расхождение между условием, приме�
 print(int(a), int(b))  # 2903432767 194784 ❓
 
 
-# 12256 ЕГКР 16.12.23 (Уровень: Базовый)
+# 12256 ЕГКР 16.12.13_(23) (Уровень: Базовый)
 f = open('add/26/26_12256.txt').readlines()
 M,N = map(int, f[0].split())
 D = sorted(map(int, f[1:]))
@@ -617,6 +636,68 @@ for i in range(N-1):
         c += 1
         cur = d[i]
 print(c, cur)  # 1159 57
+
+
+
+# 31370 Пересдача 08.07.26(Уровень: Средний)
+# data collection
+f = open('add/26/26_31370.txt')
+_, K = map(int, f.readline().split())  # вместимость раздела
+d = dict()
+data = []
+for el in f:
+    t, i, s = el.split()  # время(часы, минуты, секунды), идентификатор, объём данных
+    t = int(t[:2]) < 12
+    i, s = map(int, [i, s])
+    data.append([t, i, s])
+    d.setdefault(i, 0)  # идентификатор, объём данных
+    d[i] += s
+# answer 1
+ident = sorted([i for i in d.items()], key = lambda x: x[1])
+print(ident[0][0] + ident[1][0])  # 17248  сумма идентификаторов 2-х клиентских устройств
+# answer 2
+res = []  # резервные копии
+S = 0
+for i in data:
+    if S + i[2] <= K:
+        S += i[2]
+    else:
+        res.append(S)
+        S = i[2]
+    if not i[0]:
+        break
+print(sum(res[-2:]))  # 43147
+# 17248 43147
+
+
+# 31520 Демоверсия 2027(Уровень: Базовый)
+f = open('add/26/26_31520.txt').readlines()
+N, K = map(int, f[0].split())  # кол-во строк, вместимость Кбайт
+data = []
+for i in f[1:]:
+    t, i, s = i.split()
+    data.append([int(t[:2]), int(i), int(s)])  # время (час), идентификатор клиента, объём данных Кбайт
+
+d = dict()
+for i in data:
+    d.setdefault(i[1], 0)
+    d[i[1]] += i[2]
+res1 = max((s, i) for i, s in d.items())
+print(res1[1])  # 7040 - идентификатор клиента
+
+# [K] - Принудительно добавляет последнюю набранную сумму sm в res2. Сам при этом не добавляется
+data2 = [i[2] for i in data if i[0] < 12] + [K]
+res2 = []
+sm = 0
+for s in data2:  # s - объём данных Кбайт
+    if sm + s <= K:
+        sm += s
+    else:
+        res2.append(sm)
+        sm = s
+res2.sort(reverse=True)
+print(res2[0] + res2[1])  # 52204 сумма объёмов (в Кбайт) двух наибольших резервных копий
+# 7040 52204
 
 
 

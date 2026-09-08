@@ -176,7 +176,7 @@ print([a for a in range(66, 500) if f(a, 4) and not f(a, 2)][0])
 """
 
 
-# 23
+# 13_(23)
 def f(st, en):
     if st == en:
         return 1

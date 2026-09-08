@@ -1,6 +1,6 @@
 """"""
 """
-Task 23
+Task 13_(23)
 ЕГЭ Информатика 2026 | Полный Курс
 https://stepik.org/course/233165
 
@@ -8,7 +8,7 @@ all from https://kompege.ru/task
 """
 
 
-""" 23.1 Задание 23 ЕГЭ | Урок 1 """
+""" 13_(23).1 Задание 13_(23) ЕГЭ | Урок 1 """
 # https://stepik.org/lesson/1715370/step/3?unit=1738823
 # https://kompege.ru/task   № 413 (Уровень: Базовый)
 def f(st, en):
@@ -122,7 +122,7 @@ print(f(1, 25) * f(25, 63))  # 8
 
 
 
-""" 23.2 Задание 23 ЕГЭ | Урок 2 """
+""" 13_(23).2 Задание 13_(23) ЕГЭ | Урок 2 """
 # https://stepik.org/lesson/1715371/step/1?unit=1738824
 # https://kompege.ru/task   № 1076 (Уровень: Базовый)
 def f(st, en):
@@ -275,9 +275,9 @@ print(len(res))  # 1
 
 
 
-""" 23.3 Задание 23 ЕГЭ | Задачи прошлых лет """
+""" 13_(23).3 Задание 13_(23) ЕГЭ | Задачи прошлых лет """
 # https://stepik.org/lesson/1715372/step/1?unit=1738825
-# https://kompege.ru/task   № 9752 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9752 Основная волна 19.06.13_(23) (Уровень: Базовый)
 def f(st, en):
     if st > en or st == 17:
         return 0
@@ -289,7 +289,7 @@ print(f(3, 10) * f(10, 25))  # 90
 
 
 # https://stepik.org/lesson/1715372/step/2?unit=1738825
-# https://kompege.ru/task   № 9790 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9790 Основная волна 20.06.13_(23) (Уровень: Базовый)
 def f(st, en):
     if st < en or st in (9, 16):
         return 0

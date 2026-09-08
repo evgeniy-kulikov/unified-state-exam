@@ -2,7 +2,7 @@
 """
 841 843 844 845 846 847 854 884
 1061 1136 1252 1349 2364 2575 2865 3970 8163 9788
-11281 11669 12251 12928
+11281 11669 12251 12448 12928
 15336 17532 17560 19635 17638 17875 18958 19750
 22066 23565
 """
@@ -265,7 +265,7 @@ print(*[s for s in range(1, 82) if f(6, s, 3) and not f(6, s, 1)])
 print([s for s in range(1, 82) if f(6, s, 2)][0])
 """
 10
-9 23 26
+9 13_(23) 26
 27
 """
 
@@ -401,7 +401,7 @@ print([s for s in range(1, 58) if f(s, 4) and not f(s, 2)][0])
 """
 
 
-# 8163 /dev/inf 05.23 (Уровень: Базовый)
+# 8163 /dev/inf 05.13_(23) (Уровень: Базовый)
 def f(a, m, w=0):
     if a >= 348:
         return not m % 2
@@ -422,7 +422,7 @@ print([i for i in range(1, 348) if f(i, 4) and not f(i, 2)][0])
 """
 
 
-# 9788 Основная волна 20.06.23 (Уровень: Базовый)
+# 9788 Основная волна 20.06.13_(23) (Уровень: Базовый)
 def f(a, m):
     if a >= 59:
         return not m % 2
@@ -487,7 +487,7 @@ print([s for s in range(117, 10_001) if f(s, 4) and not f(s, 2)][-1])  # 1080
 
 
 
-# 12251 ЕГКР 16.12.23 (Уровень: Базовый)
+# 12251 ЕГКР 16.12.13_(23) (Уровень: Базовый)
 def f(a,m):
     if a >= 301:
         return not m % 2
@@ -504,6 +504,23 @@ print([s for s in range(1, 301) if f(s, 4) and not f(s, 2)][0])
 12 55
 52
 """
+
+
+# 12448 (Уровень: Базовый)
+def f(a, b, mv, w=1):
+    if a * b >= 777:
+        return not mv % 2
+    if not mv:
+        return 0
+    g = [f(a + 3, b, mv-1), f(a * 2, b, mv-1), f(a, b + 3, mv-1), f(a, b * 2, mv-1)]
+    if mv % 2:
+        return any(g)
+    return all(g) if w else any(g)
+
+print([s for s in range(1, 111) if f(7, s, 2, w=0)][0])
+ls = [s for s in range(1, 111) if f(7, s, 3) and not f(7, s, 1)]
+print(ls[0], ls[-1])
+print([s for s in range(1, 111) if f(7, s, 4) and not f(7, s, 2)][0])
 
 
 # 12928 PRO100 ЕГЭ 26.01.24 (Уровень: Средний)
@@ -586,7 +603,7 @@ print([s for s in range(1, 58) if f(s, 4) and not f(s, 2)][0])
 """
 28
 14 24
-23
+13_(23)
 """
 
 

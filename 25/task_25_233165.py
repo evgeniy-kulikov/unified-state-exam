@@ -743,7 +743,7 @@ for n in range(st, 10**10, 13):
 
 """ 25.4 Задание 25 ЕГЭ | Задачи прошлых лет """
 # https://stepik.org/lesson/1720861/step/1?unit=1744397
-# https://kompege.ru/task   № 9754 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9754 Основная волна 19.06.13_(23) (Уровень: Базовый)
 from fnmatch import *
 for n in range(0, 10**8, 2023):
     if fnmatch(str(n), '3?1*57'):
@@ -772,7 +772,7 @@ for a in '0123456789':
 
 
 # https://stepik.org/lesson/1720861/step/2?unit=1744397
-# https://kompege.ru/task   № 9792 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9792 Основная волна 20.06.13_(23) (Уровень: Базовый)
 from fnmatch import *
 for n in range(0, 10**8, 1923):
     if fnmatch(str(n), '1*2??76'):

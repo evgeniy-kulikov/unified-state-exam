@@ -418,7 +418,7 @@ from fnmatch import *
 for n in range(0, 10**9, 2023):
     r = sum(map(int, str(n)))
     if r < 20 and not r % 7:
-        if fnmatch(str(n), '20*23'):
+        if fnmatch(str(n), '20*13_(23)'):
             print(n)
 """
 2023
@@ -535,7 +535,7 @@ for a in alf:
 """
 
 
-# 12477 PRO100 ЕГЭ 29.12.23 (Уровень: Средний)
+# 12477 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Средний)
 from fnmatch import *
 for n in range(301111, 4000000):
     if fnmatch(str(n), '3?1111*'):

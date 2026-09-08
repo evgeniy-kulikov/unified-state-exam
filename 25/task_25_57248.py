@@ -156,7 +156,7 @@ for m in range(1, a + 1, 2):
             ls.append((d, n+m))
 ls.sort()
 [print(i, k, end = ' ') for i, k in ls]
-# 153055008 19 169869312 25 214990848 23 272097792 21
+# 153055008 19 169869312 25 214990848 13_(23) 272097792 21
 
 
 # https://stepik.org/lesson/459358/step/11?unit=449865

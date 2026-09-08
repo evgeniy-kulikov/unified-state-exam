@@ -4,7 +4,7 @@ Task 25
 https://stepik.org/course/100138
 """
 
-""" 23.1 Поиск простых чисел """
+""" 13_(23).1 Поиск простых чисел """
 # https://stepik.org/lesson/559890/step/5?unit=553935
 # поиск простого числа
 def fn(n):
@@ -41,7 +41,7 @@ for n in range(4331641, 4331814):
         print(n)
 
 
-""" 23.2 Поиск делителей чисел """
+""" 13_(23).2 Поиск делителей чисел """
 # https://stepik.org/lesson/559891/step/3?unit=553936
 def fn(n):
     res = set()
@@ -151,7 +151,7 @@ ls.sort(key=lambda x: -x[0])
 [print(*i[1]) for i in ls]
 
 
-""" 23.3 Решение задач. Часть 1 """
+""" 13_(23).3 Решение задач. Часть 1 """
 # https://stepik.org/lesson/877936/step/2?unit=882403
 def fn(n):
     for i in range(2, int(n ** 0.5) + 1):
@@ -289,7 +289,7 @@ for i in range(150000, 150101, 2):
 
 
 
-""" 23.4 Решение задач. Часть 2 """
+""" 13_(23).4 Решение задач. Часть 2 """
 # https://stepik.org/lesson/1401988/step/2?unit=1418958
 def fn(n):
     d = set()
@@ -352,7 +352,7 @@ for i in range(800_001, 800_100):
 
 
 
-""" 23.5 Поиск чисел с нечетным количеством делителей """
+""" 13_(23).5 Поиск чисел с нечетным количеством делителей """
 # https://stepik.org/lesson/559892/step/2?unit=553937
 def fn(n):
     d = set()
@@ -387,7 +387,7 @@ for i in range(167000, 190001):
 
 
 
-""" 23.6 Простые числа. Часть 2 """
+""" 13_(23).6 Простые числа. Часть 2 """
 # https://stepik.org/lesson/879914/step/4?unit=884462
 def fn(n):
     if n == 1: return False
@@ -506,7 +506,7 @@ for i in range(650_001, 650_100):
 
 
 
-""" 23.7 Маски """
+""" 13_(23).7 Маски """
 """маски"""
 # https://stepik.org/lesson/870004/step/2?unit=874178
 s = '0123456789'
@@ -622,7 +622,7 @@ for k in range(100_000):
 
 
 
-""" 23.8 Маски. Решение задач """
+""" 13_(23).8 Маски. Решение задач """
 # https://stepik.org/lesson/871176/step/2?unit=875447
 from fnmatch import fnmatch
 def nok(a, b):
@@ -715,7 +715,7 @@ def dv(n):
 n_start = 10**7 // 223 * 223  # 9999989 - ближайшее к 10**7 число делящееся на 223 без остатка
 cnt = 5
 ls = []
-msk = '23?4*'
+msk = '13_(23)?4*'
 for n in range(n_start, 0, -223):
     if fnmatch(str(n), msk):
         ls.append((n, dv(n)))

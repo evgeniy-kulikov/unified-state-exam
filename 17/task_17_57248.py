@@ -5,7 +5,7 @@ https://stepik.org/course/57248
 """
 
 
-""" 6.2 Тренировка 17,18,23 """
+""" 6.2 Тренировка 17,18,13_(23) """
 # https://stepik.org/lesson/552239/step/1?unit=545967
 mx = 0
 mn = 19991

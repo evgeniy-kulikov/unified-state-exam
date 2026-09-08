@@ -128,7 +128,7 @@ print(g(18))  # 87810480
 
 """ 16.2 Задание 16 | Урок 2 """
 # https://stepik.org/lesson/1697473/step/1?unit=1720849
-# https://kompege.ru/task   № 724 Джобс 23.11.2020 (Уровень: Средний)
+# https://kompege.ru/task   № 724 Джобс 13_(23).11.2020 (Уровень: Средний)
 from functools import lru_cache
 @lru_cache(None)
 def g(n):
@@ -302,7 +302,7 @@ print(cnt)  # 216
 
 """ 16.3 Задание 16 | Задачи прошлых лет """
 # https://stepik.org/lesson/1697474/step/1?unit=1720850
-# https://kompege.ru/task  № 9747 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task  № 9747 Основная волна 19.06.13_(23) (Уровень: Базовый)
 from functools import lru_cache
 @lru_cache()
 def f(n):
@@ -314,7 +314,7 @@ print(f(2024) - f(2021))  # 6069
 
 
 # https://stepik.org/lesson/1697474/step/2?unit=1720850
-# https://kompege.ru/task   № 9785 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9785 Основная волна 20.06.13_(23) (Уровень: Базовый)
 from functools import lru_cache
 @lru_cache(None)
 def f(n):
@@ -327,7 +327,7 @@ print(f(2024) - f(2020))  # 4048
 
 
 # https://stepik.org/lesson/1697474/step/3?unit=1720850
-# https://kompege.ru/task  № 9839 Основная волна 27.06.23 (Уровень: Базовый)
+# https://kompege.ru/task  № 9839 Основная волна 27.06.13_(23) (Уровень: Базовый)
 from functools import lru_cache
 @lru_cache()
 def f(n):

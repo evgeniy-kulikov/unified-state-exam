@@ -3,7 +3,7 @@
 # 21696 ЕГКР 19.04.25 (Уровень: Базовый)
 from itertools import *
 g = 'hg gc cf fa ae eh fd ed db bh bg'.split()
-t = '23 168 158 578 347 27 456 234'.split()
+t = '13_(23) 168 158 578 347 27 456 234'.split()
 print(*'12345678')
 for p in permutations('abcdefgh'):
     if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):

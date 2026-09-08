@@ -82,7 +82,7 @@ for p in range(5, 1000):
     for y in range(p):
         for x in range(p):
             if (3*p + 2) * (p + 4) == x*p**2 + y*p + 2:
-                print(y*p + x)  # 23
+                print(y*p + x)  # 13_(23)
 
 
 # 8675 (Уровень: Базовый)
@@ -132,8 +132,8 @@ for x in alf[::-1]:
 
 
 # 12468 (Уровень: Базовый)
-alf = '0123456789abcdefghi'
-for x in alf:
+from string import printable as alf
+for x in alf[:19]:
     n = int(f'78{x}79643', 19) + int(f'25{x}43', 19) + int(f'63{x}5', 19)
     if not n % 18:
         print(n // 18)  # 368599039

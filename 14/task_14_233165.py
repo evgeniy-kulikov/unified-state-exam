@@ -240,7 +240,7 @@ for x in alf:
 
 """ 14.3 Задание 14 | Задачи прошлых лет """
 # https://stepik.org/lesson/1695818/step/1?unit=1719171
-# https://kompege.ru/task   № 9745 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9745 Основная волна 19.06.13_(23) (Уровень: Базовый)
 # a = [*'0123456789'] + [*map(chr, range(97, 106))]
 a = '0123456789abcdefghi'[::-1]
 for x in a:
@@ -251,7 +251,7 @@ for x in a:
 
 
 # https://stepik.org/lesson/1695818/step/2?unit=1719171
-# https://kompege.ru/task  № 9783 Основная волна 20.06.23 (Уровень: Базовый)
+# https://kompege.ru/task  № 9783 Основная волна 20.06.13_(23) (Уровень: Базовый)
 from string import ascii_lowercase as st
 alf = '0123456789' + st[:12]
 for x in alf:
@@ -262,7 +262,7 @@ for x in alf:
 
 
 # https://stepik.org/lesson/1695818/step/3?unit=1719171
-# https://kompege.ru/task  № 9837 Основная волна 27.06.23 (Уровень: Базовый)
+# https://kompege.ru/task  № 9837 Основная волна 27.06.13_(23) (Уровень: Базовый)
 from string import ascii_lowercase as st
 alf = '0123456789' + st[:13]
 for x in alf:

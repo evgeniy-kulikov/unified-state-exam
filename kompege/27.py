@@ -8,7 +8,7 @@ https://kompege.ru/task
 18031 18150 19257 20294 20911 20816
 21425 21599 21911 21929 21930 21931 21932 23384 23571 23766
 25441 25442 25443 25444 25445 25446 25447 25448 27591 27780 28776 29081 29357
-31163
+31163 31371
 """
 
 
@@ -1190,7 +1190,7 @@ for w in 'AB':
 """
 
 
-# 28766 Досрочная волна 2026 (Уровень: Базовый)  ️✅ цветные разноразмерные звезды
+# 28766 Досрочная волна 2026 (Уровень: Базовый) ✅ цветные разноразмерные звезды
 # https://vk.com/video-205865487_456240544?t=1h31m45s
 from math import dist
 def get_clust(p):
@@ -1248,7 +1248,7 @@ for w in 'AB':
                     B[i].append(k)
         b1 = int(min(get_b1(B[i]) for i in range(3) if len(B[i]) > 1) * 10_000)
         # ручной участок кода
-        # print([len(i) for i in B])  # [9, 3, 1]  # определяем минимальное и максимальное количество жёлтых сверхгигантов
+        # print([len(i) for i in B])  # [9, 3, 1] # определяем минимальное и максимальное количество жёлтых сверхгигантов
         b2 = int(dist(center[0], center[-1]) * 10_000)  # нужные индексы берем из строчки выше
         print(b1, b2)  # 1035 125591
 """
@@ -1365,7 +1365,6 @@ for w in 'AB':
 
 
 
-
 # 31163 Основная волна 19.06.26 (Уровень: Базовый) 🌶️✅ цветные разноразмерные звезды
 from math import dist
 
@@ -1416,6 +1415,66 @@ for w in 'AB':
 """
 
 
+# 31371 Пересдача 08.07.26(Уровень: Средний) 🌶️✅ цветные разноразмерные звезды
+from math import dist
+
+def get_clust(p):
+    clust = [i for i in data if dist(p[:2], i[:2]) < 1]
+    [data.remove(i) for i in clust]
+    next_clust = [get_clust(i) for i in clust]
+    [clust.extend(i) for i in next_clust]
+    return clust
+
+def center(ls: list):
+    res = []
+    for p in ls:
+        sm = sum(dist(p[:2], i[:2]) for i in ls)
+        res.append((sm, p))
+    return min(res)[1]
+
+data = []
+for w in 'AB':
+    for i in open(f'add/27/31371_27_{w}.txt'):
+        p = i.replace(',', '.').split()
+        x, y = map(float, p[:2])
+        data.append((x, y, p[2][0]=='O' and p[2][-2:]=='VI'))
+    clusters = []
+    # print(len(data))
+    while data:
+        p = data.pop()
+        clust = get_clust(p) + [p]
+        # print(len(clust))
+        clusters.append(clust)
+    # print(sum(len(i) for i in clusters))
+    # print(len(data), '\n')
+    centers = [center(i) for i in clusters]  # координаты центра каждого кластера
+    if w == 'A':
+        A1 = int(dist(centers[0][:2], centers[1][:2]) * 10_000)
+        clusters_A = []
+        for cl in clusters:
+            clusters_A.append([i for i in cl if i[2]])
+        A2 = []
+        for p in clusters_A[0]:
+            sm = 0
+            for k in clusters_A[1]:
+                A2.append(dist(p[:2], k[:2]))
+        A2 = int(min(A2) * 10_000)
+        print(A1, A2)  # 20065 11921
+    else:
+        for i in range(len(clusters)):
+            clusters[i] = [cl[:2] for cl in clusters[i] if cl[2]]  # только голубые субкарлики в каждом кластере
+            # расстояние центра кластера от начала координат + координаты центра кластера + голубые субкарлики
+            clusters[i] = [(dist((0,0), centers[i][:2]))] + [centers[i][:2]] + clusters[i]
+        clusters.sort()
+        B1 = len(clusters[0]) - 2
+        B2 = 0
+        for i in clusters[-1][2:]:
+            B2 += dist(clusters[-1][1], i) <= 0.9
+        print(B1, B2) # 11 5
+"""
+20065 11921
+11 5
+"""
 
 
 

@@ -239,9 +239,66 @@ print([s for s in range(1, 116) if f(17, s, 4) and not f(17, s, 2)][0])
 # 22 8
 
 
-# 23 ❓❓❓
+# 13_(23) ❓🤔❓
+from math import inf
+from functools import lru_cache
+data = []
+for i in open('04 Demo/add/13_(23).txt'):
+    a, b, w = i.split()
+    data.append((int(a), int(b), float(w)))
+# max_w = 200 * 1000 + 1
+# max_w = float('inf')  # положительная бесконечность
+max_w = inf  # положительная бесконечность
+
+@lru_cache()
+def f(st, end):
+    if st == end:
+        return 0
+    res = max_w
+    for a, b, w in data:
+        if a == st:
+            res = min(res, w + f(b, end))
+    return res
+print(int(f(1, 100)))  # 10971
+
+
+# короче
+from functools import lru_cache
+data = []
+for i in open('04 Demo/add/13_(23).txt'):
+    a, b, w = i.split()
+    data.append((int(a), int(b), float(w)))
+
+
+@lru_cache()
+def f(st, end=100):
+    if st == end:
+        return 0
+    res = 10**6
+    for a, b, w in data:
+        if a == st:
+            res = min(res, w + f(b))
+    return res
+
+print(int(f(1)))  # 10971
+
+
+# variant 2_1 ❓❓❓
+data = []
+for i in open('04 Demo/add/13_(23).txt'):
+    a, b, w = i.split()
+    data.append((int(a), int(b), float(w)))
+
+res = [10**10] * 1001  # кол-во вершин (по заданию) + 1 (страховка)
+res[1] = 0  # 1 это откуда идти (по заданию), путь (вес) из 1-цы в 1-цу равен 0
+for i in range(1001):
+    for a, b, w in data:
+        res[b] = min(res[b], res[a] + w)
+print(int(res[100]))  # 10971
+
+# variant 2_2 ❓❓❓
 ls = []
-for i in open('04 Demo/add/23.txt'):
+for i in open('04 Demo/add/13_(23).txt'):
     a, b, c = i.split()
     ls.append([int(a), int(b), float(c)])
 
@@ -430,5 +487,5 @@ while data:
 Q1 = int(max(get_dist(i) for i in clusters) * 10_000)
 center_w = [get_center_w(i) for i in clusters]
 Q2 = int(max(i[2] for i in center_w) * 10_000)
-print(Q1, Q2)  # 489871 100704
+print(Q1, Q2)  # 539936 100704
 

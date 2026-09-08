@@ -22,6 +22,7 @@
 ⌛
 √
 """
+import math
 
 # Total Many 🍒🍒🍒
 # print((545_000 - 288_670 - 110_000 - 43_000) + (18_000 - 85_640))  # 35_690  дебет на 31.05
@@ -30,7 +31,8 @@
 # print((494_000 + 200 - 288_159 - 110_000 - 43_000) - 81_487)  # -28_446  дебет на 20.07
 # print((513_000 + 330 - 297_070 - 110_000 - 43_000) - 81_487)  # -18_227  дебет на 31.07
 # print((385_000+150_000 + 580 - 295_745 - 110_000 - 43_000) - 81_487)  # 5_348  дебет на 15.08
-
+# print((363_000+150_000 + 108 - 291_618 - 110_000 - 43_000) - 74_617)  # -6_127  дебет на 31.08
+# exit()
 
 """"""
 # ЕГЭ Информатика 2026 | Полный Курс
@@ -56,14 +58,14 @@ from math import dist
 ⌛ конъюнкция
 """
 
-from itertools import *
-from turtle import *
-from math import ceil, log2
-from ipaddress import *
-from functools import lru_cache
-from fnmatch import *
-from math import dist
-from re import *
+# from itertools import *
+# from turtle import *
+# from math import ceil, log2
+# from ipaddress import *
+# from functools import lru_cache
+# from fnmatch import *
+# from math import dist
+# from re import *
 
 
 
@@ -73,7 +75,7 @@ from re import *
 # print(*'12345678')
 # s = 'abcdefgh'
 # g = 'af fh hc cb bd dg ga gf eb ed eh'.split()
-# t = '234 157 147 138 268 58 23 456'.split()
+# t = '234 157 147 138 268 58 13_(23) 456'.split()
 # for p in permutations(s):
 #     if all(str(p.index(a) + 1) in t[p.index(b)] for a, b in g):
 #         print(*p)
@@ -94,7 +96,7 @@ from itertools import *
 #                 print(''.join(p))
 
 """ 05 """
-# 9774 Основная волна 20.06.23 (Уровень: Средний)
+# 9774 Основная волна 20.06.13_(23) (Уровень: Средний)
 # def f(n, b=9):
 #     r = ''
 #     while n:
@@ -154,7 +156,7 @@ from itertools import *
 """ 07 """
 # from math import ceil, log2
 # for add in range(10000):
-#     if (ceil(9 * 4 / 8) + add) * 23 == 713:
+#     if (ceil(9 * 4 / 8) + add) * 13_(23) == 713:
 #         print(add)
 #         break
 
@@ -307,8 +309,8 @@ from itertools import *
 # from string import printable as alf
 # for x in alf[:24][::-1]:
 #     n = int(f'4m{x}f', 24) + int(f'265afdn{x}', 24)
-#     if not n % 23:
-#         print(n // 23)
+#     if not n % 13_(23):
+#         print(n // 13_(23))
 #         break
 
 # from string import printable as alf
@@ -443,7 +445,7 @@ from itertools import *
 
 """ 22 """
 
-""" 23 """
+""" 13_(23) """
 # def f(a, b, c=0):
 #     c += a == 8
 #     if a < b:
@@ -819,26 +821,15 @@ from statistics import mean
 # print(MX)
 
 
-# variant
-# https://stepik.org/lesson/1323132/step/5?unit=1340050
 
-# c = 0
-# for n in range(1, 1000):
-#     b = f'{n:b}'
-#     b += ('00', '10')[n % 2]
-#     b += ('0', '1')[b.count('1') % 2]
-#     c += 130 <= int(b, 2) <= 350
-# print(c)
-
-# res = 0
-# for n in range(1, 10000):
-#     b = f'{n:b}'
-#     for _ in range(2):
-#         b += str(b.count('1') % 2)
-#     r = int(b, 2)
-#     if r <= 71:
-#         res = max(res, r)
-# print(res)
+""""""
+"""
+course_124915
+task_**_124915
+task **
+https://stepik.org/course/124915/syllabus
+ЕГЭ по информатике 2027 :: Годовой курс
+"""
 
 
 """"""
@@ -850,31 +841,15 @@ https://stepik.org/course/72713/syllabus
 Подготовка к ЕГЭ по информатике
 """
 
+# https://stepik.org/course/72713/syllabus
+# https://stepik.org/course/122969/syllabus
+
+# f = open('27.txt').readline()
+
+
+# https://stepik.org/lesson/1340078/step/11?unit=1356036
+# 12931 PRO100 ЕГЭ 26.01.24(Уровень: Базовый)
+f = open('24.txt').readline()
 
 
 
-# https://stepik.org/lesson/2226020/step/7?unit=2259762
-
-# 5494 (Уровень: Средний) 🌶️🌶️
-def f(st, en, w='--'):
-    if st > en:
-        return 0
-    if st == en:
-        return 1
-    return ((f(st+1, en, w+'+') if w[-2:] != '++' else 0) + 
-            (f(st*2, en, w+'*') if w[-2:] != '**' else 0))
-print(f(1, 16))  # 101
-
-# variant
-def f(st, en, prev='', c=0):
-    if st > en: 
-        return 0
-    if st == en: 
-        return 1
-    res = 0  # ✅ переменная для хранения количества путей
-    if prev != '1' or c < 2:  # если предыдущая команда не 1, или 1 не было уже дважды подряд
-        res += f(st+1, en, '1', c+1 if prev=='1' else 1)  # выполняем команду 1
-    if prev != '2' or c < 2:  # если предыдущая команда не 2, или 2 не было уже дважды подряд
-        res += f(st*2, en, '2', c+1 if prev=='2' else 1)  # выполняем команду 2
-    return res  # ✅ возвращаем общее количество путей
-print(f(1, 16))  # 101

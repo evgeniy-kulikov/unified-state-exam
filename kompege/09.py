@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-5627 6262 8467 8475 9696
+5627 6262 8467 8475 9696 9832 
 11946 12795 16375 17550
 23747
 """
@@ -62,6 +62,16 @@ for s in open('9_9696.txt'):
 print(c)  # 125
 
 
+# 9832 Основная волна 27.06.13_(23)(Уровень: Средний)
+f = open("09.txt").readlines()
+for d in f:
+    d = [*map(int, d.split())]
+    mx = max(d)
+    a =  [i for i in d if d.count(i)==2]
+    b =  len([i for i in d if d.count(i)==1]) == 3
+    if len(a)==4 and b and mx not in a:
+        print(sum(d))  # 261
+        break
 
 
 # 11946 (Уровень: Средний)

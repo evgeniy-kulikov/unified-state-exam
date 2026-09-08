@@ -248,7 +248,7 @@ print([s for s in range(31, 200) if f(s, 4) and not f(s, 2)][0])  # 132
 # 22  12
 
 
-# 23
+# 13_(23)
 def f(st, end):
     if st < end or st == 7:
         return 0

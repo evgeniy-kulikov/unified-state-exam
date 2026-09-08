@@ -84,7 +84,7 @@
 #         print(i)
 #         break
 
-from ipaddress import *
+# from ipaddress import *
 # for m in range(32,0,-1):
 #     net = ip_network(f'203.155.64.98/{m}', 0)
 #     if str(net.network_address) == '203.155.64.0':
@@ -195,62 +195,36 @@ from ipaddress import *
 #         print(res)
 # print(res)
 
-
 # 111 (Уровень: Сложный) 🌶️
 # from functools import *
 # @lru_cache(None)
 
 
 
+# 123
+f = open('add/26/26_31370.txt')
+# data collection
+# answer 1
+# answer 2
 
-# 31163 Основная волна 19.06.26 (Уровень: Базовый) 🌶️
-from math import dist
 
-def get_clust(p:list):
-    clust = [i for i in data if dist(p[:2], i[:2]) < 1]
-    [data.remove(i) for i in clust]
-    next_clust = [get_clust(i) for i in clust]
-    [clust.extend(i) for i in next_clust]
-    return clust
 
-def get_center(ls:list):
-    res = []
-    for p in ls:
-        sm = sum(dist(p[:2], i[:2]) for i in ls)
-        res.append([sm, p])
-    return min(res)[1]
 
-for w in 'AB':
-    f = open(f'add/27/31163_27_{w}.txt')
-    data = [i.replace(',', '.').split() for i in f]
-    data = [[*map(float, i[:2])] + [i[2]] for i in data]
-    # print(len(data), end=' = ')
-    clusters = []
-    while data:
-        p = data.pop()
-        clust = get_clust(p) + [p]
-        clusters.append(clust)
-    # print(sum(len(i) for i in clusters))
-    # [print(len(i)) for i in clusters]
-    centers = [get_center(i) for i in clusters]
-    if w == 'A':
-        a1 = 10**10
-        for clu, cen in zip(clusters, centers):
-            d = min(dist(cen[:2], i[:2]) for i in clu if i[2][0] + i[2][2:] == 'KIII')
-            a1 = min(a1, d)
-        a1 = int(a1 * 10_000)
-        a2 = int(sum(dist((-1, -2), i[:2]) for i in centers) * 10_000)
-        print(a1, a2)
-    else:
-        b = [(sum(i[2][0] + i[2][2:] == 'KIII' for i in cl), idx) for idx, cl in enumerate(clusters)]
-        b = centers[min(b)[1]]
-        b1 = int(abs(b[0]) * 10_000)
-        b2 = int(abs(b[1]) * 10_000)
-        print(b1, b2)
-"""
-765 173445
-15800 35517
-"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

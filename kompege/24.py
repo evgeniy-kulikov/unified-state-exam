@@ -301,7 +301,7 @@ s = s.replace('FAAF', 'FAA AAF').split()
 print(len(max(s, key=len)))  # 599
 
 
-# 6029 ФИПИ 03.02.23 (Уровень: Базовый)
+# 6029 ФИПИ 03.02.13_(23) (Уровень: Базовый)
 s = open('add/24/24_6029.txt').read()
 s = s.replace('D', ' ')
 s = s.replace('EE', 'E E').replace('EE', 'E E')  # EEEEEE >> E EE EE E >> E E E E E E
@@ -390,7 +390,7 @@ for i in range(1, len(s)):
 print(res)  # 57
 
 
-# 9753 Основная волна 19.06.23 (Уровень: Сложный)
+# 9753 Основная волна 19.06.13_(23) (Уровень: Сложный)
 s = open('24_9753.txt').read().strip()
 res = c = l = 0
 for r in range(len(s)):
@@ -409,7 +409,7 @@ for i in range(len(s) - Y):
 print(res)  # 244
 
 
-# 9791 Основная волна 20.06.23 (Уровень: Средний)
+# 9791 Основная волна 20.06.13_(23) (Уровень: Средний)
 # Ничего не сказано, про отсутствие незначащих нулей
 from re import *
 s = open('24_9791.txt').read()
@@ -425,7 +425,7 @@ for i in alf[6:]:
 print(len(max(f.split(), key=len)))  # 21
 
 
-# 9845 Основная волна 27.06.23 (Уровень: Базовый)
+# 9845 Основная волна 27.06.13_(23) (Уровень: Базовый)
 s = open('24_9845.txt').read()
 s = s.replace('B', 'A').replace('C', 'A').replace('9', '8')
 while 'AA' in s or '88' in s:
@@ -491,7 +491,7 @@ print(res)
 
 
 
-# 12254 ЕГКР 16.12.23 (Уровень: Базовый)
+# 12254 ЕГКР 16.12.13_(23) (Уровень: Базовый)
 s = open('24_12254.txt').readline().replace('RSQ', '*')
 c = res = 2
 for i in range(2, len(s)):
@@ -753,7 +753,7 @@ for r in range(len(s)):
         res = max(res, r-l+1)
 print(res)  # 2981
 
-# variant 2 (~ 23 sec)
+# variant 2 (~ 13_(23) sec)
 s = open('24_23762.txt').read()
 m = 1
 for l in range(len(s)):

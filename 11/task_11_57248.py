@@ -56,7 +56,7 @@ print(I_add)  # 76 byte
 # https://stepik.org/lesson/444909/step/10?unit=435076
 from math import log2, ceil
 I_psw = ceil(15 * ceil(log2(10 + 52)) / 8)  # 12 byte
-print(700/20 - I_psw)  # 23 byte
+print(700/20 - I_psw)  # 13_(23) byte
 
 
 # https://stepik.org/lesson/444909/step/11?unit=435076

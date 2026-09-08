@@ -205,7 +205,7 @@ def f(a, b, mv, w=eval('all')):
         return any(g)
     return w(g)
 
-print([s for s in range(1, 90) if f(s, 5, 2, eval('any'))][0])  # 23
+print([s for s in range(1, 90) if f(s, 5, 2, eval('any'))][0])  # 13_(23)
 print(*[s for s in range(1, 90) if f(s, 5, 3) and not f(s, 5, 1)][-2:])  # 37 44
 print([s for s in range(1, 90) if f(s, 5, 4) and not f(s, 5, 2)][0])  # 36
 

@@ -253,7 +253,7 @@ print(*[i for i in range(1, 129) if f(i, 4) and not f(i, 2)])  # 62
 
 # 22  02_Demo/add/22_2024.xls
 
-# 23
+# 13_(23)
 def f(st, en):
     if st > en or st == 11: return 0
     if st == en: return 1

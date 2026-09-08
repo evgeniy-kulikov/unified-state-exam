@@ -69,12 +69,12 @@ for p in permutations('ABCDEFGH'):
 # https://stepik.org/lesson/1599363/step/2?unit=1621007
 from itertools import permutations
 g = 'CH HB BE EA AF FC AB CG GD DH'.split()
-t = '248 157 456 136 23 34 28 17'.split()
+t = '248 157 456 136 13_(23) 34 28 17'.split()
 print(*'12345678')
 for p in permutations('ABCDEFGH'):
     if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
         print(*p)
 # 1 2 3 4 5 6 7 8
 # H C A B F E G D
-# C>G = 21  H>B=2   23
+# C>G = 21  H>B=2   13_(23)
 

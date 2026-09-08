@@ -127,7 +127,7 @@ for n in range(6, 20):
 
 
 
-""" 7.23 ЕГЭ Тренировка 14 """
+""" 7.13_(23) ЕГЭ Тренировка 14 """
 # https://stepik.org/lesson/797045/step/1?auth=login&unit=799874
 # Хорошая задачка по условию!
 a = '0123456789abcdefg'
@@ -146,7 +146,7 @@ from string import printable as p
 res = []
 for x in p[:22]:
     for y in p[:13]:
-        r = int(f'{x}23{x}5', 22) - int(f'67{y}9{y}', 13)
+        r = int(f'{x}13_(23){x}5', 22) - int(f'67{y}9{y}', 13)
         if not r % 57:
             res.append([int(f'{x}', 22) + int(f'{y}', 13), r // 57])
 res.sort()
@@ -158,7 +158,7 @@ if res: print(res[0][-1])  # -2897  ...но принимается 25871
 from string import printable as p
 for x in p[:11]:
     for y in p[:11]:
-        r = int(f'7{y}23{x}5', 25) + int(f'67{x}9{y}', 11)
+        r = int(f'7{y}13_(23){x}5', 25) + int(f'67{x}9{y}', 11)
         if not r % 131:
             print(r // 131)  # 552647
 

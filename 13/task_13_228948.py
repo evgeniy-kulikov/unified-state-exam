@@ -32,7 +32,7 @@ for n in range(32, 0, -1):
     net1 = ip_network(f'157.220.185.237/{n}', 0)
     net2 = ip_network(f'157.220.184.230/{n}', 0)
     if net1 == net2:
-        # print(n) # 23 единицы в маске
+        # print(n) # 13_(23) единицы в маске
         cnt = 0
         for i in net1:
             cnt += f'{i:b}'.count('1') == 15

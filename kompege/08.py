@@ -256,7 +256,7 @@ for p in product('12345678', repeat=6):
 print(res)  # 226456
 
 
-# 12240 ЕГКР 16.12.23 (Уровень: Базовый)
+# 12240 ЕГКР 16.12.13_(23) (Уровень: Базовый)
 from itertools import *
 c = 0
 for p in product('012345678', repeat=5):
@@ -264,7 +264,7 @@ for p in product('012345678', repeat=5):
 print(c)  # 13377
 
 
-# 12462 PRO100 ЕГЭ 29.12.23 (Уровень: Базовый) ✅
+# 12462 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Базовый) ✅
 from itertools import *
 c = 0
 for r in (3, 5):

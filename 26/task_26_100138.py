@@ -107,7 +107,7 @@ else:
     tail = size - sm
     add = [i for i in ls if i <= tail]
     max_fl = max(add)
-    print(cnt + 1, max_fl)  # 62 23
+    print(cnt + 1, max_fl)  # 62 13_(23)
 
 
 # https://stepik.org/lesson/666350/step/16?unit=664353

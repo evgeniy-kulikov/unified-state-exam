@@ -254,7 +254,7 @@ print(len(res),  min(res))  # 15 6410
 
 """ 17.3 Задание 17 | Задачи прошлых лет """
 # https://stepik.org/lesson/1698039/step/1?unit=1721421
-# https://kompege.ru/task   № 9748 Основная волна 19.06.23 (Уровень: Средний)
+# https://kompege.ru/task   № 9748 Основная волна 19.06.13_(23) (Уровень: Средний)
 cnt = res = 0
 ls = [*map(int, open('add/course_233165/17_3_01.txt'))]
 MX = max(i for i in ls if i % 100 == 15)

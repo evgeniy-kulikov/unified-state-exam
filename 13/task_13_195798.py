@@ -189,7 +189,7 @@ for n in range(32,0,-1):
         break
 
 
-""" 23.5 Закрепление (ч. 2) """
+""" 13_(23).5 Закрепление (ч. 2) """
 # https://stepik.org/lesson/1227732/step/3?unit=1241247
 from ipaddress import *
 c = 0

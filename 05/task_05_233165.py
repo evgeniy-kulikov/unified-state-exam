@@ -75,7 +75,7 @@ print(res)  # 120
 
 
 # https://stepik.org/lesson/1650989/step/8?unit=1673691
-# https://kompege.ru/task   № 5358 Новогодний вариант 2022/23 (Уровень: Средний)
+# https://kompege.ru/task   № 5358 Новогодний вариант 2022/13_(23) (Уровень: Средний)
 for n in range(6, 1000):
     b = f'{n:b}'
     if b[:3].count('1') % 2:
@@ -88,7 +88,7 @@ for n in range(6, 1000):
 
 
 # https://stepik.org/lesson/1650989/step/8?unit=1673691
-# https://kompege.ru/task   № 5358 Новогодний вариант 2022/23 (Уровень: Средний)
+# https://kompege.ru/task   № 5358 Новогодний вариант 2022/13_(23) (Уровень: Средний)
 for n in range(6, 1000):
     b = f'{n:b}'
     if b[:3].count('1') % 2:
@@ -204,7 +204,7 @@ for n in range(1, 1000):
 
 """ 5.3 Задание 5 | Урок 3 """
 # https://stepik.org/lesson/1667484/step/1?unit=1690472
-# https://kompege.ru/task   № 9828 Основная волна 27.06.23 (Уровень: Средний)
+# https://kompege.ru/task   № 9828 Основная волна 27.06.13_(23) (Уровень: Средний)
 def cv(n):
     r = ''
     while n:
@@ -226,7 +226,7 @@ for n in range(1000, 0, -1):
 
 """ 5.4 Задание 5 | Задачи прошлых лет """
 # https://stepik.org/lesson/1650990/step/1?unit=1673692
-# https://kompege.ru/task   № 9736 Основная волна 19.06.23 (Уровень: Базовый)
+# https://kompege.ru/task   № 9736 Основная волна 19.06.13_(23) (Уровень: Базовый)
 res = 0
 for n in range(100):
     r = f'{n:b}'

@@ -185,7 +185,7 @@ def f(a, b):
 print(f(1, 344))  # 77
 
 """
-1-23  02:33:00
+1-13_(23)  02:33:00
 """
 
 
@@ -203,8 +203,8 @@ print(max([res1, res2, res3])//2)  # 151
 
 # https://stepik.org/lesson/703201/step/8?unit=703534
 from fnmatch import *
-# for n in range(0, 10**9, 23):  # долго
-# for n in range(0, 123459798, 23):
+# for n in range(0, 10**9, 13_(23)):  # долго
+# for n in range(0, 123459798, 13_(23)):
 for n in range(12345078 // 23 * 23, 123459798, 23):
     if fnmatch(str(n), '12345?7*8'):
         print(n, n // 23)

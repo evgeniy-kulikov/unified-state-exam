@@ -167,7 +167,7 @@ for p in permutations(head):
 # 1 2 3 4 5 6 7
 # B G D E F A C
 # F D G E B C A
-# 23 answer
+# 13_(23) answer
 
 
 # https://stepik.org/lesson/1339536/step/2?unit=1355230

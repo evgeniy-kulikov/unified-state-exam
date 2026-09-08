@@ -402,7 +402,7 @@ for p in product('012345678', repeat=5):
 print(c)  # 8880
 
 
-""" 23.4 Закрепление (ч. 1) """
+""" 13_(23).4 Закрепление (ч. 1) """
 # https://stepik.org/lesson/1227731/step/8?unit=1241246
 from itertools import permutations, product
 c = 0
