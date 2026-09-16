@@ -80,4 +80,13 @@ for p in (permutations(range(10), 6)):
 print(c) # 1296
 
 
-
+# https://stepik.org/lesson/546210/step/10?unit=539831
+from itertools import product
+c = 0
+for p in product('yoa', repeat=6):
+    c += 1
+    if ''.join(p) == 'oyyyoo':
+        print(c)  # 248
+        break
+# smart solution
+print(int("100011", 3) + 1)  # 248

@@ -27,3 +27,35 @@ from functools import reduce
 from operator import mul
 
 res = reduce(mul, [2, 3, 4])  # 24
+
+
+""" Создание словаря для подсчета значений """
+
+from collections import Counter  # аналог dict()
+f = [1, 1, 5, 5, 2, 'a', 'a', 'a']
+d = Counter(f)
+print(d.most_common()) # [('a', 3), (1, 2), (5, 2), (2, 1)]
+print(d.most_common(1)) # [('a', 3)]
+
+
+D = dict()
+for i in f:
+    D.setdefault(i, 0)
+    D[i] += 1
+D = sorted((v, k) for k, v in d.items())
+print(D)  # [(1, 2), (2, 1), (2, 5), (3, 'a')]
+print(D[-1])  # (3, 'a')
+
+
+f = open('26.txt').read().splitlines()  # получить список строк без \n
+
+
+# Классическая матрешка (коробки, трубы и т.д.)
+d = [43, 40, 40, 32, 30]
+cur, cnt = d[0], 1
+dif = 3
+for i in d:
+    if cur - i >= dif:
+        cnt += 1
+        cur = i
+print(cnt, cur)  # 3 32

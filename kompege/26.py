@@ -2,10 +2,10 @@
 """
 225 507 788 889 954 
 1304 1395 1868
-2149 2612 2613 2614 3664
-4205(=7274) 4604(=4712) 4629 4660 4712 6800 7096
+2149 2362 2480 2612 2613 2614 2652 2686 3664
+4205(=7274) 4604(=4712) 4629 4660 4712=(4604) 5066 5228 5643 6800 7096
 10107 11681 12256 13394 15341 17537 17643 17881 19256
-21598 21719 21910(=21424) 23765 27779
+21598 21719 21910(=21424) 23208 23765 27779
 31370 31520 
 """
 
@@ -200,6 +200,60 @@ for i in range(len(p) - 1, 0, -1):  # ищем макс. большую посл
         break
 
 
+# 2362 Сборник ЕГЭ Ушакова 2022(Уровень: Базовый)
+f = open('26.txt').readlines()  # получить список строк без \n
+N, S = map(int, f[0].split())
+d = dict()
+for i in f[1:]:
+    k, v = map(int, i.split())  # k - тип, v - цена
+    d.setdefault(k, [])
+    d[k].append(v)
+cnt = SM = 0
+for k, v in d.items():
+    v.sort()
+    rub = 0
+    for i in v:
+        if rub + i <= S:
+            rub += i
+            cnt += 1
+            SM += i  # ❗❗❗ Постоянно добавляем. Возможно что вся партия будет дешевле "S"
+        else:
+            break
+print(cnt, SM)  # 609 31303
+
+
+
+# 2480 Сборник ЕГЭ Ушакова 2022(Уровень: Базовый)
+f = open('add/26/26_2612.txt').readlines()
+d = sorted([*map(int, i.split())] for i in f[1:])
+res = [d[0]]
+for a1, a2 in d:
+    b1, b2 = res[-1]
+    if b2 >= a1:
+    # if b1 <= a2 and b2 >= a1: # лишние проверки
+        # res[-1][0] = min(a1, b1) # лишние проверки
+        res[-1][1] = max(a2, b2)
+    else:
+        res += [[a1, a2]]
+sm = sum(b-a for a, b in res)
+print(len(res), sm)  # 1226 822094
+
+# Решение через список
+f = open("add/26/26_2480.txt")
+next(f)
+a = [0] * 2_000_000
+cnt = 0
+for el in f:
+    x, y = map(int, el.split())
+    for i in range(x, y):
+        a[i] = 1  # ставим '1' по длине проблемного участка
+for i in range(2_000_000 - 1):
+    if a[i] == 1 and a[i + 1] == 0:  # Граница перехода между '1' (конец пробл. уч-ка) и '0'
+        cnt += 1  # добавляем участок
+print(cnt, sum(a))  # 1226 822094
+
+
+
 # 2612 (Уровень: Базовый)
 from statistics import mean
 f = open('add/26/26_2612.txt').readlines()
@@ -208,7 +262,7 @@ d = [*map(int, f[1:])]
 d.sort(reverse=True)
 top = d[:m]
 tail = d[m:]
-half = 0  # отсутствие полупроходного балла
+# print(top[-1], tail[0])  # Визуальное наличие полупроходного балла
 if top[-1] == tail[0]:  # наличие полупроходного балла
     half = top[-1]
 a = top[-top.count(half) - 1]  # минимальный балл гарантируемого прохода
@@ -266,6 +320,46 @@ for i in range(len(book) - 1, 0, -1):
     if sm + book[i] <= s:
         print(c, book[i])  # 398 273
         break
+
+
+# 2652 Сборник ЕГЭ Ушакова 2022(Уровень: Базовый)
+# есть штрихкоды типа 00123 и 123 - ведущие нули убрать
+f = open('add/26/26_2652.txt').readlines()
+f = [*map(int, f[1:])]
+d = dict()
+for i in f:
+    d.setdefault(i, 0)
+    d[i] += 1
+D = sorted((v, k) for k, v in d.items())
+print(len(D), D[-1][0])  # 108 383
+
+
+# аналог dict()
+from collections import Counter
+f = open('26.txt').readlines()
+d = Counter(map(int, f[1:]))
+print(len(d), d.most_common(1)[0][1])  # 108 383
+
+
+# 2686 Пробный 02.2022 /dev/inf Base level(Уровень: Базовый)
+f = open('26.txt').readlines()
+d = dict()
+for i in f[1:]:
+    r, s = map(int, i.split())
+    d.setdefault(r, [])
+    d[r].append(s)
+D = sorted([k, sorted(v, reverse=True)] for k, v in d.items())
+for el in D:
+    k, v = el
+    cnt = 1
+    for a, b in zip(v, v[1:]):
+        if a - b == 1:
+            cnt += 1
+            if cnt == 5:
+                print(k, a + 3)  # 2022 1239
+                exit()
+        else:
+            cnt = 1
 
 
 # 3664 (Уровень: Базовый)
@@ -341,6 +435,71 @@ for i in range(0, n, 4):
     user += sum(d[i:i+3]) + d[i+3] / 2
 store = sum(i for i in d[:-n//4]) + sum(i / 2 for i in d[-n//4:])
 print(int(user), int(store))  # 44101521 48825239
+
+
+# 5066 (Уровень: Базовый)
+f = open('add/26/26_5066.txt').readlines()
+d = sorted([*map(int, f[1:])], reverse=True)
+res = []
+while d:
+    cnt = 1
+    # cur = d[0]
+    # d[0] = 0
+    cur, d[0] = d[0], 0
+    for i in range(1, len(d)):
+        if cur - d[i] >= 7:
+            cnt += 1
+            # cur = d[i]
+            # d[i] = 0
+            cur, d[i] = d[i], 0
+    res.append(cnt)
+    d = [i for i in d if i]
+print(len(res), max(res))  # 23 1306
+
+
+
+# 5228 (Уровень: Базовый)
+f = open('add/26/26_5228.txt').readlines()
+d = sorted(map(int, f[1:]), reverse=True)
+res = [d[0]]
+for i in d[1:]:
+    if res[-1] - i >= 8:
+        res.append(i)
+print(len(res), res[-1])  # 369 123
+
+
+
+# 5643 (Уровень: Средний) ❓❓❓ словие полный бред! Задачу никому не предлагать!!!
+# https://www.youtube.com/watch?v=tzQWZxfOrQY&t=12090s
+f = open('26_5643.txt').readlines()
+N, M = map(int, f[0].split()) # кол-во коробок, кол-во замочков
+box = []  # коробки
+lock = set()  # замки
+cnt = 1
+res = []
+for el in f[1:]:
+    if len(el.split()) == 2:
+        b, l = map(int, el.split())
+        box.append(b)
+        lock.add(l)
+    else:
+        box.append(int(el))
+box.sort(reverse=True)
+box = [i for i in box if i in lock]
+for i in box:
+    if not i % 2:  # ❓❓❓ находим большую стартовую СИНЮЮ (КРАСНУЮ ???) коробку
+        res.append(i)
+        break
+
+for b in box:  # находим кол-во подходящих коробкок и последнюю меньшую
+    if res[-1] - b >= 9 and b in lock and res[-1] % 2 != b % 2:
+        res.append(b)
+
+if not res[-1] % 2:  # последняя коробка должна быть красной ❓❓❓
+    print(len(res), res[-1]) # 354 233
+else:
+    print(len(res)-1, res[-2])  # 353 242 (верно)
+
 
 
 # 6800 (Уровень: Средний) 🌶️🌶️🌶️🌶️🌶️
@@ -613,6 +772,25 @@ for i in d:
         cnt += 1
         cur = i
 print(cnt, cur)  # 1040 57
+
+
+#  23208 Основная волна 10.06.25(Уровень: Базовый)
+f = open('add/26/26_23208.txt').readlines()
+N = int(f[0])
+f = [[*map(int, k.split())] + [i] for i, k in enumerate(f[1:], 1)]
+f = [[(1, 0)[i[0] < i[1]]] + i for i in f]  # 0, 1  шлифовка / окрашивание
+grind = sorted(i for i in f if not i[0])
+color =  sorted([i for i in f if i[0]], key=lambda x: -x[2])
+# финишный анализ глазами
+print(grind[-1], 'последняя шлифовка')
+print(color[0], 'последняя окраска')
+"""
+[0, 90948, 93066, 568] последняя шлифовка
+[1, 96995, 96881, 503] последняя окраска
+"""
+print(color[0][-1], len(grind))  # последняя деталь - это окраска
+# 503 478
+
 
 
 # 23765 Демоверсия 2026 (Уровень: Базовый)
