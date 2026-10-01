@@ -8,6 +8,7 @@ all from https://kompege.ru/task
 """
 
 
+
 """ 17.1 Задание 17 | Урок 1 """
 # https://stepik.org/lesson/1698037/step/3?unit=1721419
 # https://kompege.ru/task   № 2003 (Уровень: Базовый)

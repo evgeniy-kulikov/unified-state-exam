@@ -69,14 +69,19 @@ print()
 # 1a 2a 3a 1b 2b 3b 1c 2c 3c
 # 1a 2a 3a 1b 2b 3b 1c 2c 3c
 
+
+# Найти что-то между разными кластерами для любого кол-ва кластеров: range(len(<список кластеров>))
+from itertools import *
+res = {frozenset(p) for p in permutations(range(3), 2)}  # {frozenset({0, 1}), frozenset({0, 2}), frozenset({1, 2})}
+d = [list(i) for i in res]  # [[0, 1], [0, 2], [1, 2]]
+
+
+
+
 """
 y = k*x + b
-
 (x - x1) / (x2 - x1) == (y - y1) / (y2 - y1)
-
 (x - x1) * (y2 - y1) == (y - y1) * (x2 - x1)
-
-
 
 Построение линейных графиков
 y = x
@@ -93,7 +98,6 @@ y = 0.2 * x
 
 Коэффициент k вычисляется по формуле:
 k = (y2 - y1) / (x2 - x1)
-
 
 находим коэффициент b:
 y = x * k + b   -->  b = y - x * k

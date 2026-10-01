@@ -6,8 +6,10 @@ https://stepik.org/course/228948
 """
 
 
+
 """ 2.5 тест № 2 (продолжение) """
 # https://stepik.org/lesson/1599364/step/3?unit=1621008
+# 17679 Пересдача 04.07.24(Уровень: Базовый)
 # pic/001
 from functools import lru_cache
 import sys
@@ -20,11 +22,21 @@ def F(n):
 print((F(2024)/7 - F(2023))/F(2022))  # НЕ ПОЛУЧАЕТСЯ !!!
 
 # А ТАК ПРОХОДИТ !!!
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return (n - 1) * f(n - 1)
+
+[f(i) for i in range(1, 2025)]
+print((f(2024) // 7 - f(2023)) // f(2022))
 # Решение через списки (обход проблемы губины рекурсии)
 d = [1] * 2040
 for n in range(2, 2030):
     d[n] = (n - 1) * d[n - 1]  # наполняем список значениями
 print((d[2024] // 7 - d[2023]) / d[2022])  # 582336
+
 
 
 # https://stepik.org/lesson/1609596/step/3?unit=1631352

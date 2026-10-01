@@ -29,7 +29,9 @@ for x in range(-3,23):
 done()  # 44
 
 
-# https://stepik.org/lesson/1220762/step/3?unit=12341554155
+
+# https://stepik.org/lesson/1220762/step/3?unit=1234155
+# 7694 (Уровень: Базовый)
 from turtle import *
 tracer(0)
 lt(90)
@@ -56,10 +58,11 @@ for x in range(-5, 50):
     for y in range(-5, 30):
         goto(x*k, y*k)
         dot('red') if not x*y else dot()
-done()  #91
+done()  # 91
 
 
 # https://stepik.org/lesson/1220762/step/4?unit=1234155
+# 6038 ФИПИ 04.02.23(Уровень: Базовый)
 from turtle import *
 tracer(0)
 lt(90)

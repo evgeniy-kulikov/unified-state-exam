@@ -13,6 +13,13 @@ for p in permutations('abcdefgh'):
     if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
         print(*p)
 print(34 + 11)  # 45
+"""
+1 2 3 4 5 6 7 8
+f c g e d a h b
+45
+"""
+
+
 
 # 02
 from itertools import *
@@ -81,10 +88,18 @@ print(4*21 + 17*9 - 9*4)  # 201
 from math import ceil
 I1 = ceil(1920 * 1080 * 23 / 8)
 I2 = ceil(1280 * 1024 * 21 / 8)
-print(((I1 - I2) / 1024) * 120)  # 295425
+print(int(((I1 - I2) / 1024) * 120))  # 295425
 
 
 # 08
+from itertools import *
+c = res = 0
+for p in product(sorted('теория'), repeat=6):
+    c += 1
+    if p[0] not in 'ртя' and p.count('и') >= 2 and c % 2:
+        res = c
+print(res)  # 23159
+
 from itertools import *
 c = res = 0
 for p in product('123456', repeat=6):
@@ -166,10 +181,29 @@ for x in range(1, 10**7):
     if y1 >= 0:
         a.append(min(x, y1))
     elif y2 >= 0:
-        a.append((min(x, y2)))
+        a.append(min(x, y2))
     if a:
         res.append(min(a))
 print(max(res) + 1)  # 206942
+
+# Замена задачи
+# 25279 (Уровень: Базовый)
+# kompege/add/15/25279.gif
+def f(x):
+    p = 66 <= x <= 67
+    q = 32 <= x <= 125
+    t = 30 <= x <= 491
+    a = a1 <= x <= a2
+    return a or p or not q or not t
+
+res = []
+for a1 in range(25, 500):
+    for a2 in range(a1, 500):
+        if a1 < a2 and all(f(x) for x in range(25, 500)):
+            res.append((a2 - a1, (a1, a2)))
+res.sort()
+print(min(res)[0])  # 93  (32, 125)
+
 
 
 # 16
@@ -193,7 +227,7 @@ for a, b in zip(d, d[1:]):
     if sum(len(str(abs(i)))==3 for i in[a, b]) == 1:
         if (a + b) % M == 0:
             c += 1
-            mn = min(mn, (a+b))
+            mn = min(mn, a + b)
 print(c, mn)  # 9 107
 
 

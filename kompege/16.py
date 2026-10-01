@@ -1,8 +1,8 @@
 """ https://kompege.ru/task """
 """
-593=724 699 
-1594 4740 6911 8474 8561
-10659 17557
+593=724 699 8561
+1594 4739 4740 4741 6911 8426 8474 8561
+10659 17557 17679
 23562 25355 25397
 """
 
@@ -39,6 +39,20 @@ def f(n):
 print(f(84))  # 148176
 
 
+# 8561 (Уровень: Базовый)
+def f(n):
+    if n <= 1:
+        return n
+    if n % 3:
+        return g(n - 3)
+    return f(n - 1) + f(n  -2) + 1
+
+def g(n):
+    if n > 100:
+        return n
+    return g(n + 2) + 1
+print(f(15) + f(12))  # 593
+
 
 
 # 1594 (Уровень: Средний)
@@ -54,6 +68,16 @@ def f(n):
 print(sum(map(int, str(f(18)))))  # 46
 
 
+# 4739 (Уровень: Средний)
+def f(n):
+    if n > 10_000:
+        return n - 10_000
+    return f(n + 1) + f(n + 2)
+
+# (f(10) - f(12)) // f(11) == 1
+print(f(12_345) + f(10_101))  # 2446
+
+
 # 4740 (Уровень: Средний)
 from math import factorial
 from functools import lru_cache
@@ -67,6 +91,15 @@ def f(n):
 print(1000*f(7) // f(4))  # 26250
 
 
+# 4741 (Уровень: Средний)
+def f(n):
+    if int(n**0.5) == n**0.5:
+        return int(n**0.5)
+    return f(n + 1) + 1
+
+print(f(4850) + f(5000))  # 232
+
+
 # 6911 (Уровень: Базовый)
 def f(n):
     if not n:
@@ -75,6 +108,20 @@ def f(n):
         return 1 + f(n - 1)
     return f(n // 2) - 1
 print(sum(not f(n) for n in range(1000)))  # 41
+
+
+# 8426 (Уровень: Средний)
+def f(n):
+    if n > 1_000_000:
+        return n
+    return n + f(2 * n)
+
+c = 0
+m = f(2_000) / 2_000
+for i in range(1, 10_001):
+    if f(i) / i == m:
+        c += 1
+print(c)  # 1953
 
 
 # 8474 (Уровень: Базовый)
@@ -105,8 +152,6 @@ def g(n):
 print(f(15) + f(12))  # 593
 
 
-
-
 # 10659 (Уровень: Средний)
 from functools import lru_cache
 @lru_cache
@@ -133,6 +178,33 @@ def f(n):
 print((f(2024) // 16 - f(2023)) // f(2022))  # 1019592
 
 
+# 17679 Пересдача 04.07.24(Уровень: Базовый)
+# pic/001
+from functools import lru_cache
+import sys
+sys.setrecursionlimit(9000)
+@lru_cache(5000)
+def F(n):
+    if n == 1:
+        return 1
+    return (n - 1) * F(n - 1)
+print((F(2024)/7 - F(2023))/F(2022))  # НЕ ПОЛУЧАЕТСЯ !!!
+
+# А ТАК ПРОХОДИТ !!!
+from functools import lru_cache
+@lru_cache()
+def f(n):
+    if n == 1:
+        return 1
+    return (n - 1) * f(n - 1)
+
+[f(i) for i in range(1, 2025)]
+print((f(2024) // 7 - f(2023)) // f(2022))
+# Решение через списки (обход проблемы губины рекурсии)
+d = [1] * 2040
+for n in range(2, 2030):
+    d[n] = (n - 1) * d[n - 1]  # наполняем список значениями
+print((d[2024] // 7 - d[2023]) / d[2022])  # 582336
 
 
 

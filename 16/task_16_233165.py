@@ -18,6 +18,7 @@ def f(n):
 print(f(7))  # 144
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/1697472/step/4?unit=1720848
 # https://kompege.ru/task   № 596 (Уровень: Базовый)
 def f(n):
@@ -64,6 +65,7 @@ def f(n):
 print(f(15))  # 5158048
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/1697472/step/8?unit=1720848
 # https://kompege.ru/task   № 1199 Апробация 27.04 (Уровень: Базовый)
 def f(n):
@@ -160,6 +162,7 @@ def f(n):
 print(f(40))  # 126
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/1697473/step/3?unit=1720849
 # https://kompege.ru/task   № 628 Джобс 02.11.2020 (Уровень: Средний)
 def f(n):
@@ -243,6 +246,7 @@ f(40)
 print(cnt)  # 22947841
 
 
+""" Взято на мой курс """
 # https://stepik.org/lesson/1697473/step/8?unit=1720849
 # https://kompege.ru/task  № 605 (Уровень: Средний)  👍
 def f(n):

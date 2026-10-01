@@ -1,28 +1,30 @@
 """"""
 """
 Task 12
-ЕГЭ Информатика 2026 | Полный Курс
+ЕГЭ Информатика 2027 | Полный Курс
 https://stepik.org/course/233165
 
 all from https://kompege.ru/task
+23195 23727 23846 23847 23750 23851 23858 23859 24173 24174 24176
 """
 
 
 """ 12.1 Задание 12 | Урок 1 """
 # https://stepik.org/lesson/1695399/step/3?unit=1718750
 #  https://kompege.ru/task  № 24174 (Уровень: Базовый)
-# пусть n0 = кол-ву нулей, а n2 = кол-ву двоек => n1 = 2 * n2 (кол-ву единиц)
-for n0 in range(1000):
-    for n2 in range(1000):
-        str1 = '0' * n0 + '1' * 2 * n2 + '2' * n2  # формируем нашу строку
-        if len(str1) == 1000:  # проверяем, что строка имеет именно 1000 символов
-            sum1 = sum(map(int, str1))
-            str2 = str1.replace('1', '+')  # защита от наложения замен друг на друга
-            str2 = str2.replace('2', '1').replace('0', '2').replace('+', '0')
-            sum2 = sum(map(int, str2))
-            if sum2 == sum1 + 1640:
-                print(str1.count('0'))  # 880
-
+# пусть n0 = кол-ву нулей, а n2 = кол-ву двоек => n1 = 2 * n2 (кол-во единиц)
+for n0 in range(1, 1000):
+    for n2 in range(1, 500):
+        s_in = '1' * 2 * n2 + '2' * n2 + '0' * n0   # формируем нашу строку
+        if len(s_in) == 1000:  # проверяем, что строка имеет именно 1000 символов
+        # if 3*n2 + n0 == 1000:
+            sum1 = sum(map(int, s_in))
+            s_out = s_in.replace('1', '+')  # защита от наложения замен друг на друга
+            s_out = s_out.replace('2', '1').replace('0', '2').replace('+', '0')
+            sum2 = sum(map(int, s_out))
+            if sum2 - sum1 == 1640:
+                print(s_in.count('0'))  # 880
+                # print(n0)  # 880
 # variant
 for n2 in range(1, 1000):
     n1 = 2 * n2
@@ -45,7 +47,6 @@ for n0 in range(1, 1000):
             sm2 = sum(map(int, s))
             if sm1 - sm2 == 178:
                 print(s.count('1'))  # 363
-
 # variant
 for n2 in range(1, 501):
     sm1 = 3 * n2

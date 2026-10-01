@@ -1,10 +1,10 @@
 """ https://kompege.ru/task """
 """
-21 887 934 1147 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 4710
-5810 5955 6029 6275 7356 7624 8510 9753 9791 9845
-10105 11954 12254 12931 14647 15339 16333 16388 17535 17563 17641 17878 19149 19254 19717
-21421 23762 24895 24977 25361 26077 26078 26491 26551 26549 27069 27634 27777 28765 31368
-21421 23206 23762 24895 24977 25361 26077 26078 26491 26551 26549 27069 27634 27777 28765 31368
+21 887 934 114 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 4682 4710
+5810 5955 6029 6054 6275 6636 6757 7094 7356 7600 7624 8510 9753 9791 9845
+10105 11954 12254 12931 13085 13100 14647 15339 16333 16388 17535 17563 17641 17878 19149 19254 19717
+20909 21421 21597 21717 21908 22356 22357 22358 22359 22360 22361 23206 23281 22362 23381 23568 23762 24895 24977 
+25361 26077 26078 26491 26551 26549 27069 27634 27777 28765 31368           
 """
 
 
@@ -14,8 +14,8 @@ https://stepik.org/course/233165
 2251 2420 2422 2423 2425 2426 2427
 4113 4546 4602 4627 4643
 5171 6734 9169 9552
-10105 10724 11954 12476 13715 18597 19967 19969
-20813 21717 23281 23381 23568
+10724 11954 12476 13715 18597 19967 19969
+20813
 """
 
 
@@ -134,7 +134,7 @@ for a, b in zip(s, s[1:]):
 print(cnt)  # 188
 
 # variant
-while 'PP' in s:
+while 'PP' in s:  # PPPP  ->  P PP P  ->  P P P P
     s = s.replace('PP', 'P P')
 s = s.split()
 print(len(max(s, key=len, default=['*'])))  # 188
@@ -158,7 +158,7 @@ for s in open('24_2424.txt').readlines():
 print(res)
 
 
-# № 2425 (Уровень: Базовый)
+# 2425 (Уровень: Базовый)
 s = open('24_2425.txt').read()
 c = cnt = 3
 ok = False
@@ -174,7 +174,8 @@ for i in range(len(s) - 3):
 print(cnt)  # 95
 
 # variant
-s = s.replace('DBAC', '****').replace('*DBA', '****').replace('*DB', '***').replace('*D', '**')  # + неполные хвосты
+s = open('24_2425.txt').read()
+s = s.replace('DBAC', '****').replace('*DBA', '**** ').replace('*DB', '*** ').replace('*D', '** ')  # + неполные хвосты
 for i in 'ABCDEF':
     s = s.replace(i, ' ')  # отсечка лишнего и ✅неполных начал
 res = max(len(i) for i in s.split())
@@ -209,12 +210,12 @@ res = 0
 for el in s:
     c = l = 0
     for r in range(len(el)):
-        c += el[r]=='.'
+        c += el[r] == '.'
         while c > 5:
             c -= el[l] == '.'
             l += 1
         res = max(res, r-l+1)
-print(res)
+print(res)  # 208
 
 
 # 3018 (Уровень: Средний)
@@ -274,12 +275,26 @@ for i in 'DE':
 print(max(len(i) for i in s.split()))  # 16
 
 
+# 4682 Резервный день 2022(Уровень: Базовый)
+s = open('24_4682.txt').readline().strip()
+s = s.replace('E', 'A').replace('B', 'C').replace('D', 'C')
+s = s.replace('AC', '*').replace('A', ' ').replace('C', ' ').split()
+print(len(max(s, key=len)))  # 202
+
+
 # 4710 Демоверсия 2023 (Уровень: Базовый)
-f = open('24_1.txt').readline()
+f = open('24_4710.txt').readline()
 f = f.replace('D', 'C').replace('F', 'C')
 f = f.replace('O', 'A').replace('CA', '*')
 f = f.replace('A', ' ').replace('C', ' ').split()
 print(len(max(f, key=len)))  # 95
+
+
+# 5223 (Уровень: Базовый)
+s = open('24_5223.txt').readline().strip()
+s = s.replace('DD', 'D D').split()
+s = [i for i in s if 'FE' in i]
+print(len(max(s, key=len)))  # 2486
 
 
 # 5810 (Уровень: Сложный)
@@ -307,9 +322,10 @@ s = open('add/24/24_6029.txt').read()
 s = s.replace('D', ' ')
 s = s.replace('EE', 'E E').replace('EE', 'E E')  # EEEEEE >> E EE EE E >> E E E E E E
 s = s.replace('FF', 'F F').replace('FF', 'F F')  # FFFFFF >> F FF FF F >> F F F F F F
+# while 'EE' in s or 'FF' in s:
+#     s = s.replace('FF', 'F F').replace('EE', 'E E')
 s = s.split()
 print(len(max(s, key=len)))  # 11
-
 # variant
 from re import *
 s = open('add/24/24_6029.txt').read()
@@ -321,6 +337,15 @@ for i in (a, b):  # исключаем наложение подстрок
     ls = findall(reg, s)
     res = max(res, len(max(ls, key=len)))
 print(res)  # 11
+
+
+# 6054 ФИПИ 04.02.23(Уровень: Базовый)
+from re import *
+s = open('24_6054.txt').readline().strip()
+s = s.replace('B', 'C')
+reg = r'(?:CCA)+'
+res = findall(reg, s)
+print(len(max(res, key=len)))  # 6
 
 
 # 6275 Danov2302 (Уровень: Сложный)
@@ -336,6 +361,32 @@ for r in range(15, len(s)):
         res = min(res, r-l+1)
         l += 1
 print(res)  # 42
+
+
+# 6636 Пробник ИМЦ СПб(Уровень: Базовый)
+from re import *
+s = open('24_6636.txt').readline().strip()
+s = s.replace('3', '1').replace('5', '1').replace('4', '2')
+reg = r'(?:21)+'
+res = findall(reg, s)
+print(len(max(res, key=len)) // 2)  # 10
+
+
+# 6757 Апробация 10.03.23(Уровень: Базовый)
+from re import *
+s = open('24_6757.txt').readline().strip()
+reg = r'(?:CFE|FCE)+'
+res = findall(reg, s)
+print(len(max(res, key=len)) // 3)  # 103
+
+
+# 7094 OpenFIPI(Уровень: Базовый)
+from re import *
+s = open('24_7094.txt').readline().strip()
+s = s.replace('U', 'A').replace('D', 'C').replace('F', 'C')
+reg = r'(?:AC)+'
+res = findall(reg, s)
+print(len(max(res, key=len)) // 2)  # 173
 
 
 # 7356 (Уровень: Средний)
@@ -357,10 +408,19 @@ for i in range(len(s) - N):
 print(res)  # 27
 
 
+# 7600 Досрочная волна 2023(Уровень: Базовый)
+s = open('24_7600.txt').readline().strip()
+s = s.replace('Q', 'S').replace('R', 'S')
+while 'SS' in s :
+    s = s.replace('SS', 'S S')
+print(len(max(s.split(),key=len)))  # 544
+
+
 # 7624 Досрочная волна 2023 (Уровень: Базовый)
 f = open('24_7624.txt').readline()
 f = f.replace('Y', 'X').replace('Z', 'X')
-f = f.replace('XX', 'X X')
+while 'XX' in s :
+    s = s.replace('XX', 'X X')
 print(len(max(f.split(' '), key=len)))  # 786
 
 
@@ -433,7 +493,18 @@ while 'AA' in s or '88' in s:
     s = s.replace('AA', 'A A')
     s = s.replace('88', '8 8')
 print(len(max(s.split(),key=len)))  # 18
-
+# variant
+s = open('24_9845.txt').readline().strip()
+s = s.replace('B', 'A').replace('C', 'A').replace('9', '8')
+res, cnt = 0, 1
+for a, b in zip(s, s[1:]):
+    if a != b:
+        cnt += 1
+        res = max(res, cnt)
+    else:
+        cnt = 1
+print(res)  # 18
+# variant
 from re import *
 s = open('24_9845.txt').read()
 reg = r'(?:\d\D)+|(?:\D\d)+'
@@ -442,25 +513,30 @@ print(max(len(i) for i in res))  # 18
 
 
 
-
-
 # 10105 Демоверсия 2024 (Уровень: Средний)
 st = open('24_10105.txt').readline()
-res = c = l = 0
-for r in range(len(st)):
-    if st[r] == 'T':
-        c += 1
-    while c > 100:
-        if st[l] == 'T':
-            c -= 1
+l = res = T = 0
+for r in range(len(s)):
+    T += s[r] == 'T'
+    while T > 100:
+        T -= s[l] == 'T'
         l += 1
-    if c == 100:
-        res = max(res, r - l + 1)  # считаем пока указатель 'r' не окажется перед 101-й 'T'
+    if T == 100:
+        res = max(res, r-l+1)  # считаем пока указатель 'r' не окажется 101-й 'T'
 print(res)  # 133
+
+# Долгий пересчет
+s = open('24_10105.txt').readline().strip().split('T')
+s = [*map(len, s)]
+res, T = 0, 100
+for i in range(len(s) - T):
+    res = max(res, sum(s[i:i+T+1]))
+print(res + T)  # 133
+
 
 
 # 11954 (Уровень: Средний)
-st = open('24.txt').read().split('Y')
+st = open('24_11954 .txt').read().split('Y')
 st = [i for i in st if i.count('X') >= 500]
 res = 10**10
 for s in st:
@@ -475,7 +551,7 @@ for s in st:
 print(res) # 68500
 
 # variant
-s = open('24.txt').readline()
+s = open('24_11954 .txt').readline()
 res = 10**10
 l = c = 0
 for r in range(len(s)):
@@ -493,40 +569,78 @@ print(res)
 
 
 # 12254 ЕГКР 16.12.13_(23) (Уровень: Базовый)
-s = open('24_12254.txt').readline().replace('RSQ', '*')
+s = open('24_12254.txt').readline()
 c = res = 2
 for i in range(2, len(s)):
     w = s[i-2:i+1]
-    if w in 'RSQRS':
+    if w in 'SQRSQRS':
         c += 1
         res = max(res, c)
     else:
         c = 2
 print(res)  # 54
+# variant
+f = open('24.txt').readline().strip()
+f = f.replace('RSQ', '***')
+f = f.replace('*RS', '*** ').replace('*R', '** ')
+f = f.replace('SQ*', ' ***').replace('Q*', ' **')
+for i in 'RSQ':
+    f = f.replace(i, ' ')
+f = f.split()
+print(len(max(f, key=len)))  # 54
 
 
 # 12931 PRO100 ЕГЭ 26.01.24(Уровень: Базовый)
-f = open('24.txt').readline().strip()
+f = open('24_12931.txt').readline().strip()
 c = 4
 res = 0
 for i in range(4, len(f)):
     if f[i-4:i+1] in 'WXYZVWXYZVWXY':
-        g = f[i-4:i+1]
         c += 1
         res = max(c, res)
     else:
         c = 4
-print(res)
+print(res)  # 40
 """"""
 # variant (quick work)
-f = open('24.txt').readline().strip()
+f = open('24_12931.txt').readline().strip()
 f = f.replace('VWXYZ', '*****')
-f = f.replace('*VWXY', '*****').replace('*VWX', '****').replace('*VW', '***').replace('*V', '**')
-f = f.replace('WXYZ*', '*****').replace('XYZ*', '****').replace('YZ*', '***').replace('Z*', '**')
+f = f.replace('*VWXY', '***** ').replace('*VWX', '**** ').replace('*VW', '*** ').replace('*V', '** ')
+f = f.replace('WXYZ*', ' *****').replace('XYZ*', ' ****').replace('YZ*', ' ***').replace('Z*', ' **')
 for i in 'TUVWXYZ':
     f = f.replace(i, ' ')
 f = f.split()
 print(len(max(f, key=len)))  # 40
+
+
+# 13085 (Уровень: Средний) ✅
+s = open('24_13085.txt').readline().strip()
+l = res = X = Y = 0
+for r in range(len(s)):
+    X += s[r] == 'X'
+    Y += s[r] == 'Y'
+    while X > 1 or Y > 1:
+        X -= s[l] == 'X'
+        Y -= s[l] == 'Y'
+        l += 1
+    if X and Y:
+        res = max(res, r-l+1)
+print(res)  # 224
+
+
+# 13100 (Уровень: Средний) ✅
+s = open('24_13100.txt').readline().strip()
+l = res = C = D = 0
+for r in range(len(s)):
+    C += s[r] == 'C'
+    D += s[r] == 'D'
+    while C > 2 or D > 2:
+        C -= s[l] == 'C'
+        D -= s[l] == 'D'
+        l += 1
+    # if C <= 2 and D <=  2:  # лишнее
+    res = max(res, r-l+1)
+print(res)  # 253
 
 
 
@@ -546,7 +660,7 @@ for r in range(len(s)):
 print(res)  # 225
 
 
-# 15339 Досрочная волна 2024 (Уровень: Средний)
+# 15339 Досрочная волна 2024 (Уровень: Средний) ✅
 f = open('24_15339.txt').readline()
 f = f.replace('B', 'A').replace('C', 'A')
 f = f.replace('7', '6').replace('8', '6').replace('9', '6')
@@ -555,14 +669,29 @@ while 'AA' in f or '66' in f:
     f = f.replace('66', '6 6')
 print(len(max(f.split(), key=len))) # 22
 
+# variant
+f = open('24.txt').readline()
+cnt = res = 1
+for a, b in zip(f, f[1:]):
+    if a.isdigit() != b.isdigit():
+        cnt += 1
+        res = max(res, cnt)
+    else:
+        cnt = 1
+print(res)  # 22
+
+
 
 # 16333 Открытый вариант 2024 (Уровень: Базовый)
 from re import *
 s = open('add/24/24_16333.txt').read()
-reg = r'\d?(?:\D\d)+\D?'
-# reg = r'\D?(?:\d\D)+\d?'  # проверка пересечений подстрок
-res = findall(reg, s)
-print(len(max(res, key=len)))  # 17
+reg1 = r'\d?(?:\D\d)+\D?'  # проверка возможных вариантов
+res1 = findall(reg1, s)
+print(len(max(res1, key=len)))  # 17
+reg2 = r'\D?(?:\d\D)+\d?'  # проверка возможных вариантов
+res2 = findall(reg2, s)
+print(len(max(res2, key=len)))  # 17
+
 
 # variant
 s = open('add/24/24_16333.txt').read()
@@ -595,7 +724,7 @@ with open('24_17535.txt') as f:
     s = f.read().replace('CD', 'C D').split()
     n = 160  # ✅ поленьев на 1 больше, чем распилов бревна
     res = 0
-    for i in range(len(s) - n ):
+    for i in range(len(s) - n):
         r = s[i:i + n + 1]
         res = max(res, len(''.join(r)))
 print(res)  # 9712
@@ -746,6 +875,19 @@ print(res)  # 2471
 
 
 
+#  20909 Апробация 05.03.25(Уровень: Средний) ✅
+s = open('24_20909.txt').readline().strip()
+cnt = res = l = 0
+for r in range(1, len(s)):
+    cnt += s[r-1:r+1] == 'AB'
+    while cnt > 100:
+        cnt -= s[l:l+2] == 'AB'
+        l += 1
+    if cnt == 100:
+        res = max(res, r-l+1)
+print(res)  # 750
+
+
 
 # 21421 Досрочная волна 2025 (Уровень: Базовый)
 from re import findall
@@ -755,13 +897,135 @@ f = findall(reg, s)
 print(len(max(f, key=len)))  # 19
 
 
+
+# 21597 (Уровень: Сложный) 🌶️🌶️🌶️🌶️🌶️
+# ищем сначала умножения а затем вычитания: 2*0*54*30-2-50-4
+# Подвох 🌶️ - оказалось пересечение строк.
+# 1*2-9*3*4-5  ->  1*2-9  9*3*4-5  (на 9-ке пересечение) 😛
+from re import *
+s = open('24.txt').readline().strip()
+n = r'(?:[1-5][0-5]*|0)'
+reg1 = rf'(?:{n}(?:\*{n})+(?:-{n})*)'  # верный шаблон, но не учитывает пересечение строк
+# https://stepik.org/lesson/694365/step/3?unit=694145  (Lookahead и Lookbehind)
+reg2 = rf'(?=({reg1}))'  # применение Positive Lookahead
+res = findall(reg1, s)
+print(max(map(len, res)))  # 46 (НЕ учтено пересечение строк❗)
+res = findall(reg2, s)
+print(max(map(len, res)))  # 51 (учтено пересечение строк)  Все-равно работает плохо❗
+
+from re import *
+s = open('24.txt').readline().strip()
+n = r'(?:[1-5][0-5]*|0)'
+reg = rf'(?:{n}(?:\*{n})+(?:-{n})*)'
+reg = rf'(?=({reg}))'  # проверка пересечений ✅✅✅
+res = findall(reg, s)
+print(max(map(len, res)))  # 51 (учтено пересечение строк)
+
+# Вариант с групами
+from re import *
+s = open('24.txt').readline().strip()
+n = r'([1-5][0-5]*|0)'
+reg = rf'{n}(\*{n})+(-{n})*'
+reg = rf'(?=({reg}))'  # проверка пересечений ✅✅✅
+res = [x.group(1) for x in finditer(reg, s)]
+print(max(map(len, res)))  # 51 (учтено пересечение строк)
+
+
+
+# 21717 ЕГКР 19.04.25 (Уровень: Средний) 🌶️🌶️🌶️
+# Логика - на сколько нужно убрать лишние символы перед первой слева (из 130) подстроки 'RSQ' 😉
+s = open('24_21717.txt').read().strip()
+# s = 'QQQ' + 'RSQ' * 130 + 'SSSQ'  # проверка
+cnt = l = 0
+res = len(s)
+for r in range(2, len(s)):
+    cnt +=  s[r-2:r+1] == 'RSQ'
+    while cnt > 130:
+        cnt -= s[l:l+3] == 'RSQ'
+        l += 1
+    if cnt == 130 and s[r] != 'Q':
+        idx = s[l:r+1].index('RSQ') + l  #  к указателю 'l' прибавляем расстояние до первой (из 130) групп 'RSQ'
+        #  r - idx  точка первой (из 130) слева групп 'RSQ', а справа указатель 'r' перебирает все варианты когда s[r] != 'Q'
+        #  (фактически нужен лишь первый такой вариант)
+        res = min(res, r - idx + 1)
+print(res) # 497
+
+
+
+# 21908 Открытый вариант 2025(Уровень: Базовый) ✅
+from re import *
+f = open('add/24/24_21908.txt').readline()
+reg = r'(?:[1-9A-D][0-9A-D]*[02468AC])'  # чётное 14-ричное число
+res = findall(reg, f)
+# среди чисел одинаковой большей длины (если такие будут) ищем самое большое в числовом значении
+# res.sort(key=lambda x: -int(x, 14))
+res.sort(key=len)
+print(len(res[-1]))  # 2598
+
+
+#  22356 Апробация 14.05.25(Уровень: Средний) ✅
+from re import *
+s = open('24_22356.txt').readline().strip()
+reg = r'(?:[1-9AB][0-9AB]*[13579B])'  # нечётного 12-ричного числа 🍒
+find = findall(reg, s)
+res = max(find, key=lambda x: int(x, 12))
+print(s.index(res)) # 8499457
+
+
+
+#  22357 (Уровень: Средний) ✅
+from re import *
+s = open('24_22357.txt').readline().strip()
+reg = r'(?:[1-9A-D][0-9A-D]*[02468AC])'  # кратного 2-м 14-ричного числа 🍒
+find = findall(reg, s)
+res = max(find, key=lambda x: int(x, 14))
+print(s.index(res)) # 7565201
+
+
+
+#  22358 (Уровень: Средний) ✅
+from re import *
+s = open('24_22358.txt').readline().strip()
+reg = r'(?:[1-9AB][0-9AB]*[0369])'  # кратного трем 12-ричного числа 🍒
+res = findall(reg, s)
+res.sort(key=lambda x: -int(x, 12))
+print(s.index(res[0])) # 8526171
+
+
+# 22359 (Уровень: Базовый)
+from re import *
+f = open('add/24/24_22359.txt').readline()
+reg = r'(?:[1-9A-E][0-9A-E]*)'
+res = findall(reg, f)
+s = max([i for i in res if not int(i, 15) % 5], key=len)
+print(f.index(s) + len(s) - 1)  # 7432968
+
+
+#  22360 (Уровень: Средний) ✅
+from re import *
+s = open('24_22360.txt').readline().strip()
+reg = r'(?:[1-9AB][0-9AB]*[06])'  # кратного шести 12-ричного числа 🍒
+res = findall(reg, s)
+res.sort(key=lambda x: -int(x, 12))
+print(s.find(res[0]) + len(res[0]) - 1) # 8526279
+
+
+#  22361 (Уровень: Средний) ✅
+from re import *
+s = open('24_22361.txt').readline().strip()
+reg = r'(?:[1-7][0-7]*[0246])'  # чётное 8-ричное число
+res = findall(reg, s)
+res.sort(key=lambda x: (-len(x), int(x, 8)))
+print(s.index(res[0])) # 2494915
+
+
 # 23206 Основная волна 10.06.25(Уровень: Средний)
 s = open('add/24/24_23206.txt').readline().strip()
 for i in '2468':
     s = s.replace(i, '0')
 l = c = res = 0
 for r in range(len(s)):
-    if s[r] == '0':
+    if s[r] == '0':  # как только попадается четная цифра, начинаем все сначала
         l = r
         c = 0
     c += s[r] == 'S'
@@ -786,15 +1050,89 @@ for el in f:
 print(res + 1)  #  292 (+1 это цифра '0')
 
 
+# 23281 Основная волна 11.06.25(Уровень: Средний) ✅
+s = open('24_23281.txt').readline().strip()
+res = l = Y = 0
+for r in range(len(s)):
+    if s[r] == 'Y':
+        Y += 1
+    while Y > 80:
+        if s[l] == 'Y':
+            Y -= 1
+        l += 1
+    if Y == 80 and s[l: r+1].count('2025') >= 90:
+        res = max(res, r-l+1)
+print(res)  # 2981
+
+
+
+# 22362 (Уровень: Средний) ✅
+# двенадцатеричное число делится на 3 тогда, когда на 3 делится его последняя цифра [0369]
+from re import *
+s = open('24_22362.txt').readline().strip()
+reg = r'(?:[1-9AB][0-9AB]*[0369])'  # кратного трем 12-ричного числа 🍒
+res = findall(reg, s)
+res.sort(key=lambda x: (-len(x), int(x, 12)))
+print(s.index(res[0]))  # 6817770
+
+
+
+
+# 23381 Резервный день 19.06.25(Уровень: Средний) ✅
+s = open('24_23381.txt').readline().strip()
+for i in '0468':
+    s = s.replace(i, '2')
+w = ''
+cnt = res = 0
+for i in range(1, len(s)):
+    if s[i-1] == '2' and s[i].isalpha():  # начало события
+        w = s[i]
+        cnt = 1  # cnt - счетчик и флаг
+    if cnt:
+        if s[i] == '2':  # успешное завершение события
+            res = max(res, cnt + 1)
+            cnt = 0
+        elif s[i] == w:  # событие продолжается
+            cnt += 1
+        else:  # завершение события (успеха нет - буквы не совпали или попало число)
+            cnt = 0
+print(res)  # 1212
+
+
+# 23568 Пересдача 03.07.25(Уровень: Средний) ✅
+s = open('24_23568.txt').readline().strip()
+for i in '023456789':
+    s = s.replace(i, '1')
+w = ''
+idx, cnt = 0, 0
+res = []
+for i in range(1, len(s)):
+    if s[i-1] != '1' and s[i] == '1':  # начало события
+        w = s[i-1]
+        idx = i-1
+        cnt = 1
+    if cnt:
+        # if s[i] == w and s[i-1] == '1':  # успешное завершение события
+        if s[i] == w:  # успешное завершение события
+            res.append((i - idx + 1, idx))  # длина, индекс первого символа
+        elif s[i] == '1':  # событие продолжается
+            cnt += 1
+        else:  # завершение события (успеха нет - буквы не совпали)
+            cnt = 0
+            w = s[i]
+res.sort(key=lambda x: -x[0])
+print(res[0][1])  # 310030
+
+
+
 # 23762 Демоверсия 2026 (Уровень: Средний)
 # (~ 3 sec)
 s = open('24_23762.txt').readline().split('Y')
-res = 0
-n = 80  # кол-во Y
-for i in range(len(s) - n):
-    r = ''.join(s[i:i + (n+1)])
-    if r.count('2025') >= 90:
-        res = max(res, len(r) + n)
+res, Y = 0, 80
+for i in range(len(s) - Y):
+    w = 'Y'.join(s[i:i+Y+1])
+    if w.count('2025') >= 90:
+        res = max(res, len(w))
 print(res)  # 2981
 
 # variant 1 (~ 21 sec)
@@ -824,7 +1162,7 @@ print(m) # 2981
 
 
 
-# 24895 (Уровень: Средний)
+# 24895 (Уровень: Средний) ✅
 from re import *
 cnt = 0
 s = open('add/24/24_24895.txt').read()
@@ -833,11 +1171,11 @@ reg = r'\d+(?:\*\d+)+'
 ls = findall(reg, s)
 for st in ls:
     n = st.count('*')
-    if n > 39:
+    if n > 39:  # если больше 40 чисел, то начинаем перебирать группы по 40 чисел
         st = st.split('*')
         for i in range(len(st) - 39):
             cnt = max(cnt, len(''.join(st[i: i+40])) + 39)
-    else:
+    else:  # если 40 и меньше чисел, то берем всю группу
         cnt = max(len(st), cnt)  # 343
 print(cnt)  # 368
 

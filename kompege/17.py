@@ -1,10 +1,79 @@
 """ https://kompege.ru/task """
 """
-5491 6605 7718 8475 9748
+1997 2491 4414 4417 4677 5491 6605 6696 6954 7718 8475 8611 9748
 11236 11949 13088 16328 16383 17530 17636 19249
-23276 27629
+23276 27629 31363
 """
 
+"""
+ЕГЭ Информатика 2026 | Полный Курс  https://stepik.org/course/233165
+
+17873 1993 1994 1998 1999 2002 2003 2013 2015 2016 2017 2238 2239 2309 2310 2398 2399 2400 2401 2402 2403 
+9748 17530 17558 17636 17873 19249 21416 21712 23201 23276 23376 23563 23757
+"""
+
+
+# 1997 (Уровень: Средний)
+from math import inf
+f = [*map(int, open('17/17_08.txt'))]
+mx = -inf
+cnt = 0
+for a, b in zip(f, f[1:]):
+    if a % 2 != b % 2:
+        if a % 2:
+            a, b = b, a  # even, odd
+        if not a % 4 and not b % 11:
+            cnt += 1
+            mx = max(mx, a + b)
+print(cnt, mx)  # 126 15701
+
+
+# 2491 (Уровень: Базовый)
+from statistics import mean
+f = [*map(int, open('add/17/17_2491.txt'))]
+m = mean(f)
+res = []
+for i in range(len(f) - 2):
+    d = f[i:i+3]
+    if any(i < m for i in d):
+        if all('9' in str(i) for i in d):
+            res.append(sum(d))
+print(len(res), max(res))  # 345 17460
+
+
+# 4414 (Уровень: Базовый)
+f = [*map(int, open('add/17/17_4414.txt'))]
+c = mx = 0
+for i in range(len(f)):
+    for k in range(i+1, len(f)):
+        a, b = f[i], f[k]
+        if not abs(a - b) % 36 and any(not i % 13 for i in (a, b)):
+            c += 1
+            mx = max(mx, abs(a - b))
+print(c, mx)  # 212587 9972
+
+
+# 4417 (Уровень: Базовый)
+f = [*map(int, open('add/17/17_4417.txt'))]
+res = []
+for i in range(len(f)):
+    for k in range(i + 1, len(f)):
+        a, b = f[i], f[k]
+        if not (a + b) % 120:
+            res.append(a + b)
+print(len(res), max(res))  # 414830 19920
+
+
+
+# 4677 Резервный день 2022(Уровень: Базовый)
+cnt, res = 0, -200_000
+f = [*map(int, open('add/17/17_4677.txt'))]
+n_100 = sum(not i % 100 for i in f)
+for a, b in zip(f, f[1:]):
+    if (a<0 or b<0) and a+b < n_100:
+        cnt += 1
+        res = max(res, a + b)
+print(cnt, abs(res))  # 4963 93
 
 
 # 5491 (Уровень: Средний)
@@ -33,6 +102,17 @@ for a, b in zip(f, f[1:]):
 print(c, S)  # 938 98327944
 
 
+# 6696 (Уровень: Базовый)
+# https://stepik.org/lesson/1038775/step/4?unit=1062778
+f = [*map(int, open('add/17/17_6696.txt'))]
+res = []
+for i in range(len(f)):
+    d = f[i:i+3]
+    if not sum(d) % 2022 and sum(i > 0 for i in d):
+        res.append(sum(d))
+print(len(res), max(res))  # 7 76836
+
+
 # 7718 (Уровень: Средний)
 f = open('add/17/17_7718.txt')
 # d = list(set(map(int, f)))  # лишнее - дубликаты чисел допускаются
@@ -58,6 +138,30 @@ for i in range(len(d) - 2):
             cnt += 1
             res = max(res, sum(d[i:i+3]))
 print(cnt, res)  # 5312 20235
+
+
+# 8954 (Уровень: Базовый)
+f = [*map(int, open('add/17/17_8954.txt'))]
+mx = max(i for i in f if f'{i:x}'[-2:]=='0f')
+cnt = res = 0
+for a, b in zip(f, f[1:]):
+    if sum(not i % 7 for i in (a, b))==1 and not (a + b) % mx:
+        cnt += 1
+        res = max(res, (a + b))
+print(cnt, res)  # 2 9487
+
+
+# 8611 (Уровень: Базовый)
+from math import prod
+f = [*map(int, open('add/17/17_8611.txt'))]
+mx = max(i for i in f if 100 <= i < 1000)
+res = []
+for i in range(len(f)):
+    d = f[i:i+2]
+    if sum(100 <= i < 1000 for i in d) == 1:
+        if not prod(d) % mx:
+            res.append(prod(d))
+print(len(res), min(res))  # 2 2288546
 
 
 # 9748 Основная волна 19.06.13_(23) (Уровень: Средний)
@@ -213,4 +317,16 @@ for i in range(len(d) - 1):
             c += 1
             res = max(res, sum(num) ** 2)
 print(c, res)  # 1218 98843364
+
+
+# 31363 Пересдача 08.07.26(Уровень: Средний)
+res = []
+f = [*map(int, open('add/17/17_31363.txt'))]
+mx = max(i for i in f if 1000 <= abs(i) <= 9999 and abs(i) % 10 == 3)
+for i in range(len(f) - 2):
+    d = f[i:i+3]
+    if sum(1000 <= abs(i) <= 9999 and abs(i) % 10 == 3 for i in d) == 2:
+        if sum(d) > mx:
+            res.append(sum(d))
+print(len(res),  max(res))  # 2508 104796
 

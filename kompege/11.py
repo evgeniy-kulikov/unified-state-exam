@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-136 303 494 825
+136 303 494 6264  825
 1342 2119 2571 4462 4616 5061 5914 6746 7032 7813 8469 9742
 10713 11230 11660 12243 16377 17524 17552 17630 17865 19243
 20805 20972 21594 23195 23370
@@ -33,13 +33,39 @@ res = ceil(250 * i / 8)
 print(res)  # 219
 
 
+
+# 6264 Danov2302(Уровень: Сложный) 🌶️
+# месяц и день как разные поля
+from math import ceil
+id_1 = ceil(4 / 8)  # class
+id_2 = ceil(3 / 8)  # letter
+id_3 = ceil(1 / 8)  # sex
+id_4 = ceil(5 / 8)  # day
+id_5 = ceil(4 / 8)  # month
+id_6 = ceil(7 / 8)  # name
+id_7 = ceil(10 / 8)  # surname
+I_byte = (id_1 + id_2 + id_3 + id_4 + id_5 + id_6 + id_7)  # 8 byte
+I_bit = ceil((4 + 3 + 1 + 5 + 4 + 7 + 10) / 8)  # 5 byte
+print((I_byte - I_bit) * 1347)  # 4041
+
+# месяц и день как одно поле
+from math import ceil
+id_1 = ceil(4 / 8)  # class
+id_2 = ceil(3 / 8)  # letter
+id_3 = ceil(1 / 8)  # sex
+id_4 = ceil(4 * 4 / 8)  #   # day+month  -> 4 десятичные цифры
+id_5 = ceil(7 / 8)  # name
+id_6 = ceil(10 / 8)  # surname
+I_byte = (id_1 + id_2 + id_3 + id_4 + id_5 + id_6) # 8 byte
+# день и месяц  ->  31 * 12 = 372 варианта  ->  2**8
+I_bit = ceil((4 + 3 + 1 + 8 + 7 + 10) / 8)  # 5 byte
+print((I_byte - I_bit) * 1347)  # 4041
+
+
 # 825 Джобс 14.12.2020 (Уровень: Сложный)
 from math import ceil
 I = ceil(50 * 11 / 8) * (12312 // 50) + ceil(12312 % 50 * 11 / 8)
 print(ceil(I / 1024))  # 17
-
-
-
 
 
 # 1342 Danov2101 (Уровень: Сложный) 🌶️

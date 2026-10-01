@@ -7,7 +7,14 @@ https://fipi.ru/ege/demoversii-specifikacii-kodifikatory#!/tab/151883967-5
 https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2027/inf_11_2027.zip
 """
 
+"""
+17878 31498 31499 31500 31501 31502 31503 31504 31505 31506 31507 31508 31509 31510
+31511 31512 31513 31514 31515 31516 31517 31518 31519 31520 31521
+"""
+
+
 # 01
+#  31498 Демоверсия 2027(Уровень: Базовый)
 from itertools import permutations
 print(*'123456')
 g = 'af fc cb be ea df db de'.split()
@@ -25,26 +32,33 @@ f c b e d a
 
 
 # 02
+# 31499 Демоверсия 2027(Уровень: Базовый)
 from itertools import *
 def f(x,y,w,z):
-    # return ((x==(not y)) <= (not(w <= x))) or (not z)
-    # return x != (not y) or (w and not x) or (not z)
-    return (not y != x) or (not x and w) or (not z)
+    # return ((x == (not y)) <= (not(w <= x))) or (not z)
+    return not y != x or not x and w or not z
 
 for m1,m2,m3,m4,m5 in product((0,1), repeat=5):
      t = [(m1,0,1,0), (0,m2,m3,0), (m4,1,1,m5)]
      if len(set(t)) == 3:
          for p in permutations('xywz'):
              if [f(**dict(zip(p, d))) for d in t] == [0,0,0]:
-                 print(*p)  # y x z w
+                 print(''.join(p))  # yxzw
 
 
-# 03  1630
+# 03
+# 31500 Демоверсия 2027(Уровень: Базовый)
+# 1630
 
-# 04  17
+
+# 04
+# 31501 Демоверсия 2027(Уровень: Базовый)
 # Demo/04 Demo/add/04.gif
+# 17
+
 
 # 05
+# 31502 Демоверсия 2027(Уровень: Базовый)
 res = 10**6
 for n in range(1, 10000):
     b = f'{n:b}'
@@ -59,6 +73,7 @@ print(res)  # 100
 
 
 # 06
+# 31503 Демоверсия 2027(Уровень: Базовый)
 # Demo/04 Demo/add/06.gif
 from turtle import *
 tracer(0)
@@ -92,21 +107,25 @@ print(21 * 23)   # 483
 
 
 # 07
+# 31504 Демоверсия 2027(Уровень: Базовый)
+from math import ceil
 I = 2 * 32_000 * 16 * 147
-print(I / 2**13)  # 18375
+print(ceil(I / 2**13))  # 18375
 
 
 # 08
+# 31505 Демоверсия 2027(Уровень: Базовый)
 from itertools import product
 cnt = 0
-for p in product('aekntc', repeat=5):
+for p in product(sorted('АКЦЕНТ'), repeat=5):
     cnt += 1
-    if not cnt % 2 and p[0] not in 'aek' and p.count('t'):
+    if not cnt % 2 and p[0] not in 'АКЕ' and p.count('Т'):
         print(cnt)  # 3914
         break
 
 
 # 09
+# 31506 Демоверсия 2027(Уровень: Базовый)
 c = 0
 for i in open('04 Demo/add/09.txt'):
     d = sorted(map(int, i.split()))
@@ -115,15 +134,17 @@ for i in open('04 Demo/add/09.txt'):
 print(c)  # 4874
 
 
-# 10
+# 10_(replase 13)
+# 31507 Демоверсия 2027(Уровень: Базовый)
 from ipaddress import *
 net = ip_network('192.168.159.86/255.255.252.0', False)
 n = str(net.network_address)
-print(net.network_address)
+# print(net.network_address)  # 192.168.156.0
 print(sum(map(int, n.split('.'))))  # 516
 
 
 # 11
+# 31508 Демоверсия 2027(Уровень: Базовый)
 from math import ceil
 for i in range(1, 100):
     if ceil(157 * i / 8) * 12_450 > 955 * 1024:
@@ -132,6 +153,7 @@ for i in range(1, 100):
 
 
 # 12
+# 31509 Демоверсия 2027(Уровень: Базовый)
 print(f'{2025:b}')  # 11111101001
 """
 in      11111101001
@@ -140,22 +162,25 @@ out    111111101001
 print(int('111111101001', 2))  # 4073
 
 
-# 13
+# 13_(replace 23)
+# 31510 Демоверсия 2027(Уровень: Базовый)
 def f(a, b):
     if a > b:
         return 0
     if a == b:
         return 1
-    if a // 10 % 10 < a % 10:
-        n = str(a)
-        return f(a+1, b) + f(int(n[0] + n[-1] + n[1]), b)
+    n = str(a)
+    # if a // 10 % 10 < a % 10:
+    if  n[-2] < n[-1]:
+        return f(a+1, b) + f(int(n[0] + n[-1] + n[1]), b)  # только для 3-х значных чисел
     return f(a+1, b)
 print(f(100, 141))  # 16
 
 
 # 14
-from string import ascii_letters as w
-alf = '0123456789' + w[:12]
+# 31511 Демоверсия 2027(Уровень: Базовый)
+from string import printable
+alf = printable[:22]
 for x in alf:
     n = int(f'27{x}98876', 22) + int(f'26{x}51', 22) + int(f'711{x}5', 22)
     if not n % 21:
@@ -181,9 +206,10 @@ for x in range(2030, -1, -1):
 
 
 # 15
+# 31512 Демоверсия 2027(Уровень: Базовый)
 def f(x):
     b = 70 <= x <= 90
-    return not x % a or (not b) or x % 22
+    return not x % a or not b or x % 22
 
 for a in range(100, 0, -1):
     if all(f(x) for x in range(1, 1000)):
@@ -192,6 +218,7 @@ for a in range(100, 0, -1):
 
 
 # 16
+# 31513 Демоверсия 2027(Уровень: Базовый)
 from functools import lru_cache
 @ lru_cache
 def f(n):
@@ -203,20 +230,24 @@ print((f(3038) + 5 * f(3037)) // f(3036))  # 9241591
 
 
 # 17
+# 31514 Демоверсия 2027(Уровень: Базовый)
 d = [*map(int, open('04 Demo/add/17.txt').readlines())]
 mn = min(d)
 k, sm = 0, 0
 for a, b in zip(d, d[1:]):
-    if a%33 == mn or b%33 == mn:
+    if a % 33 == mn or b % 33 == mn:
         k += 1
         sm = max(sm, a+b)
 print(k , sm)  # 622 174933
 
 
 # 18
+# 31515 (Уровень: Базовый)
 # 2598  803
 
+
 # 19-21
+# 31516 Демоверсия 2027(Уровень: Базовый)
 def f(a, b, m, w=1):
     if a + b >= 133:
         return not m % 2
@@ -236,10 +267,13 @@ print([s for s in range(1, 116) if f(17, s, 4) and not f(17, s, 2)][0])
 44
 """
 
-# 22 8
+# 22
+# 31517 Демоверсия 2027(Уровень: Базовый)
+# 8
 
 
-# 13_(23) ❓🤔❓
+# 23_(new type) ❓🤔❓
+# 31518 Демоверсия 2027(Уровень: Базовый)
 from math import inf
 from functools import lru_cache
 data = []
@@ -310,6 +344,7 @@ print(d[100])  # 10971
 
 
 # 24
+# 17878 Демоверсия 2025(Уровень: Сложный) - был взят на демо версию 2027
 from re import findall
 f = open('04 Demo/add/24.txt').read()
 n = r'(?:0|[6-9]\d*)'
@@ -319,6 +354,7 @@ print(max(len(i) for i in res))  # 154
 
 
 # 25
+# 31519 Демоверсия 2027(Уровень: Базовый)
 # разложить число на простые множители (любое число можно разложить) ✅
 def f(n):
     ml = []
@@ -348,7 +384,7 @@ for n in range(1_103_285_718, 10**12):
 """
 
 from fnmatch import fnmatch
-for n in range(1917, 10**10+1, 1917):
+for n in range(0, 10**10+1, 1917):
     if fnmatch(str(n), '3?12?14*5'):
         print(n, n // 1917)
 """
@@ -361,6 +397,7 @@ for n in range(1917, 10**10+1, 1917):
 
 
 # 26
+# 31520 Демоверсия 2027(Уровень: Базовый)
 f = open('04 Demo/add/26.txt').readlines()
 N, K = map(int, f[0].split())  # кол-во строк, вместимость Кбайт
 data = []
@@ -372,10 +409,10 @@ d = dict()
 for i in data:
     d.setdefault(i[1], 0)
     d[i[1]] += i[2]
-res1 = max((s, i) for i, s in d.items())
-print(res1[1])  # 7040 - идентификатор клиента
+res1 = max(s for _, s in d.items())
+print(res1)  # 7040 - идентификатор клиента
 
-# [K] - Принудительно добавляет последнюю набранную сумму sm в res2. Сам при этом не добавляется
+# [K] - Принудительно добавит последнюю набранную сумму sm в res2. Сам при этом не добавится
 data2 = [i[2] for i in data if i[0] < 12] + [K]
 res2 = []
 sm = 0
@@ -385,14 +422,15 @@ for s in data2:  # s - объём данных Кбайт
     else:
         res2.append(sm)
         sm = s
-res2.sort(reverse=True)
-print(res2[0] + res2[1])  # 52204 сумма объёмов (в Кбайт) двух наибольших резервных копий
+res2.sort()
+print(res2[-1] + res2[-2])  # 52204 сумма объёмов (в Кбайт) двух наибольших резервных копий
 # 7040  52204
 
 
-# 27
-from math import dist
 
+# 27
+# 31521 Демоверсия 2027(Уровень: Базовый)
+from math import dist
 def get_dist(ls: list):
     ls = [p for p in ls if p[-1]]
     res = []
@@ -435,20 +473,17 @@ center_w = [get_center(i) for i in clusters]
 Q2 = int(max(i[2] for i in center_w) * 10_000)
 print(Q1, Q2)  # 539936 100704
 
+
 # variant (отличие в формировании групп кластеров - 🤔 возможно это ошибочный путь)
 from math import dist
-
 # 4 кластера (K = 4) с R = 2,0 для каждого.
 R = 0.2
-
-
 def get_cluster(p: tuple):
     res = [i for i in data if abs(p[2] - i[2]) < R]
     [data.remove(i) for i in res]
     next_clust = [get_cluster(i) for i in res]
     [res.extend(i) for i in next_clust]
     return res
-
 
 def get_center_w(ls: list):
     res = []
@@ -457,7 +492,6 @@ def get_center_w(ls: list):
         res.append((sm, k))
     return min(res)[1]
 
-
 def get_dist(ls: list):
     ls = [p for p in ls if p[-1]]
     res = []
@@ -465,7 +499,6 @@ def get_dist(ls: list):
         sm = max(dist(k[:2], i[:2]) for i in ls)
         res.append(sm)
     return max(res)
-
 
 data = list()
 for i in open('04 Demo/add/27.txt'):

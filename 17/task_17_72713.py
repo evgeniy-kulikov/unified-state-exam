@@ -9,7 +9,7 @@ https://stepik.org/course/72713/syllabus
 f = [*map(int, open('17.txt'))]
 c = mx = 0
 for a, b in zip(f, f[1:]):
-    if any([not a%7 and not b%17, not b%7 and a%17]):
+    if any([not a % 7 and b % 17, not b % 7 and a % 17]):
         c += 1
         mx = max(mx, a+b)
 print(c, mx)  # 2510 19632
@@ -19,7 +19,7 @@ print(c, mx)  # 2510 19632
 f = [*map(int, open('17.txt'))]
 c = mn = 0
 for a, b in zip(f, f[1:]):
-    if any([str(a)[-1]=='6' and not a%3, str(b)[-1]=='6' and not b%3]):
+    if any([str(a)[-1]=='6' and not a % 3, str(b)[-1]=='6' and not b % 3]):
         c += 1
         mn = min(mn, a, b)
 print(c, abs(mn))  # 587 9996

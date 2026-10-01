@@ -101,6 +101,7 @@ reg = r'(?:[BCD][AO])+'
 s = open('add/course_233165/24-1__09.txt').readline().strip()
 res = findall(reg, s)
 print(len(max(res, key=len)) // 2)  # 174
+# print(max(map(len, res)) // 2)  # 174
 
 # variant
 s = open('add/course_233165/24-1__09.txt').readline().strip()
@@ -138,15 +139,15 @@ print(len(max(s, key=len)))  # 57
 
 """ 24.2 Задание 24 ЕГЭ | Урок 2 """
 # https://stepik.org/lesson/1720695/step/1?unit=1744231
-# https://kompege.ru/task   № 21 Демоверсия 2021 (Уровень: Базовый)
-res = 0
-cnt = 1
+# https://kompege.ru/task
+# № 21 Демоверсия 2021 (Уровень: Базовый)
+res, cnt = 0, 1
 s = open('add/course_233165/24-2__01.txt').read()
 for i in range(1, len(s)):
     if s[i - 1] != s[i]:
         cnt += 1
-    else:
         res = max(res, cnt)
+    else:
         cnt = 1
 print(res)  # 35
 
@@ -167,8 +168,8 @@ s = open('add/course_233165/24-2__02.txt').readline()
 for i in range(1, len(s)):
     if s[i-1] <= s[i]:
         cnt += 1
-    else:
         res = max(res, cnt)
+    else:
         cnt = 1
 print(res)  # 15
 
@@ -196,18 +197,21 @@ print(max(ls))  # 8
 
 # https://stepik.org/lesson/1720695/step/4?unit=1744231
 # https://kompege.ru/task   № 2427 (Уровень: Средний)
-st = open('add/course_233165/24-2__04.txt').readline()
-st += st[-1]
+# ord('a')  97
+# ord('A')  65
+# ord('1')  49
+s = open('add/course_233165/24-2__04.txt').readline()
+s += s[-1]  # что бы не пропал на последней итерации текущий последний результат
 cnt = 1
-s = ''
-for i in range(1, len(st)):
-    if st[i - 1] > st[i]:
+res = ''
+for i in range(1, len(s)):
+    if s[i - 1] > s[i]:
         cnt += 1
     else:
-        if cnt > len(s):
-            s = st[i - cnt:i]
+        if cnt > len(res):
+            res = s[i - cnt:i]
         cnt = 1
-print(s)  # zrqjWRC1
+print(res)  # zrqjWRC1
 
 # variant
 st = open('add/course_233165/24-2__04.txt').readline()
@@ -688,20 +692,24 @@ print(m)  # 292
 
 # https://stepik.org/lesson/1720697/step/9?unit=1744233
 # https://kompege.ru/task  № 23381 Резервный день 19.06.25 (Уровень: Средний)
-s = open('24-4__09.txt').readline()
-for i in '2468':
-    s = s.replace(i, '0')
+s = open('24-4__09.txt').readline().strip()
+for i in '0468':
+    s = s.replace(i, '2')
 w = ''
-l = m = 0
-for r in range(1, len(s) - 1):
-    if s[r-1] == '0' and s[r] not in '013579':
-        w = s[r]
-        l = r
-    if s[r + 1] == '0':
-        m = max(m, r - l + 2)
-    if s[r] != w:
-        l = r
-print(m)  # 1212
+cnt = res = 0
+for i in range(1, len(s)):
+    if s[i-1] == '2' and s[i].isalpha():  # начало события
+        w = s[i]
+        cnt = 1  # cnt - счетчик и флаг
+    if cnt:
+        if s[i] == '2':  # успешное завершение события
+            res = max(res, cnt + 1)
+            cnt = 0
+        elif s[i] == w:  # событие продолжается
+            cnt += 1
+        else:  # завершение события (успеха нет - буквы не совпали или попало число)
+            cnt = 0
+print(res)  # 1212
 
 # variant (long time)
 s = open('24-4__09.txt').readline()
@@ -806,24 +814,25 @@ print(len(res))  # 19
 
 # 32.2 Вариант 5 | Часть 2
 # https://stepik.org/lesson/1754189/step/10?unit=1778648
-# https://kompege.ru/task  № 21717 ЕГКР 19.04.25 (Уровень: Средний)
-# В поиске минимальной строки притаился замечательный скрытый камень 😉
+# https://kompege.ru/task
+# 21717 ЕГКР 19.04.25 (Уровень: Средний) 🌶️🌶️🌶️
+# Логика - на сколько нужно убрать лишние символы перед первой слева (из 130) подстроки 'RSQ' 😉
 s = open('05_24.txt').read().strip()
 # s = 'QQQ' + 'RSQ' * 130 + 'SSSQ'  # проверка
 cnt = l = 0
-res = 10**10
+res = len(s)
 for r in range(2, len(s)):
-    if s[r-2:r+1] == 'RSQ':
-        cnt += 1
+    cnt +=  s[r-2:r+1] == 'RSQ'
     while cnt > 130:
-        if s[l:l+3] == 'RSQ':
-            cnt -= 1
+        cnt -= s[l:l+3] == 'RSQ'
         l += 1
     if cnt == 130 and s[r] != 'Q':
-        # на сколько нужно убрать лишние символы перед первой слева подстрокой 'RSQ' 😉
-        idx = s[l:r+1].index('RSQ')
-        res = min(res, r - l - idx + 1)
-print(res)  # 497
+        idx = s[l:r+1].index('RSQ') + l  #  к указателю 'l' прибавляем расстояние до первой (из 130) групп 'RSQ'
+        #  r - idx  точка первой (из 130) слева групп 'RSQ', а справа указатель 'r' перебирает все варианты когда s[r] != 'Q'
+        #  (фактически нужен лишь первый такой вариант)
+        res = min(res, r - idx + 1)
+print(res) # 497
+24_21717
 
 
 # 33.2 Вариант 6 | Часть 2
@@ -890,23 +899,28 @@ print(m)  # 2981
 
 # 35.2 Вариант 8 | Часть 2
 # https://stepik.org/lesson/1943181/step/10?unit=1969936
-# https://kompege.ru/task  № 23568 Пересдача 03.07.25 (Уровень: Средний)
-a = ''
-d = '0123456789'
-cnt = idx = 0
+# https://kompege.ru/task  № 23568 Пересдача 03.07.25 (Уровень: Средний)  ✅
+s = open('08_24.txt').readline().strip()
+for i in '023456789':
+    s = s.replace(i, '1')
+w = ''
+idx = cnt = 0
 res = []
-s = open('08_24.txt').readline() + '*'  # + '*'   это костыль 🤔
-for i in range(len(s) - 1):
-    if s[i] not in d and s[i + 1] in d:
-        a = s[i]
-        idx = i
-        cnt = 0
-    elif s[i] in d:
-        cnt += 1
-    elif s[i] == a and cnt:
-        res.append((cnt + 2, idx))
-        a = s[i]
-res.sort(key=lambda x: (-x[0], x[1]))
+for i in range(1, len(s)):
+    if s[i-1] != '1' and s[i] == '1':  # начало события
+        w = s[i-1]
+        idx = i-1
+        cnt = 1
+    if cnt:
+        # if s[i] == w and s[i-1] == '1':  # успешное завершение события
+        if s[i] == w:  # успешное завершение события
+            res.append((i - idx + 1, idx))  # длина, индекс первого символа
+        elif s[i] == '1':  # событие продолжается
+            cnt += 1
+        else:  # завершение события (успеха нет - буквы не совпали)
+            cnt = 0
+            w = s[i]
+res.sort(key=lambda x: -x[0])
 print(res[0][1])  # 310030
 
 

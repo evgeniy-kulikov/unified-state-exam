@@ -69,17 +69,18 @@ print(f(2222) / f(2182))  # 1048576
 
 
 # https://stepik.org/lesson/1227123/step/5?unit=1240641
+# 8561 (Уровень: Базовый)
 def f(n):
     if n <= 1:
         return n
     if n > 1 and not n % 3:
-        return f(n-1) + f(n-2) + 1
-    return g(n-3)
+        return f(n - 1) + f(n  -2) + 1
+    return g(n - 3)
 
 def g(n):
     if n > 100:
         return n
-    return g(n+2) + 1
+    return g(n + 2) + 1
 
 print(f(15) + f(12))  # 593
 
