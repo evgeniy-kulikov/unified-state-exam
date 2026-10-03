@@ -2,9 +2,9 @@
 """
 21 887 934 114 1866 1874 1975 2250 2424 2425 2428 2577 3018 3375 3792 4682 4710
 5810 5955 6029 6054 6275 6636 6757 7094 7356 7600 7624 8510 9753 9791 9845
-10105 11954 12254 12931 13085 13100 14647 15339 16333 16388 17535 17563 17641 17878 19149 19254 19717
-20909 21421 21597 21717 21908 22356 22357 22358 22359 22360 22361 23206 23281 22362 23381 23568 23762 24895 24977 
-25361 26077 26078 26491 26551 26549 27069 27634 27777 28765 31368           
+10105 11954 12254 12931 13085 13100 14647 15339 16333 16388 17535 17563 17641 17878 18619 19149 19254 19717 19967 19968 19969 19970
+20909 21421 21597 21161 21717 21908 22356 22357 22358 22359 22360 22361 23206 23281 22362 23381 23568 23762 24895 24977 
+25361 26077 26078 26491 26551 26549 27069 27634 27777 20813 28765 31368           
 """
 
 
@@ -12,10 +12,8 @@
 https://stepik.org/course/233165
 1040 1302 1428
 2251 2420 2422 2423 2425 2426 2427
-4113 4546 4602 4627 4643
-5171 6734 9169 9552
-10724 11954 12476 13715 18597 19967 19969
-20813
+4113 4546 4602 4627 4643 5171 6734 9169 9552
+10724 11954 12476 13715 18597 20813
 """
 
 
@@ -744,10 +742,9 @@ print(res)  # 9712
 
 # 17563 Основная волна 08.06.24 (Уровень: Сложный) 🌶️
 from re import *
+s = open('add/course_233165/24-4__04.txt').readline().strip()
 n = r'[7-9]+\d*'
 reg = rf'{n}(?:[*-]{n})+'
-# reg = r'[1-9]+\d*(?:[*-][1-9]+\d*)+'
-s = open('add/course_233165/24-4__04.txt').readline().strip()
 res = findall(reg, s)
 print(max(map(len, res)))  # 40
 
@@ -815,12 +812,21 @@ print(max(len(i) for i in findall(reg, s)))
 
 # 17878 Демоверсия 2025 (Уровень: Сложный)
 from re import *
-s = open('24.txt').read().strip()
-n = r'(?:0|[1-9]\d*)'
+s = open('24_17878.txt').read().strip()
+n = r'(?:[1-9]\d*|0)'
 reg = rf'{n}(?:[*-]{n})+'
 res = findall(reg, s)
-res = max(res, key=len)
-print(len(res))  # 154
+# print(max(res, key=len))
+print(max(map(len, res)))  # 154
+
+
+# 18619 (Уровень: Сложный)
+from re import *
+s = open('24_18619.txt').readline().strip()
+reg = r'B\d+(?:[-*]\d+)+'
+res = findall(reg, s)
+# print(max(res, key=len))
+print(max(map(len, res)))  # 68
 
 
 # 19149 (Уровень: Гроб)
@@ -874,6 +880,46 @@ for r in range(len(s)):
 print(res)  # 2471
 
 
+# 19967 (Уровень: Сложный)
+from re import *
+s = open('24_19967.txt').readline().strip()
+n = r'(?:[1-9]\d*|0)'
+reg = rf'AFD{n}(?:[+*]{n})+'
+res = findall(reg, s)
+# print(max(res, key=len))
+print(max(map(len, res)))  # 72
+
+
+# 19968 (Уровень: Сложный)
+from re import *
+s = open('24_19968.txt').readline().strip()
+n = r'(?:[1-5][0-5]*|0)'
+# reg = rf'(?:{n}(?:[+*]{n})+)'
+reg = rf'{n}(?:[+*]{n})+'
+res = findall(reg, s)
+print(max(res, key=len))
+print(max(map(len, res)))
+
+
+# 19969 (Уровень: Сложный)
+from re import *
+s = open('24_19969.txt').readline().strip()
+w = r'[a-z]+'
+reg = rf'(?:{w}@{w}\.{w})'
+res = findall(reg, s)
+# print(max(res, key=len))
+print(max(map(len, res)))  # 230
+
+
+# 19970 (Уровень: Сложный)
+from re import *
+s = open('24_19970.txt').readline().strip()
+n = r'(?:[1-9]\d*[05]|0)'
+reg = rf'{n}(?:[*+]{n})+'
+res = findall(reg, s)
+# print(max(res, key=len))
+print(max(map(len, res)))  # 91
+
 
 #  20909 Апробация 05.03.25(Уровень: Средний) ✅
 s = open('24_20909.txt').readline().strip()
@@ -899,9 +945,10 @@ print(len(max(f, key=len)))  # 19
 
 
 # 21597 (Уровень: Сложный) 🌶️🌶️🌶️🌶️🌶️
-# ищем сначала умножения а затем вычитания: 2*0*54*30-2-50-4
-# Подвох 🌶️ - оказалось пересечение строк.
-# 1*2-9*3*4-5  ->  1*2-9  9*3*4-5  (на 9-ке пересечение) 😛
+# Крайне неоднозначное условие задачи. Такую никому не предлагать❗❗❗
+# Ищем сначала умножения, а затем вычитания: 2*0*54*30-2-50-4
+# Подвох 🌶️ в пересечении строк.
+# 1*2-5*3*4-0  ->  1*2-5  5*3*4-0  (на 5-ке пересечение) 😛
 from re import *
 s = open('24.txt').readline().strip()
 n = r'(?:[1-5][0-5]*|0)'
@@ -911,7 +958,7 @@ reg2 = rf'(?=({reg1}))'  # применение Positive Lookahead
 res = findall(reg1, s)
 print(max(map(len, res)))  # 46 (НЕ учтено пересечение строк❗)
 res = findall(reg2, s)
-print(max(map(len, res)))  # 51 (учтено пересечение строк)  Все-равно работает плохо❗
+print(max(map(len, res)))  # 51 (учтено??? пересечение строк)❗
 
 from re import *
 s = open('24.txt').readline().strip()
@@ -929,6 +976,17 @@ reg = rf'{n}(\*{n})+(-{n})*'
 reg = rf'(?=({reg}))'  # проверка пересечений ✅✅✅
 res = [x.group(1) for x in finditer(reg, s)]
 print(max(map(len, res)))  # 51 (учтено пересечение строк)
+
+
+
+# 21161 (Уровень: Сложный) 🌶️🌶️
+from re import *
+s = open('24_21161.txt').readline().strip()
+w = r'(?:\s[A-C]?[a-c]+)*'
+reg = rf'(?:[ABC][abc]*{w}\.)'
+res = findall(reg, s)
+# print(max(res, key=len))  # C c c b Caa caa Bcb c.
+print(max(map(len, res)))  # 22
 
 
 
@@ -1350,6 +1408,17 @@ reg = r'[1-9AB]+'
 res = findall(reg, f)
 res.sort(key=len)
 print(len(res[-1]))  # 18
+
+
+# 20813 Апробация 05.03.25(Уровень: Сложный)
+from re import *
+s = open('24_20813.txt').readline().strip()
+n = r'(?:[7-9]\d*|0)'
+reg = rf'{n}(?:[*-]{n})+'
+res = findall(reg, s)
+# print(max(res, key=len))
+print(max(map(len, res)))  # 111
+
 
 
 # 28765 Досрочная волна 2026 (Уровень: Базовый)

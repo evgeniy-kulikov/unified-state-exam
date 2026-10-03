@@ -496,7 +496,7 @@ s = open('24-3__10.txt').readline()
 n = r'(?:[1-9]\d*|0)'
 reg = rf'AFD{n}(?:[+*]{n})+'
 res = findall(reg, s)
-print(len(max(res, key=len)))  # 70
+print(len(max(res, key=len)))  # 72
 # AFD448*675+16*698+715*448*132191*1540851*484*502*805+38311+873*103*879*0
 
 
