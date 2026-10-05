@@ -1,6 +1,6 @@
 """ https://kompege.ru/task """
 """
-31518 31523 31598 31599 31600 31609 31618 31619 31620 31627 31635 31644 31650 31651 31663 31673 32025 32026 32027
+31518 31523 31583 31587 31598 31599 31600 31609 31618 31619 31620 31627 31635 31644 31650 31651 31663 31673 32025 32026 32027
 """
 
 
@@ -67,6 +67,57 @@ for _ in range(201):  # Кол-во строк(ребер) в файле + 1
     for a, b, w in data:
         res[b] = min(res[b], res[a] + w)
 print(int(res[97]))  # 315
+
+
+# 31583 (Уровень: Базовый)
+from math import inf
+from functools import cache
+d = dict()
+for row in open('20_31583.txt'):
+    a, b, w = map(float, row.split())
+    d.setdefault(a, [])
+    d[a].append((b, w))
+
+@cache
+def f(st, en, c=0):
+    c += st in(25, 50)
+    if st == en and c == 2:
+        return 0
+    if not st in d:
+        return inf
+    return min(f(b, en, c) + w for b, w in d[st])
+print(int(f(12, 88)))  # 1193
+# variant без именного аргумента c=0 ✔️
+# @cache
+# def f(st, en):
+#     if st == en:
+#         return 0
+#     if not st in d:
+#         return inf
+#     return min(f(b, en) + w for b, w in d[st])
+# print(int(f(12, 25) + f(25, 50) + f(50, 88)))  # 1193 ✔️
+
+
+
+# 31587 (Уровень: Базовый)
+from math import inf
+from functools import cache
+d = dict()
+for row in open('23_31587.txt'):
+    a, b, w = map(float, row.split())
+    d.setdefault(a, [])
+    d[a].append((b, w))
+
+@cache
+def f(st, en, c=0):
+    c += st==25
+    if st == en and not c:
+        return 0
+    if not st in d:
+        return inf
+    return min(f(b, en, c) + w for b, w in d[st])
+print(int(f(19, 83)))  # 420
+
 
 
 # 31598 (Уровень: Базовый)
