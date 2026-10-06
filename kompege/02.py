@@ -33,6 +33,7 @@ for p in permutations('xyz'):
         print(''.join(p))  # 2 (yxz, zxy)
 
 
+""" Взято на мой курс """
 # 6992 (Уровень: Средний)
 from itertools import *
 def f1(x,y,w,z):
@@ -50,10 +51,11 @@ for p in permutations('xywz'):
         print(''.join(p))  # wyxz
 
 
+""" Взято на мой курс """
 # 9357 Джобс 10.06.13_(23) (Уровень: Средний)
 from itertools import *
 def f1(x,y,w,z):
-    return (x <= y) or (not w == z)
+    return (x <= y) or ((not w) == z)  # В Python приоритет not ниже чем ==
 
 def f2(x,y,w,z):
     return (x <= y) == (w and not z)
@@ -67,7 +69,7 @@ for m1, m2, m3, m4, m5, m6 in product((0, 1), repeat=6):
 
 
 
-
+""" Взято на мой курс """
 # 12671 (Уровень: Средний)
 from itertools import *
 def f(x,y,w,z):
@@ -82,6 +84,7 @@ for m1, m2, m3, m4, m5, m6 in product((0, 1), repeat=6):
                 print(''.join(p))  # wxyz
 
 
+""" Взято на мой курс """
 # 13077 (Уровень: Средний)
 from itertools import *
 def f1(x,y,w,z):
@@ -102,8 +105,8 @@ for m1, m2, m3, m4 in product((0, 1), repeat=4):
 
 
 
-
-# № 23261 Основная волна 11.06.25 (Уровень: Базовый)
+""" Взято на мой курс """
+# 23261 Основная волна 11.06.25 (Уровень: Базовый)
 from itertools import *
 def f(x,y,w,z):
     return not (w <= (x == y)) and (z <= x)
