@@ -4,29 +4,32 @@
 1304 1395 1868
 2149 2362 2480 2612 2613 2614 2652 2686 3664
 4205(=7274) 4604(=4712) 4629 4660 4712=(4604) 5066 5228 5643 6800 7096
-10107 11681 12256 13394 15341 17537 17643 17881 19256
-21598 21719 21910(=21424) 23208 23765 27779
-31370 31520 
+10107 11681 12256 13394 15341 17537 17643 17881 19256 19752 19890
+20815 21598 21719 21910(=21424) 22127 23175 23208 23259 23283 23383 23765 24897 25363 27636 27779 28945
+30401 31131 31137 31165 31232 31370 31520 
 """
 
 
+""" Задача взята на мой курс """
 # 225 Джобс 14.09.2020 (Уровень: Базовый)
 f = open('add/26/26_225.txt').readlines()
 M, N = map(int, f[0].split())
 d = [*map(int, f[1:])]
 d.sort(reverse=True)
-sm = d[0]
-c = 1
-mn = None
+sm = d[0]  # сумма файлов
+c = idx = 1
 for i in range(1, N):
     if d[i] + sm <= M:
         sm += d[i]
         c += 1
-        mn = d[i]
     else:
-        continue
-print(c, mn)  # 1054 732
-# print(sm)  # 1000000
+        # print(c, d[i])  # Случай, если меньший файл так и не будет найден.
+        idx = i
+        break
+for i in range(idx, N):  # ищем файл на оставшееся место
+    if sm + d[i] <= M:
+        print(c + 1, d[i])  # 1054 732  Файл нашелся
+        break
 
 
 # 507 Джобс 19.10.2020 (Уровень: Средний)
@@ -131,6 +134,7 @@ for i in range(n-1, 0, -1):
         break
 
 
+""" Задача взята на мой курс """
 # 1395 (Уровень: Базовый)
 f = open('add/26/26_1395.txt').readlines()
 s, n = map(int, f[0].split())
@@ -270,6 +274,7 @@ b = mean(tail[tail.count(half):])  # средний балл тех, кто не
 print(a, int(b))  # 276 246
 
 
+""" Взято на мой курс """
 # 2613 (Уровень: Базовый)
 f = open('add/26/26_2613.txt').readlines()
 d = dict()
@@ -277,22 +282,21 @@ for i in f[1:]:
     k, v = map(int, i.split())  # ряд, место
     d.setdefault(k, [])
     d[k] += [v]
-d = [[k, v] for k, v in d.items()]
-d.sort(reverse=True)
 res = []
-for r, s in d:
+for r, s in d.items():
     s.sort()
     mx = 0
     c = 1
-    for i in range(len(s) - 1):
-        if s[i+1] - s[i] == 1:
+    for a, b in zip(s, s[1:]):
+        if b - a == 1:
             c += 1
             mx = max(mx, c)
         else:
             c = 1
     res.append([mx, r])
 res.sort(reverse=True)
-print(res[0][1], res[0][0])  # 99 14
+seat, row = res[0]
+print(row, seat)  # 99 14
 
 
 # 2614 (Уровень: Базовый)
@@ -382,22 +386,22 @@ print(res[0][1], res[0][0])  # 9570 9743
 
 
 
-
+""" Взято на мой курс """
 # 4205 Открытый вариант 2022 (Уровень: Базовый)
 # 7274 OpenFIPI (Уровень: Базовый)
 f = open('add/26/26_4205.txt').readlines()  # or  26_7274.txt
 d = dict()
 for row in f[1:]:
-    k, v = map(int, row.split()) # номер ряда / номер места в этом ряду
+    k, v = map(int, row.split()) # ряд / место
     d.setdefault(k, [])
     d[k] += [v]
-dt = [(k, sorted(v)) for k, v in d.items()]
-dt.sort(reverse=1)
-for r in dt:
-    if len(r[1]) > 1:
-        for a, b in zip(r[1], r[1][1:]):
+res = sorted([(k, v) for k, v in d.items()], reverse=True)
+for r, v in res:
+    v.sort()
+    if len(v) > 1:
+        for a, b in zip(v, v[1:]):
             if b - a == 14:
-                print(r[0], a+1)  # 59966 50449
+                print(r, a+1)  # 59966 50449
                 exit()
 
 
@@ -536,24 +540,23 @@ print(cnt, cur)  # 854 54
 
 
 
+""" Взято на мой курс """
 # 10107 Демоверсия 2024 (Уровень: Средний)
-fl = open('26_10107.txt').readlines()
-d = [[*map(int, i.split())] for i in fl[1:]]
-# сортируем по возрастанию времени окончания.
-d.sort(key=lambda x: x[1])
-res = []
-end = 0
+f = open('add/26/26_10107.txt')
+next(f)
+d = [[*map(int, i.split())] for i in f]
+d.sort(key=lambda x: x[1])  # сортируем по возрастанию времени окончания.
+res = [d[0]]  # проведение мероприятий
 for i in d:
     st, en = i
-    if st >= end:
+    if st >= res[-1][1]:
         res.append(i)
-        end = en
-# ищем самое позднее время начала последнего мероприятия от окончания предпоследнего отобранного мероприятия
-mx = 0
-for i in d:
+# ищем самое позднее время начала последнего мероприятия от окончания предпоследнего мероприятия (т.е. макс. перерыв)
+for i in d[::-1]:
     if res[-2][1] <= i[0]:
-        mx = max(mx, i[0])
-print(len(res), mx - res[-2][1])  # 32 15
+        print(len(res), i[0] - res[-2][1])  # 32 15
+        break
+
 
 
 # 11681 (Уровень: Базовый) ❓
@@ -570,9 +573,11 @@ b = d[k-1][2]  # расхождение между условием, приме�
 print(int(a), int(b))  # 2903432767 194784 ❓
 
 
+
+""" Взято на мой курс """
 # 12256 ЕГКР 16.12.13_(23) (Уровень: Базовый)
 f = open('add/26/26_12256.txt').readlines()
-M,N = map(int, f[0].split())
+M, N = map(int, f[0].split())
 D = sorted(map(int, f[1:]))
 c = m = 0
 for i in range(N):
@@ -641,35 +646,41 @@ res.sort()
 print(*res[-1])  # 9991 5643
 
 
+
+""" Взято на мой курс """
 # 17643 Основная волна 19.06.24 (Уровень: Базовый)
-f = open('26_17643.txt').readlines()
-N = int(f[0])
-data = [[*map(int, i.split())] for i in f[1:]]  # артикул / цена / статус(0-продан/1-не продан)
-avr = sum(i[1] for i in data) / N
+from statistics import mean
+f = open('add/26/26_17643.txt').readlines()
+next(f)
+data = [[*map(int, i.split())] for i in f]  # артикул / цена / статус(0-продан/1-не продан)
+avr = mean(i[1] for i in data)
 expensive = [i for i in data if i[1] > avr]
-d = {i[0]: [i[1], 0, 0] for i in expensive}  # [i[1],0,0] цена / кол-во: продан/не продан
+d_exp = {i[0]: [i[1], 0, 0] for i in expensive}  # артикул: [i[1],0,0] цена /  кол-во не продан/продан
 for i in expensive:
-    if i[2]:
-        d[i[0]][2] += 1
+    if i[2]:  # если НЕ продан
+        d_exp[i[0]][2] += 1
     else:
-        d[i[0]][1] += 1
-res = [[k] + [*v] for k, v in d.items()] # артикул / цена / кол-во: продан/не продан
+        d_exp[i[0]][1] += 1
+res = [[k] + [*v] for k, v in d_exp.items()] # артикул / цена / кол-во: не продан/продан
 res.sort(key=lambda x: (-x[2], -x[1], x[3]))
-_,a,b,c = res[0]
-print(a*b, c)  # 43656 36
+_, price, cnt, remainder = res[0]
+print(price * cnt, remainder)  # 43656 36
 
 
+
+""" Взято на мой курс """
 # 17881 Демоверсия 2025 (Уровень: Базовый)
 from statistics import mean
 f = open('26_17881.txt')
-N = int(f.readline())
+N = int(next(f))  # кол-во студентов
 data = [[*map(int, i.split())] for i in f]
-data = [(i[0], mean(i[1:]), i[1:].count(2)) for i in data]
-d1 = [i for i in data if not i[2]]   # Без двоек
-d2 = sorted(i for i in data if i[2]==3)  # получили по 3 двойки
-d1.sort(key=lambda x: (-x[1], x[0]))
-idx = N // 4 - 1  # ✅ т.к индекс начинается с нуля
-print(d1[idx][0], d2[0][0])  # 52326 635
+data = [(i[0], mean(i[1:]), i[1:].count(2)) for i in data]  # id / сред.балл /  наличие двоек
+vin = [i for i in data if not i[2]]   # Без двоек
+d2 = sorted(i for i in data if i[2]==3)  # получили по 3 двойки (по условию задачи мы ищем только ID, а не место в общем списке)
+vin.sort(key=lambda x: (-x[1], x[0]))
+idx = N // 4 - 1  # -1 ✅ т.к индекс начинается с нуля
+print(vin[idx][0], d2[0][0])  # 52326 635
+
 
 
 # 19256 ЕГКР 21.12.24 (Уровень: Базовый)
@@ -695,6 +706,52 @@ print(*res[0])  # 40031 148
 
 
 
+# 19752 (Уровень: Базовый)
+f = open('add/26/26_19752.txt')
+N = int(next(f))  # 9566
+data = [[*map(int, i.split())] for i in f]  #  ID участника / баллы (за 10 вопросов)
+data = [[i[0]] + [sum(i[1:])] + [sum(k for k in i[1:] if k > 0)] + [sum(1 for p in i[1:] if p)] + [i[1:]] for i in data]
+data.sort(key=lambda x: (-x[1], -x[2], -x[3], x[0]))
+data = [i for i in data if i[1] > 0]  # только положительная сумма баллов
+# Победители отборочного тура
+idx = len(data) // 3
+first = data[:idx]
+first_add = [i for i in data[idx:] if i[1:4] == first[-1][1:4]]
+# Дополнительный отборочный тур
+idx_second = idx + len(first_add)
+second =  data[idx_second:]
+second_1 = second[:len(second) // 10]
+second_2 = [i for i in second[len(second_1):] if i[1:4] == second_1[-1][1:4]]
+print(second_1[0][0], len(second_1) + len(second_2))  # 35669 478
+
+
+
+# 19890 (Уровень: Базовый)
+f = open('add/26/26_19890.txt')
+N, K = map(int, next(f).split())  # кол-во ящиков / грузоподъёмность
+first, second = [], []
+for i in map(int, f):  # массы ящиков
+    if 310 <= i <= 320:
+        first.append(i)
+    else:
+        second.append(i)
+second.sort()
+sm = sum(first)
+cnt = len(first)
+for i in range(len(second)):  # сборка грузов
+    if sm + second[i] <= K:
+        sm += second[i]
+        cnt += 1
+    else:
+        sm -= second[i-1]  # убираем последний груз
+        break
+for i in second[::-1]:  # ищем максимальный по массе последний груз
+    if sm + i <= K:
+        sm += i
+        break
+print(cnt, sm)  # 129 10000
+
+
 
 # 20910 Апробация 05.03.25 (Уровень: Средний)
 # получение данных
@@ -712,6 +769,23 @@ for i in range(1, S):  # ⛔ для занятого 1-го ряда алгор�
     res.append((min([a, b]) - 1, i))
 res.sort(key=lambda x: (-x[0], x[1]))
 print(*res[0])  # 21028 6660
+
+
+
+# 20815 Апробация 05.03.25(Уровень: Базовый)
+f = open('add/26/26_20815.txt')
+N, K = map(int, next(f).split())  # кол-во кандидатов / кол-во мест
+data = [[*map(int, i.split())] for i in f]  # ID кандидата / четыре числа - 3 испытания + собеседование
+d = [[i[0]] + [sum(i[1:])] + [i[-1]] for i in data]  # ID кандидата / сумма всех баллов/ собеседование
+d.sort(key=lambda x: (-x[1], -x[2], x[0]))
+d_vin = d[:K]
+d_loser = d[K:]
+# print(d_vin[-1][1], d_loser[0][1])  # 279 279  есть полупроходной балл
+half = d_vin[-1][1]
+ans_1 = [i for i in d_vin if i[1] > half][-1][0]
+ans_2 = sum(i[1] == half for i in d)
+print(ans_1, ans_2)  # 45539 127
+
 
 
 # 21598 (Уровень: Средний) 👍
@@ -774,78 +848,437 @@ for i in d:
 print(cnt, cur)  # 1040 57
 
 
+# 22127 (Уровень: Базовый)
+# 🆗🆗🆗 Новый подход 🆗🆗🆗
+# ✅✅✅ вариант БЕЗ создания списка для  всех 86_400_000 миллисекунд. код работает меньше 2-х секунд
+f = open('add/26/26_22127.txt')
+next(f)
+data = [[*map(int, i.split())] for i in f]  # время начала и окончания приёма
+data.sort()  # сортировка по возрастанию начал приема
+cnt = sm = mx = 0
+for client in data + [[86_400_000, 86_400_000]]:  # 60 * 60 * 24 * 1000  (миллисекунд за сутки)
+    if client[0] > mx:  # если время начала нового приема больше времени окончания предыдущей общей серии приемов (в т.ч. и при самом начале)
+        cnt += 1  # период простоя
+        sm += client[0] - mx  # суммарня длительность простоя
+    mx = max(mx, client[1] + 1)  # конечная граница текущих совпадающих приемов
+print(cnt, sm)  # 36 35834
+
+# ⛔ Долго: код работает 60 секунд  (через создание списка для  всех 86_400_000 миллисекунд)
+f = open('add/26/26_22127.txt')
+res = [0] * 60*60*24*1000
+next(f)
+d = [[*map(int, i.split())] for i in f]  # время начала и окончания приёма
+d.sort()
+for el in d:
+    st, en = el
+    for i in range(st, en + 1):
+        res[i] = 1
+res = [1] + res + [1]  # [1] костыли в начало и конец, для верного подсчета "0" (простоя)
+zero = cnt = 0
+for a, b in zip(res, res[1:]):
+    zero += not a
+    cnt += a != b
+print(cnt // 2, zero)  # 36 35834
+
+
+
+# 23175 Основная волна 10.06.25(Уровень: Базовый)
+# Нужно проверить два вида сортировки ✅
+f = open('add/26/26_23175.txt')
+N, M = map(int, next(f).split())  # кол-во грузов(cargo) / контейнеров(container)
+d = [*map(int, f)]
+cargo = sorted(d[:N])
+container = sorted(d[N:])
+res = []
+idx = 0
+for el in container:
+    for i in range(idx, N):
+        if cargo[i] <= el:
+            res += [(cargo[i], el)]
+            idx = i + 1
+            break
+max_container = res[-1][1]
+for i in cargo[::-1]:
+    if i <= max_container:
+        print(len(res), i -res[-2][0])   # 800 48
+        break
+# ⛔ этот вариант хуже
+cargo = sorted(d[:N], reverse=True)
+container = sorted(d[N:], reverse=True)
+res = []
+idx = 0
+for el in container:
+    for i in range(idx, N):
+        if cargo[i] <= el:
+            res += [cargo[i]]
+            idx = i + 1
+            break
+print(len(res), res[0] - res[1])  # 800 1
+
+
+
 #  23208 Основная волна 10.06.25(Уровень: Базовый)
+# https://vkvideo.ru/video-205865487_456240487?t=1h29m31s&ref_domain=kompege.ru
 f = open('add/26/26_23208.txt').readlines()
 N = int(f[0])
-f = [[*map(int, k.split())] + [i] for i, k in enumerate(f[1:], 1)]
+f = [[*map(int, k.split())] + [i] for i, k in enumerate(f[1:], 1)]  # Шлифовка, Окрашивание, Номер
 f = [[(1, 0)[i[0] < i[1]]] + i for i in f]  # 0, 1  шлифовка / окрашивание
-grind = sorted(i for i in f if not i[0])
-color =  sorted([i for i in f if i[0]], key=lambda x: -x[2])
+grind = sorted(i for i in f if not i[0])  # шлифовка
+color = sorted([i for i in f if i[0]], key=lambda x: -x[2])  # окрашивание (убывание)
 # финишный анализ глазами
-print(grind[-1], 'последняя шлифовка')
-print(color[0], 'последняя окраска')
-"""
-[0, 90948, 93066, 568] последняя шлифовка
-[1, 96995, 96881, 503] последняя окраска
-"""
+print(grind[-1], 'последняя шлифовка')  # [0, 90948, 93066, 568]
+print(color[0], 'последняя окраска')  #   [1, 96995, 96881, 503]
 print(color[0][-1], len(grind))  # последняя деталь - это окраска
 # 503 478
 
 
 
+""" Взято на мой курс """
+#  23259 Основная волна 11.06.25(Уровень: Базовый)
+# Логика: в самые грузоподъемные саноки сажаем первый, из возможной по массе, экипаж.
+f = open('add/26/26_23259.txt')
+N, M = map(int, next(f).split())  # кол-во экипажей(crew) / санок(sled)
+d = [*map(int, f)]  # массы экипажей + грузоподъемность санок
+crew = sorted(d[:N], reverse=True)  # массы экипажей (в граммах)
+sled = sorted(d[N:], reverse=True)  # максимально допустимая масса экипажа для конкретных санок
+idx = 0
+res_sled = []
+for el in sled:
+    for i in range(idx, N):
+        if crew[i] <= el:
+            res_sled.append(el)
+            idx = i + 1
+            break
+print(len(res_sled), end = ' ')  # 800
+max_sled = sled[0]
+for i in crew:
+    if i <= max_sled:
+        print(i)  # 450466
+        break
+# 800 450466
+
+
+
+""" Взято на мой курс """
+# 23283 Основная волна 11.06.25 (Уровень: Базовый)
+# https://vkvideo.ru/video-205865487_456240488?t=1h26m3s&ref_domain=kompege.ru
+with open('add/26/26_23283.txt') as fl:
+    windows, user = int(fl.readline()), int(fl.readline())  # кол-во окон / граждан
+    time = [tuple(map(int, i.split())) for i in fl]  # время начала / время окончания приёма (в минутах)
+    time.sort()
+    win = [0] * windows
+    cnt = last = 0
+    for st, en in time:
+        for i in range(windows):  # каждый раз пробегаемся по всем окнам
+            if win[i] < st:  #  '<'  со следующей минуты после завершения приёма предыдущего
+                win[i] = en
+                cnt += 1
+                last = i
+                break
+print(cnt, last + 1)  # 793 2 (+ 1: места (окна) пронумерованы начиная с 1)
+
+
+# 23383 Резервный день 19.06.25 (Уровень: Базовый)
+# https://vkvideo.ru/video-205865487_456240489?t=1h15m52s&ref_domain=kompege.ru
+with open('add/26/26_23383.txt') as fl:
+    next(fl)  # игнорируем первое число
+    num = [tuple(map(int, i.split())) for i in fl]   # [0] номер спортсмена, [1] номер посещённой им точки
+    d = dict()  # k: номер точки, v: номер спортсмена
+    for el in set(num):
+        v, k = el
+        d.setdefault(k, [])
+        d[k] += [v]
+    res = []
+    for k, v in d.items():
+        c = cnt = 1
+        v.sort()
+        for a, b in zip(v, v[1:]):
+            if b - a == 1:
+                c += 1
+                cnt = max(cnt, c)
+            else:
+                c = 0
+        res.append((cnt, k))  # (число спортсменов с идущими подряд номерами, номер точки)
+    res.sort(key=lambda x: (-x[0], x[1]))
+    print(*res[0])  # 56 30113
+
+# variant с костылем ⛔
+with open('add/26/26_23383.txt') as fl:
+    next(fl)  # игнорируем первое число
+    num = [tuple(map(int, i.split())) for i in fl]   # [0] номер спортсмена, [1] номер посещённой им точки
+    num = sorted(set(num), key=lambda x: (x[1], x[0])) + [(-1, -1)] # +[(-1, -1)] ⛔ костыль для зачета последнего реального значения
+    c = 1
+    res = []
+    for i in range(len(num) - 1):
+        s1, p1 = num[i]  # текущая спортсмен / точка
+        s2, p2 = num[i + 1]  # следующая спортсмен / точка
+        if p1 == p2 and (s2 - s1) == 1:
+            c += 1
+        else:
+            res += [(c, p1)]
+            c = 1
+    res.sort(key=lambda x: (-x[0], x[1]))
+    print(*res[0])  # 56 30113
+
+
+
+# 24897 (Уровень: Средний) 🌶️🌶️🌶️
+f = open('add/26/26_24897.txt')
+N = int(next(f))  # кол-во заявок
+dt = dict()
+for el in f:
+    z, d, p = map(int, el.split())  # номера:  заявки / дома / подъезда
+    dt.setdefault(d, [])
+    dt[d].append([p, z])
+# результирующий список
+res = []  # [925, 2, [84, 599896]]  дом / кол-во подъездов подряд / 1-й повтор. подъезд в серии (с номером заявки)
+for k, v in dt.items():  # убираем дубликаты подъездов (оставляем подъезд с минимальным номером заявки)
+    v.sort()
+    ls = [v[0]]
+    for a, b in zip(v, v[1:]):
+        if a[0] != b[0]:
+            ls += [b]
+    v += [[0, 0]]   # костыль для обработки последнего реального значения в списке
+    c = 1
+    for i in range(1, len(v)):  # считаем кол-во идущих подряд подъездов
+        if v[i][0] - v[i-1][0] == 1:
+            c += 1
+        else:
+            if c > 1:
+                res += [[k, c, v[i-c]]]
+                c = 1
+#  финиш
+res.sort(key=lambda x: (-x[1], x[2][1]))
+ans = res[0]
+print(ans[0], ans[2][0])  # 503 805
+
+
+
+# 25363 ЕГКР 13.12.25(Уровень: Базовый)
+f = open('add/26/26_25363.txt')
+next(f)
+d = [[*map(int, k.split()), i] for i, k in enumerate(f, 1)]  # режим ожидания / использования
+a, b = [], []
+for i in d:
+    if i[0] < i[1]:
+        a.append(i)
+    else:
+        b.append(i)
+a.sort()
+b.sort(key=lambda x: -x[1])
+print(b[0][2], len(b) - 1)  # 667 517
+
+
+# 27636 Апробация 04.03.26(Уровень: Базовый)
+f = open('add/26/26_27636.txt')
+S, N = map(int, next(f).split())  # грузоподъёмность / кол-во контейнеров
+d = sorted(map(int, f))
+sm = 0
+for i in range(N):
+    if sm + d[i] <= S:
+        sm += d[i]
+    else:
+        print(N-i, sum(d[i:]))  # 7347 472188
+        break
+
+
+
 # 23765 Демоверсия 2026 (Уровень: Базовый)
 # ✔️ Получается что работаем только со 'сроком годности после вскрытия'
-d = open('26.txt').readlines()
+d = open('add/26/26_23765.txt').readlines()
 dt = [[k, *map(int, i.split())] for k, i in enumerate(d[1:], 1)]
-b = [i for i in dt if i[1] > i[2]]
+b = [i for i in dt if i[1] > i[2]]  # срок хранения > годности
 b.sort(key=lambda x: -x[2])  # по значению срока годности (убывание)
 print(b[0][0], len(b) - 1)  # 564 444  (len(b)-1  сколько позиций осталось после первого в списке 'b')
 
 
 # 27779 Апробация 04.03.26 (Уровень: Базовый)
-f = open('add/KIM_25164989/26_27779.txt').readlines()
-# f = open('add/KIM_25164989/test.txt').readlines()
-N = int(f[0])
-d = sorted(map(int, f[1:]), reverse=True)
-c = 1
+f = open('add/26/26_27779.txt')
+# f = open('add/KIM_25164989/26_27779.txt')
+next(f)
+d = sorted(map(int, f), reverse=True)
+cnt = 1
 cur = d[0]
-for i in range(N-1):
-    if cur - d[i] >= 8:
-        c += 1
-        cur = d[i]
-print(c, cur)  # 1159 57
+for n in d[1:]:
+    if cur - n >= 8:
+        cnt += 1
+        cur = n
+print(cnt, cur)
+
+
+# 28945 ЕГКР 18.04.26(Уровень: Базовый)
+# Логика: берем из заявки самое дальнее начало учатка и самой большей протяженностью
+f = open('add/26/26_28945.txt')
+# f = open('add/26/test.txt')
+N = int(next(f))  # кол-во заявок
+d = [[*map(int, i.split())] for i in f]  # начало участка (в метрах от начала дороги) / протяжённость
+# d.sort(key=lambda x: (x[1], x[0]))  # 74 400 плохой вариант
+# d.sort()  26 180 плохой вариант
+# d.sort(key=lambda x: (-x[0], -x[1]))  # 77 184
+d.sort(reverse=True)  # 77 184
+res = [0] * 10_000
+cnt = 0
+for st, ln in d:
+    if all(not res[i] for i in range(st, st+ln)):
+        cnt += 1
+        for i in range(st, st+ln):
+            res[i] = 1  # помечаем единицей начало каждого метра участка для уборки
+print(cnt, res[::-1].index(1))  # 77 184
+
+
+# 30401 (Уровень: Средний)
+f = open('add/26/26_30401.txt')
+K, N = map(int, next(f).split())  # кол-во камер / кол-во заявок
+cam, bid = [], []  # тип камеры / заявки
+res = [0] * (K)  # камеры
+for i in f:
+    d = [*map(int, (i.split()))]
+    if len(d) == 2:
+        cam.append(d)  # тип камеры / объём / + number
+    else:
+        bid.append(d)  # время начала хранения / время окончания хранения / объём камеры / тип камеры / + number
+bid = [k + [i] for i, k in enumerate(bid, 1)] # + исходная нумерация
+cam = [k + [i] for i, k in enumerate(cam, 1)] # + исходная нумерация
+# заявки упорядочиваются по возрастанию времени начала, а при одинаковом времени начала - по возрастанию времени окончания.
+# Если время начала и время окончания у нескольких заявок совпадают, они обрабатываются в том порядке, в котором записаны во входном файле.
+bid.sort(key=lambda x: (x[0], x[1], x[-1]))
+# свободная подходящую камеря минимального объёма. Если таких камер несколько, выбирается камера с наименьшим порядковым номером.
+cam.sort(key=lambda x: (x[1], x[2]))
+cnt = num = 0
+for b in bid:
+    st, en, vb, type_b, n = b
+    for i in range(K):
+        type_c, vc, nc = cam[i]
+        # res[i] + 1  - камера считается свободной только со следующей минуты после окончания предыдущего хранения
+        if st >= res[i] + 1 and vb <= vc and type_b == type_c:
+            res[i] = en
+            cnt += 1
+            num = nc
+            break
+print(cnt, num)  # 1989 40
+
+
+
+# 31131 Основная волна 18.06.26(Уровень: Средний)
+f = open('add/26/26_31131.txt')
+_, K = map(int, next(f).split())  # кол-во строк / вместимость спец. раздела
+d = dict()
+res = []
+for el in f:
+    t, i, s = el.split()
+    if int(t[:2]) < 12:
+        d.setdefault(i, 0)
+        d[i] += int(s)
+    res.append(int(s))
+ans_1 = max([i for i in d.items()], key=lambda x: x[1])
+ans_2 = []
+SM = 0
+for i in range(len(res)):
+    if res[i] + SM <= K:
+        SM += res[i]
+    else:
+        ans_2 += [SM]
+        SM = res[i]
+ans_2.sort()
+print(ans_1[0], sum(ans_2[-2:]))  # 9517 46436
+
+
+
+# 31137 Основная волна 18.06.26(Уровень: Средний)
+f = open('add/26/26_31137.txt')
+N, K = map(int, next(f).split()) # кол-во строк / вместимость спец. раздела
+d = dict()
+res = []
+for el in f:
+    t, i, s = el.split()
+    d.setdefault(i, 0)
+    d[i] += int(s)
+    if int(t[:2]) < 12:
+        res.append(int(s))
+ans_1 = sorted(v for k, v in d.items())
+ans_2 = None
+SM = 0
+for i in range(len(res)):
+    if res[i] + SM <= K:
+        SM += res[i]
+    else:
+        ans_2 = SM
+        SM = res[i]
+print(sum(ans_1[-2:]), ans_2)  # 481895 21328
+
+
+
+# 31165 Основная волна 19.06.26(Уровень: Средний)
+f = open('add/26/26_31165.txt')
+K,  _ = map(int, next(f).split())  # приёмщики / сборщики винограда
+ls = [0] * (K + 1)
+data = []
+for el in f:
+    st, en, vin = el.split()
+    data.append([int(st), int(en), vin == 'A'])  #  "А" == 1
+data.sort(key=lambda x: (x[0], x[1], -x[2]))  #-x[2]) - ❗❗❗ для сортировки имеет значение сорт винограда. Сначала "А" (ЗАСАДА в задаче❗❗❗)
+# data.sort(key=lambda x: (x[1], x[0], -x[2]))  # 9026 56 - так хуже
+cnt = user = 0
+for st, en, vin in data:
+    for i in range(1, K+1):
+        if ls[i] <= st and (i % 2 == vin):
+            ls[i] = en+5
+            cnt += 1
+            user = i
+            break
+print(cnt, user)  # 9338 52
+
+
+
+# 31232 Резерв 22.06.26(Уровень: Средний)
+f = open('add/26/26_31232.txt')
+_, K = map(int, next(f).split())
+d = dict()
+backup = []
+for el in f:
+    t, indf, s = el.split()  # время(часы, минуты, секунды), идентификатор, объём данных
+    d.setdefault(indf, 0)
+    d[indf] += int(s)
+    if int(t[:2]) < 12:
+        backup += [int(s)]
+answer_1 = max(v for k, v in d.items() if v <= 150_000)  # 149369
+answer_2 = []
+SM = 0
+for i in backup:
+    if SM + i <= K:
+        SM += i
+    else:
+        answer_2.append(SM)
+        SM = i
+print(answer_1, sum(answer_2[-2:]))
+# 149369 45828
 
 
 
 # 31370 Пересдача 08.07.26(Уровень: Средний)
-# data collection
 f = open('add/26/26_31370.txt')
-_, K = map(int, f.readline().split())  # вместимость раздела
-d = dict()
-data = []
+_, K = map(int, next(f).split())  # вместимость раздела
+d = dict()  # объём данных переданых по каждому клиенту
+backup = []  # для answer_2
 for el in f:
     t, i, s = el.split()  # время(часы, минуты, секунды), идентификатор, объём данных
-    t = int(t[:2]) < 12
     i, s = map(int, [i, s])
-    data.append([t, i, s])
     d.setdefault(i, 0)  # идентификатор, объём данных
     d[i] += s
-# answer 1
-ident = sorted([i for i in d.items()], key = lambda x: x[1])
-print(ident[0][0] + ident[1][0])  # 17248  сумма идентификаторов 2-х клиентских устройств
-# answer 2
-res = []  # резервные копии
-S = 0
-for i in data:
-    if S + i[2] <= K:
-        S += i[2]
+    if int(t[:2]) < 12:
+        backup.append(s)
+client = sorted([i for i in d.items()], key = lambda x: x[1])
+answer_1 = client[0][0] + client[1][0]  # 17248  сумма идентификаторов 2-х клиентских устройств
+answer_2 = []  # резервные копии
+SM = 0
+for i in backup:
+    if SM + i <= K:
+        SM += i
     else:
-        res.append(S)
-        S = i[2]
-    if not i[0]:
-        break
-print(sum(res[-2:]))  # 43147
-# 17248 43147
+        answer_2.append(SM)
+        SM = i
+print(answer_1, sum(answer_2[-2:]))  # 17248 43147
+
 
 
 # 31520 Демоверсия 2027(Уровень: Базовый)
