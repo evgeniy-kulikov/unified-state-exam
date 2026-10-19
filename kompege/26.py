@@ -3,10 +3,10 @@
 225 507 788 889 954 
 1304 1395 1868
 2149 2362 2480 2612 2613 2614 2652 2686 3664
-4205(=7274) 4604(=4712) 4629 4660 4712=(4604) 5066 5228 5643 6800 7096
-10107 11681 12256 13394 15341 17537 17643 17881 19256 19752 19890
-20815 21598 21719 21910(=21424) 22127 23175 23208 23259 23283 23383 23765 24897 25363 27636 27779 28945
-30401 31131 31137 31165 31232 31370 31520 
+4205(=7274) 4604(=4712) 4629 4660 4712=(4604) 5066 5228 5643 6800 7096 7855 8663 8961
+10107 10726 11681 11921 12113 12256 12495 13087 13394 15341 16390 17537 17565 17643 17687 17786 17881 18149 19256 19724 19752 19890
+20815 21598 21719 21910(=21424) 22127 23175 23208 23259 23283 23383 23765 24897 25363 26624 27636 27779 28945
+30401 31131 31137 31162 31165 31232 31370 31520 
 """
 
 
@@ -494,11 +494,9 @@ for i in box:
     if not i % 2:  # ❓❓❓ находим большую стартовую СИНЮЮ (КРАСНУЮ ???) коробку
         res.append(i)
         break
-
 for b in box:  # находим кол-во подходящих коробкок и последнюю меньшую
     if res[-1] - b >= 9 and b in lock and res[-1] % 2 != b % 2:
         res.append(b)
-
 if not res[-1] % 2:  # последняя коробка должна быть красной ❓❓❓
     print(len(res), res[-1]) # 354 233
 else:
@@ -537,6 +535,72 @@ for i in D[1:]:
 print(cnt, cur)  # 854 54
 
 
+# 7855 Danov2304(Уровень: Базовый)
+# https://youtu.be/OxYJELQoqeI?start=8525
+# ⛔ Работу кода до конца не понял ⛔
+from math import inf
+# f = open('add/26/test.txt')
+f = open('add/26/26_7855.txt')
+K = int(next(f))  # кол-во номеров
+N = int(next(f))  # кол-во заявок
+week = 60 * 24 * 7  # недельный интервал
+guest = sorted([*map(int, i.split())] for i in f)  # время заезда / время выезда
+room = [-31] * K  # время выезда по номерам(индекс + 1)
+wait_max = 0  # максимальное время ожидания клиента
+for st, en in guest:
+    wait_cur = -inf  # текущее время ожидания клиента
+    for i in range(K):
+        if wait_cur <= st - room[i]:
+            wait_cur, idx = st - room[i], i
+    if wait_cur < 30:
+        st += 31 - wait_cur
+        wait_max = max(wait_max, 31 - wait_cur)
+    room[idx] = en
+    if st < week:
+        last_room = idx
+print(wait_max, last_room + 1)  # 107 11
+
+
+
+""" Взято на мой курс """
+# 8663 (Уровень: Базовый)
+f = open('add/26/26_8663.txt')
+N = int(next(f))
+data = [[*map(int, i.split())] for i in f]  # номер ряда / номер места
+d = dict()
+for r, s in data:
+    d.setdefault(r, [])
+    d[r].append(s)
+data = [[r, sorted(s)] for r, s in d.items()]
+data.sort(reverse=True)
+res = []
+for r, s in data:
+    cnt = 0
+    for a, b, c in zip(s, s[1:], s[2:]):
+        if (b - a) == (c - b) == 6:
+            cnt += 1
+    res.append([r, cnt])
+res = [i for i in res if i[1]]
+ans_1 = res[0][0]
+ans_2 = sum(i[1] for i in res)
+print(ans_1, ans_2)  # 4896 17
+
+
+# 8961 Джобс 02.06.2023(Уровень: Базовый)
+f = open('add/26/26_8961.txt')
+K, M, N = map(int, next(f).split())  # кол-во рядов / кол-во мест в ряду / кол-во заявок
+bid = [*map(int, f)]  # кол-во билетов в заявке
+bid.sort(reverse=True)
+row_seat = [M] * K
+cnt = 0
+for b in bid:
+    for i in range(K):
+        s = row_seat[i]
+        if b <= s:
+            row_seat[i] = s - b
+            cnt += 1
+            break
+print(cnt,  sum(row_seat))  # 196 335
 
 
 
@@ -559,18 +623,79 @@ for i in d[::-1]:
 
 
 
-# 11681 (Уровень: Базовый) ❓
-f = open('add/26/26_11681.txt').readlines()
-n, k = map(int, f[0].split())  # N товаров для закупки,  K товаров для скидки
-d = [[*map(int, i.split())] for i in f[1:]]  # стоимость товара,  процент скидки
-for i in d:
-    i += [i[0] * i[1] / 100]  # выгода при скидке
-d.sort(key=lambda x: (-x[2], x[0]))
-a = sum(i[0] - i[2] for i in d[:k]) + sum(i[0] for i in d[k:])
-b = d[k-1][2]  # расхождение между условием, примером и принимаемым ответом.
-# Принимается выгода товара купленного со скидкой, с минимально возможной стоимостью.
-# А требовали минимальную возможную стоимость товара, купленного со скидкой.
-print(int(a), int(b))  # 2903432767 194784 ❓
+""" Взято на мой курс """
+# 10726 (Уровень: Базовый)
+# 🆗🆗🆗 Новый подход 🆗🆗🆗
+from math import inf
+f = open('add/26/26_10726.txt')
+N = int(next(f))  # кол-во фильмов
+d = [[*map(int, i.split())] for i in f]  # время начала/окончания фильмов с начала месяца
+d.sort()
+d = d + [[inf, 0]]  # костыль для обработки последнего ъначения
+res = []
+mn, mx = d[0]  # начало/конец связки пересекающихся фильмов
+for st, en in d[1:]:
+    if st > mx:  # появился перерыв между пересекающимися фильмами
+        res.append([mn, mx])
+        mn, mx = st, en
+    else:
+        mx = max(mx, en)  # обновляем дальнюю границу пересекающихся фильмов
+answer_1 = sum(i[1] - i[0] for i in res)
+answer_2 = max(i[1] - i[0] for i in res)
+print(answer_1, answer_2)  # 38032 3014
+
+
+
+# 11681 (Уровень: Базовый)
+f = open('add/26/26_11681.txt')
+N, K = map(int, next(f).split())  # N товаров для закупки,  K товаров для скидки
+d = [[*map(int, i.split())] for i in f]  # стоимость товара,  процент скидки
+d = [i + [i[0] * i[1] / 100] for i in d]  # дополняем значение скидки в деньгах
+d.sort(key=lambda x: (-x[2], x[0]))  # выгода по убыванию, цена по возрастанию
+answer_1 = sum(i[0] - i[2] for i in d[:K]) + sum(i[0] for i in d[K:])
+answer_2 = min(i[0] for i in d[:K])
+print(int(answer_1), answer_2)  # 2903432767 194784
+
+
+
+""" Взято на мой курс """
+# 11921 (Уровень: Базовый)
+f = open('add/26/26_11921.txt')
+N = int(next(f))  # кол-во роботов
+data = f.readlines()  # смешанные данные
+robot = [*map(int, data[:N])]  # мин. емкость батарейки для данного робота
+battery = [[*map(int, i.split())] for i in data[N + 1:]]  # емкость батарейки / цена
+battery.sort(key=lambda x: x[1])
+res = []
+for b in robot:
+    for c, price in battery:
+        if b <= c:
+            res.append(price)
+            break
+print(sum(res), max(res))  # 25540 274
+
+
+
+# простая но интересная задача 🙂🍓
+# 12113 Новогодний вариант(Уровень: Базовый)
+f = open('add/26/26_12113.txt')
+N = int(next(f))  # кол-во коробок
+data = sorted(map(int, f), reverse=True)  # значения длин сторон коробок
+# print(data[:10])  # [9998, 9998, 9998, 9998, 9996, 9995, 9995, 9993, 9991, 9991]
+cur = data[0]  # первая коробка синяя
+cnt = 1
+for i in data[1:]:
+    if cur - i >= 7 and cur % 2 != i % 2:
+        cnt += 1
+        cur = i
+print(cnt, cur)  #1210 13
+cur = data[5]  # первая коробка красная - лучший вариант
+cnt = 1
+for i in data[6:]:
+    if cur - i >= 7 and cur % 2 != i % 2:
+        cnt += 1
+        cur = i
+print(cnt, cur)  #1209 13
 
 
 
@@ -594,25 +719,67 @@ for i in range(N-1, -1, -1):
         break
 
 
+# простая но интересная задача 🙂🍓
+# 12495 (Уровень: Базовый)
+f = open('add/26/26_12495.txt')
+# f = open('add/26/test.txt')
+N, R, V = map(int, next(f).split())  # кол-во заправок / длина пути / расстояние которое можно проехать с баком
+data = sorted(map(int, f))  # расположение заправок
+cnt = cur = 0   # кол-во заправок / последняя заправка
+for i in range(N - 1):
+    if data[i + 1] >= R:  # если бензина хватает до конеца пути
+        break
+    if data[i + 1] - cur > V:  # если не доедем до следующей заправки, то заправляемся сейчас
+        cnt += 1
+        cur = data[i]
+for i in data:  # минимально дальная заправка перед финишем
+    if i + V >= R:
+        print(cnt, i)  # 94 1012973
+        break
+
+
+
+""" Взято на мой курс """
+# 13087 (Уровень: Базовый)
+f = open('add/26/26_13087.txt')
+N = int(next(f))  # кол-во заявок
+data = [[*map(int, i.split())] for i in f]  # время начала / время окончания
+data.sort(key=lambda x: x[1])
+cnt = cur = 0
+res = []
+for st, en in data:
+    if cur + 20 <= st:
+        res += [[st, en]]
+        cur = en
+        cnt += 1
+# максимально возможный перерыв между двумя последними мероприятиями
+cur = res[-2][1]
+for st, en in data[::-1]:
+    if cur + 20 <= st:
+        print(cnt, st - cur)  # 16 52
+        break
+
+
+
 # 13394 Открытый курс "Слово пацана" (Уровень: Базовый) 👍
 from math import ceil
 f = open('add/26/26_13394.txt').readlines()
-D = [*map(int, f[1:])]
-sale = [i for i in D if i > 350]
-not_sale = sum(i for i in D if i <= 350)
-sale.sort(reverse=True)
+data = [*map(int, f[1:])]
+sale = sorted([i for i in data if i > 350], reverse=True)
+not_sale = sum(i for i in data if i <= 350)
 # Тактика покупателя
-# Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дешевые товары) продавать без скидки
 sm_user = 0
-for i in range(0, len(sale), 3):
+for i in range(0, len(sale) - len(sale) % 3, 3):  # часть списка, длина которого ровно делится на 3
     a, b, c = sale[i:i + 3]
     sm_user += ceil(a + b + c * 0.25)
+sm_user += sum(sale[(len(sale) // 3) * 3:])  # остатки (если они есть)
 print(not_sale + sm_user, end=' ')
 # Тактика продавца
 # Только если len(sale) делится на 3 ровно, иначе остаток от деления (самые дорогие товары) продавать без скидки
 idx = len(sale) // 3
 sm_store = sum(sale[:-idx]) + ceil(sum(i * 0.25 for i in sale[-idx:]))
 print(not_sale + sm_store)  # 3924309 4275729
+
 
 
 # 15341 Досрочная волна 2024 (Уровень: Базовый)
@@ -627,6 +794,26 @@ for i in d[1:]:
         c += 1
         cur = i
 print(c, cur)  # 1198 54
+
+
+
+# 16390 ЕГКР 27.04.24(Уровень: Базовый)
+f = open('add/26/26_16390.txt')
+S, N = map(int, next(f).split())  # объём свободного места / кол-во посылок
+data = sorted(map(int, f))  # объём посылок
+sm = cnt = 0
+for i in range(N):
+    if sm + data[i] <= S:
+        sm += data[i]
+        cnt += 1
+    else:
+        sm -= data[i-1]
+        break
+for i in data[::-1]:
+    if sm + i <= S:
+        print(cnt, i)  # 2216 56
+        break
+
 
 
 # 17537 Основная волна 07.06.24 (Уровень: Средний)
@@ -647,6 +834,22 @@ print(*res[-1])  # 9991 5643
 
 
 
+# 17565 Основная волна 08.06.24(Уровень: Базовый)
+# ❗ошибка задания❗ Сортровка для ВСЕХ: по убыванию суммы балов, по убыванию собеседование, по возрастанию ID кандидата
+f = open('add/26/26_17565.txt')
+N, S = map(int, next(f).split())  # кол-во кандидатов/ кол-во мест
+data = [[*map(int, i.split())] for i in f]  # ID кандидата / три оценки по экзаменам / собеседование
+data = [[i[0], sum(i[1:4]), i[-1]] for i in data]  # ID кандидата / сумма оценок по экзаменам / собеседование
+# data.sort(key=lambda x: -x[1])
+data.sort(key=lambda x: (-x[1], -x[2], x[0]))
+# print(winner[-1][1], loser[0][1])
+half = data[:S][-1][1]  # 154
+winner_fool = [i for i in data[:S] if i[1] > half]
+winner_half =  [i for i in data if i[1] == half]
+print(winner_fool[-1][0], len(winner_half))  # 7600410 14
+
+
+
 """ Взято на мой курс """
 # 17643 Основная волна 19.06.24 (Уровень: Базовый)
 from statistics import mean
@@ -655,13 +858,12 @@ next(f)
 data = [[*map(int, i.split())] for i in f]  # артикул / цена / статус(0-продан/1-не продан)
 avr = mean(i[1] for i in data)
 expensive = [i for i in data if i[1] > avr]
-d_exp = {i[0]: [i[1], 0, 0] for i in expensive}  # артикул: [i[1],0,0] цена /  кол-во не продан/продан
-for i in expensive:
-    if i[2]:  # если НЕ продан
-        d_exp[i[0]][2] += 1
-    else:
-        d_exp[i[0]][1] += 1
-res = [[k] + [*v] for k, v in d_exp.items()] # артикул / цена / кол-во: не продан/продан
+d_exp = dict()  # артикул: [цена,0,0] цена / кол-во продан / не продан
+for art, price, stat in expensive:
+    d_exp.setdefault(art, [price, 0, 0])
+    d_exp[art][1] += not stat  # продан (прилетел статус 0)
+    d_exp[art][2] += stat # если продан (прилетел статус 1)
+res = [[k] + [*v] for k, v in d_exp.items()] # артикул / цена / кол-во: продан / не продан
 res.sort(key=lambda x: (-x[2], -x[1], x[3]))
 _, price, cnt, remainder = res[0]
 print(price * cnt, remainder)  # 43656 36
@@ -669,9 +871,50 @@ print(price * cnt, remainder)  # 43656 36
 
 
 """ Взято на мой курс """
+# 17687 Пересдача 04.07.24(Уровень: Базовый)
+# Список товаров сортируем по убыванию
+# Мечта покупателя:  Первую 9-тую часть списка (длина списка кратна 9) получить бесплатно, остальное оплатить
+# Борьба покупателя:  В отсортированном по убыванию списоке товаров, каждый 9-ый будет бесплатным
+f = open('add/26/26_17687.txt')
+N = int(next(f))  # кол-во
+data = sorted(map(int, f), reverse=True)
+dream = sum(data[N // 9:])  # Первую 9-тую часть списка получить бесплатно
+battle = 0
+for i in range(0, N, 9):
+    battle += sum(data[i:i + 8])  # каждый 9-ый будет бесплатным + сюда попадает и хвост (т.к. длина списка НЕ кратна 9)
+print(dream, battle)  # 39450073 44329073
+
+
+
+# 17786 (Уровень: Базовый)
+f = open('add/26/26_17786.txt')
+_, S = map(int, next(f).split())  # кол-во / вместимость грузовика
+S *= 1_000
+data = sorted(map(int, f), reverse=True)
+data = [i for i in data if 7_000 <= i <= 12_000]
+cnt = sm = 0
+for i in range(len(data)):
+    if sm + data[i] <= S:
+        sm += data[i]
+        cnt += 1
+    else:
+        # sm -= data[i-1]  # ❗❗❗ Подвох: на оставшееся место МОЖНО поместить ещё один арбуз меньшей массы
+        break
+# ❗❗❗ В задании не указано что надо МАКСИМАЛЬНО загрузить автомобиль. Т.е. найти не меньший арбуз, а меньший с учетом макс. загрузки грузовика
+res = 0
+for i in data[::-1]:
+    if sm + i <= S:
+        res = i
+    else:
+        print(cnt + 1, res)  # 75 9196
+        break
+
+
+
+""" Взято на мой курс """
 # 17881 Демоверсия 2025 (Уровень: Базовый)
 from statistics import mean
-f = open('26_17881.txt')
+f = open('add/26/26_17881.txt')
 N = int(next(f))  # кол-во студентов
 data = [[*map(int, i.split())] for i in f]
 data = [(i[0], mean(i[1:]), i[1:].count(2)) for i in data]  # id / сред.балл /  наличие двоек
@@ -682,27 +925,58 @@ idx = N // 4 - 1  # -1 ✅ т.к индекс начинается с нуля
 print(vin[idx][0], d2[0][0])  # 52326 635
 
 
+# 18149 (Уровень: Базовый)
+f = open('add/26/26_18149.txt')
+N = int(next(f))  # кол-во абитуриентов
+data = [[*map(int, i.split())] for i in f]  # ID студента / информатика - математика - русский - олимпиада
+data.sort(key=lambda x: (-sum(x[1:]), -x[1], -(x[2] + x[4])))
+ans_1 = data[299]
+ans_2 = max(i for i in data[300:] if i[1] == ans_1[1])
+print(ans_1[0], ans_2[0])  # 152 438
 
+
+
+""" Взято на мой курс """
 # 19256 ЕГКР 21.12.24 (Уровень: Базовый)
-f = open('26_19256.txt').readlines()
-data = [[*map(int, i.split())] for i in f[1:]]  # идентификатор студента / номер правильно решённой задачи
+f = open('add/26/26_19256.txt').readlines()
+data = [[*map(int, i.split())] for i in f[1:]]  # ID студента / номер правильно решённой задачи
 dt = dict()
-for i in data:
-    dt.setdefault(i[0], set())
-    dt[i[0]] |= {i[1]}
+for k, v in data:
+    dt.setdefault(k, set())  # Может сдать несколько различных решений одной задачи, но в зачёт идёт только одно из них.
+    dt[k].add(v)
 res = []
 for k, v in dt.items():
-    v = sorted(v)
     c = cnt = 1
-    for i in range(1, len(v)):
-        if v[i] - v[i-1] == 1:
+    v = sorted(v)
+    for a, b in zip(v, v[1:]):
+        if b - a == 1:
             c += 1
             cnt = max(cnt, c)
         else:
             c = 1
-        res += [(k, cnt)]
+    res += [(k, cnt)]  # ID студента / max кол-во решённых задач с подряд идущими номерами.
 res.sort(key=lambda x: (-x[1], x[0]))
 print(*res[0])  # 40031 148
+
+
+
+# 19724 (Уровень: Базовый)
+f = open('add/26/26_19724.txt')
+# ❓ Вопрос к зананию. Не учтен момент "Для того чтобы загрузить или выгрузить груз из ячейки, требуется 1 минута"
+K = int(next(f))  # кол-во ячеек
+_ = next(f)  # кол-во дронов
+data = [[*map(int, i.split())] for i in f]  # начало / окончание хранение груза
+cell = [0] * K
+data.sort()
+cnt = cur = 0
+for st, en in  data:
+    for i in range(K):
+        if cell[i] < st:  # "<" со следующей минуты (можно считать что сюда входит 1 мин. на выгрузку предыдущего дрона)
+            cell[i] = en +0  # должно быть +1  ведь на погрузку уходит 1 минута
+            cnt += 1
+            cur = i + 1
+            break
+print(cnt, cur)  # 1862 211
 
 
 
@@ -1069,6 +1343,44 @@ b.sort(key=lambda x: -x[1])
 print(b[0][2], len(b) - 1)  # 667 517
 
 
+
+# 24624 (Уровень: Средний) 🌶️🌶️
+from math import inf
+f = open('add/26/26_24624.txt')
+N, K = map(int, next(f).split())  # кол-во кинозалов / кол-во проданных билетов призракам
+d = [[*map(int, i.split())] for i in f]  # смешанные данные
+cinema = sorted(d[:N]) # номер кинозала / кол-во рядов / кол-во мест в ряду в этом кинозале
+# словарь словарей: занятые призраками места: номер кинозала / ряд / место
+ticket = {i: dict() for i in range(1, N + 1)}
+for cin, row, seat in d[:N]:
+    # добавляем виртуальное нулевое место и место после последнего
+    ticket[cin] = {i: [0, seat + 1] for i in range(1, row + 1)}
+for cin, row, seat in d[N:]:
+    ticket[cin][row].append(seat)
+
+res = []  # подходящие варианты для всех кинозалов
+for cin in ticket:
+    res_cinema = [[inf, 1, 1]]  # добавляем за последним рядом виртуальный хороший ряд
+    st =  cinema[cin-1][2]  # реальное кол-во мест в ряду в данном кинотеатре
+    for row, seat in sorted(ticket[cin].items()):
+        c = 0  # кол-во вариантов покупки билетов  данном ряду
+        if len(seat) > 2:  # если в ряду куплены билеты (больше одного)
+            seat.sort()
+            for a, b in zip(seat, seat[1:]):
+                if b - a - 5 > 0:
+                    c += b - a - 5
+            res_cinema.append([row, 0, c])  # ряд / есть призраки / варианты посадок
+        else:
+            res_cinema.append([row, 1, st - 4])  # ряд / призраков нет / варианты посадок
+    res_cinema.sort(reverse=True)
+    for a, b in zip(res_cinema, res_cinema[1:]):
+        if a[1] and b[2]:  # если на ряду сзади нет призраков и на текущем ряду есть места для пятерых
+            res.append([cin, b[0], b[2]])
+res.sort(key=lambda x: x[1])
+print(res[0][1], sum(i[2] for i in res))  # 4 344
+
+
+
 # 27636 Апробация 04.03.26(Уровень: Базовый)
 f = open('add/26/26_27636.txt')
 S, N = map(int, next(f).split())  # грузоподъёмность / кол-во контейнеров
@@ -1205,6 +1517,31 @@ for i in range(len(res)):
         ans_2 = SM
         SM = res[i]
 print(sum(ans_1[-2:]), ans_2)  # 481895 21328
+
+
+
+# 31162 Основная волна 19.06.26(Уровень: Средний)
+# ⛔ Придумка задачи полный бред. Никому не показывать ⛔
+f = open('add/26/26_31162.txt')
+N = int(next(f))  # кол-во деталей
+A, B, K = map(int, next(f).split())  # границы диапазона допустимых значений качества (для поиска особенной детали),
+# показатель требуемой разности баллов особенной детали и детали, следующей за ней в исходном списке
+d = [[i, k] for i, k in enumerate(map(int, f), 1)]  # баллы деталей в порядке, записанным в журнале качества
+max_num = max(d, key=lambda x: x[1])  # [2152, 955]  деталь с максимальным значением
+for i in range(N):
+    cnt = 1  # рейтинг детали
+    for k in d:
+        cnt += d[i][1] < k[1]
+    d[i] += [cnt]
+d = d[max_num[0]:]  # берем список который ниже детали с максимальным значением
+# print(d[0])  # [2153, 119, 13092]
+res = []
+for i in range(len(d) - 1):
+    if A <= d[i][1] <= B and abs(d[i][1] - d[i+1][1]) <= K:
+        res.append(d[i])
+# print(res)
+print(min(res, key=lambda x: x[2])[2], len(res))  # 11797 18
+
 
 
 
