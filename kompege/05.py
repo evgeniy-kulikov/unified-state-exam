@@ -2,8 +2,8 @@
 
 """
 49 352 548 551 870
-1114 1332 1510 1518 1519 2461 3754 5058 9360 9736 9774 9777 9831
-10087 12459 12914 13091 14327 14328 14330 14331 16252 18941 19870 19871 19872 
+1114 1332 1510 1518 1519 2461 3754 5058 9360 9736 9774 9777 9828 9831
+10012 10087 10658 10707 11224 11818 12459 12721 12914 13091 14327 14328 14330 14331 16252 18941 19870 19871 19872 
 20278 20883 21473 21474 21782 21974 22269 22270 22271 22272
 31143 31213 31351 31502
 """
@@ -220,6 +220,29 @@ for x in sorted(product(range(1,10), repeat=5)):
 print(res)  # 58979
 
 
+# 9828 Основная волна 27.06.23(Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+for n in range(1000, 1, -1):
+    b = f(n, 3)
+    if n % 3:
+        add = (n % 3) * 4
+        b += f(add, 3)
+    else:
+        b = '1' + b + '02'
+    r = int(b, 3)
+    if r < 199:
+        print(n)
+        break
+
+
 # 9831 Основная волна 27.06.13_(23)(Уровень: Базовый)
 from itertools import *
 res = 0
@@ -228,6 +251,30 @@ for p in sorted(product(range(16), repeat=3)):
         # res += p[0] % 2 != p[1] % 2 and p[1] % 2 != p[2] % 2
         res += all(a % 2 != b % 2 for a, b in zip(p, p[1:]))
 print(res)  # 840
+
+
+# 10012 (Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(1, 10_000):
+    b = f(n, 3)
+    if n % 3:
+        add = (n % 3) * 5
+        b += f(add, 3)
+    else:
+        b += b[:2]
+    r = int(b, 3)
+    if r > 64:
+        res = min(res, r)
+print(res)  # 68
 
 
 # 10087 Демоверсия 2024 (Уровень: Базовый)
@@ -242,6 +289,110 @@ for n in range(4, 1000):
     if r > 151:
         res = min(res, r)
 print(res)  # 163
+
+
+
+# 10658 (Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(11, 10_000):  # n > 10
+    b = f(n, 3)
+    even = sum(i in '02' for i in b)
+    odd = sum(i == '1' for i in b)
+    if even > odd:
+        b = '22' + b
+    else:
+        b = '11' + b
+    r = int(b, 3)
+    if r > 100:
+        res = min(res, r)
+print(res)  # 120
+
+
+
+# 10707 (Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(1, 10_000):
+    b = f(n, 6)
+    if n % 3:
+        add = (n % 3) * 10
+        b += f(add, 6)
+    else:
+        b += b[:2]
+    r = int(b, 6)
+    if r > 680:
+        res = min(res, r)
+print(res)  # 694
+
+
+
+# 11224 (Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(1, 10_000):  # для нужного ответа должно быть больше 2_000
+    b = f(n, 3)
+    sm = sum(map(int, b))
+    if sm % 4:
+        add = (n % 4) * 3
+        b += f(add, 3)
+    else:
+        b = '1' + b[:-2]
+    r = int(b, 3)
+    if r > 353:
+        res = min(res, r)
+print(res)  # 354
+
+
+
+# 11818 (Уровень: Средний)
+def f(n, b):
+    alf = '0123456789ab'
+    r = ''
+    while n:
+        r = alf[n % b] + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(1, 1000):
+    b = f(n, 12)
+    even = sum(1 for i in b if i in '0246')
+    if n % 4:
+        b += max(b)
+    else:
+        b = '2' + b + '64'
+    r = int(b, 12)
+    if r > 1799:
+        res = min(res, r)
+print(res)  # 1806
+
 
 
 # 12459 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Базовый)
@@ -260,6 +411,31 @@ for n in range(1000, 1, -1):
     if int(r) <= 180:  # строку 'r' принимаем как десятичное число ✅
         print(n)  # 31
         break
+
+
+# 12721 (Уровень: Средний)
+def f(n, b):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    if r:
+        return r
+    return '0'
+
+res = 10**10
+for n in range(80, 1000):
+    b = f(n, 8)
+    even = sum(1 for i in b if i in '0246')
+    if even % 2:
+        b = b[-3:] + '46'  # остаются только 3 младших разряда
+    else:
+        add = (n % 8) * 5
+        b = f(add, 8) + b
+    r = int(b, 8)
+    res = min(res, r)
+print(res)  # 38
+
 
 
 # 12914 PRO100 ЕГЭ 26.01.24 (Уровень: Базовый)

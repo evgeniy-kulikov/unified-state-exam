@@ -1,8 +1,10 @@
 """ https://kompege.ru/task """
 """
 52 399 1241 1339 1363 1933 2928 3029 3729 4564 5553 6901 6985 8417 8553 9155
-10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 
-23367 23746 
+10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 19753
+20069 20269 20270 20271 20833 20855 20857 20898 21894 21975 22419 23367 23746 23808 24455 24533 24614 24888 24984 25132 
+26117 26349 26350 27281 27282 27620 27763 28694 28695 28696 28929 29340
+31115 31146 31216 31354 31505
 """
 
 
@@ -381,7 +383,213 @@ for p in product('0123456789aaaaa', repeat=5):
 print(c)  # 83175
 
 
+# 19753 (Уровень: Средний)
+# Число делится на 4 тогда, когда число, образованное его двумя последними цифрами, делится на 4,
+# или если оно оканчивается двумя нулями (но у нас "00" отсекается условием задачи)
+from itertools import *
+res = 0
+for p in product(range(10), repeat=6):
+    if p[0] and len(set(p)) == 6:
+        if not any(not a % 2 and (not b % 2) for a, b in zip(p, p[1:])):
+            res += not int(str(p[-2]) + str(p[-1])) % 4
+print(res)  # 7440
 
+
+
+# 20069 (Уровень: Средний)
+from itertools import *
+c = a = b = 0
+for p in product(sorted('ЧМСЕИАК'), repeat=5):
+    w = ''.join(p)
+    c += 1
+    if w == 'МАСИК':
+        a = c
+    if w == 'ЧЕЧИК':
+        b = c
+        break
+print(b - a - 1)  # 5193
+
+
+# 20269 (Уровень: Средний) 🌶️
+from itertools import *
+res = 0
+for p in product(range(5), repeat=9):
+    if p[0]:
+        w = ''
+        for i in p:
+            w += '01'[i % 2]
+        if w.count('00') == 2 and not '000' in w:
+            res += 1
+print(res)  # 151200
+
+
+
+# 20270 (Уровень: Средний) 🌶️
+from itertools import *
+res = 0
+for p in product(range(7), repeat=5):
+    if p[0]:
+        w = ''
+        for i in p:
+            w += '01'[i % 2]
+        if w.count('00') >= 2 and not '000' in w:
+            res += 1
+print(res)  # 576
+
+
+# 20271 (Уровень: Сложный) 🌶️😉
+# good: 11100 11011 11000 10000 00000
+#  bed: 11110 11111
+# best variant 👍✔️
+from itertools import *
+res = 0
+for p in product(range(12), repeat=5):
+    if p[0]:
+        w = ''
+        for i in p:
+            w += '01'[i % 2]
+        res += '1111' not in w
+print(res)  # 206064
+# излишний код 👎
+from itertools import *
+res = 0
+for p in product(range(12), repeat=5):
+    if p[0]:
+        w = ''
+        for i in p:
+            w += '01'[i % 2]
+        k = 0
+        for i in range(4):
+            k += w[i:i+2] == '11'
+        if k <= 2:
+            res += 1
+print(res)  # 206064
+
+
+
+# 20833 (Уровень: Средний) 🌶️
+from itertools import *
+res = c = 0
+for p in product(range(10), repeat=5):
+    if p[0]:
+        c += 1  # ✔️начинаем с 10_000
+    if not c % 15:
+        if all(a % 2 != b % 2 for a, b in zip(p, p[1:])):
+            res = c
+print(res)  # 88950
+
+
+# 20855 (Уровень: Средний) 🌶️
+from itertools import *
+res = 0
+c = -1  # нумерация начинается с '0' ❗❗❗
+for p in product(range(13), repeat=3):
+    if p[0]:
+        c += 1  # ✔️начинаем с 100
+    if c % 10 == 7:
+        if not any(a % 2 and b % 2 for a, b in zip(p, p[1:])):
+        # if all(not a % 2 or (not b % 2) for a, b in zip(p, p[1:])):
+            res += 1
+print(res)  # 110
+
+
+# 20857 (Уровень: Средний) 🌶️
+from itertools import *
+res = c = 0
+for p in product(range(9), repeat=6):
+    if p[0]:
+        c += 1  # ✔️начинаем с 100000
+    if c % 10 == 5:
+        if not any(a % 2 and b % 2 for a, b in zip(p, p[1:])):
+        # if all(not a % 2 or (not b % 2) for a, b in zip(p, p[1:])):
+            res = ''.join(map(str, p))
+print(res)  # 888881
+
+
+# 20898 Апробация 05.03.25(Уровень: Базовый)🌶️
+from itertools import *
+res = 0
+for p in product(range(9), repeat=5):
+    if p[0] and p.count(0) == 1:
+        p = (*p, 2)
+        i = p.index(0)
+        if all([not p[i-1] % 2,not p[i+1] % 2]):
+            res += 1
+print(res)  # 5120
+
+
+# 21894 Открытый вариант 2025(Уровень: Базовый)
+from itertools import *
+res = 0
+for p in product(range(10), repeat=4):
+    if p[0] and len(set(p)) == 4:
+        w = ''
+        for i in p:
+            w += '*_'[i % 2]
+        if all(i not in w for i in ['**', '__']):
+            res += 1
+print(res)  # 720
+
+
+# 21975 (Уровень: Базовый) 🌶️🌶️🌶️👍👍👍
+# ⌛ долго ~20sec ⌛
+from itertools import *
+res = 0
+for p in product(range(17), repeat=6):
+    if p[0] and len(set(p)) == 6:
+        w = ''
+        for i in p:
+            w += '*_'[i % 2]
+        if all(i not in w for i in ['***', '___']):
+            res += 1
+print(res)  # 3873408
+
+# ✅variant: маска числа + комбинаторика = очень быстро✅
+from itertools import *
+# Цифры 17-ричной системы — значения 0..16: чётных 9 (0, 2, …, 16), нечётных 8 (1, 3, …, 15).
+# Шестизначных чисел с разными цифрами почти 9 млн — перебирать долго. Условие касается только чётности,
+# поэтому перебираем «маску» чётности (m[i] = 0 — чётная, 1 — нечётная; масок 2⁶ = 64), а цифры
+# ставим по местам слева направо: на очередное чётное место — любая ещё не занятая чётная цифра,
+# на нечётное — любая не занятая нечётная; варианты перемножаются.
+res = 0
+for m in product(range(2), repeat=6):
+    three = False  # стоят ли три цифры одной чётности подряд
+    for i in range(4):
+        if m[i] == m[i + 1] and m[i + 1] == m[i + 2]:
+            three = True
+            break
+    if not three:
+        comb = 1  # кол-во вариантов для данного места
+        ev = 9  # сколько чётных цифр ещё свободно
+        od = 8  # сколько нечётных цифр ещё свободно
+        for i in range(6):
+            if m[i] == 0:
+                if i == 0:  # первая цифра не должна быть нулем
+                    comb *= ev - 1  # первая цифра — чётная, но не ноль
+                else:
+                    comb *= ev  # комбинаторика: кол-во вариантов из возможных чисел для данного места
+                ev -= 1  # все цифры должны быть различные
+            else:
+                comb *= od
+                od -= 1
+        res += comb  # суммируем варианты для данной маски числа
+print(res)  # 3873408
+
+
+
+# 22419 (Уровень: Базовый) ️🌶️🌶️🌶️  long work
+from itertools import *
+res = 0
+for p in product(range(13), repeat=7):
+    if p[0] and len(set(p)) == 7:
+        if 11 in p:
+            p = [0] + [*p] + [0]
+            i = p.index(11)
+            if all([not p[i-1] % 2, not p[i+1] % 2]):
+                res += 1
+        else:
+            res += 1
+print(res) # 5372640
 
 
 # 23367 Резервный день 19.06.25 (Уровень: Базовый)
@@ -401,3 +609,295 @@ for p in product(sorted('СТРОКА'), repeat=5):
     if p[0] not in 'СТА' and p.count('О') == 2 and not c % 2:
         res = c
 print(res)  # 5058
+
+
+# 23808 (Уровень: Средний) 🌶️
+from itertools import *
+d = set(i for i in permutations('КОТЕНОК'))
+c = res = 0
+for p in product(sorted('КОТЕНА'), repeat=7):
+    c += 1
+    if c % 2 and p in d:
+        res = c
+print(res) # 270297
+
+
+# 24455 (Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('ТВОРИЛКА'), repeat=6):
+    c += 1
+    if ''.join(p) in ('ВИКТОР', 'КИРИЛЛ'):
+        res += c
+print(res) # 152724
+
+
+# 24533 (Уровень: Средний) 🌶️
+from itertools import *
+d = set(i for i in permutations('ЕККНООТ'))
+c = res = 0
+for p in product(sorted('НЕАТОК'), repeat=7):
+    c += 1
+    if c % 2 and p in d:
+        res = c
+print(res) # 270297
+
+
+# 24614 (Уровень: Средний) 🌶️ long work
+from itertools import *
+w = 'КОНФЕТЫ_ИЛИ_ЖИЗНЬ'
+res = 0
+for p in set(permutations(w, 7)):
+    res += '__' in ''.join(p)
+print(res)  # 697500
+
+
+# 24888 (Уровень: Базовый)
+from itertools import *
+res = 0
+for p in product(range(16), repeat=4):
+    if p[0] and p.count(3) == 1:
+        res += all(a != b for a, b in zip(p, p[1:]))
+print(res)  # 11564
+
+
+# 24984 (Уровень: Базовый)
+from itertools import *
+res = 0
+for p in product(range(16), repeat=5):
+    if p[0] and all(p.count(i) <= 2 for i in set(p)):
+        if any(i in (1, 4, 9) for i in p):
+            res += 1
+print(res)  # 623430
+
+
+
+# 25132 (Уровень: Средний)
+from itertools import *
+c = res = 0
+for p in product(sorted('СДАЙЕГЭ'), repeat=6):
+    c += 1
+    if 'ЕГЭ' in ''.join(p):
+        res += c
+print(res)  # 79143659
+
+
+# 26117 (Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('МУЖЧИНА'), repeat=6):
+    c += 1
+    if not c % 2 and p[0]  != 'Ж':
+        res += p.count('Ч') <= 1
+print(res)  # 39528
+
+
+# 26349 (Уровень: Средний) 🌶️
+from itertools import *
+for n in range(3, 10):
+    c = 0
+    for p in product(sorted('СУЛАК'), repeat=n):
+        c += 1
+        if not c % 2 and p[0] in 'СЛ':
+            w = ''.join(p).replace('У', 'А')
+            if w.count('А') <= 2 and 'АА' not in w:
+                if c == 12368:
+                    print(n)  # 6
+                    break
+
+
+# 26350 (Уровень: Средний) 🌶️
+from itertools import *
+for n in range(3, 10):
+    c = 0
+    for p in product(sorted('ТАРКИ'), repeat=n):
+        c += 1
+        if not c % 2 and p[0] in 'ТРК':
+            w = ''.join(p).replace('И', 'А')
+            if w.count('А') == 3 and 'ААА' in w:
+                if c == 31314:
+                    print(n)  # 7
+                    break
+
+
+# 27281 (Уровень: Базовый)
+from itertools import *
+res = 0
+for p in product(range(13), repeat=5):
+    if p[0] and p.count(0) == 1:
+        if all(a != b for a, b in zip(p, p[1:])):
+            res += 1
+print(res)  # 68244
+
+
+# 27282 (Уровень: Базовый) 🌶️
+from itertools import *
+res = 0
+for p in product(range(13), repeat=6):
+    if p[0] and p.count(0) >= 2:
+        r = ''.join(('_*')[i > 9] for i in p)
+        if r.count('*') == 2 and '**' in r:
+            res += 1
+print(res)  # 13779
+# fast work variant ✔️
+from itertools import *
+small = '0123456789'
+big = 'abc'
+res = 0
+for s in product(small, repeat=4):
+    if s.count('0') >= 2:
+        for b in product(big, repeat=2):
+            for i in range(5):
+                w = ''.join(s[:i]) + ''.join(b) + ''.join(s[i:])
+                res += w[0] != '0'
+print(res)  # 13779
+
+
+
+
+# 27620 Апробация 04.03.26(Уровень: Базовый)
+from itertools import *
+res = c = 0
+for p in product(sorted('ЦИТРУС'), repeat=5):
+    c += 1
+    if p.count('И') == 2 and 'ЦЦ' not in ''.join(p):
+        res = c
+print(res)  # 7525
+
+
+# 27763 Апробация 04.03.26(Уровень: Базовый)
+from itertools import *
+res = 0
+for p in product(range(7), repeat=5):
+    if p[0] and p.count(0)==1 and p.count(1) <= 2:
+        res += 1
+print(res)  # 5100
+
+
+# 28694 (Уровень: Средний)🌶️
+from itertools import *
+res = 0
+for p in product(range(12), repeat=5):
+        even = [i for i in p if not i % 2]
+        if p[0] and len(even) == 2 and len(set(even)) == 1:
+            w = even[0]
+            for i in range(4):
+                res += p[i:i+2] == (w,w)
+print(res)  # 4968
+
+
+# 28695 (Уровень: Базовый) 🌶️🌶️🌶️
+from itertools import *
+res = 0
+for p in product([*range(13)], repeat=6):
+    if p[0]:
+        odd = [i for i in p if i % 2]
+        if len(odd) == 3 and len(set(odd)) == 1:
+            w = odd[0]
+            for i in range(4):
+                if p[i:i+3] == (w,w,w):
+                    res += 1
+                    break
+print(res)  # 7350
+# fast work variant ✔️
+from itertools import *
+odd = '13579b'
+even = '02468ac'
+res = 0
+for d in odd:
+    for p in product(even, repeat=3):
+        for i in range(4):  # ниже формируется блок не более трёх цифр
+            s = ''.join(p[:i]) + d * 3 + ''.join(p[i:])  # блок 'ddd' смещается с начала до конца строки 'p'
+            res += s[0] != '0'
+print(res)  # 7350
+
+
+
+# 28696 (Уровень: Сложный) 🌶️🌶️
+from itertools import *
+res = 0
+for p in product([*range(14)], repeat=5):
+    w = [i for i in p if i % 2]
+    if p[0] and len(w) == 2 and w[0] == w[1] and p.index(w[0]) <= 2:
+        if p[p.index(w[0]) + 2] == w[0]:
+            res += 1
+print(res)  # 6517
+# variant
+from itertools import *
+res = 0
+for p in product([*range(14)], repeat=5):
+    if  p[0] and sum(i % 2 for i in p) == 2:
+        for i in range(3):
+            if p[i] % 2 and p[i] == p[i + 2]:
+                res += 1
+print(res)  # 6517
+
+
+# 28929 ЕГКР 18.04.26(Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('СИМВОЛ'), repeat=5):
+    c += 1
+    if c % 2 and p[0] not in 'СО' and p.count('В') == 1 and p.count('С') <= 1:
+        res = c
+print(res)  # 5137
+
+
+# 29340 Открытый вариант 2026(Уровень: Базовый)
+from itertools import *
+c = 0
+for p in product(sorted('АПРЕЛЬ'), repeat=6):
+    c += 1
+    if c % 2 and p[0] not in 'АЛ' and p.count('П') >= 2:
+        print(c)  # 7903
+        break
+
+
+# 31115 Основная волна 18.06.26(Уровень: Базовый)
+from itertools import *
+c = 0
+for p in product(sorted('АКЦЕНТ'), repeat=5):
+    c += 1
+    if not c % 2 and p[0] not in 'АКЕ' and p.count('Ц') >= 2:
+        print(c)  # 3924
+        break
+
+
+# 31146 Основная волна 19.06.26(Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('ПЛАНЕР'), repeat=6):
+    c += 1
+    if c % 2 and all(not p.count(i) for i in 'ПР') and p.count('А') == 2 and p.count('Н') == 1:
+        res = c
+print(res)  # 26425
+
+
+# 31216 Резерв 22.06.26(Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product(sorted('ЦВЕТОК'), repeat=6):
+    c += 1
+    if c % 2 and all(not p.count(i) for i in 'ВЕК') and p.count('Т') == 2 and p.count('Ц') == 1:
+        res +=1
+print(res)  # 20
+
+
+# 31354 Пересдача 08.07.26(Уровень: Базовый)
+from itertools import *
+c = res = 0
+for p in product('ЕЛНОСЦ', repeat=6):
+    c += 1
+    if c % 2 and p[0] not in 'НЦ' and all(p.count(i)==1 for i in 'НЦ'):
+        res = c
+print(res)  # 38619
+
+
+# 31505 Демоверсия 2027(Уровень: Базовый)
+from itertools import product
+cnt = 0
+for p in product(sorted('АКЦЕНТ'), repeat=5):
+    cnt += 1
+    if not cnt % 2 and p[0] not in 'АКЕ' and p.count('Т'):
+        print(cnt)  # 3914
+        break
