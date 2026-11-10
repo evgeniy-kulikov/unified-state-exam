@@ -4,7 +4,7 @@
 49 352 548 551 870
 1114 1332 1510 1518 1519 2461 3754 5058 9360 9736 9774 9777 9828 9831
 10012 10087 10658 10707 11224 11818 12459 12721 12914 13091 14327 14328 14330 14331 16252 18941 19870 19871 19872 
-20278 20883 21473 21474 21782 21974 22269 22270 22271 22272
+20278 20883 20884 21243 21244 21261 21473 21474 21782 21974 22269 22270 22271 22272
 31143 31213 31351 31502
 """
 
@@ -69,6 +69,8 @@ for n in range(2, 1000):
 print(c)  # 24
 
 
+
+""" Взято на мой курс """
 # 1114 (Уровень: Базовый)
 for n in range(96, 1000):
     b = f'{n:b}'
@@ -189,7 +191,9 @@ for n in range(4, 1000):
 print(res)  # 166
 
 
-# 9774 Основная волна 20.06.13_(23) (Уровень: Средний)
+
+""" Взято на мой курс """
+# 9774 Основная волна 20.06.13  (Уровень: Средний)
 def f(n, b=3):
     r = ''
     while n:
@@ -395,7 +399,7 @@ print(res)  # 1806
 
 
 
-# 12459 PRO100 ЕГЭ 29.12.13_(23) (Уровень: Базовый)
+# 12459 PRO100 ЕГЭ 29.12.13 (Уровень: Базовый)
 def cnv(n, b):
     r = ''
     while n:
@@ -413,6 +417,7 @@ for n in range(1000, 1, -1):
         break
 
 
+""" Взято на мой курс """
 # 12721 (Уровень: Средний)
 def f(n, b):
     r = ''
@@ -525,14 +530,15 @@ for n in range(1,10_000):
 print(res)  # 1991
 
 
+""" Взято на мой курс """
 # 14330 (Уровень: Средний)
 from math import prod
 for n in range(10_000,100_000):
-    q = sorted(str(n))
-    q = (int(q[0]) + int(q[-1]))**2
-    p = prod(map(int, [i for i in str(n) if i in '02468']))
-    num = sorted([q, p], reverse=True)
-    r = int(str(num[0]) + str(num[1]))
+    d = sorted(map(int, str(n)))
+    q = (d[0] + d[-1])**2
+    p = prod(i for i in d if not i % 2)
+    n2, n1 = sorted([q, p])
+    r = int(str(n1) + str(n2))
     if r == 12116:
         print(n)  # 22229
         break
@@ -674,6 +680,7 @@ for n in range(1000,0, -1):
 
 
 
+""" Взято на мой курс """
 # 20278 (Уровень: Средний)
 for n in range(10000,1, -1):
     b = f'{n:b}'
@@ -711,6 +718,128 @@ for n in range(1, 1000):
     if r > 50:
         print(n)  # 26
         break
+
+
+# 20884 (Уровень: Средний)
+def f(n, b=3):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res= []
+for n in range(1, 1000):
+    b = f(n)
+    if sum(map(int, b)) % 3:
+        b += '101'
+        b = '22' + b[2:]
+    else:
+        b = b.replace('0', '*').replace('1', '0').replace('*', '1')
+        b = '10' + b
+    r = int(b, 3)
+    if r > 314:
+        res.append([r, n])
+print(min(res)[1])  # 76
+
+
+
+""" Взято на мой курс """
+# 21244 (Уровень: Средний)
+def f(n, b=4):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res = []
+for n in range(5_000):
+    b = f(n)
+    if sum(map(int, b)) % 4:
+        b += '22'
+        b = '11' + b[2:]
+    else:
+        b = b.replace('0', '*').replace('3', '0').replace('*', '3')
+        b += '21'
+    r = int(b, 4)
+    if r > 200:
+        res.append([r, n])
+print(min(res)[1])  # 1011
+
+
+
+# 21243 (Уровень: Средний)
+def f(n, b=5):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res = []
+for n in range(5_000):
+    b = f(n)
+    if sum(map(int, b)) % 5:
+        b += '33'
+        b = '44' + b[2:]
+    else:
+        b = b.replace('0', '*').replace('1', '0').replace('*', '1')
+        b += '14'
+    r = int(b, 5)
+    if r > 370:
+        res.append([r, n])
+print(min(res)[1])  # 41
+
+
+
+""" Взято на мой курс """
+# 21244 (Уровень: Средний)
+def f(n, b=4):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res = []
+for n in range(5_000):
+    b = f(n)
+    if sum(map(int, b)) % 4:
+        b += '22'
+        b = '11' + b[2:]
+    else:
+        b = b.replace('0', '*').replace('3', '0').replace('*', '3')
+        b += '21'
+    r = int(b, 4)
+    if r > 200:
+        res.append([r, n])
+print(min(res)[1])  # 1011
+
+
+
+# 21261 (Уровень: Средний)
+def f(n, b=4):
+    r = ''
+    while n:
+        r = str(n % b) + r
+        n //= b
+    return r
+
+res = []
+for n in range(10_000, 0, -1):
+    b = f(n)
+    if sum(map(int, b)) % 3:
+        b += '33'
+        b = b[0] + '10' + b[3:]
+    else:
+        b = b.replace('0', '*').replace('2', '0').replace('*', '2')
+        b = '32' + b
+    r = int(b, 4)
+    if r > 320:
+        res.append([r, n])
+res.sort(key=lambda x: (x[0], -x[1]))
+print(res[0][1])  # 31
 
 
 
@@ -788,6 +917,7 @@ res.sort(key=lambda x: (-x[0], x[1]))
 print(res[0][1])  # 11
 
 
+""" Взято на мой курс """
 # 21974 (Уровень: Средний)
 res = []
 for n in range(1, 1000):
@@ -795,12 +925,14 @@ for n in range(1, 1000):
     if n % 2:
         b = '1' + b[1:].replace('1', '00')
     else:
-        b = b.replace('0', '1')
+        # b = b.replace('0', '1')
+        b = '1' * len(b)
     r = int(b, 2)
     if r <= 600:
         res.append((r, n))
-res.sort(reverse=True)
-print(res[0][1])  # 257
+# res.sort(reverse=True)
+# print(res[0][1])  # 257
+print(max(res)[1])  # 257
 
 
 # 22269 (Уровень: Средний)

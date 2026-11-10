@@ -66,6 +66,7 @@ for m1,m2,m3,m4 in product((0,1), repeat=4):
 
 
 
+""" Взято на мой курс """
 # 5483 (Уровень: Средний)
 from itertools import *
 def f(x,y,w,z):
@@ -126,7 +127,7 @@ for m1,m2,m3,m4,m5 in product((0,1), repeat=5):
 print(len(res))  # 8
 
 
-
+""" Взято на мой курс """
 # 6837 (Уровень: Средний) 👍
 from itertools import *
 def f(x1,x2,x3,x4,x5):

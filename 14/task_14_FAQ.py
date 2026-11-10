@@ -29,6 +29,20 @@ def cnv(ls:list, b):
     return r
 
 
+# Используем строку на входе
+from string import printable as alf
+def fn(st: str, b: int):  # классика
+    n = 0
+    for i, k in enumerate(st.lower()[::-1]):
+        n += alf.index(k) * b**i
+    return n
+
+def fn(st, b):  # по схеме Горнера ✅ ✅ ✅
+    n = 0
+    for s in st:
+        n = n * b + alf.index(s)
+    return n
+
 
 """
 Системы с четным основанием (2, 4, 8, 10, 16 и др.)

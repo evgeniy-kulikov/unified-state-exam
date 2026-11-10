@@ -19,7 +19,7 @@ for p in permutations('abcdefgh'):
 # c->g  + h->e  ==  14 + 17  ==  31
 
 
-# № 21400 Досрочная волна 2025 (Уровень: Базовый)
+# 21400 Досрочная волна 2025 (Уровень: Базовый)
 from itertools import permutations
 g = 'ab bg ge ef fa fd dc ce da cb'.split()
 t = '457 567 45 136 123 247 126'.split()
@@ -27,10 +27,13 @@ print(*'1234567')
 for p in permutations('abcdefg'):
     if all(str(p.index(x) + 1) in t[p.index(y)] for x, y in g):
         print(*p)
-# 1 2 3 4 5 6 7
-# c a g e b f d
-# c f g b e a d
-# a->b  + e->f  == 18 + 4  == 22
+"""
+1 2 3 4 5 6 7
+c a g e b f d
+c f g b e a d
+a->b  + e->f  == 18 + 4  == 22
+"""
+
 
 
 # 29951 Апробация 14.05.26(Уровень: Базовый)

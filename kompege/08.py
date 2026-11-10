@@ -76,6 +76,8 @@ for p in set(permutations('КЛАБХАУС')):  # set() для исключен
 print(c)  # 15120
 
 
+
+""" Взято на мой курс """
 # 2928 Апробация 19.02.2022 (Уровень: Средний)
 from itertools import *
 c = 0
@@ -147,15 +149,16 @@ for p in product(s, repeat=5):
 print(res) # 913
 
 
+
+""" Взято на мой курс """
 # 6985 (Уровень: Средний)
 from itertools import product
-c = 0
-res = None
-for p in product('aklmpc', repeat=6):
-    c += 1
-    r = ''.join(p)
-    if not any(['kc' in r, 'ck' in r]) and len(set(r)) == 4:
-        res = c
+cnt = res = 0
+for p in product('123456', repeat=6):
+    cnt += 1
+    p = ''.join(p)
+    if not any(['26' in p, '62' in p]) and sorted(p.count(i) for i in set(p)) == [1, 1, 1, 3]:
+        res = cnt
 print(res)  # 46605
 
 
@@ -203,14 +206,13 @@ for p in product('01234567', repeat=5):
 print(c)  # 180
 
 
+""" Взято на мой курс """
 # 11201 (Уровень: Средний)
 from itertools import *
-c = 0
-for p in permutations('*0**1*'):
-    a = p.index('0')
-    b = p.index('1')
-    c += a + b == 4
-print(c)  # 96
+cnt = 0
+for p in permutations('12****', 6):
+    cnt += p.index('1') + p.index('2') + 2 == 6
+print(cnt)  # 96
 
 
 # 11300 (Уровень: Базовый)
@@ -223,19 +225,17 @@ for p in product(sorted('ГОНДУБШ'), repeat=6):
 print(res)  # 117625
 
 
+""" Взято на мой курс """
 # 11827 (Уровень: Средний)
 from itertools import *
-c = 0
-for p in product('01234567', repeat=7):
+cnt = 0
+for p in product('02221117', repeat=7):  # 4 чётных и 4 нечётных в восьмеричной СС
     if p[0] != '0':
-        p = ''.join(p)
-        for i in '246':
-            p = p.replace(i, '0')
-        for i in '135':
-            p = p.replace(i, '*')
-        if p.count('0') == 2:
-            c += all(i not in p for i in ('7*', '*7', '77'))  # '77' not in p ❗❗❗
-print(c)  # 95904
+        p = ''.join(p).replace('0', '2')
+        if p.count('2') == 2:
+            cnt += all(i not in p for i in ('71', '17', '77'))  # учитываем '77'❗
+print(cnt)  # 95904
+
 
 
 # 11291 (Уровень: Средний)
