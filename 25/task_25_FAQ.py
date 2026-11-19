@@ -156,9 +156,22 @@ def f(n):
 
 
 
+# Функция math.gcd() в Python используется для нахождения наибольшего общего делителя (НОД) целых чисел
+# начиная с версии Python 3.5
+from math import gcd
+print(gcd(54, 24))  # 6
+print(gcd(54, 0))  # 54
+print(gcd(54, 108, 216))  #  54
+print(gcd(0, 0))  # 0
 
 
 """ Наименьшее общее кратное """
+# начиная с версии Python 3.9
+from math import lcm
+print(lcm(14, 21))  # 42
+print(lcm(4, 6, 8))  # 24
+
+
 # Least Common Multiple (LCM)
 # наименьшее натуральное число, которое делится и на «а», и на «b»
 a, b = 3, 5

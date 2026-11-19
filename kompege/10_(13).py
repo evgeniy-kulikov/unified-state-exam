@@ -1,11 +1,20 @@
 """ https://kompege.ru/task """
 """
-10157 10158  10160 10161 10163 10164 10165 10166 10167 10169 10171 10172 
+10095 10157 10158 10160 10161 10163 10164 10165 10166 10167 10169 10171 10172 
 10570 10578 10715 10773 10776 10781 10785 10786 10788 10789 
 11662 11779 11780 11787 11794 11835
-12088 12245 12451 12922 12947 14648 14649 17632 18487 19748
+12088 12245 12451 12467 12922 12947 13885 14648 14649 17632 17709 18296 18487 18868 18928 18966 19245 19748
 22466 22467 23372 23559 23857 24971 25141 27768 29966 31221
 """
+
+
+# 10095 Демоверсия 2024(Уровень: Средний)
+from ipaddress import *
+net = ip_network('192.168.32.160/255.255.255.240', False)
+cnt = 0
+for i in net:
+    cnt += not f'{i:b}'.count('1') % 2
+print(cnt)  # 8
 
 
 # 10157 (Уровень: Базовый)
@@ -375,6 +384,15 @@ for x in range(256):
 print(c)  # 120
 
 
+# 12467 PRO100 ЕГЭ 29.12.23(Уровень: Средний)
+from ipaddress import *
+for a in range(256):
+    net = ip_network(f'183.192.{a}.0/255.255.252.0', False)
+    if all(f'{i:b}'[16:].count('1') > 3 for i in net):
+        print(a)  # 60
+        break
+
+
 # 12922 PRO100 ЕГЭ 26.01.24(Уровень: Базовый)
 from ipaddress import *
 cnt = 0
@@ -404,6 +422,15 @@ for n in range(32, 0, -1):
     # if str(net.network_address) == '111.91.192.0':
     # if str(net).split('/')[0] == '111.91.192.0':
         print(32 - n)  # 12
+        break
+
+
+# 13885 (Уровень: Средний)
+from ipaddress import *
+for m in range(16, 25):  # [0, 128, 192, 224, 240, 248, 252, 254, 255]
+    net = ip_network(f'238.51.1.202/{m}', False)
+    if all(f'{i:b}'[:16].count('1') >= f'{i:b}'[16:].count('1') for i in net):
+        print(net.netmask)  # 255.255.252.0  >>> 252
         break
 
 
@@ -437,13 +464,74 @@ for i in net:
 print(c)  # 215766
 
 
+# 17709 (Уровень: Базовый)
+from ipaddress import *
+cnt = 0
+# net = ip_network('235.53.0.0/255.255.224.0', False)
+net = ip_network('235.53.0.0/19', False)
+for i in net:
+    cnt += not f'{i:b}'.count('1') % 5 and f'{i:b}'[-3:] == '110'
+print(cnt)  # 165
+
+
+""" Взято на мой курс """
+# 18296 (Уровень: Базовый)
+from ipaddress import *
+for m in range(1, 33):
+    net = ip_network(f'222.190.122.24/{m}', False)
+    if str(net.network_address) == '222.190.120.0':
+        print(2**(32 - m) - 3)  # 2045
+        break
+
+
+""" Взято на мой курс """
+# 18868 (Уровень: Базовый)
+from ipaddress import *
+# net = ip_network('222.121.128.0/255.255.224.0', False)
+net = ip_network('222.121.128.0/19', False)
+cnt = 0
+for i in net:
+    cnt += f'{i:b}'[-1] == f'{i:b}'[-2]
+print(cnt)  # 4096
+
+
+
 # 18487 (Уровень: Средний)
 from ipaddress import *
-for x in range(256):
-    net = ip_network(f'192.214.{x}.184/255.255.255.224', False)
-    if all(f'{i:b}'.count('1') > 15 for i in net) :
-        print(x)  # 127
+for a in range(256):
+    # net = ip_network(f'192.214.{a}.184/255.255.255.224', False)
+    net = ip_network(f'192.214.{a}.184/27', False)
+    if all(f'{i:b}'.count('1') > 15 for i in net):
+        print(a)  # 127
         break
+
+
+# 18928 Новогодний вариант 2025(Уровень: Базовый)
+from ipaddress import *
+# net = ip_network('192.168.248.176/255.255.255.240', False)
+net = ip_network('192.168.248.176/28', False)
+cnt = 0
+for i in net:
+    cnt += f'{i:b}'.count('1') == 16
+print(cnt)  # 4
+
+
+# 18966 (Уровень: Базовый)
+from ipaddress import *
+cnt = 0
+# net = ip_network('5.2.5.0/255.255.0.0', False)
+net = ip_network('5.2.5.0/16', False)
+for i in net:
+    cnt += not f'{i:b}'.count('0') % 25
+print(cnt)  # 1820
+
+
+# 19245 ЕГКР 21.12.24(Уровень: Базовый)
+from ipaddress import *
+# net = ip_network('218.194.82.148/255.255.255.192', False)
+net = ip_network('218.194.82.148/26', False)
+print(str(net[-2]).replace('.', ''))  # 21819482190
+
 
 
 """ Взято на мой курс """

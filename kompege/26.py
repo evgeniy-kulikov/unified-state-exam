@@ -2,8 +2,8 @@
 """
 225 507 788 889 954 
 1304 1395 1868
-2149 2362 2480 2612 2613 2614 2652 2686 3664
-4205(=7274) 4604(=4712) 4629 4660 4712=(4604) 5066 5228 5643 6800 7096 7855 8663 8961
+2149 2362 2480 2612 2613 2614 2652 2686 3584 3664
+4115 4205(=7274) 4604(=4712) 4629 4660 4684 4712=(4604) 4938 5066 5228 5643 6759 6800 7096 7276 7855 8512 8663 8961 9756
 10107 10726 11681 11921 12113 12256 12495 13087 13394 15341 16390 17537 17565 17643 17687 17786 17881 18149 19256 19724 19752 19890
 20815 21598 21719 21910(=21424) 22127 23175 23208 23259 23283 23383 23765 24897 25363 26624 27636 27779 28945
 30401 31131 31137 31162 31165 31232 31370 31520 
@@ -337,7 +337,6 @@ for i in f:
 D = sorted((v, k) for k, v in d.items())
 print(len(D), D[-1][0])  # 108 383
 
-
 # аналог dict()
 from collections import Counter
 f = open('26.txt').readlines()
@@ -366,6 +365,26 @@ for el in D:
             cnt = 1
 
 
+# 3586 Апробация 27.04.2022(Уровень: Базовый)
+f = open('add/26/26_3586.txt').readlines()
+d = dict()
+for s in f[1:]:
+    row, seat = map(int, s.split())
+    d.setdefault(row, [])
+    d[row] += [seat]
+res = []
+for row, seat in d.items():
+    if len(seat) > 1:
+        cnt = 0
+        seat.sort()
+        for a, b in zip(seat, seat[1:]):
+            cnt = max(cnt, b - a - 1)
+        res.append((cnt, row))
+res.sort(reverse=True)
+print(res[0][1], res[0][0])  # 4802 7468
+
+
+
 # 3664 (Уровень: Базовый)
 f = open('add/26/26_3664.txt').readlines()
 # f = open('txt.txt').readlines()
@@ -383,6 +402,32 @@ for k, v in D.items():
     res.append([mx, k])
 res.sort(reverse=True)
 print(res[0][1], res[0][0])  # 9570 9743
+
+
+
+# 4115 (Уровень: Базовый)
+f = open('add/26/26_4115.txt').readlines()
+d = dict()
+for s in f[1:]:
+    row, seat = map(int, s.split())
+    d.setdefault(row, set())
+    d[row].add(seat)
+res = []
+for row, seat in d.items():
+    if len(seat) > 1:
+        seat = sorted(seat) + [20_000]  # 20_000 для фиксации последней итерации
+        cnt = c = 1
+        for a, b in zip(seat, seat[1:]):
+            if b - a == 1:
+        # for i in range(len(seat) - 1):
+        #     if seat[i+1] - seat[i] == 1:
+                c += 1
+            else:
+                cnt = max(cnt, c)
+                c = 1
+        res.append((cnt, row))
+res.sort(key=lambda x: (-x[0], x[1]))
+print(res[0][0], res[0][1])  # 7 5662
 
 
 
@@ -405,7 +450,8 @@ for r, v in res:
                 exit()
 
 
-# 4604 Основная волна 2022 (Уровень: Базовый)
+""" Взято на мой курс """
+# 4604 Основная волна 2022 (Уровень: Базовый) (повтор 4712)
 f = open('add/26/26_4604.txt').readlines()
 # f = open('txt.txt').readlines()
 n = int(f[0])  # количество коробок
@@ -439,6 +485,47 @@ for i in range(0, n, 4):
     user += sum(d[i:i+3]) + d[i+3] / 2
 store = sum(i for i in d[:-n//4]) + sum(i / 2 for i in d[-n//4:])
 print(int(user), int(store))  # 44101521 48825239
+
+
+
+# 4684 Резервный день 2022 (Уровень: Базовый)
+f = open('add/26/26_4684.txt')
+N = int(next(f))  # кол-во товаров
+data = sorted([*map(int, f)], reverse=True)  # цены товаров
+sale = N // 6  # кол-во товаров попадающих под скидку
+# Покупатель правильно (по убыванию) разложил товары по 6 шт. в один чек  +  остаток (меньше 6)
+user = 0
+for i in range(0, sale * 6, 6):  # все полные шестерки товаров
+    user += sum(data[i:i+5]) + data[i+5] * 0.5
+if N % 6:  # если есть остаток
+    user += sum(data[-(N % 6):])
+# все товары одним чеком
+store = sum(data[:-sale]) + sum(data[-sale:]) * 0.5  # скидка ушла на самые дешевые товары
+print(int(user), int(store))  # 46201709 49699604  (все цены товаров были четные)
+
+
+
+# 4938 (Уровень: Сложный)
+f = open('add/26/26_4938.txt').readlines()
+L, N = map(int, f[0].split())
+d = [[*map(int, i.split())] for i in f[1:]]
+d.sort(key=lambda x: x[1])
+# максимальное количество мероприятий
+res = [d[0]]
+for el in d[1:]:
+    st, en = el
+    if st >= res[-1][-1] and en <= L:
+        res.append((st, en))
+print(len(res), end=' ')
+# наименьшее возможное (реальное!!!) время начала последнего мероприятия
+last = L
+for el in d:
+    st, en = el
+    if st >= res[-2][1]:
+        last = min(last, st)
+print(last)
+# 91 9881
+
 
 
 # 5066 (Уровень: Базовый)
@@ -504,6 +591,16 @@ else:
 
 
 
+# 6759 Апробация 10.03.23(Уровень: Базовый)
+f = open('add/26/26_6759.txt')
+N = int(next(f))  # кол-во товаров
+data = sorted([*map(int, f)], reverse=True)  # цены товаров
+answer_1 = sum(data[N // 3:])
+answer_2 = sum(sum(data[i:i+2]) for i in range(0, N, 3))
+print(answer_1, answer_2)  # 22262050 33246829
+
+
+
 # 6800 (Уровень: Средний) 🌶️🌶️🌶️🌶️🌶️
 # Логика: суммируем (5/6 начала списка + от 0 до 5 позиций) + (1/6 конца списка (со скидкой))
 f = open("26.txt")
@@ -535,6 +632,31 @@ for i in D[1:]:
 print(cnt, cur)  # 854 54
 
 
+
+# 7276 (Уровень: Средний)
+f = open('26.txt').readlines()
+L, N = map(int, f[0].split())
+d = [[*map(int, i.split())] for i in f[1:]]
+d.sort(key=lambda x: x[1])
+# наибольшее возможное количество вылетов
+res = [d[0]]
+for el in d[1:]:
+    st, en = el
+    if st >= res[-1][-1] and en <= L:
+        res.append((st, en))
+print(len(res), end=' ')
+# наименьшее возможное время вылета последнего рейса
+last = L
+for el in d:
+    st, en = el
+    if st >= res[-2][1]:
+        last = min(last, st)
+print(last)
+# 102 9979
+
+
+
+
 # 7855 Danov2304(Уровень: Базовый)
 # https://youtu.be/OxYJELQoqeI?start=8525
 # ⛔ Работу кода до конца не понял ⛔
@@ -559,6 +681,25 @@ for st, en in guest:
     if st < week:
         last_room = idx
 print(wait_max, last_room + 1)  # 107 11
+
+
+
+# 8512 Апробация 17.05(Уровень: Средний)
+f = open('add/26/26_8512.txt')
+K = int(next(f))  # кол-во ячеек
+_ = next(f)  # кол-во пассажиров
+request = sorted([*map(int, i.split())] for i in f)
+baggage = [0] * K
+cnt = last = 0
+for el in request:
+    start, end = el
+    for i in range(len(baggage)):
+        if baggage[i] < start:  # '<' можно со следующей минуты
+            baggage[i] = end
+            cnt += 1
+            last = i
+            break
+print(cnt, last + 1)  # 389 133
 
 
 
@@ -603,6 +744,27 @@ for b in bid:
 print(cnt,  sum(row_seat))  # 196 335
 
 
+# 9756 Основная волна 19.06.23(Уровень: Средний)
+f = open('add/26/26_9756.txt')
+N = int(f[0])
+d = [[*map(int, i.split())] for i in f[1:]]
+d.sort(key=lambda x: x[1])
+# максимальное количество мероприятий
+res = [d[0]]
+for el in d[1:]:
+    st, en = el
+    if st >= res[-1][-1]:
+        res.append((st, en))
+print(len(res), end=' ')
+# самое позднее время окончания последнего мероприятия
+for el in d[::-1]:
+    st, en = el
+    if st >= res[-2][0]:
+        print(en)
+        break
+# 16 1345
+
+
 
 """ Взято на мой курс """
 # 10107 Демоверсия 2024 (Уровень: Средний)
@@ -631,18 +793,16 @@ f = open('add/26/26_10726.txt')
 N = int(next(f))  # кол-во фильмов
 d = [[*map(int, i.split())] for i in f]  # время начала/окончания фильмов с начала месяца
 d.sort()
-d = d + [[inf, 0]]  # костыль для обработки последнего ъначения
+d = d + [[44650, 0]]  #44650 > 44640,  костыль для обработки последнего значения
 res = []
-mn, mx = d[0]  # начало/конец связки пересекающихся фильмов
+start, end = d[0]  # начало/конец связки пересекающихся фильмов
 for st, en in d[1:]:
-    if st > mx:  # появился перерыв между пересекающимися фильмами
-        res.append([mn, mx])
-        mn, mx = st, en
-    else:
-        mx = max(mx, en)  # обновляем дальнюю границу пересекающихся фильмов
-answer_1 = sum(i[1] - i[0] for i in res)
-answer_2 = max(i[1] - i[0] for i in res)
-print(answer_1, answer_2)  # 38032 3014
+    if st <= end:
+        end = max(end, en)  # обновляем дальнюю границу пересекающихся фильмов
+    else:  # появился перерыв между пересекающимися фильмами
+        res.append(end - start)
+        start, end = st, en
+print(sum(res),max(res))  # 38032 3014
 
 
 
@@ -742,22 +902,20 @@ for i in data:  # минимально дальная заправка пере�
 """ Взято на мой курс """
 # 13087 (Уровень: Базовый)
 f = open('add/26/26_13087.txt')
-N = int(next(f))  # кол-во заявок
+_ = int(next(f))
 data = [[*map(int, i.split())] for i in f]  # время начала / время окончания
 data.sort(key=lambda x: x[1])
-cnt = cur = 0
-res = []
-for st, en in data:
-    if cur + 20 <= st:
-        res += [[st, en]]
-        cur = en
-        cnt += 1
+res = [data[0]]
+for st, en in data[1:]:
+    if res[-1][1] + 20 <= st:
+        res += [(st, en)]
 # максимально возможный перерыв между двумя последними мероприятиями
-cur = res[-2][1]
-for st, en in data[::-1]:
-    if cur + 20 <= st:
-        print(cnt, st - cur)  # 16 52
-        break
+last = 0
+for st, en in data:
+    if res[-2][1] + 20 <= st:
+        last = max(last, st - res[-2][1])
+print(len(res), last)  # 16 52
+
 
 
 
@@ -882,6 +1040,7 @@ dream = sum(data[N // 9:])  # Первую 9-тую часть списка по
 battle = 0
 for i in range(0, N, 9):
     battle += sum(data[i:i + 8])  # каждый 9-ый будет бесплатным + сюда попадает и хвост (т.к. длина списка НЕ кратна 9)
+# battle = sum(sum(data[i:i+8]) for i in range(0, N, 9))
 print(dream, battle)  # 39450073 44329073
 
 

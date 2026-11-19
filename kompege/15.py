@@ -1,11 +1,11 @@
 """ https://kompege.ru/task """
 """
 216 307 432 627 743 750 752 753 754 762 764
-1015 1072 1127 1198 1234 1276 1295 1409 1968 2078 2080 2123 3156 4277 4283 4988 
+1015 1072 1127 1198 1234 1276 1295 1409 1440 1968 2078 2080 2123 3156 4277 4283 4988 
 7086 7265 7353 7817 8159 8676 9370 9545 9746 
 10717 11607 11665 12247 12469 12924 13082 14654 17528 17871 19980
-20809 20905 21710 24988 25279 25354 27137
-31122 31153 31164
+20809 20905 21710 24970 24988 25279 25354 27137 27627 27770 28201 28702 28703 28936 29347 29969
+31122 31153 31164 31223 31361
 
 🍒 отрезки
 🍓 множества
@@ -302,6 +302,23 @@ A = set()  # {18, 6}
 [A.add(x) for x in range(1, 62) if not f(x)]
 print(prod(A))  # 3
 
+
+
+# 1440 (Уровень: Средний)
+def f(x):
+    p = 12 <= x <= 28
+    q = 15 <= x <= 30
+    a = a1 <= x <= a2
+    # return (not p or a) and (not q or a)
+    return not (p or q) or a
+
+res = 10**10
+n = [i for k in (12,28,15,30) for i in ( k-0.1, k, k+0.1)]
+for a1 in n:
+    for a2 in n:
+        if a2 > a1 and all(f(x) for x in n):
+            res = min(res, a2 - a1)
+print(round(res))
 
 
 """ Взято на мой курс """
@@ -709,17 +726,34 @@ for a1 in n:
 print(round(res))  # 74  (74.1999)
 
 
-# 24988  (Уровень: Базовый)
+
+#  24970 (Уровень: Сложный) 🌶️🌶️🌶️
+def f(x, y):
+    a = 4 <= x <= 82
+    b = not 211 % x and x not in (1, 121)
+    c = not y % x and x not in (1, y)
+    return (b or not a) <= (not c)
+
+res = []
+for y in range(1, 1000):
+    dv = [i for i in range(2, y) if not y % i]
+    if dv and all(f(x, y) for x in range(1, 10_000)):
+        res.append([len(dv), y])
+print(max(res)[1])
+
+
+
+# 24988  (Уровень: Базовый) 🌶️🌶️🌶️
 # короче
 def f(x, y):
     a = 100 <= x <= 200
     # b = not x % 121 and (1 < x < 121)
-    b = (x == 11)
-    c = not y % x and (1 < x < 121)
+    b = (x == 11)  # всего один делитель
+    c = not y % x and (1 < x < 121)  # число 'y' таково, что множество 'c' непустое
     return (not c) or (a and (not b))
 
 for y in range(10_000, 20_000):
-    if all(f(x, y) for x in range(1, 20_000)) and any(not y % x for x in range(2, y)):  # множество C непустое
+    if all(f(x, y) for x in range(1, 20_000)) and any(not y % x for x in range(2, y)):
         print(y)  # 10201
         break
 
@@ -748,35 +782,48 @@ for y in range(2, 20000):
 
 # 25279 (Уровень: Базовый)
 # kompege/add/15/25279.gif
-def f(x, l, r):
+def f(x):
     p = 66 <= x <= 67
     q = 32 <= x <= 125
     t = 30 <= x <= 491
-    a = l <= x <= r
+    a = a1 <= x <= a2
     return a or p or not q or not t
 
+res = 500
+n = [i for k in (66,67,32,125,30,491) for i in (-0.1 * k, k, 0.1 * k)]
+for a1 in n:
+    for a2 in n:
+        if a2 > a1 and all(f(i) for i in n):
+            res = min(res, a2 - a1)
+print(round(res))
+# Прежний путь решения
 res = []
-for l in range(25, 500):
-    for r in range(l, 500):
-        if all(f(x, l, r) for x in range(25, 500)):
-            res.append((r - l, (l, r)))
+for a1 in range(25, 500):
+    for a2 in range(a1, 500):
+        if all(f(x) for x in range(25, 500)):
+            res.append((a2 - a1, (a1, a2)))
 res.sort()
 print(res[0][0])  # 93  (32, 125)
+
 
 
 # 25354 ЕГКР 13.12.25 (Уровень: Средний)
 # ❌ Кодом не решается. Только руками !!! ✅
 # https://vk.com/video-205865487_456240524?t=47m11s
-def f(x, y):
-    return (78125 != y + 4*x) or (a > x) and (a > y)
-    # return (78125 == y + 4*x) <= ((a > x) and (a > y))
-
-for a in range(78100, 100000):
-    for x in range(1, a):
-        for y in range(78125 - 4 * x, a):
-            if f(x, y):
-                print(a)  # 78122
-                exit()
+# Логическое решение
+a = 0
+for x in range(1, 78125 // 4 + 1):  #
+    y = 78125 - 4 * x
+    a = max(x, a)
+    a = max(y, a)
+print(a + 1)  # 78122
+# Стандартное решение ОЧЕНЬ долгое
+# def f(x, y):
+#     return not (78125 == y + 4*x) or (a > x and a > y)
+# for a in range(78_120, 100_000):
+#     if all(f(x, y) for x in range(1, 100) for y in range(50_000, 100_000)):
+#         print(a)  # 78122
+#         break
 
 
 # 27137 (Уровень: Сложный)
@@ -804,16 +851,148 @@ print(max(res) + 1)  # 206942
 
 
 
+#  27627 Апробация 04.03.26(Уровень: Базовый)
+def f(x):
+    return x % 25 or (not x % a or x % 60)
+
+# немного дольше
+for a in range(10_000, 0, -1):
+    if all(f(x) for x in range(1, 100_000)):
+        print(a)  # 300
+        break
+# быстрее
+from math import gcd
+n = gcd(25, 60)
+for a in range(10_000, 0, -1):
+    # идем только по плохим точкам 'x'
+    if all(f(x) for x in range(n, 100_000, n)):
+        print(a)  # 300
+        break
+
+
+
+# 27770 Апробация 04.03.26(Уровень: Базовый)
+def f(x):
+    return x % 21 or (not x % a or x % 77)
+
+# немного дольше
+for a in range(10_000, 0, -1):
+    if all(f(x) for x in range(1, 100_000)):
+        print(a)  # 231
+        break
+# быстрее
+from math import gcd
+n = gcd(21, 77)
+for a in range(10_000, 0, -1):
+    # идем только по плохим точкам 'x'
+    if all(f(x) for x in range(n, 100_000, n)):
+        print(a)  # 231
+        break
+
+
+
+# 28201 (Уровень: Средний) 🌶️🌶️
+def f(x, y, z):
+    return z % 115 or y % 78 or x % 51 or not x*y*z % a
+
+for a in range(1_000_000, 0, -1):
+    if all(f(x, y, z) for x in range(51, 1000, 51) for y in range(78, 1000, 78) for z in range(115, 1000, 115)):
+        print(a)  # 457470
+        break
+
+# Variant (поиск наибольшего общего делителя для 'a')
+from math import gcd
+a = 0
+for x in range(51, 10_000, 51):
+    for y in range(78, 10_000, 78):
+        for z in range(115, 10_000, 115):
+            a = gcd(x * y * z, a)
+print(a)  # 457470
+
+
+# 28702 (Уровень: Базовый) 🌶️
+def f(x):
+    p = 1315 <= x <= 1415
+    # return not x % a or (not p or (x % 191 or (x + a <= 4113)))
+    return not x % a or not p or x % 191 or (x + a <= 4113)
+
+for a in range(10_000, 0, -1):
+    if all(f(x) for x in range(0, 100_000, 191)):  # проверяем только точки кратные 191
+    # if all(f(x) for x in range(1315, 1416)):  # проверяем только  1315 <= x <= 1415
+        print(a)  # 2776
+        break
+
+
+# 28703 (Уровень: Базовый) 🌶️
+def f(x):
+    p = 2508 <= x <= 2570
+    # return not x % a or (not p or (x % 214 or (x + a <= 5286)))
+    return not x % a or not p or x % 214 or (x + a <= 5286)
+
+for a in range(10_000, 0, -1):
+    if all(f(x) for x in range(0, 100_000, 214)):  # проверяем только точки кратные 214
+    # if all(f(x) for x in range(2508, 2571)):  # проверяем только  2508 <= x <= 2570
+        print(a)  # 2718
+        break
+
+
+
+# 28936 ЕГКР 18.04.26(Уровень: Базовый) 🌶️ (Ответ больше миллиона - долгий прямой перебор)
+def f(x, y):
+    return (x * y < a) or (5 * x < y) or (486 <= x)
+
+for a in range(5 * 485**2 - 1, 10**10):
+    if all(f(x, y) for x in range(486) for y in range(x * 5 + 1)):
+        print(a)  # 1176126
+        break
+# аналитика
+res = 0
+for x in range(486):
+    for y in range(5 * x + 1):
+        if x * y > res:
+            res = x * y
+print(res + 1)  # 1176126
+
+
+
+# 29347 Открытый вариант 2026(Уровень: Базовый)
+def f(x):
+    b = 22 <= x <= 40
+    c = 32 <= x <= 50
+    a = a1 <= x <= a2
+    return a or (b == c)
+
+res = 1000
+p = [i for k in (22, 40, 32, 50) for i in (k * -0.01, k, k * 0.01)]
+for a1 in p:
+    for a2 in p:
+        if a1 < a2:
+            if  all(f(x) for x in range(1, 1000)):
+                res = min(res, a2 - a1)
+print(round(res))  # 28
+
+
+
+# 29969 Апробация 14.05.26(Уровень: Базовый)
+def f(x, y):
+    return (x > a) or (y > a) or (x + 2*y < 80)
+
+for a in range(100, -1, -1):
+    if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 26
+        break
+
+
+
 # 31122 Основная волна 18.06.26 (Уровень: Базовый)
 def f(x):
     b = 70 <= x <= 90
     return not x % a or (not b or x % 16)
 
-res = 0
-for a in range(1, 1000):
+for a in range(1000, 0, -1):
     if all(f(x) for x in range(1, 10000)):
-        res = max(res, a)
-print(res)  # 80
+        print(a)  # 80
+        break
 
 
 # 31153 Основная волна 19.06.26 (Уровень: Базовый)
@@ -848,3 +1027,24 @@ for a1 in p:
         if a1 < a2 and all(not f(x) for x in range(-600, 600)):
             res = max(res, a2 - a1)
 print(round(res))  # 448
+
+
+
+# 31223 Резерв 22.06.26(Уровень: Базовый)
+def f(x, y):
+    return (x + y <= 27) or (y <= x - 1) or (y >= a)
+
+for a in range(100, 0, -1):
+    if all(f(x, y) for x in range(1, 1000) for y in range(1, 1000)):
+        print(a)  # 14
+        break
+
+
+# 31361 Пересдача 08.07.26(Уровень: Базовый)
+def f(x):
+    return x % 33 or (not x % a or x % 242)
+
+for a in range(10000, 0, -1):
+    if all(f(x) for x in range(1, 1000)):
+        print(a)  # 726
+        break

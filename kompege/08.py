@@ -1,8 +1,9 @@
 """ https://kompege.ru/task """
 """
-52 399 1241 1339 1363 1933 2928 3029 3729 4564 5553 6901 6985 8417 8553 9155
-10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 19753
-20069 20269 20270 20271 20833 20855 20857 20898 21894 21975 22419 23367 23746 23808 24455 24533 24614 24888 24984 25132 
+52 399 1241 1339 1363 1933 1942 1946 1947 2928 3029 3729 4561 4564 5218 5553 6901 6985 8417 8553 9155
+10090 11201 11291 11300 11827 12097 12240 12462 12917 13094 16319 16374 17521 17549 17627 17671 19753
+20069 20269 20270 20271 20833 20855 20857 20898 21407 21703 21894 21975 22419 23192 23267 23367 23554 23746 23808 
+24455 24533 24614 24888 24984 25132 
 26117 26349 26350 27281 27282 27620 27763 28694 28695 28696 28929 29340
 31115 31146 31216 31354 31505
 """
@@ -76,6 +77,36 @@ for p in set(permutations('КЛАБХАУС')):  # set() для исключен
 print(c)  # 15120
 
 
+""" Взято на мой курс """
+# 1942 (Уровень: Средний)
+from itertools import *
+# Заменяем буквы на цифры
+cnt = 0
+for n in range(4, 7):
+    for p in product('12***', repeat=n):
+        cnt += p.count('1') == 1 and p.count('2') == 3
+print(cnt)  # 604
+
+
+# 1946 (Уровень: Базовый)
+from itertools import *
+cnt = 0
+for p in product('01234', repeat=5):
+    cnt += p[0] != '0' and sum(i in '024' for i in p) <= 3
+print(cnt)  # 1744
+
+
+# 1947 (Уровень: Средний)
+from itertools import *
+cnt = 0
+for p in product('01234567', repeat=4):
+    p = ''.join(p)
+    cnt += p[0] != '0' and not int(p, 8) % 4
+print(cnt)  # 896
+# variant
+print(sum(1 for _ in range(int('1000', 8), int('7777', 8) + 1, 4)))  # 896
+
+
 
 """ Взято на мой курс """
 # 2928 Апробация 19.02.2022 (Уровень: Средний)
@@ -108,6 +139,18 @@ for p in product('АЕЖЙМУ', repeat=5):
 print(res)  # 1875
 
 
+""" Взято на мой курс """
+# 4561 (Уровень: Сложный)
+from itertools import *
+# Заменяем буквы на цифры
+cnt = 0
+w = '1234'
+for p in product('1234**', repeat=4):
+    if sum(a==b for a, b in zip(p, w)) == 2:
+        cnt += 1
+print(cnt)  # 150
+
+
 # 4564 (Уровень: Сложный) 🌶️🌶️🌶️  всего 281_474_976_710_656 комбинаций - МНОГО!!!
 # Перебор за долю секунды
 z = 0
@@ -128,6 +171,19 @@ for a in range(15, 10, -1):
 print(z)  # 104
 
 
+""" Взято на мой курс """
+# 5218 (Уровень: Базовый)
+from itertools import *
+cnt = 0
+# Заменяем буквы на цифры
+for p in product('12345', repeat=6):
+    p = ''.join(p)
+    if p.count('1') == 3:
+        cnt += '11' in p and '111' not in p
+print(cnt)  # 768
+
+
+
 # 5553 (Уровень: Базовый)
 from itertools import *
 s = 'СОТОЧКА'
@@ -138,14 +194,14 @@ for p in set(permutations(s)):  # set() для исключения ✅ дубл
 print(c) # 1800
 
 
+""" Взято на мой курс """
 # 6901 (Уровень: Средний)
 from itertools import *
-s = sorted(set('БАРАШ')) # set() для исключения ✅ дубликатов 'А'
-c = res = 0
-for p in product(s, repeat=5):
-    c += 1
+cnt = res = 0
+for p in product('АБРШ', repeat=5):
+    cnt += 1
     if sum(i in 'БРШ' for i in p) <= 3 and len(set(p)) == 4:
-            res = c
+            res = cnt
 print(res) # 913
 
 
@@ -196,14 +252,13 @@ print(res)  # 65
 
 
 
-
 # 10090 Демоверсия 2024 (Уровень: Базовый)
 from itertools import *
-c = 0
-for p in product('01234567', repeat=5):
-    if p[0] != '0' and not '1' in p and len(set(p)) == 5:
-        c += not sum(int(a) % 2 == int(b) % 2 for a, b in zip(p, p[1:]))
-print(c)  # 180
+cnt = 0
+for p in permutations((0,2,3,4,5,6,7), 5):
+    if p[0]:
+        cnt += all(a%2 != b%2 for a, b in zip(p, p[1:]))
+print(cnt)  # 180
 
 
 """ Взято на мой курс """
@@ -330,38 +385,36 @@ print(c)  # 483840
 
 # 16319 Открытый вариант 2024 (Уровень: Базовый)
 from itertools import *
-c = res = 0
-for p in product('aprcy', repeat=5):
-    c += 1
-    if p.count('y') == 1 and 'aa' not in ''.join(p):
-        res = c
+cnt = res = 0
+for p in product('12345', repeat=5):
+    cnt += 1
+    if p.count('5') <= 1 and '11' not in ''.join(p):
+        res = cnt
 print(res)  # 2969
 
 
 # 16374 ЕГКР 27.04.24 (Уровень: Базовый)
 from itertools import *
-c = 0
-for p in product('0123456', repeat=7):
+cnt = 0
+for p in product('0222***', repeat=7):
     if p[0] != '0':
-        s = ''.join(p)
-        for i in '246':
-            s = s.replace(i, '0')
-        c += s.count('0') == 2
-print(c)  # 75816
-# ✅️Better
-c = 0
-for p in product('0*_*_*_', repeat=7):
+        s = ''.join(p).replace('0', '2')
+        cnt += s.count('2') == 2
+print(cnt)  # 75816
+# ✅️ Считаем НЕчётные цифры:
+cnt = 0
+for p in product('0222***', repeat=7):
     if p[0] != '0':
-        c += p.count('*') == 5
-print(c)  # 75816
+        cnt += p.count('*') == 5
+print(cnt)  # 75816
 
 
 # 17521 Основная волна 07.06.24 (Уровень: Базовый)
 from itertools import *
-c = 0
+cnt = 0
 for p in product('01234567', repeat=5):
-    c += p[0] not in '01357' and p[-1] not in '26' and p.count('7') <= 2
-print(c)  # 9135
+    cnt += p[0] not in '01357' and p[-1] not in '26' and p.count('7') <= 2
+print(cnt)  # 9135
 
 
 # 17549 Основная волна 08.06.24 (Уровень: Базовый)
@@ -373,14 +426,34 @@ for p in product(s, repeat=5):
     if not p.count('Ф') and p.count('У') == 2:
             res = c
 print(res) # 2313
+# variant
+from itertools import *
+c = res = 0
+for p in product('12345', repeat=5):
+    c += 1
+    if not p.count('5') and p.count('4') == 2:
+            res = c
+print(res) # 2313
 
 
 # 17627 Основная волна 19.06.24 (Уровень: Базовый)
-from itertools import product
+from itertools import *
 c = 0
-for p in product('0123456789aaaaa', repeat=5):
-    c += p[0] != '0' and p.count('8') == 1 and p.count('a') >= 2
+for p in product('0123456789*****', repeat=5):
+    c += p[0] != '0' and p.count('8') == 1 and p.count('*') >= 2
 print(c)  # 83175
+
+
+""" Взято на мой курс """
+# 17671 Переcдача 04.07.24(Уровень: Базовый)
+from itertools import *
+cnt = res = 0
+for p in product('1234', repeat=5):
+    cnt += 1
+    # if not (p.count('4') or p.count('3')) and '22' not in ''.join(p):
+    if not sum(p.count(i) for i in '34') and '22' not in ''.join(p):
+        res = cnt
+print(res)  # 274
 
 
 # 19753 (Уровень: Средний)
@@ -506,29 +579,45 @@ for p in product(range(9), repeat=6):
 print(res)  # 888881
 
 
+
+""" Взято на мой курс """
 # 20898 Апробация 05.03.25(Уровень: Базовый)🌶️
 from itertools import *
-res = 0
-for p in product(range(9), repeat=5):
-    if p[0] and p.count(0) == 1:
-        p = (*p, 2)
-        i = p.index(0)
-        if all([not p[i-1] % 2,not p[i+1] % 2]):
-            res += 1
-print(res)  # 5120
+cnt = 0
+for p in product('022221111', repeat=5):
+    if p[0] != '0' and p.count('0') == 1:
+        s = ''.join(p)
+        cnt += all(i not in s for i in ('10', '01'))
+print(cnt)  # 5120
+
+
+# 21407 Досрочная волна 2025(Уровень: Базовый)
+from itertools import *
+cnt = 0
+for p in product('aaabbb', repeat=5):
+    if p[0] != 'a' and p[-1] != 'b':
+        cnt += 1
+print(cnt)
+
+
+""" Взято на мой курс """
+# 21703 ЕГКР 19.04.25(Уровень: Базовый)
+from itertools import *
+cnt = res = 0
+for p in product('123456', repeat=6):
+    cnt += 1
+    if not cnt % 2 and p[0] == '5' and len(set(p)) == 6:
+        res = cnt
+print(res)  # 38306
 
 
 # 21894 Открытый вариант 2025(Уровень: Базовый)
 from itertools import *
-res = 0
-for p in product(range(10), repeat=4):
-    if p[0] and len(set(p)) == 4:
-        w = ''
-        for i in p:
-            w += '*_'[i % 2]
-        if all(i not in w for i in ['**', '__']):
-            res += 1
-print(res)  # 720
+cnt = 0
+for p in permutations(range(10), 4):
+    if p[0]:
+        cnt += all(a%2 != b%2 for a, b in zip(p, p[1:]))
+print(cnt)  # 720
 
 
 # 21975 (Уровень: Базовый) 🌶️🌶️🌶️👍👍👍
@@ -592,13 +681,47 @@ for p in product(range(13), repeat=7):
 print(res) # 5372640
 
 
+# 23192 Основная волна 10.06.25(Уровень: Базовый)
+# Заменяем буквы на их порядковые номера из списка
+from itertools import *
+cnt = res = 0
+for p in product('123456', repeat=6):
+    cnt += 1
+    if cnt % 2 and p[0] not in '456' and p.count('2') >= 2:
+        res = cnt
+print(res)  # 23159
+
+
+# 23267 Основная волна 11.06.25(Уровень: Базовый)
+# Заменяем буквы на их порядковые номера из списка
+from itertools import *
+cnt = res = 0
+for p in product('123456', repeat=5):
+    cnt += 1
+    if cnt % 2 and p[0] != '1' and p.count('5') == 1:
+        res = cnt
+print(res)  # 7775
+
+
+""" Взято на мой курс """
 # 23367 Резервный день 19.06.25 (Уровень: Базовый)
 from itertools import *
-c = 0
+cnt = 0
 for p in product('0123456', repeat=5):
     if p[0] != '0' and p.count('6') == 1:
-        c += all(a != b for a, b in zip(p, p[1:]))
-print(c)  # 3625
+        cnt += all(a != b for a, b in zip(p, p[1:]))
+print(cnt)  # 3625
+
+
+# 23554 Пересдача 03.07.25(Уровень: Базовый)
+# Заменяем буквы на их порядковые номера из списка
+from itertools import *
+cnt = 0
+for p in product('12345678', repeat=5):
+    cnt += 1
+    if not cnt % 2 and p[0] not in '12' and p.count('7') >= 2:
+        print(cnt)
+        break
 
 
 # 23746 Демоверсия 2026 (Уровень: Базовый)
