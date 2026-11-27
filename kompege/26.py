@@ -1,8 +1,8 @@
 """ https://kompege.ru/task """
 """
-225 507 788 889 954 
-1304 1395 1868
-2149 2362 2480 2612 2613 2614 2652 2686 3584 3664
+225 507 788 813 838 889 954 
+1079 1257 1304 1395 1868
+2149 2362 2480 2612 2613 2614 2650 2651 2652 2686 3584 3664
 4115 4205(=7274) 4604(=4712) 4629 4660 4684 4712=(4604) 4938 5066 5228 5643 6759 6800 7096 7276 7855 8512 8663 8961 9756
 10107 10726 11681 11921 12113 12256 12495 13087 13394 15341 16390 17537 17565 17643 17687 17786 17881 18149 19256 19724 19752 19890
 20815 21598 21719 21910(=21424) 22127 23175 23208 23259 23283 23383 23765 24897 25363 26624 27636 27779 28945
@@ -74,6 +74,48 @@ e1, e2 = fn(en, E)
 print(d1 + e1, d2 + e2)  # 13 1381
 
 
+# 813 Джобс 07.12.2020(Уровень: Сложный) 🌶️🌶️🌶️
+# Логика: Чередуя, удаляем подходящий больший файл, затем меньший. Далее повторяем снова, пока не заполним диск
+f = open('add/26/26_813.txt')
+S, _ = map(int, next(f).split())
+d = sorted(map(int, f))
+cnt = last = 0
+flag = 0  # 0 — берём самый большой, 1 — самый маленький
+while d and d[0] <= S:  # Пока есть из чего и что взять
+    if not flag:
+        idx = len(d) - 1
+        while d[idx] > S:  # пока не появится первый равный или меньший файл
+            idx -= 1  # ищем индекс самого большого подходящего файла
+    else:
+        idx = 0  # берём самый маленький (можно т.к. была проверка в уловии while ... d[0] <= S)
+    last = d.pop(idx)
+    S -= last
+    cnt += 1
+    flag = 1 - flag  # меняем тип файла для поиска
+print(cnt, last)
+
+
+
+# 838 Джобс 14.12.2020(Уровень: Сложный) 🌶️🌶️
+f = open('add/26/26_838.txt')
+N = int(next(f))
+data = sorted(map(int, f), reverse=True)
+left = 0  # начальный индекс
+right = N - 1  # конечный индекс
+sum1 = sum2 = 0
+cnt1 = cnt2 = 0
+while left <= right:  # собираем 1-й диск
+    sum1 += data[left]
+    left += 1
+    cnt1 += 1
+    while left <= right and sum2 <= sum1:  # собираем 2-й диск
+        sum2 += data[right]
+        right -= 1
+        cnt2 += 1
+print(cnt1, cnt2)  # 2054 4612
+
+
+
 # 889 Джобс 25.12.2020 (Уровень: Сложный)
 data = open('26.txt')
 N, M = map(int, next(data).split())  # количество грузов / грузоподъёмность грузовика (10_000)
@@ -102,6 +144,28 @@ for i in range(len(d)):
 print(len(d1) + len(d2), sm)  # 113 9999
 
 
+# 936 Джобс 08.02.2021(Уровень: Сложный)
+# Тактика подразумевает добор максимально возможного последнего груза в рейс
+f = open('add/26/26_936.txt')
+N, S = map(int, next(f).split())
+data = sorted(map(int, f), reverse=True)
+cnt = last = 0
+while len(data):  # новый подход ✅✅✅
+    total = 0  # вес текущей сборки грузов
+    rest = []  # грузы не взятые на борт (далее они станут новой "data")
+    for el in data:
+        if total + el <= S:
+            total += el  # собираем годные грузы
+        else:
+            rest.append(el)  # собираем неподходящие грузы
+    cnt += 1
+    data = rest
+    last = total  # фиксация веса текущей сборки
+print(cnt, last)
+
+
+
+
 # 954 (Уровень: Базовый)
 f = open('add/26/26_954.txt').readlines()
 N, K, M = map(int, f[0].split())
@@ -113,6 +177,36 @@ b = int(dk + dm)
 print(a, b)  # 7500 314590
 
 
+# 1079 (Уровень: Средний)
+from itertools import combinations
+f = open('add/26/26_1079.txt')
+N = int(next(f))
+data = sorted(map(int, f))
+d_2 = data[N//2 - 1]
+d_4 = data[-(N//4)]
+even = []
+for a, b in combinations(data, 2):
+    if not (a + b) % 2:
+        even += [(a + b) // 2]
+res = []
+for i in even:
+    if d_2 < i < d_4:
+        res.append(i)
+print(len(res), min(res))  # 2405042 546772
+
+
+# 1257 Статград 26.04.2021(Уровень: Средний)
+# без combinations и set() будет долгий пересчет
+from itertools import combinations
+f = open('add/26/26_1257.txt')
+next(f)
+d = set(map(int, f))
+res = set()
+for a, b in combinations(d, 2):
+    if a % 2 != b % 2:
+        res.add(a + b)
+answer = d & res
+print(len(answer), max(answer))  # 15 954387771
 
 
 # 1304 Открытый вариант КЕГЭ (Уровень: Базовый)
@@ -228,21 +322,19 @@ print(cnt, SM)  # 609 31303
 
 
 # 2480 Сборник ЕГЭ Ушакова 2022(Уровень: Базовый)
-f = open('add/26/26_2612.txt').readlines()
+f = open('add/26/26_2480.txt').readlines()
 d = sorted([*map(int, i.split())] for i in f[1:])
 res = [d[0]]
-for a1, a2 in d:
-    b1, b2 = res[-1]
-    if b2 >= a1:
-    # if b1 <= a2 and b2 >= a1: # лишние проверки
-        # res[-1][0] = min(a1, b1) # лишние проверки
-        res[-1][1] = max(a2, b2)
+for st, en in d:
+    last_1, last_2 = res[-1]
+    if last_2 >= st:
+        res[-1][1] = max(en, last_2)
     else:
-        res += [[a1, a2]]
-sm = sum(b-a for a, b in res)
+        res += [[st, en]]
+sm = sum(b - a for a, b in res)
 print(len(res), sm)  # 1226 822094
 
-# Решение через список
+# Решение через список (решение лучше не использовать)
 f = open("add/26/26_2480.txt")
 next(f)
 a = [0] * 2_000_000
@@ -326,6 +418,39 @@ for i in range(len(book) - 1, 0, -1):
         break
 
 
+
+# 2650 Сборник ЕГЭ Ушакова 2022(Уровень: Средний)
+f = open('add/26/26_2650.txt')
+L, M, N = map(int, next(f).split())  # длина раб. дня (сек)/ мин. длительность простоя  (сек)/ кол-во деталей
+data = [[*map(int, i.split())] for i in f]  # начало обработки / длительность обработки (сек)
+data.sort()
+data += [[L, L]]  # пауза в конце смены
+pause = maks = last = 0  # так же ловим паузу в начале смены
+for st, en in data:
+    if st > last + M:
+        pause += 1
+        maks = max(maks, st - last)
+    last = st + en
+print(pause, maks)  # 577 24426
+
+
+
+""" Взято на мой курс """
+# 2651 Сборник ЕГЭ Ушакова 2022(Уровень: Средний)
+f = open('add/26/26_2651.txt')
+next(f)
+f = [[*map(int, i.split())] for i in f]
+d = dict()
+for k, v in f:
+    d.setdefault(k, set())
+    d[k].add(v)
+D = [(8 - len(v), k) for k, v in d.items()]
+D.sort(reverse=True)
+print(sum(i[0] for i in D), D[0][1])  # 38 1985
+
+
+
+
 # 2652 Сборник ЕГЭ Ушакова 2022(Уровень: Базовый)
 # есть штрихкоды типа 00123 и 123 - ведущие нули убрать
 f = open('add/26/26_2652.txt').readlines()
@@ -339,9 +464,11 @@ print(len(D), D[-1][0])  # 108 383
 
 # аналог dict()
 from collections import Counter
-f = open('26.txt').readlines()
+f = open('add/26/26_2652.txt').readlines()
 d = Counter(map(int, f[1:]))
+# most_common(1)  первый самый повторяющийся элемент
 print(len(d), d.most_common(1)[0][1])  # 108 383
+
 
 
 # 2686 Пробный 02.2022 /dev/inf Base level(Уровень: Базовый)
@@ -714,17 +841,14 @@ for r, s in data:
     d[r].append(s)
 data = [[r, sorted(s)] for r, s in d.items()]
 data.sort(reverse=True)
-res = []
+cnt = row = 0
 for r, s in data:
-    cnt = 0
     for a, b, c in zip(s, s[1:], s[2:]):
         if (b - a) == (c - b) == 6:
             cnt += 1
-    res.append([r, cnt])
-res = [i for i in res if i[1]]
-ans_1 = res[0][0]
-ans_2 = sum(i[1] for i in res)
-print(ans_1, ans_2)  # 4896 17
+            row = max(row, r)
+print(row, cnt)  # 4896 17
+
 
 
 # 8961 Джобс 02.06.2023(Уровень: Базовый)
@@ -1205,6 +1329,7 @@ print(*res[0])  # 21028 6660
 
 
 
+""" Взято на мой курс """
 # 20815 Апробация 05.03.25(Уровень: Базовый)
 f = open('add/26/26_20815.txt')
 N, K = map(int, next(f).split())  # кол-во кандидатов / кол-во мест

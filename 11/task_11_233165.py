@@ -23,7 +23,8 @@ psw = ceil(11 * ceil(log2(26 + 26 + 10)) / 8)
 print(1024 // (psw + 13))  # 46
 
 
-# https://stepik.org/lesson/1688217/step/5?unit=1711506
+
+""" Взято на мой курс """
 #  https://kompege.ru/task  № 303 Джобс 28.09.2020 (Уровень: Средний)
 from math import log2, ceil
 psw = ceil(11 * ceil(log2(15 + 10)) / 8)

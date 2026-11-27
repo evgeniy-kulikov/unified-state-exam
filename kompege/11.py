@@ -1,9 +1,10 @@
 """ https://kompege.ru/task """
 """
 136 303 494 6264  825
-1342 2119 2571 4462 4616 5061 5914 6746 7032 7813 8469 9742
+1342 2119 2571 2857 3100 3169 4462 4616 5061 5914 6083 6746 7032 7261 7813 8469 8556 9742
 10713 11230 11660 12243 16322 16377 17524 17552 17630 17865 19243
-20805 20972 21594 23195 23370 29343 
+20805 20972 21594 23195 23370 29071 29073 29343 
+31118
 """
 
 
@@ -17,12 +18,17 @@ add = 28 - (cod + num)
 print(add)  # 18
 
 
+""" Взято на мой курс """
 # 303 Джобс 28.09.2020 (Уровень: Средний)
-from math import ceil
-cod = ceil(11 * 5 / 8)
-num = ceil((5*5 + 10) / 8)
-add = 30 - (cod + num)
-print(add)  # 18
+from math import ceil, log2
+# cod_user = ceil(11 * ceil(log2(15 + 10)) / 8)
+# cod_1 = 5 * ceil(log2(26))
+# cod_2 = 3 * ceil(log2(10))
+cod_user = ceil(11 * 5 / 8)
+cod_1 = 5 * 5
+cod_2 = 3 * 4
+cod = ceil((cod_1 + cod_2) / 8)
+print(30 - cod_user - cod)  # 18
 
 
 # 494 Джобс 19.10.2020 (Уровень: Средний)
@@ -103,6 +109,34 @@ res = 1600 // (p + 12)
 print(res)  # 66
 
 
+""" Взято на мой курс """
+# 2857 Статград 08.02.2022(Уровень: Средний)
+from math import ceil, log2
+cod_1 = 1 * 3
+cod_2 = 11 * 5
+cod_3 = 1 * 11
+cod = ceil((cod_1 + cod_2 + cod_3) / 8)
+# (cod + add) * 36 = 1188
+add = 1188 / 36 - cod
+print(add)  # 24
+
+
+# 3100 (Уровень: Базовый)
+from math import ceil, log2
+# (ceil(11 * 4 / 8) + add) * 50 = 700
+add = 700 / 50 - ceil(11 * 4 / 8)
+print(add)  # 8
+
+
+""" Взято на мой курс """
+# 3169 (Уровень: Средний)
+from math import ceil, log2
+id_1 = 15 * 5
+id_2 = 1 * ceil(log2(9999))
+I = ceil((id_1 + id_2) / 8) + 12
+print(1600 // I)  # 66
+
+
 # 4462 Джобс 15.06.2022 (Уровень: Базовый)
 res = 0
 for n in range(1, 1000):
@@ -142,6 +176,13 @@ res = ceil(38_776 * (p1 + p2) / 2**13)
 print(res)  # 673
 
 
+# 6083 (Уровень: Базовый)
+from math import ceil
+# (ceil(196 * 11 / 8) + add) * 2048 = 604*1024
+add = 604*1024 / 2048 - ceil(196 * 11 / 8)
+print(add)  # 32
+
+
 # 6746 Апробация 10.03.13_(23) (Уровень: Базовый)
 from math import ceil, log2
 i = ceil(log2(10 + 5000))
@@ -165,6 +206,14 @@ for i in range(1, 2000):
         break
 
 
+# 7261 OpenFIPI(Уровень: Базовый)
+from math import ceil, log2
+# (ceil(25 * 3 / 8) + add) * 200 = 4_800
+add = 4_800 / 200 - ceil(25 * 3 / 8)
+print(add)  # 14
+
+
+
 # 7813 (Уровень: Базовый)
 from math import ceil, log2
 I = ceil(310 * ceil(log2(10 + 2042)) / 8) + 14
@@ -178,6 +227,21 @@ for add in range(1, 100):
     if ceil((33 * i) / 8 + add) * 768 > 21 * 2**10:
         print(add - 1)  # 7
         break
+
+
+""" Взято на мой курс """
+# 9064 Danov2306(Уровень: Базовый)
+from math import ceil, log2
+# (ceil(29 * 4 / 8) + add) * 279 = 14_508
+add = 14_508 / 279 - ceil(29 * 4 / 8)
+print(add)  # 37
+
+
+
+# 8556 (Уровень: Базовый)
+from math import ceil, log2
+I = ceil(116 * 7 / 8) * 301_504
+print(ceil(I / 2**20))  # 30
 
 
 # 9742 Основная волна 19.06.13_(23) (Уровень: Базовый)
@@ -195,6 +259,7 @@ r = ceil((4 * 4 + 3 * 3) / 8) * 500
 print(r)  # 2000
 
 
+""" Взято на мой курс """
 # 11230 (Уровень: Базовый)
 from math import ceil, log2
 i = ceil(log2(2 + 17))  # 5
@@ -217,8 +282,8 @@ print(int(I * 32_768 / 1024))  # 4864
 
 # 16322 Открытый вариант 2024(Уровень: Базовый)
 from math import ceil, log2
-ident = ceil(317 * ceil(log2(10 + 4090)) / 8)
-print(ident * 262_144 // 2**20)  # 129
+I = ceil(317 * ceil(log2(10 + 4090)) / 8) * 262_144
+print(I / 2**20)  # 129
 
 
 # 16377 ЕГКР 27.04.24 (Уровень: Базовый)
@@ -260,6 +325,7 @@ for n in range(1, 1000):
         break
 
 
+""" Взято на мой курс """
 # 19243 ЕГКР 21.12.24 (Уровень: Базовый)
 from math import ceil, log2
 for i in range(1, 100):
@@ -278,6 +344,7 @@ for i in range(2, 100):
         break
 
 
+""" Взято на мой курс """
 # 20972 (Уровень: Средний) 👍
 from math import ceil
 for i in range(2, 100):
@@ -286,12 +353,14 @@ for i in range(2, 100):
         break
 
 
+
+""" Взято на мой курс """
 # 21594 (Уровень: Средний)
 from math import ceil, log2
-i = ceil(log2(10 + 32_724))
-I = ceil(223 * i / 8) / 2**30
-# print(17 // I)  # 43564704.0
-print(int(17 / I))  # 43564704
+I = ceil(223 * ceil(log2(10 + 26 + 32_724)) / 8)
+n = 17 * 2**30 // I
+print(n)  # 43564704
+
 
 
 # 23195 Основная волна 10.06.25 (Уровень: Базовый)
@@ -302,6 +371,7 @@ for i in range(1, 100):
         break
 
 
+""" Взято на мой курс """
 # 23370 Резервный день 19.06.25 (Уровень: Базовый)
 from math import ceil, log2
 i = ceil(log2(10 + 17))  # 5
@@ -311,7 +381,39 @@ for n in range(1, 100):
         break
 
 
+# 29071 (Уровень: Средний)
+from math import ceil, log2
+for i in range(1, 100):
+    x = ceil(11 * i / 8) * 1024
+    y = ceil(13 * i / 8) * 256
+    if x + y == 22 * 1024:
+        print(2**i)  # 4096
+        break
+
+
+# 29073 (Уровень: Средний)
+# Порядковый номер записи (от 0 до 65535) нужно представить в виде двоичного числа.
+# Для числа из 65536 вариантов минимально необходимая длина: ceil(log2(65_536)) ->  16 бит ✅
+from math import ceil, log2
+code = ceil(log2(65_536))  # 16
+for l in range(1, 10000):
+    if ceil((code + l * 5) / 8) * 65_536 == 60_096 * 1024:
+        print(l)  # 1498
+        break
+
+
+
 # 29343 Открытый вариант 2026(Уровень: Базовый)
 from math import ceil, log2
 I = ceil(257 * ceil(log2(17 + 4080)) / 8)
 print(I * 8_388_608 // 2**20)
+
+
+
+# 31118 Основная волна 18.06.26(Уровень: Базовый)
+from math import ceil, log2
+for i in range(1, 100):
+    if ceil(172 * i / 8) * 187_564 > 39 * 2**20:
+        print(2**(i-1))  # 1024
+        break
+
